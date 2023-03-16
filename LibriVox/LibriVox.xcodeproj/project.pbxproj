@@ -13,6 +13,8 @@
 		319FA01E29C36445006895CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA01C29C36445006895CB /* Main.storyboard */; };
 		319FA02029C36446006895CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 319FA01F29C36446006895CB /* Assets.xcassets */; };
 		319FA02329C36446006895CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02129C36446006895CB /* LaunchScreen.storyboard */; };
+		319FA02B29C37136006895CB /* Login_Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02A29C37136006895CB /* Login_Register.storyboard */; };
+		319FA02D29C37677006895CB /* Nunito-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		319FA01F29C36446006895CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		319FA02229C36446006895CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		319FA02429C36446006895CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		319FA02A29C37136006895CB /* Login_Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_Register.storyboard; sourceTree = "<group>"; };
+		319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +60,12 @@
 		319FA01529C36445006895CB /* LibriVox */ = {
 			isa = PBXGroup;
 			children = (
+				319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */,
 				319FA01629C36445006895CB /* AppDelegate.swift */,
 				319FA01829C36445006895CB /* SceneDelegate.swift */,
 				319FA01A29C36445006895CB /* ViewController.swift */,
 				319FA01C29C36445006895CB /* Main.storyboard */,
+				319FA02A29C37136006895CB /* Login_Register.storyboard */,
 				319FA01F29C36446006895CB /* Assets.xcassets */,
 				319FA02129C36446006895CB /* LaunchScreen.storyboard */,
 				319FA02429C36446006895CB /* Info.plist */,
@@ -126,7 +132,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				319FA02329C36446006895CB /* LaunchScreen.storyboard in Resources */,
+				319FA02B29C37136006895CB /* Login_Register.storyboard in Resources */,
 				319FA02029C36446006895CB /* Assets.xcassets in Resources */,
+				319FA02D29C37677006895CB /* Nunito-VariableFont_wght.ttf in Resources */,
 				319FA01E29C36445006895CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
