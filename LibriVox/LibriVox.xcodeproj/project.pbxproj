@@ -15,6 +15,9 @@
 		319FA02329C36446006895CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02129C36446006895CB /* LaunchScreen.storyboard */; };
 		319FA02B29C37136006895CB /* Login_Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02A29C37136006895CB /* Login_Register.storyboard */; };
 		319FA02D29C37677006895CB /* Nunito-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */; };
+		6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */; };
+		6F711C2929C3A6360029D7B1 /* NunitoAll.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F711C2829C3A6360029D7B1 /* NunitoAll.ttf */; };
+		6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		319FA02A29C37136006895CB /* Login_Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_Register.storyboard; sourceTree = "<group>"; };
 		319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		319FA02F29C381E8006895CB /* LibriVox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LibriVox.entitlements; sourceTree = "<group>"; };
+		6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		6F711C2829C3A6360029D7B1 /* NunitoAll.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = NunitoAll.ttf; path = "../../../../../../Downloads/Nunito 3/NunitoAll.ttf"; sourceTree = "<group>"; };
+		6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,7 @@
 		319FA01529C36445006895CB /* LibriVox */ = {
 			isa = PBXGroup;
 			children = (
+				6F711C2829C3A6360029D7B1 /* NunitoAll.ttf */,
 				319FA02F29C381E8006895CB /* LibriVox.entitlements */,
 				319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */,
 				319FA01629C36445006895CB /* AppDelegate.swift */,
@@ -68,6 +75,8 @@
 				319FA01A29C36445006895CB /* ViewController.swift */,
 				319FA01C29C36445006895CB /* Main.storyboard */,
 				319FA02A29C37136006895CB /* Login_Register.storyboard */,
+				6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */,
+				6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */,
 				319FA01F29C36446006895CB /* Assets.xcassets */,
 				319FA02129C36446006895CB /* LaunchScreen.storyboard */,
 				319FA02429C36446006895CB /* Info.plist */,
@@ -137,6 +146,8 @@
 				319FA02B29C37136006895CB /* Login_Register.storyboard in Resources */,
 				319FA02029C36446006895CB /* Assets.xcassets in Resources */,
 				319FA02D29C37677006895CB /* Nunito-VariableFont_wght.ttf in Resources */,
+				6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */,
+				6F711C2929C3A6360029D7B1 /* NunitoAll.ttf in Resources */,
 				319FA01E29C36445006895CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */,
 				319FA01B29C36445006895CB /* ViewController.swift in Sources */,
 				319FA01729C36445006895CB /* AppDelegate.swift in Sources */,
 				319FA01929C36445006895CB /* SceneDelegate.swift in Sources */,
