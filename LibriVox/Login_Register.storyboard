@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="LoginVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,6 +142,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="email" destination="eqW-bH-uUO" id="Puj-5M-iQ4"/>
+                        <outlet property="password" destination="y50-LU-oac" id="haG-Z3-WOW"/>
                         <segue destination="2aK-Rf-jgc" kind="custom" id="HLR-IG-Jmk"/>
                     </connections>
                 </viewController>
