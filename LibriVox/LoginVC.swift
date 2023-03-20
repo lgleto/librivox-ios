@@ -6,15 +6,21 @@
 //
 
 import UIKit
-
-
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 class LoginVC: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        Auth.auth().signIn(withEmail: email.text ?? "", password: password.text ?? "") { [weak self] authResult, error in
+          guard let strongSelf = self else { return }
+          // ...
+        }
                 
         
 

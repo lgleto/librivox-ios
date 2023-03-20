@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>523627442177-vu10lp2fhhst9778io0a5reiaeeksbdb.apps.googleusercontent.com</string>
+	<string>523627442177-onsjebsvpmn8l7j63d8k83ge0bcmijip.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.523627442177-vu10lp2fhhst9778io0a5reiaeeksbdb</string>
+	<string>com.googleusercontent.apps.523627442177-onsjebsvpmn8l7j63d8k83ge0bcmijip</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCG8NCwudGtuCVbECHOVlpuzhPTmIJLBtE</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>mindprober.librivox</string>
+	<string>mindprober.LibriVox</string>
 	<key>PROJECT_ID</key>
 	<string>librivox-d7d7c</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:523627442177:ios:707a7cddd432b7bf429000</string>
+	<string>1:523627442177:ios:b6cbb26d56decc54429000</string>
 </dict>
 </plist>
