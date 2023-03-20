@@ -15,14 +15,9 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Make the profile picture rounded and beautiful
-        profilePic.layer.borderWidth = 10
+        profilePic.layer.borderWidth = 4
         profilePic.layer.borderColor = UIColor.lightGray.cgColor
-        profilePic.layer.cornerRadius = 100
-        profilePic.clipsToBounds = true
-        profilePic.contentMode = UIView.ContentMode.scaleAspectFit
-        profilePic.frame.size.width = 200
-        profilePic.frame.size.height = 200
-        profilePic.center = self.view.center
+        profilePic.layer.cornerRadius = 50
         
         // Do any additional setup after loading the view.
     }
