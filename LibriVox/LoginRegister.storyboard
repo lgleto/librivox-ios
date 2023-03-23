@@ -51,6 +51,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Sign In">
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="fO5-rO-Bfh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or continue with" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAF-DO-ycY">
                                 <rect key="frame" x="32" y="494.66666666666669" width="329" height="22.000000000000057"/>
@@ -144,7 +147,7 @@
                     <connections>
                         <outlet property="email" destination="eqW-bH-uUO" id="Puj-5M-iQ4"/>
                         <outlet property="password" destination="y50-LU-oac" id="haG-Z3-WOW"/>
-                        <segue destination="2aK-Rf-jgc" kind="custom" id="HLR-IG-Jmk"/>
+                        <segue destination="2aK-Rf-jgc" kind="custom" identifier="loginToRegister" id="HLR-IG-Jmk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
