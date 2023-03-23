@@ -34,6 +34,8 @@
 		31DB789329C8648D00006CE8 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB789229C8648D00006CE8 /* FirebaseFunctions */; };
 		31DB789529C8648D00006CE8 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB789429C8648D00006CE8 /* FirebaseInstallations */; };
 		31DB789729C8648D00006CE8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB789629C8648D00006CE8 /* FirebaseStorage */; };
+		6F152E2629CCD12C0008846B /* LibraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F152E2529CCD12C0008846B /* LibraryVC.swift */; };
+		6F152E2829CCD2030008846B /* ContainerPagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F152E2729CCD2030008846B /* ContainerPagesVC.swift */; };
 		6F4EC1E929C9DFDB0025B204 /* RoundedBookImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1E829C9DFDB0025B204 /* RoundedBookImageView.swift */; };
 		6F4EC1EB29C9DFF50025B204 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EA29C9DFF50025B204 /* BlurredImageView.swift */; };
 		6F4EC1ED29C9DFFB0025B204 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */; };
@@ -64,6 +66,8 @@
 		31C883D229C8C7C200A53C78 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		31C883D429C8CA3B00A53C78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6F152E2429CCA56A0008846B /* Prata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prata-Regular.ttf"; sourceTree = "<group>"; };
+		6F152E2529CCD12C0008846B /* LibraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryVC.swift; sourceTree = "<group>"; };
+		6F152E2729CCD2030008846B /* ContainerPagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPagesVC.swift; sourceTree = "<group>"; };
 		6F4EC1E829C9DFDB0025B204 /* RoundedBookImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBookImageView.swift; sourceTree = "<group>"; };
 		6F4EC1EA29C9DFF50025B204 /* BlurredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -116,21 +120,23 @@
 		319FA01529C36445006895CB /* LibriVox */ = {
 			isa = PBXGroup;
 			children = (
-				6F4EC1F029C9E61D0025B204 /* CustomViews */,
-				31C883C829C8ABA600A53C78 /* LoginVC.swift */,
-				31C883CA29C8ABA600A53C78 /* Profile.storyboard */,
-				31C883C929C8ABA600A53C78 /* ProfileVC.swift */,
 				319FA02F29C381E8006895CB /* LibriVox.entitlements */,
+				6F4EC1F029C9E61D0025B204 /* CustomViews */,
 				319FA01629C36445006895CB /* AppDelegate.swift */,
 				319FA01829C36445006895CB /* SceneDelegate.swift */,
 				319FA01A29C36445006895CB /* ViewController.swift */,
+				317B4C0429CC9D3C0058F4B9 /* User.swift */,
+				317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */,
+				31C883C829C8ABA600A53C78 /* LoginVC.swift */,
+				31C883C929C8ABA600A53C78 /* ProfileVC.swift */,
 				6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */,
+				6F152E2529CCD12C0008846B /* LibraryVC.swift */,
+				6F152E2729CCD2030008846B /* ContainerPagesVC.swift */,
+				31C883CA29C8ABA600A53C78 /* Profile.storyboard */,
 				6FB33FE929CC9726008CC60C /* Library.storyboard */,
 				31C883D229C8C7C200A53C78 /* Discover.storyboard */,
 				6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */,
 				319FA02A29C37136006895CB /* LoginRegister.storyboard */,
-				317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */,
-				317B4C0429CC9D3C0058F4B9 /* User.swift */,
 				319FA02129C36446006895CB /* LaunchScreen.storyboard */,
 				319FA01F29C36446006895CB /* Assets.xcassets */,
 				6F152E2429CCA56A0008846B /* Prata-Regular.ttf */,
@@ -263,7 +269,9 @@
 				317B4C0729CCB5F80058F4B9 /* GIDSignInButton.swift in Sources */,
 				317B4BFE29CC6FD30058F4B9 /* RegisterVC.swift in Sources */,
 				6F4EC1F229C9EBF60025B204 /* BlueShadowView.swift in Sources */,
+				6F152E2829CCD2030008846B /* ContainerPagesVC.swift in Sources */,
 				6F4EC1EF29C9E0020025B204 /* RoundView.swift in Sources */,
+				6F152E2629CCD12C0008846B /* LibraryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
