@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import GoogleSignIn
 
 class LoginVC: UIViewController {
 
@@ -17,14 +18,37 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        _ = Auth.auth().addStateDidChangeListener { auth, user in
+            if (user != nil) {
+                self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                print("there is user")
+            }
+            
+        }
+        
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
-                
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        
         
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func loginButton(_ sender: UIButton) {
+        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
+          guard let strongSelf = self else { return }
+            if (authResult != nil) {
+                self!.performSegue(withIdentifier: "loginToMain", sender: nil)
+            }
+        }
+    }
+/*
     @IBAction func loginButton(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (authResult, error) in
           if let error = error as? NSError {
@@ -50,7 +74,7 @@ class LoginVC: UIViewController {
             let email = userInfo?.email
           }
         }
-    }
+    }*/
     /*
     // MARK: - Navigation
 
@@ -61,4 +85,32 @@ class LoginVC: UIViewController {
     }
     */
 
+    @IBAction func signInGoogle(_ sender: UIButton) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+          guard error == nil else {
+            return
+          }
+
+          guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
+          else {
+            return
+          }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+            
+            Auth.auth().signIn(with: credential) { result, error in
+
+              // At this point, our user is signed in
+                self.performSegue(withIdentifier: "loginToMain", sender: nil)
+            }
+                
+
+          // ...
+        }
+    }
+    @IBAction func RegisterButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "loginToRegister", sender: nil)
+    }
 }

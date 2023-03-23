@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 class HomePageViewController: UIViewController {
   
@@ -25,7 +27,14 @@ class HomePageViewController: UIViewController {
         view.clipsToBounds = true
         
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
-  
+        
+        
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
     }
 }
 
