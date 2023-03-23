@@ -16,6 +16,9 @@
             <string>Nunito-Regular</string>
             <string>Nunito-SemiBold</string>
         </array>
+        <array key="Prata-Regular.ttf">
+            <string>Prata-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Home-->
@@ -263,22 +266,18 @@
                                                     <rect key="frame" x="0.0" y="8" width="100" height="107"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-2i-ibs">
-                                                            <rect key="frame" x="4" y="-20" width="43" height="119"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="43" id="AKx-ZX-SJP"/>
-                                                                <constraint firstAttribute="height" constant="119" id="USc-X0-pah"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="100"/>
+                                                            <rect key="frame" x="3" y="8" width="20" height="47.666666666666664"/>
+                                                            <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="35"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" name="Main Blue Tone"/>
                                                     <constraints>
+                                                        <constraint firstItem="GfF-2i-ibs" firstAttribute="top" secondItem="XQR-Fc-pNb" secondAttribute="top" constant="8" id="Bfx-1n-RAZ"/>
                                                         <constraint firstAttribute="width" constant="100" id="Ckq-lJ-rKR"/>
-                                                        <constraint firstItem="GfF-2i-ibs" firstAttribute="leading" secondItem="XQR-Fc-pNb" secondAttribute="leading" constant="4" id="Hkz-0B-Fco"/>
+                                                        <constraint firstItem="GfF-2i-ibs" firstAttribute="leading" secondItem="XQR-Fc-pNb" secondAttribute="leading" constant="3" id="Hkz-0B-Fco"/>
                                                         <constraint firstAttribute="height" constant="107" id="Xvh-Zb-Vl9"/>
-                                                        <constraint firstAttribute="bottom" secondItem="GfF-2i-ibs" secondAttribute="bottom" constant="8" id="Y3e-xg-OvA"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1N-J2-FVt">

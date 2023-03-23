@@ -15,6 +15,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Prata-Regular.ttf</string>
 		<string>Nunito-VariableFont_wght.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
@@ -31,7 +32,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>LoginRegister</string>
+					<string>Library</string>
 				</dict>
 			</array>
 		</dict>

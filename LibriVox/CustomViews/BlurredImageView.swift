@@ -15,10 +15,10 @@ class BlurredImageView: UIImageView {
         super.layoutSubviews()
         
         let blurEffect = UIBlurEffect(style: .light)
-           let blurEffectView = UIVisualEffectView(effect: blurEffect)
-           blurEffectView.frame = bounds
-           blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-           addSubview(blurEffectView)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blurEffectView)
     }
 }
 
