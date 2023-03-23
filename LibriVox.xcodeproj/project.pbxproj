@@ -12,6 +12,7 @@
 		317B4C0329CC78540058F4B9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0229CC78540058F4B9 /* GoogleSignInSwift */; };
 		317B4C0529CC9D3C0058F4B9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4C0429CC9D3C0058F4B9 /* User.swift */; };
 		317B4C0729CCB5F80058F4B9 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4C0629CCB5F80058F4B9 /* GIDSignInButton.swift */; };
+		317B4C0A29CCBD6A0058F4B9 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0929CCBD6A0058F4B9 /* SimpleToast */; };
 		319FA01729C36445006895CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01629C36445006895CB /* AppDelegate.swift */; };
 		319FA01929C36445006895CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01829C36445006895CB /* SceneDelegate.swift */; };
 		319FA01B29C36445006895CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01A29C36445006895CB /* ViewController.swift */; };
@@ -82,6 +83,7 @@
 				31DB789329C8648D00006CE8 /* FirebaseFunctions in Frameworks */,
 				31DB789729C8648D00006CE8 /* FirebaseStorage in Frameworks */,
 				31DB788929C8648D00006CE8 /* FirebaseAnalyticsSwift in Frameworks */,
+				317B4C0A29CCBD6A0058F4B9 /* SimpleToast in Frameworks */,
 				31DB789529C8648D00006CE8 /* FirebaseInstallations in Frameworks */,
 				317B4C0129CC78540058F4B9 /* GoogleSignIn in Frameworks */,
 				31DB788B29C8648D00006CE8 /* FirebaseAuth in Frameworks */,
@@ -180,6 +182,7 @@
 				31DB789629C8648D00006CE8 /* FirebaseStorage */,
 				317B4C0029CC78540058F4B9 /* GoogleSignIn */,
 				317B4C0229CC78540058F4B9 /* GoogleSignInSwift */,
+				317B4C0929CCBD6A0058F4B9 /* SimpleToast */,
 			);
 			productName = LibriVox;
 			productReference = 319FA01329C36445006895CB /* LibriVox.app */;
@@ -212,6 +215,7 @@
 			packageReferences = (
 				31DB788529C8648D00006CE8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 319FA01429C36445006895CB /* Products */;
 			projectDirPath = "";
@@ -481,6 +485,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.2;
+			};
+		};
 		31DB788529C8648D00006CE8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -501,6 +513,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		317B4C0929CCBD6A0058F4B9 /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
 		};
 		31DB788629C8648D00006CE8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

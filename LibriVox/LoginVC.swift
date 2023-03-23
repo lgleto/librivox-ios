@@ -24,7 +24,6 @@ class LoginVC: UIViewController {
                 self.performSegue(withIdentifier: "loginToMain", sender: nil)
                 print("there is user")
             }
-            
         }
         
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -43,6 +42,7 @@ class LoginVC: UIViewController {
     @IBAction func loginButton(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
+            print(error)
             if (authResult != nil) {
                 self!.performSegue(withIdentifier: "loginToMain", sender: nil)
             }

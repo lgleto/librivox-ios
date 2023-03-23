@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rHR-0Y-wQg">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -24,29 +24,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Again!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVP-pe-XJm">
-                                <rect key="frame" x="0.0" y="123" width="393" height="33"/>
+                                <rect key="frame" x="0.0" y="167" width="393" height="33"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back you’ve been missed!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvV-kj-WRk">
-                                <rect key="frame" x="64" y="172" width="265" height="54.666666666666657"/>
+                                <rect key="frame" x="64" y="216" width="265" height="54.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqW-bH-uUO">
-                                <rect key="frame" x="32" y="290.66666666666669" width="329" height="34"/>
+                                <rect key="frame" x="32" y="334.66666666666669" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y50-LU-oac">
-                                <rect key="frame" x="32" y="340.66666666666669" width="329" height="34"/>
+                                <rect key="frame" x="32" y="384.66666666666669" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMo-Jx-QCZ">
-                                <rect key="frame" x="32" y="438.66666666666669" width="329" height="35"/>
+                                <rect key="frame" x="32" y="482.66666666666669" width="329" height="35.000000000000057"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign In">
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
@@ -56,13 +56,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or continue with" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAF-DO-ycY">
-                                <rect key="frame" x="32" y="494.66666666666669" width="329" height="22.000000000000057"/>
+                                <rect key="frame" x="32" y="538.66666666666663" width="329" height="22"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMY-Pf-VAU">
-                                <rect key="frame" x="32" y="505.33333333333331" width="84" height="1"/>
+                                <rect key="frame" x="32" y="549.33333333333337" width="84" height="1"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="21P-pn-Mhd"/>
@@ -70,7 +70,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1d-HA-Hab">
-                                <rect key="frame" x="277" y="505.33333333333331" width="84" height="1"/>
+                                <rect key="frame" x="277" y="549.33333333333337" width="84" height="1"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="ERO-6R-tl2"/>
@@ -78,14 +78,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-th-r99">
-                                <rect key="frame" x="32" y="532.66666666666663" width="329" height="35"/>
+                                <rect key="frame" x="32" y="576.66666666666663" width="329" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="apple.logo" catalog="system" title="Sign up with Apple" imagePadding="10">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lh-LN-hep">
-                                <rect key="frame" x="32" y="583.66666666666663" width="329" height="34.333333333333371"/>
+                                <rect key="frame" x="32" y="627.66666666666663" width="329" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="search" title="Sign up with Google" imagePadding="10">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -147,59 +147,60 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eqW-bH-uUO" secondAttribute="trailing" constant="32" id="zJX-KY-vk9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0cT-dV-wVt"/>
                     <connections>
                         <outlet property="email" destination="eqW-bH-uUO" id="Puj-5M-iQ4"/>
                         <outlet property="password" destination="y50-LU-oac" id="haG-Z3-WOW"/>
-                        <segue destination="2aK-Rf-jgc" kind="showDetail" identifier="loginToRegister" id="HLR-IG-Jmk"/>
+                        <segue destination="2aK-Rf-jgc" kind="show" identifier="loginToRegister" id="HLR-IG-Jmk"/>
                         <segue destination="0Ue-hI-enA" kind="show" identifier="loginToMain" id="ITt-e4-vSX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29.770992366412212" y="-20.422535211267608"/>
+            <point key="canvasLocation" x="956.48854961832058" y="-20.422535211267608"/>
         </scene>
         <!--RegisterVC-->
         <scene sceneID="UMq-vz-WLO">
             <objects>
                 <viewController id="2aK-Rf-jgc" customClass="RegisterVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oos-Wl-wRU">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezd-Ss-SAk">
-                                <rect key="frame" x="0.0" y="123" width="393" height="33"/>
+                                <rect key="frame" x="0.0" y="135" width="393" height="33"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready to start reading?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWA-SG-RZv">
-                                <rect key="frame" x="64" y="172" width="265" height="27.333333333333343"/>
+                                <rect key="frame" x="64" y="184" width="265" height="27.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First / Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="snl-IE-Wud">
-                                <rect key="frame" x="32" y="249.33333333333337" width="329" height="34"/>
+                                <rect key="frame" x="32" y="261.33333333333331" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zoI-M5-8kC">
-                                <rect key="frame" x="32" y="349.33333333333331" width="329" height="34"/>
+                                <rect key="frame" x="32" y="361.33333333333331" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zP0-Mw-qm0">
-                                <rect key="frame" x="32" y="399.33333333333331" width="329" height="34"/>
+                                <rect key="frame" x="32" y="411.33333333333331" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLo-0c-bm3" userLabel="confirm password">
-                                <rect key="frame" x="32" y="449.33333333333331" width="329" height="34"/>
+                                <rect key="frame" x="32" y="461.33333333333331" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2d-iT-3Gp">
-                                <rect key="frame" x="32" y="515.33333333333337" width="329" height="35"/>
+                                <rect key="frame" x="32" y="527.33333333333337" width="329" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Register">
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
@@ -209,13 +210,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or continue with" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6r-M4-fvl">
-                                <rect key="frame" x="32" y="614.33333333333337" width="329" height="22"/>
+                                <rect key="frame" x="32" y="626.33333333333337" width="329" height="22"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rsf-xj-NUj">
-                                <rect key="frame" x="32" y="625" width="84" height="1"/>
+                                <rect key="frame" x="32" y="637" width="84" height="1"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="6JS-y0-Gbs"/>
@@ -223,7 +224,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Jl-zR-Ypn">
-                                <rect key="frame" x="277" y="625" width="84" height="1"/>
+                                <rect key="frame" x="277" y="637" width="84" height="1"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="GjT-fq-VLv"/>
@@ -231,14 +232,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SA8-Nm-AGZ">
-                                <rect key="frame" x="32" y="652.33333333333337" width="329" height="35"/>
+                                <rect key="frame" x="32" y="664.33333333333337" width="329" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="apple.logo" catalog="system" title="Sign up with Apple" imagePadding="10">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOu-Mw-bdL">
-                                <rect key="frame" x="32" y="703.33333333333337" width="329" height="34.333333333333371"/>
+                                <rect key="frame" x="32" y="715.33333333333337" width="329" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="search" title="Sign up with Google" imagePadding="10">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -246,7 +247,7 @@
                                 </buttonConfiguration>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hee-Vv-Q2z">
-                                <rect key="frame" x="32" y="299.33333333333331" width="329" height="34"/>
+                                <rect key="frame" x="32" y="311.33333333333331" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
@@ -259,7 +260,7 @@
                             <constraint firstItem="fLR-Vq-huQ" firstAttribute="trailing" secondItem="cWA-SG-RZv" secondAttribute="trailing" constant="64" id="AM0-Nk-fk8"/>
                             <constraint firstItem="fLR-Vq-huQ" firstAttribute="trailing" secondItem="snl-IE-Wud" secondAttribute="trailing" constant="32" id="DgT-v7-J3T"/>
                             <constraint firstItem="SA8-Nm-AGZ" firstAttribute="top" secondItem="j6r-M4-fvl" secondAttribute="bottom" constant="16" id="DyS-2I-SwJ"/>
-                            <constraint firstItem="ezd-Ss-SAk" firstAttribute="top" secondItem="fLR-Vq-huQ" secondAttribute="top" constant="64" id="FTu-l4-MEX"/>
+                            <constraint firstItem="ezd-Ss-SAk" firstAttribute="top" secondItem="fLR-Vq-huQ" secondAttribute="top" constant="32" id="FTu-l4-MEX"/>
                             <constraint firstItem="fLR-Vq-huQ" firstAttribute="trailing" secondItem="zoI-M5-8kC" secondAttribute="trailing" constant="32" id="Hph-Cy-t1Z"/>
                             <constraint firstItem="o2d-iT-3Gp" firstAttribute="top" secondItem="mLo-0c-bm3" secondAttribute="bottom" constant="32" id="JMh-BJ-SQk"/>
                             <constraint firstItem="mLo-0c-bm3" firstAttribute="leading" secondItem="fLR-Vq-huQ" secondAttribute="leading" constant="32" id="L1e-wT-H1a"/>
@@ -293,7 +294,7 @@
                             <constraint firstItem="o2d-iT-3Gp" firstAttribute="leading" secondItem="fLR-Vq-huQ" secondAttribute="leading" constant="32" id="zol-mV-nxo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="avc-mF-312"/>
+                    <navigationItem key="navigationItem" style="editor" id="avc-mF-312"/>
                     <connections>
                         <outlet property="emailText" destination="zoI-M5-8kC" id="FAt-6Q-c1x"/>
                         <outlet property="firstLastText" destination="snl-IE-Wud" id="3gc-5T-6rk"/>
@@ -304,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZyG-ny-8gz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="-20"/>
+            <point key="canvasLocation" x="1805.3435114503816" y="-20.422535211267608"/>
         </scene>
         <!--HomePage-->
         <scene sceneID="vnj-7b-pMi">
@@ -314,11 +315,29 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqJ-J8-a0i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1614" y="38"/>
+            <point key="canvasLocation" x="2540.4580152671756" y="37.323943661971832"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gSz-0h-40X">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rHR-0Y-wQg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7N2-RI-gd5">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="Ode-KU-oRP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g95-jw-2zH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.770992366412212" y="-20.422535211267608"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ITt-e4-vSX"/>
+        <segue reference="7bQ-KC-jdK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>

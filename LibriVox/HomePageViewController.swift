@@ -29,12 +29,7 @@ class HomePageViewController: UIViewController {
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
         
         
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
+        
     }
 }
 

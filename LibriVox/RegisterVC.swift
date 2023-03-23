@@ -40,6 +40,8 @@ class RegisterVC: UIViewController {
     }
     */
     @IBAction func registerButton(_ sender: UIButton) {
+        
+        
         Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { [self] authResult, error in
             if (authResult != nil) {
                 //TODO: Store First/ Last name and username in Firestore
