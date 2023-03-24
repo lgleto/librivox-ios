@@ -15,18 +15,18 @@ class LoginVC: UIViewController {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
         let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController
         home.modalPresentationStyle = .fullScreen
-        self.present(home, animated: true, completion: nil)
         
         _ = Auth.auth().addStateDidChangeListener { auth, user in
             if (user != nil) {
-                
+                self.self.present(home, animated: true, completion: nil)
                 print("there is user")
             }
         }
@@ -45,11 +45,12 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
+        
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
             print(error)
             if (authResult != nil) {
-                self!.performSegue(withIdentifier: "loginToMain", sender: nil)
+                //self.self.present(home, animated: true, completion: nil)
             }
         }
     }
@@ -108,7 +109,7 @@ class LoginVC: UIViewController {
             Auth.auth().signIn(with: credential) { result, error in
 
               // At this point, our user is signed in
-                self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                //self.self.present(home, animated: true, completion: nil)
             }
                 
 
