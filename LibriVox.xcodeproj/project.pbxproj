@@ -13,6 +13,7 @@
 		317B4C0529CC9D3C0058F4B9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4C0429CC9D3C0058F4B9 /* User.swift */; };
 		317B4C0729CCB5F80058F4B9 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4C0629CCB5F80058F4B9 /* GIDSignInButton.swift */; };
 		317B4C0A29CCBD6A0058F4B9 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0929CCBD6A0058F4B9 /* SimpleToast */; };
+		317FC6A429CE0A3E00E5922A /* HomepageTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */; };
 		319FA01729C36445006895CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01629C36445006895CB /* AppDelegate.swift */; };
 		319FA01929C36445006895CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01829C36445006895CB /* SceneDelegate.swift */; };
 		319FA01B29C36445006895CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01A29C36445006895CB /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		317B4C0429CC9D3C0058F4B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		317B4C0629CCB5F80058F4B9 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
+		317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageTBC.swift; sourceTree = "<group>"; };
 		319FA01329C36445006895CB /* LibriVox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibriVox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		319FA01629C36445006895CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		319FA01829C36445006895CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				6FB33FE929CC9726008CC60C /* Library.storyboard */,
 				31C883D229C8C7C200A53C78 /* Discover.storyboard */,
 				6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */,
+				317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */,
 				319FA02A29C37136006895CB /* LoginRegister.storyboard */,
 				317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */,
 				317B4C0429CC9D3C0058F4B9 /* User.swift */,
@@ -255,6 +258,7 @@
 				6F4EC1ED29C9DFFB0025B204 /* CircularImageView.swift in Sources */,
 				6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */,
 				6F4EC1E929C9DFDB0025B204 /* RoundedBookImageView.swift in Sources */,
+				317FC6A429CE0A3E00E5922A /* HomepageTBC.swift in Sources */,
 				319FA01B29C36445006895CB /* ViewController.swift in Sources */,
 				319FA01729C36445006895CB /* AppDelegate.swift in Sources */,
 				319FA01929C36445006895CB /* SceneDelegate.swift in Sources */,

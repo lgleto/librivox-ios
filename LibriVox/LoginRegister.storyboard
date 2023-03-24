@@ -24,29 +24,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Again!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVP-pe-XJm">
-                                <rect key="frame" x="0.0" y="167" width="393" height="33"/>
+                                <rect key="frame" x="0.0" y="269" width="393" height="33"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back you’ve been missed!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvV-kj-WRk">
-                                <rect key="frame" x="64" y="216" width="265" height="54.666666666666686"/>
+                                <rect key="frame" x="64" y="318" width="265" height="54.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqW-bH-uUO">
-                                <rect key="frame" x="32" y="334.66666666666669" width="329" height="34"/>
+                                <rect key="frame" x="32" y="404.66666666666669" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y50-LU-oac">
-                                <rect key="frame" x="32" y="384.66666666666669" width="329" height="34"/>
+                                <rect key="frame" x="32" y="454.66666666666669" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMo-Jx-QCZ">
-                                <rect key="frame" x="32" y="482.66666666666669" width="329" height="35.000000000000057"/>
+                                <rect key="frame" x="32" y="552.66666666666663" width="329" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign In">
                                     <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
@@ -56,13 +56,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or continue with" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAF-DO-ycY">
-                                <rect key="frame" x="32" y="538.66666666666663" width="329" height="22"/>
+                                <rect key="frame" x="32" y="608.66666666666663" width="329" height="22"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMY-Pf-VAU">
-                                <rect key="frame" x="32" y="549.33333333333337" width="84" height="1"/>
+                                <rect key="frame" x="32" y="619.33333333333337" width="84" height="1"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="21P-pn-Mhd"/>
@@ -70,7 +70,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1d-HA-Hab">
-                                <rect key="frame" x="277" y="549.33333333333337" width="84" height="1"/>
+                                <rect key="frame" x="277" y="619.33333333333337" width="84" height="1"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="ERO-6R-tl2"/>
@@ -78,14 +78,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-th-r99">
-                                <rect key="frame" x="32" y="576.66666666666663" width="329" height="35"/>
+                                <rect key="frame" x="32" y="646.66666666666663" width="329" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="apple.logo" catalog="system" title="Sign up with Apple" imagePadding="10">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lh-LN-hep">
-                                <rect key="frame" x="32" y="627.66666666666663" width="329" height="34.333333333333371"/>
+                                <rect key="frame" x="32" y="697.66666666666663" width="329" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="search" title="Sign up with Google" imagePadding="10">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -109,13 +109,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ush-SL-zDS">
+                                <rect key="frame" x="0.0" y="103" width="393" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="XFZ-NE-yEp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jMo-Jx-QCZ" secondAttribute="trailing" constant="32" id="0PC-ex-DLH"/>
-                            <constraint firstItem="eqW-bH-uUO" firstAttribute="top" secondItem="TvV-kj-WRk" secondAttribute="bottom" constant="64" id="0QV-yo-6Ci"/>
+                            <constraint firstItem="eqW-bH-uUO" firstAttribute="top" secondItem="TvV-kj-WRk" secondAttribute="bottom" constant="32" id="0QV-yo-6Ci"/>
                             <constraint firstItem="Fn0-qL-lZX" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="-7" id="2FF-We-oyr"/>
+                            <constraint firstItem="PVP-pe-XJm" firstAttribute="top" secondItem="Ush-SL-zDS" secondAttribute="bottom" constant="16" id="2t0-vz-bUD"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dCn-th-r99" secondAttribute="trailing" constant="32" id="5YD-Ky-XQR"/>
                             <constraint firstItem="jMo-Jx-QCZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="5zV-38-ayZ"/>
                             <constraint firstItem="eqW-bH-uUO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="7dV-Xl-Ssc"/>
@@ -124,11 +131,12 @@
                             <constraint firstItem="tMY-Pf-VAU" firstAttribute="centerY" secondItem="kAF-DO-ycY" secondAttribute="centerY" id="CDd-LJ-6AA"/>
                             <constraint firstItem="dCn-th-r99" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="GVV-dS-MYt"/>
                             <constraint firstItem="TvV-kj-WRk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="64" id="IZ1-Lk-LIX"/>
-                            <constraint firstItem="PVP-pe-XJm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="64" id="KBD-dN-955"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F1d-HA-Hab" secondAttribute="trailing" constant="16" id="LA7-40-tFo"/>
                             <constraint firstItem="TvV-kj-WRk" firstAttribute="top" secondItem="PVP-pe-XJm" secondAttribute="bottom" constant="16" id="Nw3-Fa-e2K"/>
                             <constraint firstItem="tMY-Pf-VAU" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" constant="16" id="PNH-fg-Wxh"/>
+                            <constraint firstItem="Ush-SL-zDS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="RbZ-hL-Svl"/>
                             <constraint firstItem="kAF-DO-ycY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="Sfc-an-sWt"/>
+                            <constraint firstAttribute="trailing" secondItem="Ush-SL-zDS" secondAttribute="trailing" id="VYM-dP-gdB"/>
                             <constraint firstItem="y50-LU-oac" firstAttribute="top" secondItem="eqW-bH-uUO" secondAttribute="bottom" constant="16" id="Vl7-t9-39X"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kAF-DO-ycY" secondAttribute="trailing" constant="32" id="Vqp-dL-79R"/>
                             <constraint firstItem="PVP-pe-XJm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="YeV-bD-XsG"/>
@@ -139,6 +147,7 @@
                             <constraint firstItem="y50-LU-oac" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="myZ-Fc-XgO"/>
                             <constraint firstItem="kAF-DO-ycY" firstAttribute="top" secondItem="jMo-Jx-QCZ" secondAttribute="bottom" constant="21" id="ntx-vY-HU2"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PVP-pe-XJm" secondAttribute="trailing" id="pmK-iD-H4w"/>
+                            <constraint firstItem="Ush-SL-zDS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="qe6-Ks-8we"/>
                             <constraint firstItem="F1d-HA-Hab" firstAttribute="centerY" secondItem="kAF-DO-ycY" secondAttribute="centerY" id="sAT-qa-7N7"/>
                             <constraint firstItem="5lh-LN-hep" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="sic-wi-gb7"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="y50-LU-oac" secondAttribute="trailing" constant="32" id="uNa-gH-dDK"/>
@@ -337,10 +346,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7bQ-KC-jdK"/>
+        <segue reference="ITt-e4-vSX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
+        <image name="logo" width="400" height="400"/>
         <image name="search" width="16" height="16"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

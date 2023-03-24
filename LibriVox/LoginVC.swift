@@ -19,9 +19,14 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
+        let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController
+        home.modalPresentationStyle = .fullScreen
+        self.present(home, animated: true, completion: nil)
+        
         _ = Auth.auth().addStateDidChangeListener { auth, user in
             if (user != nil) {
-                self.performSegue(withIdentifier: "loginToMain", sender: nil)
+                
                 print("there is user")
             }
         }
