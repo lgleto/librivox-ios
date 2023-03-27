@@ -36,6 +36,7 @@
 		31DB789329C8648D00006CE8 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB789229C8648D00006CE8 /* FirebaseFunctions */; };
 		31DB789529C8648D00006CE8 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB789429C8648D00006CE8 /* FirebaseInstallations */; };
 		31DB789729C8648D00006CE8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 31DB789629C8648D00006CE8 /* FirebaseStorage */; };
+		31F4EF3829D191CB00F17962 /* RegisterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4EF3729D191CB00F17962 /* RegisterDetailVC.swift */; };
 		6F152E2629CCD12C0008846B /* LibraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F152E2529CCD12C0008846B /* LibraryVC.swift */; };
 		6F152E2829CCD2030008846B /* ContainerPagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F152E2729CCD2030008846B /* ContainerPagesVC.swift */; };
 		6F4EC1E929C9DFDB0025B204 /* RoundedBookImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1E829C9DFDB0025B204 /* RoundedBookImageView.swift */; };
@@ -69,6 +70,7 @@
 		31C883CA29C8ABA600A53C78 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		31C883D229C8C7C200A53C78 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		31C883D429C8CA3B00A53C78 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		31F4EF3729D191CB00F17962 /* RegisterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailVC.swift; sourceTree = "<group>"; };
 		6F152E2429CCA56A0008846B /* Prata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prata-Regular.ttf"; sourceTree = "<group>"; };
 		6F152E2529CCD12C0008846B /* LibraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryVC.swift; sourceTree = "<group>"; };
 		6F152E2729CCD2030008846B /* ContainerPagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPagesVC.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */,
 				317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */,
 				319FA02A29C37136006895CB /* LoginRegister.storyboard */,
+				31F4EF3729D191CB00F17962 /* RegisterDetailVC.swift */,
 				319FA02129C36446006895CB /* LaunchScreen.storyboard */,
 				319FA01F29C36446006895CB /* Assets.xcassets */,
 				6F152E2429CCA56A0008846B /* Prata-Regular.ttf */,
@@ -272,6 +275,7 @@
 				319FA01729C36445006895CB /* AppDelegate.swift in Sources */,
 				319FA01929C36445006895CB /* SceneDelegate.swift in Sources */,
 				31C883CC29C8ABA600A53C78 /* LoginVC.swift in Sources */,
+				31F4EF3829D191CB00F17962 /* RegisterDetailVC.swift in Sources */,
 				6F4EC1EB29C9DFF50025B204 /* BlurredImageView.swift in Sources */,
 				317B4C0729CCB5F80058F4B9 /* GIDSignInButton.swift in Sources */,
 				317B4BFE29CC6FD30058F4B9 /* RegisterVC.swift in Sources */,
