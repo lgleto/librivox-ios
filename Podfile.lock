@@ -1,0 +1,23 @@
+PODS:
+  - Alamofire (4.9.1)
+  - SwaggerClient (0.0.1):
+    - Alamofire (~> 4.9.0)
+
+DEPENDENCIES:
+  - SwaggerClient (from `./swagger-ios`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+
+EXTERNAL SOURCES:
+  SwaggerClient:
+    :path: "./swagger-ios"
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  SwaggerClient: e71103a7c90c42e59818ff22f31380421ff8bdf6
+
+PODFILE CHECKSUM: c79d8c15b54d516daaea14a8d972ff7e03c3e47e
+
+COCOAPODS: 1.11.3
