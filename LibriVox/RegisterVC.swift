@@ -10,17 +10,21 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var emailText: UITextField!
+    
+    
     
     @IBOutlet weak var firstLastText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var usernameText: UITextField!
     
+    
+    
     let db = Firestore.firestore()
     
-    var user = User(name: "", username: "", description: "", urlToImage: "")
+    var user = User(name: "", username: "", description: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,10 @@ class RegisterVC: UIViewController {
     }
     
 
+
+    
+    
+    
     /*
 
     // MARK: - Navigation
@@ -41,6 +49,10 @@ class RegisterVC: UIViewController {
     */
     @IBAction func registerButton(_ sender: UIButton) {
         
+        let storyBoard :UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let home = storyBoard.instantiateViewController(withIdentifier: "RegisterDetailVC")
+        home.modalPresentationStyle = .fullScreen
+        
         
         Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { [self] authResult, error in
             if (authResult != nil) {
@@ -51,7 +63,6 @@ class RegisterVC: UIViewController {
                 db.collection("users").document(Auth.auth().currentUser!.uid).setData([
                     "name": user.name,
                     "username": user.username,
-                    "urlToImage": user.urlToImage,
                     "description": user.description
                 ]) { err in
                     if let err = err {
@@ -62,7 +73,7 @@ class RegisterVC: UIViewController {
                 }
                 
                 //TODO: Change to the MAINSCREEN
-                performSegue(withIdentifier: "registerToMain", sender: nil)
+                self.self.present(home, animated: true, completion: nil)
                 print("user Register")
                 
             } else{
@@ -70,6 +81,7 @@ class RegisterVC: UIViewController {
                 
             }
         }
+         
     }
     
 }

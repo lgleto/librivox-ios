@@ -11,6 +11,5 @@ struct User {
     var name: String
     var username: String
     var description: String
-    var urlToImage: String
     
 }
