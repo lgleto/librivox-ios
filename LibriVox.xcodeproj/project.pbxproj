@@ -134,24 +134,12 @@
 			isa = PBXGroup;
 			children = (
 				319FA02F29C381E8006895CB /* LibriVox.entitlements */,
+				6F43C7D529D1F01F0013232C /* StoryBoard */,
+				6F43C7D329D1EFBC0013232C /* ViewControllers */,
+				6F43C7D129D1EF7E0013232C /* Models */,
 				6F4EC1F029C9E61D0025B204 /* CustomViews */,
 				319FA01629C36445006895CB /* AppDelegate.swift */,
 				319FA01829C36445006895CB /* SceneDelegate.swift */,
-				319FA01A29C36445006895CB /* ViewController.swift */,
-				317B4C0429CC9D3C0058F4B9 /* User.swift */,
-				317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */,
-				31C883C829C8ABA600A53C78 /* LoginVC.swift */,
-				31C883C929C8ABA600A53C78 /* ProfileVC.swift */,
-				6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */,
-				6F152E2529CCD12C0008846B /* LibraryVC.swift */,
-				6F152E2729CCD2030008846B /* ContainerPagesVC.swift */,
-				31C883CA29C8ABA600A53C78 /* Profile.storyboard */,
-				6FB33FE929CC9726008CC60C /* Library.storyboard */,
-				31C883D229C8C7C200A53C78 /* Discover.storyboard */,
-				6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */,
-				317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */,
-				319FA02A29C37136006895CB /* LoginRegister.storyboard */,
-				31F4EF3729D191CB00F17962 /* RegisterDetailVC.swift */,
 				319FA02129C36446006895CB /* LaunchScreen.storyboard */,
 				319FA01F29C36446006895CB /* Assets.xcassets */,
 				6F152E2429CCA56A0008846B /* Prata-Regular.ttf */,
@@ -160,6 +148,82 @@
 				31C883D429C8CA3B00A53C78 /* GoogleService-Info.plist */,
 			);
 			path = LibriVox;
+			sourceTree = "<group>";
+		};
+		6F43C7D129D1EF7E0013232C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				317B4C0429CC9D3C0058F4B9 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6F43C7D329D1EFBC0013232C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */,
+				319FA01A29C36445006895CB /* ViewController.swift */,
+				6F43C7DA29D1F09C0013232C /* Discover */,
+				6F43C7D929D1F08A0013232C /* Library */,
+				6F43C7D829D1F0820013232C /* LoginRegister */,
+				6F43C7D729D1F0760013232C /* HomePage */,
+				6F43C7D629D1F06D0013232C /* Profile */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6F43C7D529D1F01F0013232C /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				31C883CA29C8ABA600A53C78 /* Profile.storyboard */,
+				6FB33FE929CC9726008CC60C /* Library.storyboard */,
+				31C883D229C8C7C200A53C78 /* Discover.storyboard */,
+				6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */,
+				319FA02A29C37136006895CB /* LoginRegister.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		6F43C7D629D1F06D0013232C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				31C883C929C8ABA600A53C78 /* ProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		6F43C7D729D1F0760013232C /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		6F43C7D829D1F0820013232C /* LoginRegister */ = {
+			isa = PBXGroup;
+			children = (
+				31C883C829C8ABA600A53C78 /* LoginVC.swift */,
+				317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */,
+				31F4EF3729D191CB00F17962 /* RegisterDetailVC.swift */,
+			);
+			path = LoginRegister;
+			sourceTree = "<group>";
+		};
+		6F43C7D929D1F08A0013232C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				6F152E2529CCD12C0008846B /* LibraryVC.swift */,
+				6F152E2729CCD2030008846B /* ContainerPagesVC.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		6F43C7DA29D1F09C0013232C /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 		6F4EC1F029C9E61D0025B204 /* CustomViews */ = {
@@ -190,7 +254,6 @@
 				9CA6B00D0BC96EE8B4F87816 /* Pods-LibriVox.debug.xcconfig */,
 				1133B8F9948BBD39ED777F52 /* Pods-LibriVox.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -256,8 +319,8 @@
 			mainGroup = 319FA00A29C36445006895CB;
 			packageReferences = (
 				31DB788529C8648D00006CE8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */,
-				317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast.git" */,
+				317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 319FA01429C36445006895CB /* Products */;
 			projectDirPath = "";
@@ -568,7 +631,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */ = {
+		317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
 			requirement = {
@@ -576,7 +639,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast.git" */ = {
+		317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast.git";
 			requirement = {
@@ -597,17 +660,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		317B4C0029CC78540058F4B9 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
+			package = 317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
 		317B4C0229CC78540058F4B9 /* GoogleSignInSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
+			package = 317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
 		};
 		317B4C0929CCBD6A0058F4B9 /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast.git" */;
+			package = 317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
 		};
 		31DB788629C8648D00006CE8 /* FirebaseAnalytics */ = {
