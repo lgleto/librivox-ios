@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,7 +22,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Home-->
+        <!--Home Page View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="HomePageViewController" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
@@ -220,8 +221,11 @@
                             <constraint firstItem="3nx-NT-hZh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="4" id="yDB-pR-FCW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" selectedImage="house" catalog="system" id="X0Q-GR-gKx">
+                    <tabBarItem key="tabBarItem" title="" id="X0Q-GR-gKx">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                         <color key="badgeColor" name="Main Blue Tone"/>
+                        <imageReference key="selectedImage" image="house.fill" catalog="system" symbolScale="large"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="backgroundContinueReading" destination="oqc-aF-cfm" id="CuM-lk-h2K"/>
@@ -364,19 +368,53 @@
             <objects>
                 <tabBarController storyboardIdentifier="HomepageTBC" automaticallyAdjustsScrollViewInsets="NO" id="Pkn-Ml-aoC" customClass="HomepageTBC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O1C-Mo-Ign">
+                    <tabBar key="tabBar" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="O1C-Mo-Ign">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" name="Main Blue Tone"/>
+                        <color key="barTintColor" name="Main Blue Tone"/>
+                        <color key="selectedImageTintColor" name="Lighter Blue Tone"/>
                     </tabBar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="gpx-sE-Pdu"/>
+                        <segue destination="mcj-3b-vda" kind="relationship" relationship="viewControllers" id="zml-7u-X3v"/>
+                        <segue destination="H1V-xq-Wkr" kind="relationship" relationship="viewControllers" id="YX5-VF-9eF"/>
+                        <segue destination="nPh-lV-9MU" kind="relationship" relationship="viewControllers" id="SIs-wW-ZvB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rBk-k4-Rdf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="29.600000000000001" y="0.0"/>
+        </scene>
+        <!--LibraryId-->
+        <scene sceneID="OhS-I4-6RX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Library" referencedIdentifier="LibraryId" id="mcj-3b-vda" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="pk2-LR-ch3"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1mb-H4-QPO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="30" y="478"/>
+        </scene>
+        <!--ProfileId-->
+        <scene sceneID="LKu-8F-d71">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yJX-jR-3wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileId" id="nPh-lV-9MU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eN7-Z3-J9I"/>
+                </viewControllerPlaceholder>
+            </objects>
+            <point key="canvasLocation" x="208" y="477"/>
+        </scene>
+        <!--DiscoverId-->
+        <scene sceneID="o9t-fP-LiL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DiscoverId" id="H1V-xq-Wkr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="tIW-a2-Ib6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntD-EJ-4cf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-150" y="477"/>
         </scene>
     </scenes>
     <designables>
@@ -387,10 +425,14 @@
     <resources>
         <image name="28187" width="305" height="475"/>
         <image name="house" catalog="system" width="128" height="104"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="logo" width="400" height="400"/>
         <image name="play" width="512" height="512"/>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Lighter Blue Tone">
+            <color red="0.43500000238418579" green="0.67799997329711914" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Main Blue Tone">
             <color red="0.36899998784065247" green="0.66299998760223389" blue="0.82700002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

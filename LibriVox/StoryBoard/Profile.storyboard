@@ -20,7 +20,7 @@
         <!--ProfileVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="ProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileId" id="Y6W-OH-hqX" customClass="ProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,21 +67,21 @@ asdadnasd</string>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="1lD-LB-jQ4">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="32.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1lD-LB-jQ4" id="AdO-gK-PUs">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="32.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wiki" translatesAutoresizingMaskIntoConstraints="NO" id="q26-jj-3mm">
-                                                    <rect key="frame" x="16" y="0.0" width="32" height="32.333333333333336"/>
+                                                    <rect key="frame" x="16" y="0.0" width="32" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="SE6-re-8QZ"/>
                                                         <constraint firstAttribute="height" constant="32" id="hJc-QC-MZR"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-cx-8wZ">
-                                                    <rect key="frame" x="56" y="11" width="301" height="10.333333333333336"/>
+                                                    <rect key="frame" x="56" y="11" width="301" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="rFL-5y-UsT"/>
                                                     </constraints>
@@ -202,6 +202,7 @@ asdadnasd</string>
                             <constraint firstItem="nim-hk-COU" firstAttribute="top" secondItem="MMd-Xu-3W5" secondAttribute="bottom" constant="8" symbolic="YES" id="vXN-nb-1to"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="QaK-Hj-mMY"/>
                     <navigationItem key="navigationItem" id="HHp-St-QcO"/>
                     <connections>
                         <outlet property="profilePic" destination="gZ0-Rq-rwH" id="r9i-y9-lic"/>
@@ -209,7 +210,7 @@ asdadnasd</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061.8320610687022" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1987.0229007633586" y="3.5211267605633805"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Wgl-Ci-pti">
@@ -309,7 +310,7 @@ asdadnasd</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TG0-2K-CLw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768.7022900763359" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="2695.419847328244" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zyy-Vz-WMo">
@@ -322,22 +323,45 @@ asdadnasd</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="RRi-5q-edQ"/>
+                        <segue destination="DDi-qj-aY5" kind="relationship" relationship="rootViewController" id="RRi-5q-edQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJn-Jk-0ge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="aoz-lZ-zXP">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="DDi-qj-aY5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="nQG-Fv-szC"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BXy-iy-xdp">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="Lighter Blue Tone"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="ubK-eF-3rS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eae-HE-zjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1060.3053435114502" y="3.5211267605633805"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="626" height="417"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="wiki" width="512" height="512"/>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Lighter Blue Tone">
+            <color red="0.43500000238418579" green="0.67799997329711914" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Main Blue Tone">
             <color red="0.36899998784065247" green="0.66299998760223389" blue="0.82700002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
