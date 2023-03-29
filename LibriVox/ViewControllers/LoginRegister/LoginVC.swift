@@ -96,6 +96,10 @@ class LoginVC: UIViewController {
         } else {
             Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
               guard let strongSelf = self else { return }
+                
+                
+               
+                
                 print(error)
                 if (authResult != nil) {
                     self.self!.present(home, animated: true, completion: nil)
@@ -104,13 +108,67 @@ class LoginVC: UIViewController {
                     switch (autError.code){
                     case .invalidEmail:
                         // handle error
+                        let alert = UIAlertController(title: "Invalid Email", message: "The email that was provided to us is invalid. Please check your email", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            switch action.style{
+                                case .default:
+                                print("default")
+                                
+                                case .cancel:
+                                print("cancel")
+                                
+                                case .destructive:
+                                print("destructive")
+                                
+                            @unknown default:
+                                print("this wasnt suposed to happen")
+                            }
+                        }))
+                        self!.present(alert, animated: true, completion: nil)
+                        //TODO: Alert this bitch
                         print("Invalid email")
                         break;
                     case .wrongPassword:
                         // handle error
+                        //TODO: Alert this bitch
+                        let alert = UIAlertController(title: "Wrong Password", message: "The password that was provided to us is invalid. Please check your password", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            switch action.style{
+                                case .default:
+                                print("default")
+                                
+                                case .cancel:
+                                print("cancel")
+                                
+                                case .destructive:
+                                print("destructive")
+                                
+                            @unknown default:
+                                print("this wasnt suposed to happen")
+                            }
+                        }))
+                        self!.present(alert, animated: true, completion: nil)
                         print("wrong password")
                         break;
                     case .userNotFound:
+                        let alert = UIAlertController(title: "Invalid Email", message: "The email that was provided to us is invalid. Please check your email", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            switch action.style{
+                                case .default:
+                                print("default")
+                                
+                                case .cancel:
+                                print("cancel")
+                                
+                                case .destructive:
+                                print("destructive")
+                                
+                            @unknown default:
+                                print("this wasnt suposed to happen")
+                            }
+                        }))
+                        self!.present(alert, animated: true, completion: nil)
+                        //TODO: Alert this bitch
                         print("user not found")
                         break
                     default:

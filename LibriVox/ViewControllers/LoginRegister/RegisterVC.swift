@@ -140,8 +140,8 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     
     @IBAction func signInGoogle(_ sender: UIButton) {
-        let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
-        let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController
+        let storyBoard :UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let home = storyBoard.instantiateViewController(withIdentifier: "RegisterDetailVC")
         home.modalTransitionStyle = .crossDissolve
         home.modalPresentationStyle = .fullScreen
         
@@ -171,5 +171,12 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     
+    @IBAction func testing(_ sender: Any) {
+        let storyBoard :UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
+        let home = storyBoard.instantiateViewController(withIdentifier: "RegisterDetailVC")
+        home.modalTransitionStyle = .crossDissolve
+        home.modalPresentationStyle = .fullScreen
+        self.present(home, animated: true, completion: nil)
+    }
     
 }

@@ -14,6 +14,7 @@ import FirebaseStorage
 class RegisterDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var descText: UITextView!
     
+    @IBOutlet weak var buttonPicture: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     var imagePicker = UIImagePickerController()
     let db = Firestore.firestore()
@@ -86,6 +87,8 @@ class RegisterDetailVC: UIViewController, UIImagePickerControllerDelegate, UINav
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            buttonPicture.isHidden = true
+            
             imageView.image = image
             localImage = image
         }
