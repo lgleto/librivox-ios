@@ -67,32 +67,62 @@ class LoginVC: UIViewController {
         home.modalTransitionStyle = .crossDissolve
         home.modalPresentationStyle = .fullScreen
         
-        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
-            print(error)
-            if (authResult != nil) {
-                self.self!.present(home, animated: true, completion: nil)
+        if (email.text == "") || (password.text == "") {
+            
+            let alert = UIAlertController(title: "Empty field", message: "Your field is empty", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                @unknown default:
+                    print("this wasnt suposed to happen")
+                }
+            }))
+            if (email.text == "") {
+                alert.title = "Email is empty"
+                self.present(alert, animated: true, completion: nil)
             } else {
-                let autError  = AuthErrorCode.init(_nsError: error! as NSError)
-                switch (autError.code){
-                case .invalidEmail:
-                    // handle error
-                    print("Invalid email")
-                    break;
-                case .wrongPassword:
-                    // handle error
-                    print("wrong password")
-                    break;
-                case .userNotFound:
-                    print("user not found")
-                    break
-                default:
-                    //handel general error
-                    print(error.debugDescription)
-                    break;
+                alert.title = "Password is empty"
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        } else {
+            Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
+              guard let strongSelf = self else { return }
+                print(error)
+                if (authResult != nil) {
+                    self.self!.present(home, animated: true, completion: nil)
+                } else {
+                    let autError  = AuthErrorCode.init(_nsError: error! as NSError)
+                    switch (autError.code){
+                    case .invalidEmail:
+                        // handle error
+                        print("Invalid email")
+                        break;
+                    case .wrongPassword:
+                        // handle error
+                        print("wrong password")
+                        break;
+                    case .userNotFound:
+                        print("user not found")
+                        break
+                    default:
+                        //handel general error
+                        print(error.debugDescription)
+                        break;
+                    }
                 }
             }
         }
+        
+
     }
 
     /*
