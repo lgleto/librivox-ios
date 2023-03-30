@@ -29,7 +29,6 @@ class DiscoverVC: UIViewController {
             
             if let data = data {
                 self.books = data.books ?? []
-                print(self.books)
                 
                 DispatchQueue.main.async {
                     self.booksCV.reloadData()
@@ -38,26 +37,37 @@ class DiscoverVC: UIViewController {
         }
     }
 }
-
 extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
-        
+
         cell.titleBook.text = books[indexPath.row].title
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowBookDetails", sender: indexPath.row)
+        let selectedBook = books[indexPath.row]
+        DefaultAPI.rootGet(format: "json") { bookDetails, error in
+            if let error = error {
+                print("Error getting book details:", error)
+                return
+            }
+            if let bookDetails = bookDetails {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "showDetailsPage", sender: bookDetails.books?[indexPath.row])
+                }
+            }
+        }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*  if segue.identifier == "ShowBookDetails", let bookDetailsVC = segue.destination as? BookDetailsVC, let selectedRow = sender as? Int {
-            bookDetailsVC.book = books[selectedRow]
-        }*/
+        if segue.identifier == "showDetailsPage", let bookDetailsVC = segue.destination as? BookDetailsVC, let selectedBook = sender as? SwaggerClient.Audiobook {
+            bookDetailsVC.book = selectedBook
+        }
     }
 }

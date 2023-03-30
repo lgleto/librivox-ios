@@ -6,24 +6,27 @@
 //
 
 import UIKit
+import SwaggerClient
 
 class BookDetailsVC: UIViewController {
 
+    @IBOutlet weak var bookImg: RoundedBookImageView!
+    @IBOutlet weak var durationBook: UILabel!
+    @IBOutlet weak var genreBook: UILabel!
+    @IBOutlet weak var authorBook: UILabel!
+    @IBOutlet weak var numSectionsBook: UILabel!
+    @IBOutlet weak var descrBook: UILabel!
+
+    var book : SwaggerClient.Audiobook?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(book)
+        if let book = book {
+                    durationBook.text = book.totaltime ?? ""
+                    authorBook.text = book.authors?.first?.firstName ?? ""
+                    descrBook.text = book.language ?? ""
+                }
 
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
