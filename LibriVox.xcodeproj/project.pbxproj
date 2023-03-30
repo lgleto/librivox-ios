@@ -79,9 +79,9 @@
 		6F152E2429CCA56A0008846B /* Prata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prata-Regular.ttf"; sourceTree = "<group>"; };
 		6F152E2529CCD12C0008846B /* LibraryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryVC.swift; sourceTree = "<group>"; };
 		6F152E2729CCD2030008846B /* ContainerPagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPagesVC.swift; sourceTree = "<group>"; };
-		6F425A0E29D59B8000D21047 /* ListBooksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListBooksCell.swift; path = LibriVox/ListBooksCell.swift; sourceTree = SOURCE_ROOT; };
-		6F425A1029D59C6D00D21047 /* DiscoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DiscoverVC.swift; path = LibriVox/DiscoverVC.swift; sourceTree = SOURCE_ROOT; };
-		6F425A1629D5CF0600D21047 /* BookDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailsVC.swift; path = LibriVox/Models/BookDetailsVC.swift; sourceTree = SOURCE_ROOT; };
+		6F425A0E29D59B8000D21047 /* ListBooksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListBooksCell.swift; path = LibriVox/ViewControllers/Discover/ListBooksCell.swift; sourceTree = SOURCE_ROOT; };
+		6F425A1029D59C6D00D21047 /* DiscoverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DiscoverVC.swift; path = LibriVox/ViewControllers/Discover/DiscoverVC.swift; sourceTree = SOURCE_ROOT; };
+		6F425A1629D5CF0600D21047 /* BookDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailsVC.swift; path = LibriVox/ViewControllers/Discover/BookDetailsVC.swift; sourceTree = SOURCE_ROOT; };
 		6F4EC1E829C9DFDB0025B204 /* RoundedBookImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBookImageView.swift; sourceTree = "<group>"; };
 		6F4EC1EA29C9DFF50025B204 /* BlurredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
