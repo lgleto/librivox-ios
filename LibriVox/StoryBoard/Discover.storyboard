@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lgZ-vp-vZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -306,7 +306,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESe-dR-hbB">
-                                <rect key="frame" x="25" y="72" width="51" height="24"/>
+                                <rect key="frame" x="25.000000000000004" y="72.333333333333329" width="50.333333333333343" height="23.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -497,10 +497,10 @@
             </objects>
             <point key="canvasLocation" x="4863" y="672"/>
         </scene>
-        <!--View Controller-->
+        <!--gofo-->
         <scene sceneID="gp8-Sv-W20">
             <objects>
-                <viewController storyboardIdentifier="DiscoverId" id="5Qm-2k-1IK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverId" id="5Qm-2k-1IK" customClass="DiscoverVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lot-45-dot">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -521,7 +521,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wcd-WD-MO0">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListBooksCell" id="wcd-WD-MO0" customClass="ListBooksCell" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="156" height="236"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LGh-Cn-fbY">
@@ -529,7 +529,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bW-7Y-Xpn" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="0.0" width="110" height="172"/>
+                                                    <rect key="frame" x="23" y="15" width="110" height="172"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="cIN-CW-FjW"/>
@@ -537,43 +537,39 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVV-Em-v4m" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="116" y="0.0" width="28" height="28"/>
+                                                    <rect key="frame" x="109" y="0.0" width="35" height="35"/>
                                                     <color key="backgroundColor" name="Main Blue Tone"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="28" id="REb-h2-xhl"/>
-                                                        <constraint firstAttribute="height" constant="28" id="tSV-vq-aTI"/>
+                                                        <constraint firstAttribute="width" constant="35" id="REb-h2-xhl"/>
+                                                        <constraint firstAttribute="height" constant="35" id="tSV-vq-aTI"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: Visitou Morpheus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-JH-auc">
-                                                    <rect key="frame" x="0.0" y="183" width="156" height="53"/>
+                                                    <rect key="frame" x="0.0" y="197" width="156" height="39"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8bW-7Y-Xpn" firstAttribute="top" secondItem="LGh-Cn-fbY" secondAttribute="top" id="9bt-pm-iMH"/>
                                                 <constraint firstAttribute="trailing" secondItem="RSR-JH-auc" secondAttribute="trailing" id="H2H-3b-2Qe"/>
                                                 <constraint firstItem="UVV-Em-v4m" firstAttribute="top" secondItem="LGh-Cn-fbY" secondAttribute="top" id="Sqn-uT-fTa"/>
                                                 <constraint firstAttribute="trailing" secondItem="UVV-Em-v4m" secondAttribute="trailing" constant="12" id="Xwf-qW-O3h"/>
                                                 <constraint firstAttribute="bottom" secondItem="RSR-JH-auc" secondAttribute="bottom" id="Zmd-3n-0Dd"/>
                                                 <constraint firstItem="8bW-7Y-Xpn" firstAttribute="centerX" secondItem="LGh-Cn-fbY" secondAttribute="centerX" id="bBk-hg-k8U"/>
-                                                <constraint firstItem="RSR-JH-auc" firstAttribute="top" secondItem="8bW-7Y-Xpn" secondAttribute="bottom" constant="11" id="bNU-HF-yAz"/>
+                                                <constraint firstItem="RSR-JH-auc" firstAttribute="top" secondItem="8bW-7Y-Xpn" secondAttribute="bottom" constant="10" id="bNU-HF-yAz"/>
                                                 <constraint firstItem="RSR-JH-auc" firstAttribute="leading" secondItem="LGh-Cn-fbY" secondAttribute="leading" id="jIh-4O-9jY"/>
+                                                <constraint firstItem="8bW-7Y-Xpn" firstAttribute="top" secondItem="UVV-Em-v4m" secondAttribute="bottom" constant="-20" id="vXf-h1-hcd"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageBook" destination="8bW-7Y-Xpn" id="Vyq-ow-tcV"/>
+                                            <outlet property="titleBook" destination="RSR-JH-auc" id="bVl-uS-svb"/>
+                                            <segue destination="lgZ-vp-vZD" kind="show" id="3hV-On-gGX"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eJ-Ei-6sX">
-                                <rect key="frame" x="52" y="142" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="lgZ-vp-vZD" kind="show" id="12q-3I-aCM"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4it-v4-wcq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -589,7 +585,12 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="j9r-5K-adk"/>
-                    <navigationItem key="navigationItem" id="96b-Sk-KDo"/>
+                    <navigationItem key="navigationItem" title="gofo" id="96b-Sk-KDo">
+                        <barButtonItem key="backBarButtonItem" title="gfi" id="Yzq-hk-cEb"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="booksCV" destination="M96-1Q-jAS" id="Jx7-Nl-c5d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwU-2h-jca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -605,6 +606,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="28187" translatesAutoresizingMaskIntoConstraints="NO" id="uoZ-gY-XOm" customClass="BlurredImageView" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="103" width="393" height="270"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="270" id="v1T-RB-kjN"/>
                                 </constraints>
@@ -840,6 +842,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KHf-Vk-EbX"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Ox-pD-Dn9">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" name="Lighter Blue Tone"/>
@@ -877,6 +880,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
