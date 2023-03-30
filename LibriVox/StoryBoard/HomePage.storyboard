@@ -135,7 +135,7 @@
                                 <color key="separatorColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="E03-yn-IXx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="343" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E03-yn-IXx" id="rkb-Iu-aQd">
@@ -144,6 +144,15 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-jY-LHy" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-Ma-xU9">
+                                                            <rect key="frame" x="4" y="6" width="16" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" name="Main Blue Tone"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="PiZ-Yt-3GD"/>
@@ -199,8 +208,20 @@
                                                 <constraint firstItem="0PL-8V-yfx" firstAttribute="top" secondItem="6H3-k0-uBX" secondAttribute="bottom" constant="2" id="spO-nI-MSA"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="U8i-j1-jKH" id="INC-6p-4C1"/>
+                                            <outlet property="bookCover" destination="hJd-5j-a9E" id="sA7-ye-YP7"/>
+                                            <outlet property="duration" destination="6H3-k0-uBX" id="api-MN-hTN"/>
+                                            <outlet property="genre" destination="0PL-8V-yfx" id="piK-5o-ThD"/>
+                                            <outlet property="title" destination="XDj-Mh-ldn" id="r01-uk-sGU"/>
+                                            <outlet property="trendingNumber" destination="0UD-Ma-xU9" id="vVl-np-eFH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="rzu-Wt-cIG"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="bRL-z3-kfn"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -231,6 +252,7 @@
                         <outlet property="backgroundContinueReading" destination="oqc-aF-cfm" id="CuM-lk-h2K"/>
                         <outlet property="imgBook" destination="C1L-mf-Iv7" id="MUN-od-s9G"/>
                         <outlet property="logo" destination="3nx-NT-hZh" id="9t4-Ci-TOg"/>
+                        <outlet property="nameText" destination="dDH-5L-dS0" id="bCb-ZZ-BIL"/>
                         <outlet property="progress" destination="yXE-Yg-jDF" id="wOm-na-nxz"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
                     </connections>
@@ -399,10 +421,10 @@
         <!--ProfileId-->
         <scene sceneID="LKu-8F-d71">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yJX-jR-3wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileId" id="nPh-lV-9MU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="eN7-Z3-J9I"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yJX-jR-3wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="208" y="477"/>
         </scene>
