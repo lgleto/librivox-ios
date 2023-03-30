@@ -23,7 +23,6 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     let db = Firestore.firestore()
     
-    var user = User(name: "", username: "", description: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,13 +105,12 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { [self] authResult, error in
                     if (authResult != nil) {
                         //TODO: Store First/ Last name and username in Firestore
-                        user.name = firstLastText.text ?? ""
-                        user.username = usernameText.text ?? ""
+                        
                         // Add a new document in collection "cities"
                         db.collection("users").document(Auth.auth().currentUser!.uid).setData([
-                            "name": user.name,
-                            "username": user.username,
-                            "description": user.description
+                            "name": firstLastText.text,
+                            "username": usernameText.text,
+                            "description": ""
                         ]) { err in
                             if let err = err {
                                 print("Error writing document: \(err)")
