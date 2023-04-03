@@ -10,12 +10,15 @@ import SwaggerClient
 
 class DiscoverVC: UIViewController {
     
+    var filteredBooks: [SwaggerClient.Audiobook] = []
+    
     var books: [SwaggerClient.Audiobook] = []
+    
     
     @IBOutlet weak var booksCV: UICollectionView!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,18 +42,27 @@ class DiscoverVC: UIViewController {
             }
         }
     }
+    
+    @IBAction func searchHandler(_ sender: UITextField) {
+        if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+            filteredBooks = books.filter { $0.title?.range(of: searchText, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+        } else {
+            filteredBooks = books
+        }
+        booksCV.reloadData()
+    }
 }
 
 extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return books.count
+        return filteredBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
-        cell.titleBook.text = books[indexPath.row].title
+        cell.titleBook.text = filteredBooks[indexPath.row].title
         return cell
     }
     
@@ -58,7 +70,9 @@ extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
         if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
-            detailVC.book = books[item]
+            detailVC.book = filteredBooks[item]
         }
     }
 }
+
+
