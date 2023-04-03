@@ -11,9 +11,10 @@ import SwaggerClient
 class DiscoverVC: UIViewController {
     
     var books: [SwaggerClient.Audiobook] = []
-    var isDataLoaded = false
     
     @IBOutlet weak var booksCV: UICollectionView!
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class DiscoverVC: UIViewController {
         booksCV.delegate = self
         
         //TODO: Show an alert when an error occur
-        DefaultAPI.rootGet(format: "json") { data, error in
+        DefaultAPI.rootGet(format: "json",extended: 1) { data, error in
             if let error = error {
                 print("Error getting root data:", error)
                 return
@@ -33,7 +34,7 @@ class DiscoverVC: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.booksCV.reloadData()
-                    self.isDataLoaded = true
+                    self.spinner.stopAnimating()
                 }
             }
         }

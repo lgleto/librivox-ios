@@ -7,5 +7,4 @@ target 'LibriVox' do
 
   # Pods for LibriVox
   pod 'SwaggerClient', :path => './swagger-ios'
-
 end
