@@ -11,7 +11,7 @@ import Alamofire
 
 open class DefaultAPI {
     /**
-     Finds Pets by status
+     Get all books
 
      - parameter format: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
@@ -24,16 +24,19 @@ open class DefaultAPI {
 
 
     /**
-     Finds Pets by status
+     Get all books
      - GET /
 
      - examples: [{contentType=application/json, example={
   "books" : [ {
     "url_project" : "url_project",
+    "num_sections" : "num_sections",
     "url_rss" : "url_rss",
     "totaltime" : "totaltime",
     "totaltimesecs" : 0,
+    "description" : "description",
     "language" : "language",
+    "url_zip_file" : "url_zip_file",
     "url_librivox" : "url_librivox",
     "id" : "id",
     "title" : "title",
@@ -48,10 +51,13 @@ open class DefaultAPI {
     } ]
   }, {
     "url_project" : "url_project",
+    "num_sections" : "num_sections",
     "url_rss" : "url_rss",
     "totaltime" : "totaltime",
     "totaltimesecs" : 0,
+    "description" : "description",
     "language" : "language",
+    "url_zip_file" : "url_zip_file",
     "url_librivox" : "url_librivox",
     "id" : "id",
     "title" : "title",

@@ -17,14 +17,15 @@ class BookDetailsVC: UIViewController {
     @IBOutlet weak var numSectionsBook: UILabel!
     @IBOutlet weak var descrBook: UILabel!
     
-    var book : SwaggerClient.Audiobook?    //var fg: Int?
+    var book : SwaggerClient.Audiobook?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let book = book {
-            descrBook.text = book.title
+            descrBook.text = removeHtmlTagsFromText(text: book._description ?? "")
+            numSectionsBook.text = book.numSections
             authorBook.text = (book.authors?[0].firstName ?? "") + " " + (book.authors?[0].lastName ?? "")
             durationBook.text = book.totaltime
         }
