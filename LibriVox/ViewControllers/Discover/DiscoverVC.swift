@@ -11,6 +11,7 @@ import SwaggerClient
 class DiscoverVC: UIViewController {
     
     var books: [SwaggerClient.Audiobook] = []
+    var isDataLoaded = false
     
     @IBOutlet weak var booksCV: UICollectionView!
     
@@ -32,42 +33,31 @@ class DiscoverVC: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.booksCV.reloadData()
+                    self.isDataLoaded = true
                 }
             }
         }
     }
 }
-extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
 
+extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
-
+        
         cell.titleBook.text = books[indexPath.row].title
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedBook = books[indexPath.row]
-        DefaultAPI.rootGet(format: "json") { bookDetails, error in
-            if let error = error {
-                print("Error getting book details:", error)
-                return
-            }
-            if let bookDetails = bookDetails {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "showDetailsPage", sender: bookDetails.books?[indexPath.row])
-                }
-            }
-        }
-    }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailsPage", let bookDetailsVC = segue.destination as? BookDetailsVC, let selectedBook = sender as? SwaggerClient.Audiobook {
-            bookDetailsVC.book = selectedBook
+        if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,
+           let detailVC = segue.destination as? BookDetailsVC {
+            let item = indexPath.item
+            detailVC.book = books[item]
         }
     }
 }

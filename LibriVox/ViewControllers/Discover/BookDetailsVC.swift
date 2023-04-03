@@ -9,24 +9,26 @@ import UIKit
 import SwaggerClient
 
 class BookDetailsVC: UIViewController {
-
+    
     @IBOutlet weak var bookImg: RoundedBookImageView!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var genreBook: UILabel!
     @IBOutlet weak var authorBook: UILabel!
     @IBOutlet weak var numSectionsBook: UILabel!
     @IBOutlet weak var descrBook: UILabel!
-
-    var book : SwaggerClient.Audiobook?
-
+    
+    var book : SwaggerClient.Audiobook?    //var fg: Int?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(book)
+        
         if let book = book {
-                    durationBook.text = book.totaltime ?? ""
-                    authorBook.text = book.authors?.first?.firstName ?? ""
-                    descrBook.text = book.language ?? ""
-                }
-
+            descrBook.text = book.title
+            authorBook.text = (book.authors?[0].firstName ?? "") + " " + (book.authors?[0].lastName ?? "")
+            durationBook.text = book.totaltime
+        }
+        
+        
     }
 }
