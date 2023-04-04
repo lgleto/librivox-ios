@@ -13,19 +13,29 @@ public struct Audiobook: Codable {
 
     public var _id: String?
     public var title: String?
+    public var _description: String?
+    public var genres: [Genre]?
     public var authors: [Author]?
+    public var numSections: String?
+    public var sections: [Section]?
     public var language: String?
+    public var urlZipFile: String?
     public var urlLibrivox: String?
     public var urlProject: String?
     public var urlRss: String?
     public var totaltime: String?
     public var totaltimesecs: Int?
 
-    public init(_id: String? = nil, title: String? = nil, authors: [Author]? = nil, language: String? = nil, urlLibrivox: String? = nil, urlProject: String? = nil, urlRss: String? = nil, totaltime: String? = nil, totaltimesecs: Int? = nil) {
+    public init(_id: String? = nil, title: String? = nil, _description: String? = nil, genres: [Genre]? = nil, authors: [Author]? = nil, numSections: String? = nil, sections: [Section]? = nil, language: String? = nil, urlZipFile: String? = nil, urlLibrivox: String? = nil, urlProject: String? = nil, urlRss: String? = nil, totaltime: String? = nil, totaltimesecs: Int? = nil) {
         self._id = _id
         self.title = title
+        self._description = _description
+        self.genres = genres
         self.authors = authors
+        self.numSections = numSections
+        self.sections = sections
         self.language = language
+        self.urlZipFile = urlZipFile
         self.urlLibrivox = urlLibrivox
         self.urlProject = urlProject
         self.urlRss = urlRss
@@ -36,8 +46,13 @@ public struct Audiobook: Codable {
     public enum CodingKeys: String, CodingKey { 
         case _id = "id"
         case title
+        case _description = "description"
+        case genres
         case authors
+        case numSections = "num_sections"
+        case sections
         case language
+        case urlZipFile = "url_zip_file"
         case urlLibrivox = "url_librivox"
         case urlProject = "url_project"
         case urlRss = "url_rss"

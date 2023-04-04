@@ -11,32 +11,118 @@ import Alamofire
 
 open class DefaultAPI {
     /**
-     Finds Pets by status
+     Get all the authors
 
      - parameter format: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func rootGet(format: String? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
-        rootGetWithRequestBuilder(format: format).execute { (response, error) -> Void in
+    open class func authorsGet(format: String? = nil, completion: @escaping ((_ data: Author?,_ error: Error?) -> Void)) {
+        authorsGetWithRequestBuilder(format: format).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
 
     /**
-     Finds Pets by status
+     Get all the authors
+     - GET /authors
+     - 
+
+     - examples: [{contentType=application/json, example={
+  "last_name" : "last_name",
+  "id" : "id",
+  "first_name" : "first_name"
+}}]
+     - parameter format: (query)  (optional)
+
+     - returns: RequestBuilder<Author> 
+     */
+    open class func authorsGetWithRequestBuilder(format: String? = nil) -> RequestBuilder<Author> {
+        let path = "/authors"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+                        "format": format
+        ])
+
+
+        let requestBuilder: RequestBuilder<Author>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+    /**
+     Get all books
+
+     - parameter format: (query)  (optional)
+     - parameter keywords: (query) Search by gender (optional)
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func rootGet(format: String? = nil, keywords: String? = nil, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        rootGetWithRequestBuilder(format: format, keywords: keywords, extended: extended).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get all books
      - GET /
 
      - examples: [{contentType=application/json, example={
   "books" : [ {
-    "url_project" : "url_project",
+    "num_sections" : "num_sections",
     "url_rss" : "url_rss",
-    "totaltime" : "totaltime",
     "totaltimesecs" : 0,
+    "description" : "description",
     "language" : "language",
+    "title" : "title",
+    "sections" : [ {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    }, {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    } ],
+    "url_project" : "url_project",
+    "totaltime" : "totaltime",
+    "genres" : [ {
+      "name" : "name",
+      "id" : "id"
+    }, {
+      "name" : "name",
+      "id" : "id"
+    } ],
+    "url_zip_file" : "url_zip_file",
     "url_librivox" : "url_librivox",
     "id" : "id",
-    "title" : "title",
     "authors" : [ {
       "last_name" : "last_name",
       "id" : "id",
@@ -47,14 +133,57 @@ open class DefaultAPI {
       "first_name" : "first_name"
     } ]
   }, {
-    "url_project" : "url_project",
+    "num_sections" : "num_sections",
     "url_rss" : "url_rss",
-    "totaltime" : "totaltime",
     "totaltimesecs" : 0,
+    "description" : "description",
     "language" : "language",
+    "title" : "title",
+    "sections" : [ {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    }, {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    } ],
+    "url_project" : "url_project",
+    "totaltime" : "totaltime",
+    "genres" : [ {
+      "name" : "name",
+      "id" : "id"
+    }, {
+      "name" : "name",
+      "id" : "id"
+    } ],
+    "url_zip_file" : "url_zip_file",
     "url_librivox" : "url_librivox",
     "id" : "id",
-    "title" : "title",
     "authors" : [ {
       "last_name" : "last_name",
       "id" : "id",
@@ -67,16 +196,20 @@ open class DefaultAPI {
   } ]
 }}]
      - parameter format: (query)  (optional)
+     - parameter keywords: (query) Search by gender (optional)
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
 
      - returns: RequestBuilder<BooksResponse> 
      */
-    open class func rootGetWithRequestBuilder(format: String? = nil) -> RequestBuilder<BooksResponse> {
+    open class func rootGetWithRequestBuilder(format: String? = nil, keywords: String? = nil, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
         let path = "/"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "format": format
+                        "format": format, 
+                        "keywords": keywords, 
+                        "extended": extended?.encodeToJSON()
         ])
 
 

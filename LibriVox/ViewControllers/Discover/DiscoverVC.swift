@@ -10,10 +10,15 @@ import SwaggerClient
 
 class DiscoverVC: UIViewController {
     
+    var filteredBooks: [SwaggerClient.Audiobook] = []
+    
     var books: [SwaggerClient.Audiobook] = []
+    
     
     @IBOutlet weak var booksCV: UICollectionView!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +26,7 @@ class DiscoverVC: UIViewController {
         booksCV.delegate = self
         
         //TODO: Show an alert when an error occur
-        DefaultAPI.rootGet(format: "json") { data, error in
+        DefaultAPI.rootGet(format: "json",extended: 1) { data, error in
             if let error = error {
                 print("Error getting root data:", error)
                 return
@@ -29,35 +34,45 @@ class DiscoverVC: UIViewController {
             
             if let data = data {
                 self.books = data.books ?? []
-                print(self.books)
                 
                 DispatchQueue.main.async {
                     self.booksCV.reloadData()
+                    self.spinner.stopAnimating()
                 }
             }
         }
     }
+    
+    @IBAction func searchHandler(_ sender: UITextField) {
+        if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+            filteredBooks = books.filter { $0.title?.range(of: searchText, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+        } else {
+            filteredBooks = books
+        }
+        booksCV.reloadData()
+    }
 }
 
 extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return books.count
+        return filteredBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
-        cell.titleBook.text = books[indexPath.row].title
+        cell.titleBook.text = filteredBooks[indexPath.row].title
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowBookDetails", sender: indexPath.row)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*  if segue.identifier == "ShowBookDetails", let bookDetailsVC = segue.destination as? BookDetailsVC, let selectedRow = sender as? Int {
-            bookDetailsVC.book = books[selectedRow]
-        }*/
+        if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,
+           let detailVC = segue.destination as? BookDetailsVC {
+            let item = indexPath.item
+            detailVC.book = filteredBooks[item]
+        }
     }
 }
+
+
