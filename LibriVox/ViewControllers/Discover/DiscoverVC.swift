@@ -25,6 +25,10 @@ class DiscoverVC: UIViewController {
         booksCV.dataSource = self
         booksCV.delegate = self
         
+        
+        
+        
+        
         //TODO: Show an alert when an error occur
         DefaultAPI.rootGet(format: "json",extended: 1) { data, error in
             if let error = error {

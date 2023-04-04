@@ -41,7 +41,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         //getCurrentUserName()
         
-        nameText.text = "Hello \(Auth.auth().currentUser!.displayName!)"
+        //nameText.text = "Hello \(Auth.auth().currentUser!.displayName!)"
         
         logo.layer.cornerRadius = logo.layer.bounds.height / 2
         

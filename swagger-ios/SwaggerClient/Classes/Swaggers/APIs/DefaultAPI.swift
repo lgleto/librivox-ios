@@ -11,12 +11,12 @@ import Alamofire
 
 open class DefaultAPI {
     /**
-     Get all the authors
+     Get all books
 
      - parameter format: (query)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func authorsGet(format: String? = nil, completion: @escaping ((_ data: Author?,_ error: Error?) -> Void)) {
+    open class func authorsGet(format: String? = nil, completion: @escaping ((_ data: AuthorsResponse?,_ error: Error?) -> Void)) {
         authorsGetWithRequestBuilder(format: format).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -24,20 +24,25 @@ open class DefaultAPI {
 
 
     /**
-     Get all the authors
+     Get all books
      - GET /authors
-     - 
 
      - examples: [{contentType=application/json, example={
-  "last_name" : "last_name",
-  "id" : "id",
-  "first_name" : "first_name"
+  "authors" : [ {
+    "last_name" : "last_name",
+    "id" : "id",
+    "first_name" : "first_name"
+  }, {
+    "last_name" : "last_name",
+    "id" : "id",
+    "first_name" : "first_name"
+  } ]
 }}]
      - parameter format: (query)  (optional)
 
-     - returns: RequestBuilder<Author> 
+     - returns: RequestBuilder<AuthorsResponse> 
      */
-    open class func authorsGetWithRequestBuilder(format: String? = nil) -> RequestBuilder<Author> {
+    open class func authorsGetWithRequestBuilder(format: String? = nil) -> RequestBuilder<AuthorsResponse> {
         let path = "/authors"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -47,7 +52,7 @@ open class DefaultAPI {
         ])
 
 
-        let requestBuilder: RequestBuilder<Author>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<AuthorsResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
