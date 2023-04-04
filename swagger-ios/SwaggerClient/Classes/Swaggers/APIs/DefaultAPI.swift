@@ -52,23 +52,15 @@ open class DefaultAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     * enum for parameter format
-     */
-    public enum Format_idBookIdGet: String { 
-        case json = "json"
-        case xml = "xml"
-        case php = "php"
-    }
-
-    /**
      Returns a book by ID.
 
      - parameter bookId: (path) Parameter description in CommonMark or HTML. 
-     - parameter format: (query)  (optional, default to json)
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func idBookIdGet(bookId: Int64, format: Format_idBookIdGet? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
-        idBookIdGetWithRequestBuilder(bookId: bookId, format: format).execute { (response, error) -> Void in
+    open class func idBookIdGet(bookId: Int64, format: String, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        idBookIdGetWithRequestBuilder(bookId: bookId, format: format, extended: extended).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -205,11 +197,12 @@ open class DefaultAPI {
   } ]
 }}]
      - parameter bookId: (path) Parameter description in CommonMark or HTML. 
-     - parameter format: (query)  (optional, default to json)
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
 
      - returns: RequestBuilder<BooksResponse> 
      */
-    open class func idBookIdGetWithRequestBuilder(bookId: Int64, format: Format_idBookIdGet? = nil) -> RequestBuilder<BooksResponse> {
+    open class func idBookIdGetWithRequestBuilder(bookId: Int64, format: String, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
         var path = "/id/{bookId}/"
         let bookIdPreEscape = "\(bookId)"
         let bookIdPostEscape = bookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -218,7 +211,8 @@ open class DefaultAPI {
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "format": format?.rawValue
+                        "format": format, 
+                        "extended": extended?.encodeToJSON()
         ])
 
 

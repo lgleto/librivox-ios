@@ -255,6 +255,7 @@
                         <outlet property="nameText" destination="dDH-5L-dS0" id="bCb-ZZ-BIL"/>
                         <outlet property="progress" destination="yXE-Yg-jDF" id="wOm-na-nxz"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
+                        <segue destination="HNW-Hs-Awa" kind="show" identifier="homepageToBookDetail" id="BJk-6b-wQS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -427,6 +428,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yJX-jR-3wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="208" y="477"/>
+        </scene>
+        <!--Discover Book Detail-->
+        <scene sceneID="cvT-w1-kKV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="discoverBookDetails" id="HNW-Hs-Awa" userLabel="Discover Book Detail" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7YL-u6-GC5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gK0-CV-7FC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="899" y="475"/>
         </scene>
         <!--DiscoverId-->
         <scene sceneID="o9t-fP-LiL">

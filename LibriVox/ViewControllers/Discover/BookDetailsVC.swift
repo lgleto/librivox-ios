@@ -17,8 +17,8 @@ class BookDetailsVC: UIViewController {
     @IBOutlet weak var numSectionsBook: UILabel!
     @IBOutlet weak var descrBook: UILabel!
     @IBOutlet weak var sectionsTV: UITableView!
-    
-    var book: SwaggerClient.Audiobook?
+    @IBOutlet weak var backgroundImage: BlurredImageView!
+    var book: Audiobook?
     var sections: [SwaggerClient.Section] = []
     
     override func viewDidLoad() {
