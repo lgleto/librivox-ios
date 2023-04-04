@@ -22,12 +22,18 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var progress: UIProgressView!
     let db = Firestore.firestore()
     @IBOutlet weak var trendingBooks: UITableView!
-    var booksTrending = [Trending]()
+    var booksTrending = [Audiobook]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadTrending()
+        loadTrending {
+            print("sdasda")
+            self.trendingBooks.reloadData()
+            
+        }
+        
+        
         
         loadCurrentUser { user in
             self.nameText.text = "Hello \(user?.username ?? "User not found")"
@@ -46,6 +52,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         
+        trendingBooks.delegate = self
+        trendingBooks.dataSource = self
+        
     }
     
     func getCurrentUserName(){
@@ -63,23 +72,117 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! BookDetailsVC
+        destVC.book = sender as? Audiobook
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return booksTrending.count
+        return localBooks.count
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellBook
-        cell.title.text = "Percy Jackson: The Lightning Thief"
-        cell.author.text = "Author: Rick Riordan"
-        cell.duration.text = "Duration: 08:40:31"
-        cell.genre.text = "Genre: Drama"
+        
+        var authorsString = "Authors: "
+        var genreString = "Genre: "
+        cell.title.text = self.localBooks[indexPath.row].title
+        if (self.localBooks.count > 1) {
+            cell.author.text = "Author: \(self.localBooks[indexPath.row].authors![0].firstName!) \(self.localBooks[indexPath.row].authors![0].lastName!)"
+        } else {
+            for author_ in self.localBooks[indexPath.row].authors! {
+                if (authorsString == "Authors: ") {
+                    authorsString += "\(author_.firstName!) \(author_.lastName!)"
+                } else {
+                    authorsString += ", \(author_.firstName!) \(author_.lastName!) "
+                }
+                
+            }
+            cell.author.text = authorsString
+        }
+
+        
+        cell.duration.text = "Duration: \(self.localBooks[indexPath.row].totaltime!)"
+        
+        for genre_ in self.localBooks[indexPath.row].genres! {
+            genreString += "\(genre_.name!), "
+        }
+        
+        cell.genre.text = "Genre: \(self.localBooks[indexPath.row].genres![0].name!)"
         cell.bookCover.image = UIImage(named: "28187")
         cell.trendingNumber.text = "1."
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "homepageToBookDetail", sender: localBooks[indexPath.row])
+    }
+
+    
+    
+    
+    var trending = [Trending]()
+    var localBooks = [Audiobook]()
+    func addForTrending(  onCompelition : (()->())? = nil ) {
+        if let trend = trending.first {
+            DefaultAPI.idBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
+                print(data!.books![0].title!)
+                self.localBooks.append(data!.books![0])
+                self.trending.removeFirst()
+                self.addForTrending(onCompelition: onCompelition)
+            }
+        }else {
+            print("trending is empty")
+            print(self.localBooks)
+            if let c = onCompelition{
+                c()
+            }
+            
+        }
+    }
+    
+    func loadTrending(callback: @escaping ()->() ) {
+        
+        
+        let db = Firestore.firestore()
+        let booksRef = db.collection("books")
+        booksRef.order(by: "trending", descending: true).limit(to: 5)
+        
+        booksRef.getDocuments { querySnapshot, err in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let s = document.data()
+                    let book = Trending(dict: s)
+                    self.trending.append(book!)
+                    //print("\(document.documentID) => \(document.data())")
+                }
+                /*
+                 for trend in trending {
+                 print(Int64(trend.id)!)
+                 DefaultAPI.idBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
+                 print(data!.books![0].title!)
+                 books.append(data!.books![0])
+                 }
+                 }*/
+                self.addForTrending() {
+                    print("inside loadTrending")
+                    callback()
+                }
+                
+                
+            }
+        }
+    }
+
+    
 }
+
+
 func loadCurrentUser( callback: @escaping (User?)->() ) {
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
@@ -96,29 +199,3 @@ func loadCurrentUser( callback: @escaping (User?)->() ) {
       })
   }
 
-func loadTrending() /*-> [BooksResponse?]*/ {
-    var trending = [Trending]()
-    var books = [BooksResponse]()
-    let db = Firestore.firestore()
-    let booksRef = db.collection("books")
-    booksRef.order(by: "trending", descending: true).limit(to: 5)
-    booksRef.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let s = document.data()
-                    let book = Trending(dict: s)
-                    trending.append(book!)
-                    //print("\(document.documentID) => \(document.data())")
-                }
-                for trend in trending {
-                    DefaultAPI.bookIdGet(bookId: Int64(trend.id)!) { data, error in
-                        print(data?.books![0].title)
-                    }
-                }
-            }
-        
-    }
-    
-  }
