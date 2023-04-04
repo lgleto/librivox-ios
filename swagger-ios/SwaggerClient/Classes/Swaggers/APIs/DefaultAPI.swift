@@ -54,7 +54,7 @@ open class DefaultAPI {
     /**
      * enum for parameter format
      */
-    public enum Format_bookIdGet: String { 
+    public enum Format_idBookIdGet: String { 
         case json = "json"
         case xml = "xml"
         case php = "php"
@@ -67,8 +67,8 @@ open class DefaultAPI {
      - parameter format: (query)  (optional, default to json)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func bookIdGet(bookId: Int64, format: Format_bookIdGet? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
-        bookIdGetWithRequestBuilder(bookId: bookId, format: format).execute { (response, error) -> Void in
+    open class func idBookIdGet(bookId: Int64, format: Format_idBookIdGet? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        idBookIdGetWithRequestBuilder(bookId: bookId, format: format).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -76,7 +76,7 @@ open class DefaultAPI {
 
     /**
      Returns a book by ID.
-     - GET /{bookId}
+     - GET /id/{bookId}/
      - 
 
      - examples: [{contentType=application/json, example={
@@ -209,8 +209,8 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<BooksResponse> 
      */
-    open class func bookIdGetWithRequestBuilder(bookId: Int64, format: Format_bookIdGet? = nil) -> RequestBuilder<BooksResponse> {
-        var path = "/{bookId}"
+    open class func idBookIdGetWithRequestBuilder(bookId: Int64, format: Format_idBookIdGet? = nil) -> RequestBuilder<BooksResponse> {
+        var path = "/id/{bookId}/"
         let bookIdPreEscape = "\(bookId)"
         let bookIdPostEscape = bookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{bookId}", with: bookIdPostEscape, options: .literal, range: nil)

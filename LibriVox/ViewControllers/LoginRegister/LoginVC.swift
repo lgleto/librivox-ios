@@ -20,9 +20,6 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DefaultAPI.rootGet(format:"json"){ data,error in
-            print(data)
-        }
         
         let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
         let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController

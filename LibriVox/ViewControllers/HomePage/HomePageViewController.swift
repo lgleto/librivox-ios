@@ -98,6 +98,7 @@ func loadCurrentUser( callback: @escaping (User?)->() ) {
 
 func loadTrending() /*-> [BooksResponse?]*/ {
     var trending = [Trending]()
+    var books = [BooksResponse]()
     let db = Firestore.firestore()
     let booksRef = db.collection("books")
     booksRef.order(by: "trending", descending: true).limit(to: 5)
@@ -109,10 +110,12 @@ func loadTrending() /*-> [BooksResponse?]*/ {
                     let s = document.data()
                     let book = Trending(dict: s)
                     trending.append(book!)
-                    print("\(document.documentID) => \(document.data())")
+                    //print("\(document.documentID) => \(document.data())")
                 }
-                DefaultAPI.rootGet { data, error in
-                    print(data?.books![0].title)
+                for trend in trending {
+                    DefaultAPI.bookIdGet(bookId: Int64(trend.id)!) { data, error in
+                        print(data?.books![0].title)
+                    }
                 }
             }
         
