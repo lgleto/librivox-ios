@@ -52,6 +52,181 @@ open class DefaultAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
+     * enum for parameter format
+     */
+    public enum Format_bookIdGet: String { 
+        case json = "json"
+        case xml = "xml"
+        case php = "php"
+    }
+
+    /**
+     Returns a book by ID.
+
+     - parameter bookId: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  (optional, default to json)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func bookIdGet(bookId: Int64, format: Format_bookIdGet? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        bookIdGetWithRequestBuilder(bookId: bookId, format: format).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Returns a book by ID.
+     - GET /{bookId}
+     - 
+
+     - examples: [{contentType=application/json, example={
+  "books" : [ {
+    "num_sections" : "num_sections",
+    "url_rss" : "url_rss",
+    "totaltimesecs" : 0,
+    "description" : "description",
+    "language" : "language",
+    "title" : "title",
+    "sections" : [ {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    }, {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    } ],
+    "url_project" : "url_project",
+    "totaltime" : "totaltime",
+    "genres" : [ {
+      "name" : "name",
+      "id" : "id"
+    }, {
+      "name" : "name",
+      "id" : "id"
+    } ],
+    "url_zip_file" : "url_zip_file",
+    "url_librivox" : "url_librivox",
+    "id" : "id",
+    "authors" : [ {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    }, {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    } ]
+  }, {
+    "num_sections" : "num_sections",
+    "url_rss" : "url_rss",
+    "totaltimesecs" : 0,
+    "description" : "description",
+    "language" : "language",
+    "title" : "title",
+    "sections" : [ {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    }, {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    } ],
+    "url_project" : "url_project",
+    "totaltime" : "totaltime",
+    "genres" : [ {
+      "name" : "name",
+      "id" : "id"
+    }, {
+      "name" : "name",
+      "id" : "id"
+    } ],
+    "url_zip_file" : "url_zip_file",
+    "url_librivox" : "url_librivox",
+    "id" : "id",
+    "authors" : [ {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    }, {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    } ]
+  } ]
+}}]
+     - parameter bookId: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  (optional, default to json)
+
+     - returns: RequestBuilder<BooksResponse> 
+     */
+    open class func bookIdGetWithRequestBuilder(bookId: Int64, format: Format_bookIdGet? = nil) -> RequestBuilder<BooksResponse> {
+        var path = "/{bookId}"
+        let bookIdPreEscape = "\(bookId)"
+        let bookIdPostEscape = bookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{bookId}", with: bookIdPostEscape, options: .literal, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+                        "format": format?.rawValue
+        ])
+
+
+        let requestBuilder: RequestBuilder<BooksResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+    /**
      Get all books
 
      - parameter format: (query)  (optional)
