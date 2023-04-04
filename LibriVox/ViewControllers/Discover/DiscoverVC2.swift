@@ -26,6 +26,7 @@ class DiscoverVC2: UIViewController {
         let db = Firestore.firestore()
         let genresCollection = db.collection("genres")
         
+    
        /* DefaultAPI.author2Get(format: "json"){
             data, error in
             print(data?.authors)
@@ -36,41 +37,16 @@ class DiscoverVC2: UIViewController {
                 print("Error getting genres: \(error)")
             } else {
                 for document in querySnapshot!.documents {
-                    let genre = document.data()["name"] as! String
-                    print("Genre: \(genre)")
+                    let genre = document.data() as! Genre
+                    self.genres?.append(genre)
                 }
             }
         }
         
+        print(genres)
         
-        DefaultAPI.rootGet(format: "json",extended: 1) { data, error in
-            if let error = error {
-                print("Error getting root data:", error)
-                return
-            }
-            
-            if let data = data {
-                self.genres = extractGenres(from: data.books  ?? [])
-                self.dataloaded = true
-            }
-        }
+        
     }
-}
-
-func extractGenres(from books: [Audiobook]) -> [Genre] {
-    let initial: [Genre] = []
-    
-    let genres = books.reduce(into: initial) { result, book in
-        if let bookGenres = book.genres {
-            for genre in bookGenres {
-                if !result.contains(where: { $0.name == genre.name }) {
-                    result.append(genre)
-                }
-            }
-         
-        }
-    }
-    return genres
 }
 
 extension DiscoverVC2: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -83,7 +59,7 @@ extension DiscoverVC2: UICollectionViewDataSource, UICollectionViewDelegate{
       
         
         let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell", for: indexPath) as! AuthorsCell
-        
+    
         cell.nameAuthor.text = genres?[indexPath.row].name
         return cell
     }

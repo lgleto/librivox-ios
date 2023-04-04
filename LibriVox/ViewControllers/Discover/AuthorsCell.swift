@@ -10,4 +10,5 @@ import UIKit
 class AuthorsCell: UICollectionViewCell {
     
     @IBOutlet weak var nameAuthor: UILabel!
+    
 }
