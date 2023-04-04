@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import SwaggerClient
 
 class HomePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -19,18 +20,20 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var backgroundContinueReading: UIView!
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var progress: UIProgressView!
-    
+    let db = Firestore.firestore()
     @IBOutlet weak var trendingBooks: UITableView!
+    var booksTrending = [Trending]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadTrending()
         
         loadCurrentUser { user in
             self.nameText.text = "Hello \(user?.username ?? "User not found")"
         }
         
-        getCurrentUserName()
+        //getCurrentUserName()
         
         nameText.text = "Hello \(Auth.auth().currentUser!.displayName!)"
         
@@ -62,7 +65,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return booksTrending.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,4 +94,28 @@ func loadCurrentUser( callback: @escaping (User?)->() ) {
           callback(nil)
         }
       })
+  }
+
+func loadTrending() /*-> [BooksResponse?]*/ {
+    var trending = [Trending]()
+    let db = Firestore.firestore()
+    let booksRef = db.collection("books")
+    booksRef.order(by: "trending", descending: true).limit(to: 5)
+    booksRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let s = document.data()
+                    let book = Trending(dict: s)
+                    trending.append(book!)
+                    print("\(document.documentID) => \(document.data())")
+                }
+                DefaultAPI.rootGet { data, error in
+                    print(data?.books![0].title)
+                }
+            }
+        
+    }
+    
   }

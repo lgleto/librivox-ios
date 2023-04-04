@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3115156229DB2099007FB168 /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3115156129DB2099007FB168 /* Trending.swift */; };
 		317B4BFE29CC6FD30058F4B9 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */; };
 		317B4C0129CC78540058F4B9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0029CC78540058F4B9 /* GoogleSignIn */; };
 		317B4C0329CC78540058F4B9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0229CC78540058F4B9 /* GoogleSignInSwift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		1133B8F9948BBD39ED777F52 /* Pods-LibriVox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LibriVox.release.xcconfig"; path = "Target Support Files/Pods-LibriVox/Pods-LibriVox.release.xcconfig"; sourceTree = "<group>"; };
+		3115156129DB2099007FB168 /* Trending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trending.swift; sourceTree = "<group>"; };
 		317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		317B4C0429CC9D3C0058F4B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		317B4C0629CCB5F80058F4B9 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				317B4C0429CC9D3C0058F4B9 /* User.swift */,
+				3115156129DB2099007FB168 /* Trending.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				319FA01729C36445006895CB /* AppDelegate.swift in Sources */,
 				6F425A1129D59C6D00D21047 /* DiscoverVC.swift in Sources */,
 				319FA01929C36445006895CB /* SceneDelegate.swift in Sources */,
+				3115156229DB2099007FB168 /* Trending.swift in Sources */,
 				31C883CC29C8ABA600A53C78 /* LoginVC.swift in Sources */,
 				31F4EF3829D191CB00F17962 /* RegisterDetailVC.swift in Sources */,
 				6F4EC1EB29C9DFF50025B204 /* BlurredImageView.swift in Sources */,
