@@ -48,11 +48,10 @@ class DiscoverVC2: UIViewController {
                 DispatchQueue.main.async {
                     self.authorsCV.reloadData()
                 }
-                
             }
         }
         
-        
+
         DefaultAPI.authorsGet(format:"json") { data, error in
             if let error = error {
                 print("Error getting root data:", error)
@@ -62,6 +61,7 @@ class DiscoverVC2: UIViewController {
             if let data = data {
                 self.authors = data.authors
                 DispatchQueue.main.async {
+                    print("acabo")
                     self.genresCV.reloadData()
                 }
             }

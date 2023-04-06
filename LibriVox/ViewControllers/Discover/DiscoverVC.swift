@@ -8,7 +8,7 @@
 import UIKit
 import SwaggerClient
 
-class DiscoverVC: UIViewController {
+class DiscoverVC: UIViewController, DiscoverRealDelegate {
     
     var filteredBooks: [SwaggerClient.Audiobook] = []
     
@@ -18,12 +18,16 @@ class DiscoverVC: UIViewController {
     @IBOutlet weak var booksCV: UICollectionView!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         booksCV.dataSource = self
         booksCV.delegate = self
+        
+        if let discoverRealVC = navigationController?.viewControllers.first(where: { $0 is DiscoverRealVC }) as? DiscoverRealVC {
+            discoverRealVC.delegate = self
+        }
         
         //TODO: Show an alert when an error occur
         DefaultAPI.audiobooksGet(format: "json",extended: 1) { data, error in
@@ -36,23 +40,22 @@ class DiscoverVC: UIViewController {
                 self.books = data.books ?? []
                 
                 DispatchQueue.main.async {
-                    self.booksCV.reloadData()
                     self.spinner.stopAnimating()
                 }
             }
         }
     }
     
-    @IBAction func searchHandler(_ sender: UITextField) {
-        if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
-            filteredBooks = books.filter { $0.title?.range(of: searchText, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+    func didChangeSearchText(_ text: String) {
+        print("entrou aqui")
+        if !text.isEmpty {
+            filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
         } else {
             filteredBooks = books
         }
         booksCV.reloadData()
     }
 }
-
 extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
