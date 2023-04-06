@@ -26,7 +26,7 @@ class DiscoverVC: UIViewController {
         booksCV.delegate = self
         
         //TODO: Show an alert when an error occur
-        DefaultAPI.rootGet(format: "json",extended: 1) { data, error in
+        DefaultAPI.audiobooksGet(format: "json",extended: 1) { data, error in
             if let error = error {
                 print("Error getting root data:", error)
                 return
