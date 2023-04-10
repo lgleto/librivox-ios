@@ -26,7 +26,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadTrending {
             print("sdasda")
             self.trendingBooks.reloadData()
@@ -78,14 +77,19 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return localBooks.count
+        if (localBooks.count > 3) {
+            return 3
+        } else {
+            print("Local Books count->" , localBooks.count)
+            return localBooks.count
+        }
+        
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellBook
-        
         var authorsString = "Authors: "
         var genreString = "Genre: "
         cell.title.text = self.localBooks[indexPath.row].title
@@ -118,7 +122,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "homepageToBookDetail", sender: localBooks[indexPath.row])
+        self.performSegue(withIdentifier: "homeToBookDetail", sender: localBooks[indexPath.row])
     }
 
     
@@ -149,7 +153,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
-        booksRef.order(by: "trending", descending: true).limit(to: 5)
+        booksRef.order(by: "trending", descending: true).limit(to: 3)
         
         booksRef.getDocuments { querySnapshot, err in
             if let err = err {
