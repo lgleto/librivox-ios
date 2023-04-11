@@ -132,7 +132,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     var localBooks = [Audiobook]()
     func addForTrending(  onCompelition : (()->())? = nil ) {
         if let trend = trending.first {
-            DefaultAPI.idBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
+            DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
                 print(data!.books![0].title!)
                 self.localBooks.append(data!.books![0])
                 self.trending.removeFirst()
