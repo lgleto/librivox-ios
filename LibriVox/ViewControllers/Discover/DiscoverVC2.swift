@@ -9,10 +9,18 @@ import UIKit
 import SwaggerClient
 import FirebaseFirestore
 
+public struct GenreWithColor{
+    
+    public var _id: String?
+    public var name: String?
+    public var mainColor: String?
+    public var secondaryColor: String?
+}
+
 class DiscoverVC2: UIViewController {
     
     var authors: [Author]?
-    var genres: [Genre]?
+    var genres: [GenreWithColor]?
     
     @IBOutlet weak var genresCV: UICollectionView!
     @IBOutlet weak var authorsCV: UICollectionView!
@@ -34,13 +42,14 @@ class DiscoverVC2: UIViewController {
                 print("Error getting documents: \(error)")
             } else {
                 
-                let genres = querySnapshot!.documents.compactMap { document -> Genre? in
+                let genres = querySnapshot!.documents.compactMap { document -> GenreWithColor? in
                     guard let id = document.data()["id"] as? String,
-                          let name = document.data()["name"] as? String else {
+                          let name = document.data()["name"] as? String,let mainColor = document.data()["mainColor"] as? String,let secondaryColor = document.data()["secondaryColor"] as? String
+                    else {
                         print("Invalid data format for document \(document.documentID)")
                         return nil
                     }
-                    return Genre(_id: id, name: name)
+                    return GenreWithColor(_id: id, name: name, mainColor: mainColor, secondaryColor: secondaryColor)
                 }
                 
                 self.genres = genres
@@ -51,7 +60,8 @@ class DiscoverVC2: UIViewController {
             }
         }
         
-
+        
+        
         DefaultAPI.authorsGet(format:"json") { data, error in
             if let error = error {
                 print("Error getting root data:", error)
@@ -61,7 +71,6 @@ class DiscoverVC2: UIViewController {
             if let data = data {
                 self.authors = data.authors
                 DispatchQueue.main.async {
-                    print("acabo")
                     self.genresCV.reloadData()
                 }
             }
@@ -83,6 +92,9 @@ extension DiscoverVC2: UICollectionViewDataSource, UICollectionViewDelegate{
         switch collectionView.tag {
         case 0:
             cell.nameAuthor.text = genres?[indexPath.row].name
+            
+            let colorString = genres?[indexPath.row].mainColor!
+            cell.circleBackground.backgroundColor = stringToColor(color: String(colorString?.dropFirst() ?? "FFFFFF"))
         case 1:
             cell.nameAuthor.text = authors?[indexPath.row].firstName
         default:
@@ -91,6 +103,23 @@ extension DiscoverVC2: UICollectionViewDataSource, UICollectionViewDelegate{
         
         return cell
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showGenreSection",
+           let indexPath = authorsCV.indexPathsForSelectedItems?.first,
+           let genre = genres?[indexPath.item].name,
+           let genreVC = segue.destination as? GenreVC {
+            genreVC.genre = genre
+        }
+        /*else if segue.identifier == "showAuthorSection",
+         let indexPath = genresCV.indexPathsForSelectedItems?.first,
+         let genre = genres?[indexPath.item].name,
+         let genreVC = segue.destination as? AuthorVC {
+         genreVC.genre = genre
+         }*/
+    }
+    
     
 }
 

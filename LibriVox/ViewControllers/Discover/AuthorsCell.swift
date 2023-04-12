@@ -11,4 +11,5 @@ class AuthorsCell: UICollectionViewCell {
     
     @IBOutlet weak var nameAuthor: UILabel!
     
+    @IBOutlet weak var circleBackground: CircularImageView!
 }
