@@ -34,6 +34,8 @@ class DiscoverVC2: UIViewController {
         genresCV.dataSource = self
         genresCV.dataSource = self
         
+        //addColorToGenre()
+        
         let db = Firestore.firestore()
         let genresRef = db.collection("genres")
         
@@ -108,7 +110,7 @@ extension DiscoverVC2: UICollectionViewDataSource, UICollectionViewDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGenreSection",
            let indexPath = authorsCV.indexPathsForSelectedItems?.first,
-           let genre = genres?[indexPath.item].name,
+           let genre = genres?[indexPath.item],
            let genreVC = segue.destination as? GenreVC {
             genreVC.genre = genre
         }

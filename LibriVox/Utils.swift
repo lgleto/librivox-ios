@@ -7,13 +7,13 @@
 
 import Foundation
 import SwaggerClient
+import FirebaseFirestore
 
 func removeHtmlTagsFromText(text: String)-> String{
     let regex = try! NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)
     let range = NSRange(text.startIndex..<text.endIndex, in: text)
     return regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "")
 }
-
 
 func displayGenres(strings: [Genre]) -> String {
     var result = ""
@@ -38,6 +38,7 @@ func displayAuthors(authors: [Author]) -> String {
     
     return stringNames
 }
+
 func secondsToMinutes(seconds: Int) -> Int{
     return seconds/60
 }
@@ -54,32 +55,33 @@ func stringToColor(color: String) -> UIColor {
     )
 }
 
-/*
- Use to populate the main and secondary colors of each genre
- let baseColors = ["#8ED7F5", "#98DFF5", "#A2E7F5", "#ACEFF5", "#B6F7F5", "#C0FFF5", "#8FDB89", "#99E389", "#A3EB89", "#ADE389", "#B7F389", "#C1FB89", "#8A9A6E", "#949E6E", "#9EA26E", "#A8A66E", "#B2AA6E", "#BCAE6E", "#8E86B5", "#988AB5", "#A28FB5", "#AC93B5", "#B697B5", "#C09CB5", "#9D7B64", "#A57F64", "#AD8364", "#B58764", "#BD8B64", "#C58F64"]
- 
- let lighterColors = ["#b8e4fa", "#c2edfa", "#ccf5fa", "#d6fdfa", "#e0fff9", "#e9fff9", "#bfe6a3", "#c9eba3", "#d3f0a3", "#ddf5a3", "#e7fba2", "#f0ffb0", "#a4b784", "#afb184", "#b9ba84", "#c3bf84", "#cdc484", "#d7c984", "#b298cc", "#bd9ccc", "#c7a1cc", "#d1a6cc", "#dbaacc", "#e5afcc", "#b27a4c", "#bc7e4c", "#c6814c", "#d0844c", "#da874c", "#e48b4c"]
- 
- //let genresRef = Firestore.firestore().collection("genres")
- genresRef.getDocuments { querySnapshot, error in
- if let error = error {
- print("Error getting documents: \(error)")
- } else {
- let genres = querySnapshot!.documents
- for (index, genre) in genres.enumerated() {
- let mainColor = baseColors[index]
- let secondaryColor = lighterColors[index]
- genresRef.document(genre.documentID).updateData([
- "mainColor": mainColor,
- "secondaryColor": secondaryColor
- ]) { error in
- if let error = error {
- print("Error updating genre document: \(error)")
- } else {
- print("Genre document updated successfully")
- }
- }
- }
- }
- }
- */
+func addColorToGenre(){
+    let baseColors = ["#CEB3E0", "#E5CDBE", "#D5B3E5", "#C1D5C7", "#A9C7E0", "#E5E4C1", "#E5BED1", "#D5B3A9", "#B3E5BE", "#B3D5E5", "#E5A9C1", "#B3E5A9", "#E0DCCD", "#BEBCE5", "#E5B3D5", "#F2DCC1", "#A9FFE5", "#E5CDBE", "#B39FDD", "#B3D5A9", "#BEC1E5", "#9FA9D5", "#F2B6B5", "#E5BEFF", "#A9C7FF", "#C7E5A9", "#B3E5B3", "#D6C1A9", "#E5B3E5", "#A9B3E5"]
+
+    let lighterColors = ["#E6D4F2", "#F2E6E0", "#F1E6F2", "#E4F2E3", "#D4E6F1", "#F2F1E6", "#F2E0E6", "#F1E6D4", "#E6F2E0", "#E6F1F2", "#F2D4E6", "#E6F2D4", "#F4F1DE", "#E6E4F2", "#F2E6F1", "#F7E7CE", "#D4F2E6", "#F2E6E4", "#E6D4EF", "#E6F1D4", "#E0E6F2", "#D4F1E6", "#F7CAC9", "#E6E0F2", "#D4E6F2", "#E4F2E6", "#E6F2E6", "#EFE6D4", "#F2E6F2", "#E0E6F2"]
+    
+    let genresRef = Firestore.firestore().collection("genres")
+    genresRef.getDocuments { querySnapshot, error in
+        if let error = error {
+            print("Error getting documents: \(error)")
+        } else {
+            let genres = querySnapshot!.documents
+            for (index, genre) in genres.enumerated() {
+                let mainColor = baseColors[index]
+                let secondaryColor = lighterColors[index]
+                genresRef.document(genre.documentID).updateData([
+                    "mainColor": mainColor,
+                    "secondaryColor": secondaryColor
+                ]) { error in
+                    if let error = error {
+                        print("Error updating genre document: \(error)")
+                    } else {
+                        print("Genre document updated successfully")
+                    }
+                }
+            }
+        }
+    }
+    
+}
+

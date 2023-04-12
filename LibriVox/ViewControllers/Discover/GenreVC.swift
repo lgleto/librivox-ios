@@ -13,8 +13,12 @@ class GenreVC: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var tvBooksByGenre: UITableView!
     
-    var genre:String?
+    var genre:GenreWithColor?
     var audioBooks: [Audiobook]?
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    var isLoaded = false
+    @IBOutlet weak var backgroundLabel: RoundedBookImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +27,13 @@ class GenreVC: UIViewController {
         tvBooksByGenre.dataSource = self
         
         if let genre = genre{
-            genreLabel.text = genre
+            genreLabel.text = genre.name
+            
+            let mainColor = genre.mainColor
+            backgroundLabel.backgroundColor = stringToColor(color: String(mainColor?.dropFirst() ?? "FFFFFF"))
         }
         
-        
-        DefaultAPI.audiobooksGenregenreGet(genre: genre!, format:"json", extended: 1) { data, error in
+        DefaultAPI.audiobooksGenregenreGet(genre: genre?.name! ?? "", format:"json", extended: 1) { data, error in
             if let error = error {
                 print("Error getting root data:", error)
                 return
@@ -37,7 +43,10 @@ class GenreVC: UIViewController {
                 self.audioBooks = data.books ?? []
                 
                 DispatchQueue.main.async {
+                    
+                    self.spinner.stopAnimating()
                     self.tvBooksByGenre.reloadData()
+                    self.isLoaded = true
                 }
             }
         }
@@ -51,17 +60,24 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tvBooksByGenre.dequeueReusableCell(withIdentifier: "AudioBooksTVC", for: indexPath) as! AudioBooksTVC
-        let book = audioBooks?[indexPath.row]
         
-        //let seconds = Int(book?.playtime ?? "Not found") ?? 0
-        
-        cell.titleAudioBook.text = book?.title
-        // cell.durationAudioBook.text! = "Duration: \(secondsToMinutes(seconds: seconds))min "
-        cell.genresAudioBooks.text! += displayGenres(strings: book?.genres ?? [])
-        cell.authorAudioBook.text! += displayAuthors(authors: book?.authors ?? [])
-        
-        return cell
+        if !isLoaded{ return UITableViewCell() }
+        else{
+            let cell = tvBooksByGenre.dequeueReusableCell(withIdentifier: "AudioBooksTVC", for: indexPath) as! AudioBooksTVC
+            
+            let book = audioBooks?[indexPath.row]
+            
+            cell.titleAudioBook.text = book?.title
+            if let duration = book?.totaltime{
+                cell.durationAudioBook.text! = "Duration: \(duration)"
+            }
+            cell.genresAudioBooks.text! += displayGenres(strings: book?.genres ?? [])
+            cell.authorAudioBook.text! += displayAuthors(authors: book?.authors ?? [])
+            cell.backgroundAudioBook.backgroundColor = stringToColor(color: String(genre?.secondaryColor?.dropFirst() ?? "FFFFFF"))
+            
+            return cell
+            
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,6 +87,5 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
             detailVC.book = audioBooks![item]
         }
     }
-    
 }
 

@@ -29,13 +29,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whm-6G-IpD">
-                                <rect key="frame" x="16" y="58.999999999999993" width="307" height="24.666666666666664"/>
+                                <rect key="frame" x="16" y="59" width="307" height="21"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Rc-Z1-AxE">
-                                <rect key="frame" x="16" y="93.666666666666686" width="377" height="116"/>
+                                <rect key="frame" x="16" y="90" width="377" height="116"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="5KD-on-mKB"/>
@@ -56,7 +56,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyu-rA-4ei">
-                                                    <rect key="frame" x="29" y="98" width="38" height="18"/>
+                                                    <rect key="frame" x="29.333333333333332" y="100.66666666666667" width="37.333333333333343" height="15.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -82,13 +82,13 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Authors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R82-5C-Qi0">
-                                <rect key="frame" x="16" y="223.66666666666666" width="307" height="24.666666666666657"/>
+                                <rect key="frame" x="16" y="220" width="307" height="21"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rhl-K1-m7p">
-                                <rect key="frame" x="16" y="258.33333333333331" width="377" height="116"/>
+                                <rect key="frame" x="16" y="251" width="377" height="116"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="MK7-He-QCi"/>
@@ -109,7 +109,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhO-T0-wyv">
-                                                    <rect key="frame" x="29" y="98" width="38" height="18"/>
+                                                    <rect key="frame" x="29" y="100.66666666666667" width="38" height="15.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -130,13 +130,13 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9O2-R3-ihu">
-                                <rect key="frame" x="16" y="388.33333333333331" width="361" height="24.666666666666686"/>
+                                <rect key="frame" x="16" y="381" width="361" height="21"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x9Z-V4-asL">
-                                <rect key="frame" x="16" y="423" width="377" height="116"/>
+                                <rect key="frame" x="16" y="412" width="377" height="116"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="116" id="vqn-l4-TQg"/>
@@ -156,7 +156,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eq-Yh-SNH">
-                                                    <rect key="frame" x="29" y="98" width="38" height="18"/>
+                                                    <rect key="frame" x="29" y="100.66666666666667" width="38" height="15.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -177,7 +177,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SG6-Lb-ZBp">
-                                <rect key="frame" x="357" y="61.333333333333343" width="20" height="20"/>
+                                <rect key="frame" x="357" y="59.666666666666657" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="8im-ab-bCu"/>
                                     <constraint firstAttribute="height" constant="20" id="NUI-Og-dj9"/>
@@ -192,7 +192,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8e-jk-QnG">
-                                <rect key="frame" x="357" y="226" width="20" height="20"/>
+                                <rect key="frame" x="357" y="220.66666666666666" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="UtF-r4-CWC"/>
                                     <constraint firstAttribute="height" constant="20" id="eOv-Vv-pfG"/>
@@ -294,10 +294,10 @@
             </objects>
             <point key="canvasLocation" x="4148.8549618320612" y="-4.2253521126760569"/>
         </scene>
-        <!--View Controller-->
+        <!--CategoriesVC-->
         <scene sceneID="VH7-1y-x8m">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="QUE-XB-uw7" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="QUE-XB-uw7" customClass="CategoriesVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Kt-Xy-Rog">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,7 +312,7 @@
                                 <rect key="frame" x="16" y="110.66666666666669" width="361" height="707.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="N7g-Jt-qVf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoriesCell" id="N7g-Jt-qVf" customClass="CategoriesCell" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N7g-Jt-qVf" id="8XX-CE-OS6">
@@ -329,7 +329,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7U-cb-j8k">
                                                     <rect key="frame" x="105" y="16" width="226" height="20.666666666666671"/>
-                                                    <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -352,6 +352,11 @@
                                                 <constraint firstItem="pHN-TW-AQW" firstAttribute="top" secondItem="8XX-CE-OS6" secondAttribute="top" constant="10" id="yfo-KP-swT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backGroundCategory" destination="pHN-TW-AQW" id="Dxh-B1-gAC"/>
+                                            <outlet property="descriptionCategory" destination="RZ7-Gb-Efr" id="nSt-2c-HSI"/>
+                                            <outlet property="nameCategory" destination="X7U-cb-j8k" id="XrU-RP-aZc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -368,10 +373,13 @@
                             <constraint firstItem="Fi4-Mz-hHa" firstAttribute="top" secondItem="yaf-uG-3a8" secondAttribute="top" id="jZy-SR-FfB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="categoriesTV" destination="cYt-5f-r0l" id="VqI-3a-NR7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgJ-52-4qV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3044" y="706"/>
+            <point key="canvasLocation" x="2798" y="725"/>
         </scene>
         <!--GenreVC-->
         <scene sceneID="gVj-vR-0pS">
@@ -384,7 +392,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i9r-bU-wlW" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="16" y="59" width="361" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.57647058819999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="tertiaryLabelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="DJy-rb-hOZ"/>
                                 </constraints>
@@ -395,7 +403,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dcA-MV-fKf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" estimatedRowHeight="-1" sectionHeaderHeight="70" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dcA-MV-fKf">
                                 <rect key="frame" x="16" y="119" width="361" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -409,41 +417,41 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjH-hf-eJJ" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="10" width="70" height="120"/>
+                                                    <rect key="frame" x="0.0" y="10" width="77" height="120"/>
                                                     <color key="backgroundColor" red="1" green="0.74509803919999995" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="120" id="aV6-cp-g7y"/>
-                                                        <constraint firstAttribute="width" constant="70" id="eUo-WU-y8A"/>
+                                                        <constraint firstAttribute="width" constant="77" id="eUo-WU-y8A"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cY3-9H-Jzm">
-                                                    <rect key="frame" x="85" y="66" width="276" height="18"/>
+                                                    <rect key="frame" x="97" y="66" width="264" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FU7-aK-JFf" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="4" width="67" height="115"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FU7-aK-JFf" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                    <rect key="frame" x="10" y="4" width="77" height="119"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="67" id="PKd-xC-0En"/>
+                                                        <constraint firstAttribute="width" constant="77" id="PKd-xC-0En"/>
                                                         <constraint firstAttribute="height" constant="115" id="sqi-EP-8bO"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6y-eD-xVH">
-                                                    <rect key="frame" x="85" y="112" width="241" height="18"/>
+                                                    <rect key="frame" x="97" y="112" width="229" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfT-M0-hsF">
-                                                    <rect key="frame" x="85" y="89" width="54.666666666666657" height="18"/>
+                                                    <rect key="frame" x="97" y="89" width="54.666666666666657" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief hhhhhh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDl-gS-gjJ">
-                                                    <rect key="frame" x="85" y="5" width="276" height="20.666666666666668"/>
+                                                    <rect key="frame" x="97" y="5" width="264" height="20.666666666666668"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -465,7 +473,7 @@
                                                 <constraint firstItem="YDl-gS-gjJ" firstAttribute="leading" secondItem="FU7-aK-JFf" secondAttribute="trailing" constant="10" id="BS0-70-PNh"/>
                                                 <constraint firstItem="WfT-M0-hsF" firstAttribute="leading" secondItem="FU7-aK-JFf" secondAttribute="trailing" constant="10" id="Gye-Mr-wvH"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dm0-4B-RYL" secondAttribute="trailing" id="RIn-Ez-KOI"/>
-                                                <constraint firstItem="FU7-aK-JFf" firstAttribute="leading" secondItem="Vzl-rf-2p6" secondAttribute="leading" constant="8" id="RzC-nd-RXW"/>
+                                                <constraint firstItem="FU7-aK-JFf" firstAttribute="leading" secondItem="Vzl-rf-2p6" secondAttribute="leading" constant="10" id="RzC-nd-RXW"/>
                                                 <constraint firstAttribute="trailing" secondItem="cY3-9H-Jzm" secondAttribute="trailing" id="TWL-l5-hII"/>
                                                 <constraint firstAttribute="bottom" secondItem="Dm0-4B-RYL" secondAttribute="bottom" id="X4F-fz-jG4"/>
                                                 <constraint firstAttribute="bottom" secondItem="xjH-hf-eJJ" secondAttribute="bottom" id="YdJ-rs-8VF"/>
@@ -479,6 +487,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorAudioBook" destination="cY3-9H-Jzm" id="BfY-jI-VHa"/>
+                                            <outlet property="backgroundAudioBook" destination="xjH-hf-eJJ" id="opc-5Q-WGI"/>
                                             <outlet property="durationAudioBook" destination="WfT-M0-hsF" id="Wvy-7Y-Rcg"/>
                                             <outlet property="genresAudioBooks" destination="b6y-eD-xVH" id="Ob9-gh-cEc"/>
                                             <outlet property="imgAudioBook" destination="FU7-aK-JFf" id="zh2-bC-mKI"/>
@@ -488,11 +497,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" animating="YES" style="large" id="GpS-fL-ZNp">
+                                <rect key="frame" x="16" y="411" width="361" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="Main Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CMR-kv-gq9"/>
+                                    <constraint firstAttribute="width" constant="30" id="uD4-SG-tEP"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rqz-G1-WGW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ESe-dR-hbB" firstAttribute="leading" secondItem="Rqz-G1-WGW" secondAttribute="leading" constant="25" id="3QE-sY-0Z1"/>
+                            <constraint firstItem="GpS-fL-ZNp" firstAttribute="top" secondItem="i9r-bU-wlW" secondAttribute="bottom" constant="302" id="A7x-cJ-psH"/>
                             <constraint firstItem="i9r-bU-wlW" firstAttribute="top" secondItem="Rqz-G1-WGW" secondAttribute="top" id="Bjd-sf-3jN"/>
                             <constraint firstItem="Rqz-G1-WGW" firstAttribute="trailing" secondItem="i9r-bU-wlW" secondAttribute="trailing" constant="16" id="EB1-5n-0pO"/>
                             <constraint firstItem="ESe-dR-hbB" firstAttribute="centerY" secondItem="i9r-bU-wlW" secondAttribute="centerY" id="HVK-oY-zS6"/>
@@ -509,13 +528,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundLabel" destination="i9r-bU-wlW" id="BTL-6x-E3J"/>
                         <outlet property="genreLabel" destination="ESe-dR-hbB" id="MC2-1I-fO7"/>
+                        <outlet property="spinner" destination="GpS-fL-ZNp" id="jMW-Um-yGD"/>
                         <outlet property="tvBooksByGenre" destination="dcA-MV-fKf" id="eCA-ul-PEH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrJ-Fd-Xvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4149" y="718"/>
+            <point key="canvasLocation" x="3614.5038167938928" y="724.64788732394368"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="swa-h2-W0p">
@@ -526,13 +547,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKu-l2-XLP">
-                                <rect key="frame" x="16" y="58.999999999999993" width="361" height="31.666666666666664"/>
+                                <rect key="frame" x="16" y="59" width="361" height="27"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vCs-PL-U7M">
-                                <rect key="frame" x="16" y="110.66666666666669" width="361" height="707.33333333333326"/>
+                                <rect key="frame" x="16" y="106" width="361" height="712"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ims-54-yow">
                                     <size key="itemSize" width="168" height="216"/>
@@ -588,7 +609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUb-wJ-4K5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4854" y="718"/>
+            <point key="canvasLocation" x="1926" y="725"/>
         </scene>
         <!--Item-->
         <scene sceneID="gp8-Sv-W20">
@@ -688,7 +709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwU-2h-jca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7768.7022900763359" y="0.0"/>
+            <point key="canvasLocation" x="6280" y="0.0"/>
         </scene>
         <!--Percy Jackson: The Lighthing Thief-->
         <scene sceneID="0xT-1w-Kg0">
@@ -922,7 +943,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zry-on-kYx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8539.6946564885493" y="0.0"/>
+            <point key="canvasLocation" x="7051" y="0.0"/>
         </scene>
         <!--ScroolView-->
         <scene sceneID="0nY-Sl-AGd">
@@ -948,7 +969,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cH0-Lt-JrC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9254.1984732824421" y="0.0"/>
+            <point key="canvasLocation" x="7766" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pNO-AQ-0FM">
@@ -966,7 +987,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fy-D0-tbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6841.9847328244268" y="0.0"/>
+            <point key="canvasLocation" x="5424" y="0.0"/>
         </scene>
     </scenes>
     <designables>
@@ -997,6 +1018,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

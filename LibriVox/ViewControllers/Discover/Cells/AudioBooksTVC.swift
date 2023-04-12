@@ -13,5 +13,6 @@ class AudioBooksTVC: UITableViewCell {
     @IBOutlet weak var authorAudioBook: UILabel!
     @IBOutlet weak var durationAudioBook: UILabel!
     @IBOutlet weak var genresAudioBooks: UILabel!
+    @IBOutlet weak var backgroundAudioBook: RoundView!
     @IBOutlet weak var imgAudioBook: RoundedBookImageView!
 }
