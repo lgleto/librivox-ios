@@ -1,82 +1,63 @@
 //
-//  DiscoverVC.swift
+//  DiscoverRealVC.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 29/03/2023.
+//  Created by Acesso Gloria MP on 06/04/2023.
 //
 
 import UIKit
-import SwaggerClient
 
-class DiscoverVC: UIViewController, DiscoverRealDelegate {
+protocol DiscoverRealDelegate: AnyObject {
+    func didChangeSearchText(_ text: String)
+}
+
+class DiscoverVC: UIViewController {
+        
+    weak var delegate: DiscoverRealDelegate?
     
-    var filteredBooks: [SwaggerClient.Audiobook] = []
+    @IBOutlet weak var container: UIView!
     
-    var books: [SwaggerClient.Audiobook] = []
+    var emptyStateVC: DiscoverOptionsVC?
+    var resultsVC: ResultBooksVC?
     
-    
-    @IBOutlet weak var booksCV: UICollectionView!
-    
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBAction func searchHandler(_ sender: UITextField) {
+        if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+            
+            print("bro")
+            delegate?.didChangeSearchText(searchText)
+            addViewController(resultsVC!, container, emptyStateVC)
+            
+        } else {
+            addViewController(emptyStateVC!,container,resultsVC)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        booksCV.dataSource = self
-        booksCV.delegate = self
+        emptyStateVC = storyboard?.instantiateViewController(withIdentifier: "EmptyStateViewController") as? DiscoverOptionsVC
+        resultsVC = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultBooksVC
         
-        if let discoverRealVC = navigationController?.viewControllers.first(where: { $0 is DiscoverRealVC }) as? DiscoverRealVC {
-            discoverRealVC.delegate = self
-        }
         
-        //TODO: Show an alert when an error occur
-        DefaultAPI.audiobooksGet(format: "json",extended: 1) { data, error in
-            if let error = error {
-                print("Error getting root data:", error)
-                return
-            }
-            
-            if let data = data {
-                self.books = data.books ?? []
-                
-                DispatchQueue.main.async {
-                    self.spinner.stopAnimating()
-                }
-            }
-        }
+        // Add the empty state view controller to the container view
+        addChild(emptyStateVC!)
+        container.addSubview(emptyStateVC!.view)
+        emptyStateVC!.view.frame = container.bounds
+        emptyStateVC!.didMove(toParent: self)
     }
     
-    func didChangeSearchText(_ text: String) {
-        print("entrou aqui")
-        if !text.isEmpty {
-            filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
-        } else {
-            filteredBooks = books
-        }
-        booksCV.reloadData()
-    }
-}
-extension DiscoverVC: UICollectionViewDataSource, UICollectionViewDelegate{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredBooks.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
+    func addViewController(_ childViewController: UIViewController, _ container: UIView, _ stateViewController: UIViewController?) {
+        // Add the new child view controller
+        addChild(childViewController)
+        container.addSubview(childViewController.view)
+        childViewController.view.frame = container.bounds
+        childViewController.didMove(toParent: self)
         
-        cell.titleBook.text = filteredBooks[indexPath.row].title
-        return cell
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,
-           let detailVC = segue.destination as? BookDetailsVC {
-            let item = indexPath.item
-            detailVC.book = filteredBooks[item]
+        // Remove the empty state view controller if it's currently added
+        if let stateVC = stateViewController, stateVC.parent != nil {
+            stateVC.willMove(toParent: nil)
+            stateVC.view.removeFromSuperview()
+            stateVC.removeFromParent()
         }
     }
 }
-
-
-

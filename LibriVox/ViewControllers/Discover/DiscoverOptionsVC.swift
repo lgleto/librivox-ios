@@ -17,7 +17,7 @@ public struct GenreWithColor{
     public var secondaryColor: String?
 }
 
-class DiscoverVC2: UIViewController {
+class DiscoverOptionsVC: UIViewController {
     
     var authors: [Author]?
     var genres: [GenreWithColor]?
@@ -80,7 +80,7 @@ class DiscoverVC2: UIViewController {
     }
 }
 
-extension DiscoverVC2: UICollectionViewDataSource, UICollectionViewDelegate{
+extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     //TODO: Select only the top genres
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

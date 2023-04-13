@@ -70,4 +70,13 @@ extension CategoriesVC: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showGenreSection",
+           let indexPath = categoriesTV.indexPathForSelectedRow,
+           let genre = genres?[indexPath.item],
+           let genreVC = segue.destination as? GenreVC {
+            genreVC.genre = genre
+        }
+    }
 }

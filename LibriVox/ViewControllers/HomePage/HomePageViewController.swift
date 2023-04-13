@@ -140,7 +140,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }else {
             print("trending is empty")
-            print(self.localBooks)
+            //print(self.localBooks)
             if let c = onCompelition{
                 c()
             }

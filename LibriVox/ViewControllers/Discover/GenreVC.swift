@@ -69,7 +69,7 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
             
             cell.titleAudioBook.text = book?.title
             if let duration = book?.totaltime{
-                cell.durationAudioBook.text! = "Duration: \(duration)"
+                cell.durationAudioBook.text! = duration
             }
             cell.genresAudioBooks.text! += displayGenres(strings: book?.genres ?? [])
             cell.authorAudioBook.text! += displayAuthors(authors: book?.authors ?? [])
