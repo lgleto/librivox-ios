@@ -11,9 +11,8 @@ import SwaggerClient
 class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
     var filteredBooks: [SwaggerClient.Audiobook] = []
-    
     var books: [SwaggerClient.Audiobook] = []
-    
+    var isLoaded = false
     
     @IBOutlet weak var booksCV: UICollectionView!
     
@@ -25,9 +24,6 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
         booksCV.dataSource = self
         booksCV.delegate = self
         
-        if let discoverRealVC = navigationController?.viewControllers.first(where: { $0 is DiscoverVC }) as? DiscoverVC {
-            discoverRealVC.delegate = self
-        }
         
         //TODO: Show an alert when an error occur
         DefaultAPI.audiobooksGet(format: "json",extended: 1) { data, error in
@@ -41,22 +37,25 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
                 
                 DispatchQueue.main.async {
                     self.spinner.stopAnimating()
-                    
-                    self.filteredBooks = self.books
-                    self.booksCV.reloadData()
+                    self.isLoaded = true
                 }
             }
         }
     }
     
-    func didChangeSearchText(_ text: String) {
-        print("entrou aqui")
-        if !text.isEmpty {
-            filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
-        } else {
-            filteredBooks = books
+    
+    //FIXME: Working but the data need to be loaded first
+    public func didChangeSearchText(_ text: String) {
+        if isLoaded{
+            if !text.isEmpty {
+                filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+            } else {
+                print("Any book has been found")
+            }
+            booksCV.reloadData()
         }
-        booksCV.reloadData()
+        else{return}
+        
     }
 }
 extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{

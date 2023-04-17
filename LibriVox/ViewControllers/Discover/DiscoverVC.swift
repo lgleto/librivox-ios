@@ -12,19 +12,16 @@ protocol DiscoverRealDelegate: AnyObject {
 }
 
 class DiscoverVC: UIViewController {
-        
-    weak var delegate: DiscoverRealDelegate?
     
     @IBOutlet weak var container: UIView!
     
     var emptyStateVC: DiscoverOptionsVC?
     var resultsVC: ResultBooksVC?
     
+    
     @IBAction func searchHandler(_ sender: UITextField) {
         if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
-            
-            print("bro")
-            delegate?.didChangeSearchText(searchText)
+            resultsVC?.didChangeSearchText(searchText)
             addViewController(resultsVC!, container, emptyStateVC)
             
         } else {
@@ -37,6 +34,7 @@ class DiscoverVC: UIViewController {
         
         emptyStateVC = storyboard?.instantiateViewController(withIdentifier: "EmptyStateViewController") as? DiscoverOptionsVC
         resultsVC = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultBooksVC
+        
         
         
         // Add the empty state view controller to the container view
