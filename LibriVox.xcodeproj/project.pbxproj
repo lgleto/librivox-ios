@@ -58,6 +58,7 @@
 		6F6765E929DADF190080874E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6765E829DADF190080874E /* Utils.swift */; };
 		6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */; };
 		6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */; };
+		6F793CD029E86B0E004763DE /* Prata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F152E2429CCA56A0008846B /* Prata-Regular.ttf */; };
 		6F99531F29DC781C0016B1AC /* DiscoverOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */; };
 		6F99532129DC78340016B1AC /* AuthorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99532029DC78340016B1AC /* AuthorsCell.swift */; };
 		6FB33FEA29CC9726008CC60C /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB33FE929CC9726008CC60C /* Library.storyboard */; };
@@ -389,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F793CD029E86B0E004763DE /* Prata-Regular.ttf in Resources */,
 				319FA02329C36446006895CB /* LaunchScreen.storyboard in Resources */,
 				31C883CE29C8ABA600A53C78 /* Profile.storyboard in Resources */,
 				319FA02B29C37136006895CB /* LoginRegister.storyboard in Resources */,
