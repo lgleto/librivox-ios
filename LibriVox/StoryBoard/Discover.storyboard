@@ -578,10 +578,10 @@
             </objects>
             <point key="canvasLocation" x="3614.5038167938928" y="724.64788732394368"/>
         </scene>
-        <!--View Controller-->
+        <!--AuthorsVC-->
         <scene sceneID="swa-h2-W0p">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="hqL-SB-PuW" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="hqL-SB-PuW" customClass="AuthorsVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hNe-oj-WMN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -602,7 +602,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Fub-lh-EiN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AuthorProfileCell" id="Fub-lh-EiN" customClass="AuthorProfileCell" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="168" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="35q-Pu-ChC">
@@ -612,6 +612,10 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1bR-ym-P7o" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="168" height="216"/>
                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="216" id="IqP-1a-toO"/>
+                                                        <constraint firstAttribute="width" constant="168" id="qmS-wx-eJC"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lana Del Rey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diX-S7-eHu">
                                                     <rect key="frame" x="35" y="190" width="99" height="21"/>
@@ -630,6 +634,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="diX-S7-eHu" secondAttribute="bottom" constant="5" id="kDb-oF-BuC"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameAuthor" destination="diX-S7-eHu" id="1cG-cU-5qN"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -647,6 +654,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="E86-tq-9aT"/>
+                    <connections>
+                        <outlet property="authorsCV" destination="vCs-PL-U7M" id="GJj-wq-YFK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUb-wJ-4K5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

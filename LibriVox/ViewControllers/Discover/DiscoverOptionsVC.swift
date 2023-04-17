@@ -114,12 +114,6 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
            let genreVC = segue.destination as? GenreVC {
             genreVC.genre = genre
         }
-        /*else if segue.identifier == "showAuthorSection",
-         let indexPath = genresCV.indexPathsForSelectedItems?.first,
-         let genre = genres?[indexPath.item].name,
-         let genreVC = segue.destination as? AuthorVC {
-         genreVC.genre = genre
-         }*/
     }
     
     
