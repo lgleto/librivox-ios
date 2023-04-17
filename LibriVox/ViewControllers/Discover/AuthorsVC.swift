@@ -54,7 +54,7 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
         else{
             let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorProfileCell", for: indexPath) as! AuthorProfileCell
             
-            cell.nameAuthor.text = authors?[indexPath.row].firstName
+            cell.nameAuthor.text = (authors?[indexPath.row].firstName ?? "") + " " + (authors?[indexPath.row].lastName ?? " ")
             
             return cell
             
@@ -62,12 +62,12 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
         
     }
     
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if segue.identifier == "showGenreSection",
-     let indexPath = authorsCV.indexPathsForSelectedItems?.first,
-     let genre = genres?[indexPath.item],
-     let genreVC = segue.destination as? GenreVC {
-     genreVC.genre = genre
-     }*/
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAuthor",
+           let indexPath = authorsCV.indexPathsForSelectedItems?.first,
+           let lastName = authors?[indexPath.row].lastName!,
+           let authorPageVC = segue.destination as? AuthorPageVC {
+            authorPageVC.lastName = lastName
+        }
+    }
 }

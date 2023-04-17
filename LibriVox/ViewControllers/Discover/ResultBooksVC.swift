@@ -46,16 +46,16 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
     //FIXME: Working but the data need to be loaded first
     public func didChangeSearchText(_ text: String) {
-        if isLoaded{
+        if !isLoaded{return}
+        else{
             if !text.isEmpty {
                 filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+                booksCV.reloadData()
             } else {
                 print("Any book has been found")
+                
             }
-            booksCV.reloadData()
         }
-        else{return}
-        
     }
 }
 extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
