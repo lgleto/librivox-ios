@@ -90,6 +90,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellBook
+        cell.selectionStyle = .none
         var authorsString = "Authors: "
         var genreString = "Genre: "
         cell.title.text = self.localBooks[indexPath.row].title
@@ -116,7 +117,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.genre.text = "Genre: \(self.localBooks[indexPath.row].genres![0].name!)"
         cell.bookCover.image = UIImage(named: "28187")
-        cell.trendingNumber.text = "1."
+        cell.trendingNumber.text = "\(indexPath.row+1)."
         
         return cell
     }

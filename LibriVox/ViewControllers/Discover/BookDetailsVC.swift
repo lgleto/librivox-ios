@@ -10,6 +10,9 @@ import SwaggerClient
 
 class BookDetailsVC: UIViewController {
     
+    
+    
+    @IBOutlet weak var languageBook: UILabel!
     @IBOutlet weak var bookImg: RoundedBookImageView!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var genreBook: UILabel!
@@ -33,6 +36,9 @@ class BookDetailsVC: UIViewController {
             genreBook.text = displayGenres(strings: book.genres ?? [])
             authorBook.text = (book.authors?[0].firstName ?? "") + " " + (book.authors?[0].lastName ?? "")
             durationBook.text = book.totaltime
+            languageBook.text = book.language!
+            self.title = book.title!
+            self.tabBarController?.tabBar.isHidden = true
         }
     }
 }

@@ -252,12 +252,22 @@
                         <outlet property="nameText" destination="dDH-5L-dS0" id="bCb-ZZ-BIL"/>
                         <outlet property="progress" destination="yXE-Yg-jDF" id="wOm-na-nxz"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
-                        <segue destination="Kj2-HR-aL6" kind="show" identifier="homeToBookDetail" id="f6J-Ix-dRg"/>
+                        <segue destination="y1Z-nm-UYf" kind="show" identifier="homeToBookDetail" id="Sw7-E8-QYW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3157.5999999999999" y="0.0"/>
+        </scene>
+        <!--discoverBookDetails-->
+        <scene sceneID="MAH-mP-enJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="discoverBookDetails" id="y1Z-nm-UYf" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="J1c-aD-2Lx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="62N-uO-3zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3158" y="395"/>
         </scene>
         <!--Trending Books-->
         <scene sceneID="JvO-ZD-RFB">
@@ -396,44 +406,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="m8j-It-3zh" kind="relationship" relationship="viewControllers" id="LUm-Rr-Kvv"/>
-                        <segue destination="mcj-3b-vda" kind="relationship" relationship="viewControllers" id="TPi-S0-ipS"/>
-                        <segue destination="H1V-xq-Wkr" kind="relationship" relationship="viewControllers" id="Vku-5y-9nF"/>
-                        <segue destination="nPh-lV-9MU" kind="relationship" relationship="viewControllers" id="1bg-MZ-EGO"/>
+                        <segue destination="asw-0R-KCK" kind="relationship" relationship="viewControllers" id="Rak-6b-YJr"/>
+                        <segue destination="u7F-J9-TYe" kind="relationship" relationship="viewControllers" id="w4d-Ns-bQK"/>
+                        <segue destination="iOq-YV-IgI" kind="relationship" relationship="viewControllers" id="LXh-qd-pPp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rBk-k4-Rdf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="29.600000000000001" y="0.0"/>
-        </scene>
-        <!--LibraryId-->
-        <scene sceneID="OhS-I4-6RX">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Library" referencedIdentifier="LibraryId" id="mcj-3b-vda" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="pk2-LR-ch3"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1mb-H4-QPO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="30" y="478"/>
-        </scene>
-        <!--ProfileId-->
-        <scene sceneID="LKu-8F-d71">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileId" id="nPh-lV-9MU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="eN7-Z3-J9I"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yJX-jR-3wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="208" y="477"/>
-        </scene>
-        <!--DiscoverId-->
-        <scene sceneID="o9t-fP-LiL">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DiscoverId" id="H1V-xq-Wkr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="tIW-a2-Ib6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ntD-EJ-4cf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-150" y="477"/>
         </scene>
         <!--Percy Jackson: The Lighthing Thief-->
         <scene sceneID="PrQ-5h-ikx">
@@ -444,21 +424,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="28187" translatesAutoresizingMaskIntoConstraints="NO" id="4Sg-nE-8jF" customClass="BlurredImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="3" width="375" height="361"/>
+                                <rect key="frame" x="0.0" y="-41" width="375" height="361"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="361" id="1Rd-Qm-l6J"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="28187" translatesAutoresizingMaskIntoConstraints="NO" id="2wp-WP-oQR" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="16" y="114" width="142" height="230"/>
+                                <rect key="frame" x="16" y="70" width="142" height="230"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="cr4-Fx-xA3"/>
                                     <constraint firstAttribute="width" constant="142" id="tFC-Y5-HVc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdu-Qh-Owm">
-                                <rect key="frame" x="183" y="134" width="64" height="20.666666666666657"/>
+                                <rect key="frame" x="183" y="90" width="64" height="20.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="Rf4-xo-KFn"/>
                                 </constraints>
@@ -467,7 +447,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kp-Gh-E4m">
-                                <rect key="frame" x="183" y="164.66666666666666" width="45" height="20.666666666666657"/>
+                                <rect key="frame" x="183" y="120.66666666666667" width="45" height="20.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="cLA-2n-mGT"/>
                                 </constraints>
@@ -476,13 +456,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc9-Jb-yJh">
-                                <rect key="frame" x="233" y="164.66666666666666" width="126" height="20.666666666666657"/>
+                                <rect key="frame" x="233" y="120.66666666666667" width="126" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pV5-7m-YAI">
-                                <rect key="frame" x="183" y="195.33333333333334" width="55" height="20.666666666666657"/>
+                                <rect key="frame" x="183" y="151.33333333333334" width="55" height="20.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="xSK-ce-Uv4"/>
                                 </constraints>
@@ -491,13 +471,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGW-3V-9Tf">
-                                <rect key="frame" x="243" y="195.33333333333334" width="116" height="20.666666666666657"/>
+                                <rect key="frame" x="243" y="151.33333333333334" width="116" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nº Sections:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0M-UR-u3j">
-                                <rect key="frame" x="183" y="226" width="82" height="20.666666666666657"/>
+                                <rect key="frame" x="183" y="182" width="82" height="20.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="82" id="wEe-PZ-N2p"/>
                                 </constraints>
@@ -506,33 +486,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euI-08-X66">
-                                <rect key="frame" x="270" y="236.33333333333334" width="89" height="0.0"/>
+                                <rect key="frame" x="270" y="192.33333333333334" width="89" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="mas-3B-6CV">
-                                <rect key="frame" x="309" y="294" width="50" height="50"/>
+                                <rect key="frame" x="309" y="250" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Gg3-0A-48Z"/>
                                     <constraint firstAttribute="height" constant="50" id="ZVV-rL-ldF"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synopses" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMe-25-JOh">
-                                <rect key="frame" x="16" y="393" width="343" height="20.666666666666686"/>
+                                <rect key="frame" x="16" y="349" width="343" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urY-Rc-VVv">
-                                <rect key="frame" x="16" y="423.66666666666669" width="343" height="20.666666666666686"/>
+                                <rect key="frame" x="16" y="379.66666666666669" width="343" height="20.666666666666686"/>
                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S79-Ww-Xxk">
-                                <rect key="frame" x="0.0" y="490" width="375" height="239"/>
+                                <rect key="frame" x="0.0" y="446" width="375" height="332"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionsCell" id="4f6-fx-RiD" customClass="SectionsCell" customModule="LibriVox" customModuleProvider="target">
@@ -593,13 +573,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sg3-cV-KrC">
-                                <rect key="frame" x="16" y="459.33333333333331" width="339" height="20.666666666666686"/>
+                                <rect key="frame" x="16" y="415.33333333333331" width="339" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4B3-2P-JFc">
-                                <rect key="frame" x="255" y="134" width="104" height="20.666666666666657"/>
+                                <rect key="frame" x="255" y="90" width="104" height="20.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -667,7 +647,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNw-9I-OxG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3062" y="767"/>
+            <point key="canvasLocation" x="4351" y="831"/>
         </scene>
         <!--Homepage-->
         <scene sceneID="cK6-JB-TZJ">
@@ -691,6 +671,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnc-UL-RcX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2215.1999999999998" y="0.0"/>
+        </scene>
+        <!--ProfileId-->
+        <scene sceneID="3ea-GE-BeZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileId" id="iOq-YV-IgI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="VQe-cE-COO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOn-Ue-8fs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-259" y="428"/>
+        </scene>
+        <!--LibraryId-->
+        <scene sceneID="nce-ke-Q4n">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Library" referencedIdentifier="LibraryId" id="u7F-J9-TYe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4cT-OD-yjV"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SjL-Zh-qv5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="428"/>
+        </scene>
+        <!--DiscoverId-->
+        <scene sceneID="s0p-0G-k28">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DiscoverId" id="asw-0R-KCK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="gED-ye-NVw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2wk-1n-Frh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338" y="428"/>
         </scene>
     </scenes>
     <designables>
