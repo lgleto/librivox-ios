@@ -13,9 +13,9 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     var filteredBooks: [SwaggerClient.Audiobook] = []
     var books: [SwaggerClient.Audiobook] = []
     var isLoaded = false
+    var searchText : String?
     
     @IBOutlet weak var booksCV: UICollectionView!
-    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -38,24 +38,29 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
                 DispatchQueue.main.async {
                     self.spinner.stopAnimating()
                     self.isLoaded = true
+                    self.applySearchFilter()
                 }
             }
         }
     }
     
-    
-    //FIXME: Working but the data need to be loaded first
-    public func didChangeSearchText(_ text: String) {
-        if !isLoaded{return}
-        else{
-            if !text.isEmpty {
+    func applySearchFilter() {
+        if !isLoaded {
+            return
+        }else {
+            if let text = searchText, !text.isEmpty {
                 filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
                 booksCV.reloadData()
             } else {
-                print("Any book has been found")
-                
+                filteredBooks = books
+                booksCV.reloadData()
             }
         }
+    }
+    
+    public func didChangeSearchText(_ text: String) {
+        searchText = text
+        applySearchFilter()
     }
 }
 extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -68,8 +73,11 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
         cell.titleBook.text = filteredBooks[indexPath.row].title
+       // cell.onFavToggle()
+        
         return cell
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,

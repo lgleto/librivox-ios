@@ -10,4 +10,5 @@ import UIKit
 class ListBooksCell: UICollectionViewCell {
     @IBOutlet weak var titleBook: UILabel!
     @IBOutlet weak var imageBook: RoundedBookImageView!
+    @IBOutlet weak var isFav: FavoritesToggleBtn!
 }
