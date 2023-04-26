@@ -6,13 +6,6 @@
 //
 
 import Foundation
-/*
-struct User {
-    var name: String
-    var username: String
-    var description: String
-    
-}*/
 class User {
     var name: String
     var username: String

@@ -58,6 +58,7 @@
 		6F4EC1ED29C9DFFB0025B204 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */; };
 		6F4EC1EF29C9E0020025B204 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EE29C9E0020025B204 /* RoundView.swift */; };
 		6F4EC1F229C9EBF60025B204 /* BlueShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1F129C9EBF60025B204 /* BlueShadowView.swift */; };
+		6F54867529F9A67B00F89955 /* ReadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F54867429F9A67B00F89955 /* ReadingVC.swift */; };
 		6F6765E929DADF190080874E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6765E829DADF190080874E /* Utils.swift */; };
 		6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */; };
 		6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */; };
@@ -114,6 +115,7 @@
 		6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		6F4EC1EE29C9E0020025B204 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		6F4EC1F129C9EBF60025B204 /* BlueShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueShadowView.swift; sourceTree = "<group>"; };
+		6F54867429F9A67B00F89955 /* ReadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingVC.swift; sourceTree = "<group>"; };
 		6F6765E829DADF190080874E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			children = (
 				6F152E2529CCD12C0008846B /* LibraryVC.swift */,
 				6F152E2729CCD2030008846B /* ContainerPagesVC.swift */,
+				6F54867429F9A67B00F89955 /* ReadingVC.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				6F302C8F29ED82AA00A045ED /* AuthorPageVC.swift in Sources */,
 				319FA01729C36445006895CB /* AppDelegate.swift in Sources */,
 				6F302C8D29ED55F400A045ED /* AuthorProfileCell.swift in Sources */,
+				6F54867529F9A67B00F89955 /* ReadingVC.swift in Sources */,
 				6F04C48029E6CEDF008AA945 /* AudioBooksTVC.swift in Sources */,
 				6F425A1129D59C6D00D21047 /* ResultBooksVC.swift in Sources */,
 				319FA01929C36445006895CB /* SceneDelegate.swift in Sources */,
