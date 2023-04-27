@@ -739,7 +739,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="28187" translatesAutoresizingMaskIntoConstraints="NO" id="uoZ-gY-XOm" customClass="BlurredImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="320"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="cGR-NF-Gvc"/>
@@ -807,20 +807,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synopses" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EF-E9-WnD">
-                                <rect key="frame" x="16" y="330" width="361" height="20.666666666666686"/>
+                                <rect key="frame" x="16" y="350" width="361" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3H-Y0-UCq">
-                                <rect key="frame" x="16" y="360.66666666666669" width="361" height="134"/>
+                                <rect key="frame" x="16" y="380.66666666666669" width="361" height="134.00000000000006"/>
                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rRa-6w-Ngk">
-                                <rect key="frame" x="0.0" y="540.33333333333337" width="393" height="311.66666666666663"/>
+                                <rect key="frame" x="0.0" y="560.33333333333337" width="393" height="291.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionsCell" id="4X0-5L-oM6" customClass="SectionsCell" customModule="LibriVox" customModuleProvider="target">
@@ -881,7 +881,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsV-Ie-0eX">
-                                <rect key="frame" x="16" y="509.66666666666669" width="357" height="20.666666666666686"/>
+                                <rect key="frame" x="16" y="529.66666666666663" width="357" height="20.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

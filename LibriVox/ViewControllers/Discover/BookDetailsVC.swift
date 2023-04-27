@@ -76,6 +76,7 @@ class BookDetailsVC: UIViewController {
             numSectionsBook.text = book.numSections
             genreBook.text = displayGenres(strings: book.genres ?? [])
             authorBook.text = (book.authors?[0].firstName ?? "") + " " + (book.authors?[0].lastName ?? "")
+            
             durationBook.text = book.totaltime
             languageBook.text = book.language!
             
@@ -102,6 +103,7 @@ class BookDetailsVC: UIViewController {
 
             if let bookUser = BookUser(data: bookData) {
                   addToCollection(bookUser)
+                print("add com o id \(book?._id)")
             }
           
         }
