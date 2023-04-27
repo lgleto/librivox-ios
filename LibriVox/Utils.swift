@@ -8,6 +8,29 @@
 import Foundation
 import SwaggerClient
 import FirebaseFirestore
+import FirebaseAuth
+
+
+func getNameOrUserName(_ field: String,_ callback: @escaping (String?) -> Void) {
+    let db = Firestore.firestore()
+    
+    let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+    
+    userRef.getDocument { (document, error) in
+        if let error = error {
+            print("Error getting user document: \(error.localizedDescription)")
+            callback(nil)
+        } else if let document = document, document.exists {
+            let data = document.data()
+            let name = data?["\(field)"] as? String
+            callback(name)
+        } else {
+            print("User document does not exist")
+            callback(nil)
+        }
+    }
+}
+
 
 func removeHtmlTagsFromText(text: String)-> String{
     let regex = try! NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)

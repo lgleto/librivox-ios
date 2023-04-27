@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,16 +11,18 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Nunito-VariableFont_wght.ttf">
+            <string>Nunito-Bold</string>
+            <string>Nunito-Light</string>
             <string>Nunito-Medium</string>
             <string>Nunito-Regular</string>
             <string>Nunito-SemiBold</string>
         </array>
     </customFonts>
     <scenes>
-        <!--ProfileVC-->
+        <!--View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ProfileId" id="Y6W-OH-hqX" customClass="ProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileId2" id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,9 +172,6 @@ asdadnasd</string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="fNq-Tb-W6j" kind="show" id="Dl1-is-DFd"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -210,107 +209,178 @@ asdadnasd</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1987.0229007633586" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="135" y="783"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Wgl-Ci-pti">
             <objects>
-                <viewController id="fNq-Tb-W6j" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileId" id="fNq-Tb-W6j" customClass="ProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NPd-sy-G4x">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ID1-Jr-pV1" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="149" y="113" width="95" height="95"/>
-                                <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SE3-Dd-ag4">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="339.66666666666669"/>
+                                <color key="backgroundColor" red="0.39215686274509803" green="0.67799997329711914" blue="0.9179999828338623" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ID1-Jr-pV1" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
+                                <rect key="frame" x="121.66666666666669" y="113" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="0Qv-0v-d78"/>
-                                    <constraint firstAttribute="width" constant="95" id="5I7-vW-qTk"/>
+                                    <constraint firstAttribute="height" constant="150" id="0Qv-0v-d78"/>
+                                    <constraint firstAttribute="width" constant="150" id="5I7-vW-qTk"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nunito" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59P-eN-9Ge">
-                                <rect key="frame" x="16" y="220" width="361" height="33"/>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59P-eN-9Ge">
+                                <rect key="frame" x="16" y="275" width="361" height="33"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6E-vK-wVm">
-                                <rect key="frame" x="16" y="253" width="361" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6E-vK-wVm">
+                                <rect key="frame" x="16" y="308" width="361" height="20.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knD-Rg-Ww3">
-                                <rect key="frame" x="130" y="279" width="134" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Edit Profile" imagePadding="10" cornerStyle="large">
-                                    <imageReference key="image" image="pencil" catalog="system" symbolScale="medium"/>
-                                </buttonConfiguration>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="System Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpV-V3-96t">
-                                <rect key="frame" x="82" y="351" width="153" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpV-V3-96t">
+                                <rect key="frame" x="69" y="411.66666666666669" width="144" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnQ-31-zaK">
-                                <rect key="frame" x="92" y="385" width="77" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnQ-31-zaK">
+                                <rect key="frame" x="69" y="461.66666666666669" width="72" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upP-Wa-brx">
-                                <rect key="frame" x="84" y="442" width="85" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upP-Wa-brx">
+                                <rect key="frame" x="69" y="511.66666666666674" width="80" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJH-gg-HTZ">
-                                <rect key="frame" x="84" y="483" width="56" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJH-gg-HTZ">
+                                <rect key="frame" x="69" y="561.66666666666663" width="52.666666666666657" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiL-As-1mq">
-                                <rect key="frame" x="111" y="608" width="49" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdd-oe-U6v">
-                                <rect key="frame" x="293" y="442" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdd-oe-U6v">
+                                <rect key="frame" x="311" y="507.33333333333326" width="49" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="JfQ-t3-mDk"/>
+                                </constraints>
                                 <color key="onTintColor" name="Gren Tone"/>
+                                <connections>
+                                    <action selector="switchTheme:" destination="fNq-Tb-W6j" eventType="valueChanged" id="LH6-Gq-Nu9"/>
+                                </connections>
                             </switch>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xTf-Lf-nzF">
-                                <rect key="frame" x="16" y="351" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gearshape.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xTf-Lf-nzF">
+                                <rect key="frame" x="24" y="408" width="30" height="29.333333333333314"/>
+                                <color key="tintColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="lhg-Gl-PbN"/>
+                                    <constraint firstAttribute="width" constant="30" id="n0Y-7a-al9"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definitions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4e-Gp-6Ih">
+                                <rect key="frame" x="15.999999999999993" y="358.66666666666669" width="121.33333333333331" height="33"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text.bubble.fill.rtl" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2HQ-ga-tA1">
+                                <rect key="frame" x="24" y="459" width="30" height="29"/>
+                                <color key="tintColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BCY-7d-se3"/>
+                                    <constraint firstAttribute="width" constant="30" id="Ipy-xn-ZP5"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gJH-be-u5C">
+                                <rect key="frame" x="24" y="508.66666666666669" width="30" height="28.333333333333314"/>
+                                <color key="tintColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="1ZJ-I6-a6R"/>
+                                    <constraint firstAttribute="height" constant="30" id="LWA-Qz-5S7"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.shield.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QNX-Yp-6cX">
+                                <rect key="frame" x="24" y="558.66666666666663" width="30" height="28.333333333333371"/>
+                                <color key="tintColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0Gv-oi-cLC"/>
+                                    <constraint firstAttribute="width" constant="30" id="F4G-Fi-iWg"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Oce-PC-bbj">
+                                <rect key="frame" x="24" y="710" width="30" height="28.666666666666629"/>
+                                <color key="tintColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="AcV-99-Oap"/>
+                                    <constraint firstAttribute="height" constant="30" id="Iu5-Rr-Yrp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiL-As-1mq">
+                                <rect key="frame" x="69" y="713" width="45.333333333333343" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j4t-Ys-ulN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="upP-Wa-brx" firstAttribute="centerY" secondItem="gJH-be-u5C" secondAttribute="centerY" id="107-62-wch"/>
+                            <constraint firstItem="SE3-Dd-ag4" firstAttribute="trailing" secondItem="j4t-Ys-ulN" secondAttribute="trailing" id="1Y4-aK-2XL"/>
                             <constraint firstItem="F6E-vK-wVm" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="16" id="2R4-cE-MsX"/>
+                            <constraint firstItem="xiL-As-1mq" firstAttribute="centerY" secondItem="Oce-PC-bbj" secondAttribute="centerY" id="6SR-Me-sO7"/>
                             <constraint firstItem="ID1-Jr-pV1" firstAttribute="centerX" secondItem="j4t-Ys-ulN" secondAttribute="centerX" id="6tZ-Oo-ao2"/>
                             <constraint firstItem="j4t-Ys-ulN" firstAttribute="trailing" secondItem="59P-eN-9Ge" secondAttribute="trailing" constant="16" id="7oV-J0-Udh"/>
+                            <constraint firstItem="xTf-Lf-nzF" firstAttribute="top" secondItem="j4e-Gp-6Ih" secondAttribute="bottom" constant="16" id="9ZT-xx-eE0"/>
                             <constraint firstItem="j4t-Ys-ulN" firstAttribute="trailing" secondItem="F6E-vK-wVm" secondAttribute="trailing" constant="16" id="DRz-Jr-BPM"/>
+                            <constraint firstItem="j4e-Gp-6Ih" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="16" id="E70-DP-OFW"/>
+                            <constraint firstItem="SE3-Dd-ag4" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" id="EcG-3t-Lzn"/>
+                            <constraint firstItem="QNX-Yp-6cX" firstAttribute="top" secondItem="gJH-be-u5C" secondAttribute="bottom" constant="20" id="GP5-fv-wTa"/>
+                            <constraint firstItem="j4e-Gp-6Ih" firstAttribute="top" secondItem="SE3-Dd-ag4" secondAttribute="bottom" constant="19" id="HQK-xK-Kcr"/>
                             <constraint firstItem="ID1-Jr-pV1" firstAttribute="top" secondItem="j4t-Ys-ulN" secondAttribute="top" constant="10" id="Jdx-M8-CWJ"/>
                             <constraint firstItem="F6E-vK-wVm" firstAttribute="top" secondItem="59P-eN-9Ge" secondAttribute="bottom" id="MVs-8N-Wwh"/>
+                            <constraint firstItem="ZpV-V3-96t" firstAttribute="centerY" secondItem="xTf-Lf-nzF" secondAttribute="centerY" id="TDi-V4-fA1"/>
+                            <constraint firstItem="dnQ-31-zaK" firstAttribute="leading" secondItem="2HQ-ga-tA1" secondAttribute="trailing" constant="15" id="TFp-Ac-7t1"/>
                             <constraint firstItem="59P-eN-9Ge" firstAttribute="top" secondItem="ID1-Jr-pV1" secondAttribute="bottom" constant="12" id="VBF-qq-bcj"/>
+                            <constraint firstItem="Oce-PC-bbj" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="24" id="WKl-Cx-fIt"/>
+                            <constraint firstItem="j4e-Gp-6Ih" firstAttribute="top" secondItem="F6E-vK-wVm" secondAttribute="bottom" constant="30" id="X6c-UV-HAM"/>
+                            <constraint firstItem="MJH-gg-HTZ" firstAttribute="centerY" secondItem="QNX-Yp-6cX" secondAttribute="centerY" id="Xer-uL-0MF"/>
+                            <constraint firstItem="2HQ-ga-tA1" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="24" id="YAg-ET-Yfg"/>
+                            <constraint firstItem="xiL-As-1mq" firstAttribute="leading" secondItem="Oce-PC-bbj" secondAttribute="trailing" constant="15" id="YFJ-vz-p52"/>
+                            <constraint firstItem="gJH-be-u5C" firstAttribute="top" secondItem="2HQ-ga-tA1" secondAttribute="bottom" constant="20" id="YFt-eB-nu5"/>
+                            <constraint firstItem="xTf-Lf-nzF" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="24" id="bNv-Vc-WM0"/>
                             <constraint firstItem="59P-eN-9Ge" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="16" id="cfL-vf-tI5"/>
+                            <constraint firstItem="j4t-Ys-ulN" firstAttribute="bottom" secondItem="Oce-PC-bbj" secondAttribute="bottom" constant="30" id="ci9-mr-Vi1"/>
+                            <constraint firstItem="QNX-Yp-6cX" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="24" id="d0g-vn-faX"/>
+                            <constraint firstItem="2HQ-ga-tA1" firstAttribute="top" secondItem="xTf-Lf-nzF" secondAttribute="bottom" constant="20" id="dm6-sd-PS3"/>
+                            <constraint firstItem="MJH-gg-HTZ" firstAttribute="leading" secondItem="QNX-Yp-6cX" secondAttribute="trailing" constant="15" id="eR2-V3-Ycd"/>
+                            <constraint firstItem="SE3-Dd-ag4" firstAttribute="top" secondItem="NPd-sy-G4x" secondAttribute="top" id="gQD-37-N7P"/>
+                            <constraint firstItem="Tdd-oe-U6v" firstAttribute="centerY" secondItem="upP-Wa-brx" secondAttribute="centerY" id="kZh-9L-WGT"/>
+                            <constraint firstItem="ZpV-V3-96t" firstAttribute="leading" secondItem="xTf-Lf-nzF" secondAttribute="trailing" constant="15" id="meD-MZ-ujy"/>
+                            <constraint firstItem="j4t-Ys-ulN" firstAttribute="trailing" secondItem="Tdd-oe-U6v" secondAttribute="trailing" constant="35" id="nOA-bB-QZZ"/>
+                            <constraint firstItem="dnQ-31-zaK" firstAttribute="centerY" secondItem="2HQ-ga-tA1" secondAttribute="centerY" id="tEu-Pa-f7O"/>
+                            <constraint firstItem="gJH-be-u5C" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="24" id="xwR-Vy-fLh"/>
+                            <constraint firstItem="upP-Wa-brx" firstAttribute="leading" secondItem="gJH-be-u5C" secondAttribute="trailing" constant="15" id="zOb-oV-HL9"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="FNv-cg-jwz"/>
                     <navigationItem key="navigationItem" title="Settings" id="7xw-bM-0o2"/>
+                    <connections>
+                        <outlet property="nameUser" destination="59P-eN-9Ge" id="sur-Es-dV4"/>
+                        <outlet property="nicknameUser" destination="F6E-vK-wVm" id="ed6-tF-Cy4"/>
+                        <outlet property="profilePhoto" destination="ID1-Jr-pV1" id="Jjs-5E-V6k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TG0-2K-CLw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2695.419847328244" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1881.679389312977" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zyy-Vz-WMo">
@@ -337,12 +407,13 @@ asdadnasd</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="nQG-Fv-szC"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BXy-iy-xdp">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" name="Lighter Blue Tone"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="ubK-eF-3rS"/>
+                        <segue destination="fNq-Tb-W6j" kind="relationship" relationship="viewControllers" id="gAe-VB-8yC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eae-HE-zjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -352,10 +423,14 @@ asdadnasd</string>
     </scenes>
     <resources>
         <image name="background" width="626" height="417"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="lock.shield.fill" catalog="system" width="128" height="119"/>
+        <image name="moon.fill" catalog="system" width="128" height="123"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="text.bubble.fill.rtl" catalog="system" width="128" height="110"/>
         <image name="wiki" width="512" height="512"/>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
