@@ -1,18 +1,17 @@
 //
-//  ReadingVC.swift
+//  FavoritesVC.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 26/04/2023.
+//  Created by Acesso Gloria MP on 27/04/2023.
 //
 
 import UIKit
-
-import FirebaseAuth
-import FirebaseCore
-import FirebaseFirestore
 import SwaggerClient
+import FirebaseFirestore
+import FirebaseAuth
 
-class ReadingVC: UITableViewController {
+class FavoritesVC: UITableViewController {
+
     var books: [BookUser] = []
     var audioBooks: [Audiobook] = []
     var finalList: [Audiobook] = []
@@ -21,11 +20,6 @@ class ReadingVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getBooks()
-        
-        //MARK: Which one is better
-        // 1. Search by request the books one by one USING NOW
-        // 2. Store all the books in an array then compare with the books in the Fb, create a new array with these info and display it.    CURRENTLY APRROACH (NOT IN USE ANYMORE)
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,16 +27,18 @@ class ReadingVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingCellTVC", for: indexPath) as! ReadingCellTVC
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesCellTVC", for: indexPath) as! FavoritesCellTVC
         
         let book = finalList[indexPath.row]
         
         cell.titleBook.text = book.title
-        cell.authorsBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
+        cell.authorBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
         
         if let duration = book.totaltime{
             cell.durationBook.text = "Duration: \(duration)"
         }
+        
+        cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         
         return cell
     }
@@ -66,7 +62,7 @@ class ReadingVC: UITableViewController {
             for document in documents {
                 if let book = BookUser(data: document.data()) {
                     
-                    if book.isReading{
+                    if book.isFav ?? false{
                         self.books.append(book)
                         DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id)!, format: "json", extended: 1) { data, error in
                             if let error = error {
@@ -87,4 +83,5 @@ class ReadingVC: UITableViewController {
             }
         }
     }
+
 }

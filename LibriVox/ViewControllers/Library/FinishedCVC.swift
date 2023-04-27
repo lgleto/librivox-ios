@@ -1,51 +1,44 @@
 //
-//  ReadingVC.swift
+//  FinishedCVC.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 26/04/2023.
+//  Created by Acesso Gloria MP on 27/04/2023.
 //
 
 import UIKit
-
-import FirebaseAuth
-import FirebaseCore
-import FirebaseFirestore
 import SwaggerClient
+import FirebaseFirestore
+import FirebaseAuth
 
-class ReadingVC: UITableViewController {
+class FinishedCVC: UICollectionViewController {
+
     var books: [BookUser] = []
     var audioBooks: [Audiobook] = []
     var finalList: [Audiobook] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getBooks()
-        
-        //MARK: Which one is better
-        // 1. Search by request the books one by one USING NOW
-        // 2. Store all the books in an array then compare with the books in the Fb, create a new array with these info and display it.    CURRENTLY APRROACH (NOT IN USE ANYMORE)
-        
+        // Do any additional setup after loading the view.
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+
+
+    // MARK: UICollectionViewDataSource
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return finalList.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingCellTVC", for: indexPath) as! ReadingCellTVC
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
-        let book = finalList[indexPath.row]
-        
-        cell.titleBook.text = book.title
-        cell.authorsBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
-        
-        if let duration = book.totaltime{
-            cell.durationBook.text = "Duration: \(duration)"
-        }
+        cell.titleBook.text = finalList[indexPath.row].title
+       // cell.onFavToggle()
         
         return cell
     }
+
     
     func getBooks() {
         let db = Firestore.firestore()
@@ -66,7 +59,7 @@ class ReadingVC: UITableViewController {
             for document in documents {
                 if let book = BookUser(data: document.data()) {
                     
-                    if book.isReading{
+                    if book.isReading ?? false{
                         self.books.append(book)
                         DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id)!, format: "json", extended: 1) { data, error in
                             if let error = error {
@@ -79,7 +72,7 @@ class ReadingVC: UITableViewController {
                             }
                             
                             DispatchQueue.main.async {
-                                self.tableView.reloadData()
+                                self.collectionView.reloadData()
                             }
                         }
                     }
@@ -87,4 +80,6 @@ class ReadingVC: UITableViewController {
             }
         }
     }
+    
+
 }
