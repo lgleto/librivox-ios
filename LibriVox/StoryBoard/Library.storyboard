@@ -248,7 +248,7 @@
             <objects>
                 <viewController modalTransitionStyle="flipHorizontal" id="g2d-10-gio" customClass="ContainerPagesVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5U0-rY-qsA">
-                        <rect key="frame" x="0.0" y="0.0" width="361" height="473"/>
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="468"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="w1W-yw-xQr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

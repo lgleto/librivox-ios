@@ -11,15 +11,17 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
-
-    var books: [BookUser] = []
-    var audioBooks: [Audiobook] = []
     var finalList: [Audiobook] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBooks()
+        
+        getBooksFromUser(isFavorite: true) { audiobooks in
+            self.finalList = audiobooks
+            self.tableView.reloadData()
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,46 +44,4 @@ class FavoritesVC: UITableViewController {
         
         return cell
     }
-    
-    func getBooks() {
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        let bookCollectionRef = userRef.collection("bookCollection")
-        
-        bookCollectionRef.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let documents = querySnapshot?.documents else {
-                print("No documents found")
-                return
-            }
-            
-            for document in documents {
-                if let book = BookUser(data: document.data()) {
-                    
-                    if book.isFav ?? false{
-                        self.books.append(book)
-                        DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id)!, format: "json", extended: 1) { data, error in
-                            if let error = error {
-                                print("Error getting root data:", error)
-                                return
-                            }
-                            if let data = data {
-                                self.finalList.append(contentsOf: data.books!)
-                                print(data)
-                            }
-                            
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 }
