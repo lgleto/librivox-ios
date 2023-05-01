@@ -225,6 +225,7 @@ asdadnasd</string>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ID1-Jr-pV1" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="121.66666666666669" y="113" width="150" height="150"/>
+                                <color key="backgroundColor" name="Gren Tone"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="0Qv-0v-d78"/>
                                     <constraint firstAttribute="width" constant="150" id="5I7-vW-qTk"/>
@@ -328,6 +329,20 @@ asdadnasd</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="power.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="frD-Rj-g8a">
+                                <rect key="frame" x="24" y="608.66666666666663" width="30" height="28.666666666666629"/>
+                                <color key="tintColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Tgn-IN-xTI"/>
+                                    <constraint firstAttribute="width" constant="30" id="w8u-8E-glM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTh-7F-39H">
+                                <rect key="frame" x="69" y="611.66666666666663" width="52" height="22"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j4t-Ys-ulN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -346,6 +361,9 @@ asdadnasd</string>
                             <constraint firstItem="j4e-Gp-6Ih" firstAttribute="top" secondItem="SE3-Dd-ag4" secondAttribute="bottom" constant="19" id="HQK-xK-Kcr"/>
                             <constraint firstItem="ID1-Jr-pV1" firstAttribute="top" secondItem="j4t-Ys-ulN" secondAttribute="top" constant="10" id="Jdx-M8-CWJ"/>
                             <constraint firstItem="F6E-vK-wVm" firstAttribute="top" secondItem="59P-eN-9Ge" secondAttribute="bottom" id="MVs-8N-Wwh"/>
+                            <constraint firstItem="mTh-7F-39H" firstAttribute="centerY" secondItem="frD-Rj-g8a" secondAttribute="centerY" id="OEE-xB-39r"/>
+                            <constraint firstItem="frD-Rj-g8a" firstAttribute="leading" secondItem="j4t-Ys-ulN" secondAttribute="leading" constant="24" id="Q7J-Ai-o2t"/>
+                            <constraint firstItem="frD-Rj-g8a" firstAttribute="top" secondItem="QNX-Yp-6cX" secondAttribute="bottom" constant="20" id="Rwm-1i-JGi"/>
                             <constraint firstItem="ZpV-V3-96t" firstAttribute="centerY" secondItem="xTf-Lf-nzF" secondAttribute="centerY" id="TDi-V4-fA1"/>
                             <constraint firstItem="dnQ-31-zaK" firstAttribute="leading" secondItem="2HQ-ga-tA1" secondAttribute="trailing" constant="15" id="TFp-Ac-7t1"/>
                             <constraint firstItem="59P-eN-9Ge" firstAttribute="top" secondItem="ID1-Jr-pV1" secondAttribute="bottom" constant="12" id="VBF-qq-bcj"/>
@@ -362,6 +380,7 @@ asdadnasd</string>
                             <constraint firstItem="2HQ-ga-tA1" firstAttribute="top" secondItem="xTf-Lf-nzF" secondAttribute="bottom" constant="20" id="dm6-sd-PS3"/>
                             <constraint firstItem="MJH-gg-HTZ" firstAttribute="leading" secondItem="QNX-Yp-6cX" secondAttribute="trailing" constant="15" id="eR2-V3-Ycd"/>
                             <constraint firstItem="SE3-Dd-ag4" firstAttribute="top" secondItem="NPd-sy-G4x" secondAttribute="top" id="gQD-37-N7P"/>
+                            <constraint firstItem="mTh-7F-39H" firstAttribute="leading" secondItem="frD-Rj-g8a" secondAttribute="trailing" constant="15" id="kGZ-BY-nsa"/>
                             <constraint firstItem="Tdd-oe-U6v" firstAttribute="centerY" secondItem="upP-Wa-brx" secondAttribute="centerY" id="kZh-9L-WGT"/>
                             <constraint firstItem="ZpV-V3-96t" firstAttribute="leading" secondItem="xTf-Lf-nzF" secondAttribute="trailing" constant="15" id="meD-MZ-ujy"/>
                             <constraint firstItem="j4t-Ys-ulN" firstAttribute="trailing" secondItem="Tdd-oe-U6v" secondAttribute="trailing" constant="35" id="nOA-bB-QZZ"/>
@@ -373,6 +392,7 @@ asdadnasd</string>
                     <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="FNv-cg-jwz"/>
                     <navigationItem key="navigationItem" title="Settings" id="7xw-bM-0o2"/>
                     <connections>
+                        <outlet property="logoutBtn" destination="mTh-7F-39H" id="LSo-PU-Hal"/>
                         <outlet property="nameUser" destination="59P-eN-9Ge" id="sur-Es-dV4"/>
                         <outlet property="nicknameUser" destination="F6E-vK-wVm" id="ed6-tF-Cy4"/>
                         <outlet property="profilePhoto" destination="ID1-Jr-pV1" id="Jjs-5E-V6k"/>
@@ -429,6 +449,7 @@ asdadnasd</string>
         <image name="moon.fill" catalog="system" width="128" height="123"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="power.circle.fill" catalog="system" width="128" height="123"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="text.bubble.fill.rtl" catalog="system" width="128" height="110"/>
         <image name="wiki" width="512" height="512"/>

@@ -72,6 +72,7 @@
 		6F99531F29DC781C0016B1AC /* DiscoverOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */; };
 		6F99532129DC78340016B1AC /* AuthorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99532029DC78340016B1AC /* AuthorsCell.swift */; };
 		6FB33FEA29CC9726008CC60C /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB33FE929CC9726008CC60C /* Library.storyboard */; };
+		6FCCC9FE2A00683500658231 /* BlueShadowUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */; };
 		6FCF9F9F29E7143F00A5DD62 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCF9F9E29E7143F00A5DD62 /* CategoriesVC.swift */; };
 		6FCF9FA129E715EC00A5DD62 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCF9FA029E715EC00A5DD62 /* CategoriesCell.swift */; };
 /* End PBXBuildFile section */
@@ -133,6 +134,7 @@
 		6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverOptionsVC.swift; sourceTree = "<group>"; };
 		6F99532029DC78340016B1AC /* AuthorsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsCell.swift; sourceTree = "<group>"; };
 		6FB33FE929CC9726008CC60C /* Library.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
+		6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueShadowUITextField.swift; sourceTree = "<group>"; };
 		6FCF9F9E29E7143F00A5DD62 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		6FCF9FA029E715EC00A5DD62 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		9CA6B00D0BC96EE8B4F87816 /* Pods-LibriVox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LibriVox.debug.xcconfig"; path = "Target Support Files/Pods-LibriVox/Pods-LibriVox.debug.xcconfig"; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				31E1A4B929D5D3F80096740F /* CustomCellBook.swift */,
 				3183B78A29DF315C00F1AE0A /* LoadingView.swift */,
 				6F7D5D1329F2910900826D1F /* FavoritesToggleBtn.swift */,
+				6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				6FCF9FA129E715EC00A5DD62 /* CategoriesCell.swift in Sources */,
 				6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */,
 				6F4EC1E929C9DFDB0025B204 /* RoundedBookImageView.swift in Sources */,
+				6FCCC9FE2A00683500658231 /* BlueShadowUITextField.swift in Sources */,
 				6F34FA0529FAE7C5009A7EDB /* FinishedCVC.swift in Sources */,
 				6F302C8729ED534E00A045ED /* AuthorsVC.swift in Sources */,
 				317FC6A429CE0A3E00E5922A /* HomepageTBC.swift in Sources */,
