@@ -1,0 +1,362 @@
+openapi: "3.0.0"
+info:
+  title: LivriVox and OpenAI API Integration
+  description: An example of how to integrate the LivriVox and OpenAI APIs
+  version: "1.0.0"
+servers:
+  - url: https://librivox.org/api/feed
+    description: LivriVox API Server
+paths:
+
+  /audiobooks:
+    get:
+      summary: Get all books
+      description: Multiple status values can be provided with comma separated strings
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            default: json
+        - in: query
+          name: extended
+          schema:
+            type: integer
+            default: 1
+          description: Set to 1 to retrieve all available information for each book
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            text/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+        '400':
+          description: Invalid request
+          
+  /authors:
+    get:
+      summary: Get all books
+      description: Return info about the authors
+      parameters:
+        - in: query
+          name: format
+          schema:
+            type: string
+            default: json
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                "$ref": "#/components/schemas/AuthorsResponse"
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/AuthorsResponse"
+            text/json:
+              schema:
+                "$ref": "#/components/schemas/AuthorsResponse"
+        '400':
+          description: Invalid request
+          
+  /audiobooks/id/{bookId}/:
+    get:
+      summary: Returns a book by ID.
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : integer
+            format: int64
+            minimum: 1
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            default: json
+        - in: query
+          name: extended
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 1
+            default: 0
+          description: Set to 1 to retrieve all available information for each book
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            text/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+        '400':
+          description: Invalid request
+          
+  /audiobooks/genre/^{genre}/:
+    get:
+      summary: Returns all the books from a specific genre.
+      parameters:
+        - name: genre
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : string
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            default: json
+        - in: query
+          name: extended
+          schema:
+            type: integer
+            default: 1
+          description: Set to 1 to retrieve all available information for each book
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            text/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+        '400':
+          description: Invalid request
+          
+  /audiobooks/author/^{lastname}/:
+    get:
+      summary: Returns all the books from a specific genre.
+      parameters:
+        - name: lastname
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : string
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            default: json
+        - in: query
+          name: extended
+          schema:
+            type: integer
+            default: 1
+          description: Set to 1 to retrieve all available information for each book
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            text/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+        '400':
+          description: Invalid request
+          
+  /audiobooks/title/^{title}/:
+    get:
+      summary: Returns all the books from a specific genre.
+      parameters:
+        - name: title
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : string
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            default: json
+        - in: query
+          name: extended
+          schema:
+            type: integer
+            default: 1
+          description: Set to 1 to retrieve all available information for each book
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+            text/json:
+              schema:
+                "$ref": "#/components/schemas/BooksResponse"
+        '400':
+          description: Invalid request
+          
+          
+components:
+  schemas:
+    BooksResponse:
+      type: object
+      properties:
+        books:
+          nullable: true
+          type: array
+          items:
+            "$ref": "#/components/schemas/Audiobook"
+    AuthorsResponse:
+      type: object
+      properties:
+        authors:
+          nullable: true
+          type: array
+          items:
+            "$ref": "#/components/schemas/Author"
+    Audiobook:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        genres:
+          type: array
+          nullable: true
+          items:
+            "$ref": "#/components/schemas/Genre"
+        authors:
+          type: array
+          nullable: true
+          items:
+            "$ref": "#/components/schemas/Author"
+        num_sections:
+          type: string
+          nullable: true
+        sections:
+          type: array
+          nullable: true
+          items:
+            "$ref": "#/components/schemas/Section"
+        language:
+          type: string
+          nullable: true
+        url_zip_file:
+          type: string
+          nullable: true
+        url_librivox:
+          type: string
+          nullable: true
+        url_project:
+          type: string
+          nullable: true
+        url_rss:
+          type: string
+          nullable: true
+        totaltime:
+          type: string
+          nullable: true
+        totaltimesecs:
+          type: integer
+          nullable: true
+    Author:
+      type: object
+      nullable: true
+      properties:
+        id:
+          type: string
+          nullable: true
+        first_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+          nullable: true
+    Section:
+      type: object
+      nullable: true
+      properties:
+        id:
+          type: string
+          nullable: true
+        section_number:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        listen_url:
+          type: string
+          nullable: true
+        language:
+          type: string
+          nullable: true
+        playtime:
+          type: string
+          nullable: true
+        file_name:
+          type: string
+          nullable: true
+        readers:
+          type: array
+          nullable: true
+          items:
+            "$ref": "#/components/schemas/Reader"
+        genres:
+          type: array
+          nullable: true
+          items:
+            "$ref": "#/components/schemas/Genre"
+    Reader:
+      type: object
+      nullable: true
+      properties:
+        reader_id:
+          type: string
+          nullable: true
+        display_name:
+          type: string
+          nullable: true
+    Genre:
+      type: object
+      nullable: true
+      properties:
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
