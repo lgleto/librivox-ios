@@ -62,54 +62,21 @@ class ProfileVC: UIViewController {
         
         let defaultImage = imageWith(name: name)
         imageView.image = defaultImage
+        imageView.backgroundColor = UIColor(named: "Green Tone")
         
         imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
             if let error = error {
                 print("Error downloading image: \(error.localizedDescription)")
-                    imageView.image = defaultImage
             } else {
                 if let imageData = data {
                     imageView.image = UIImage(data: imageData)
-                } else {
-                    imageView.image = defaultImage
                 }
             }
         }
     }
 
     
-    func imageWith(name: String?) -> UIImage? {
-        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        let nameLabel = UILabel(frame: frame)
-        nameLabel.textAlignment = .center
-        nameLabel.backgroundColor = UIColor(named: "Green Tone")
-        nameLabel.textColor = .white
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 64)
-        
-        var initials = ""
-        if let initialsArray = name?.components(separatedBy: " ") {
-            if let firstWord = initialsArray.first {
-                if let firstLetter = firstWord.first {
-                    initials += String(firstLetter).capitalized }
-            }
-            if initialsArray.count > 1, let lastWord = initialsArray.last {
-                if let lastLetter = lastWord.first { initials += String(lastLetter).capitalized
-                }
-            }
-        } else {
-            return nil
-        }
-        
-        nameLabel.text = initials
-        UIGraphicsBeginImageContext(frame.size)
-        if let currentContext = UIGraphicsGetCurrentContext() {
-            nameLabel.layer.render(in: currentContext)
-            let nameImage = UIGraphicsGetImageFromCurrentImageContext()
-            return nameImage
-        }
-        return nil
-    }
-    
+     
     func logoutUser() {
         do { try Auth.auth().signOut() }
         catch { print("Already logged out") }

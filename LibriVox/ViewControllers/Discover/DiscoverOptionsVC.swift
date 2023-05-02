@@ -9,14 +9,6 @@ import UIKit
 import SwaggerClient
 import FirebaseFirestore
 
-public struct GenreWithColor{
-    
-    public var _id: String?
-    public var name: String?
-    public var mainColor: String?
-    public var secondaryColor: String?
-}
-
 class DiscoverOptionsVC: UIViewController {
     
     var authors: [Author]?
@@ -34,35 +26,13 @@ class DiscoverOptionsVC: UIViewController {
         genresCV.dataSource = self
         genresCV.dataSource = self
         
-        //addColorToGenre()
-        
-        let db = Firestore.firestore()
-        let genresRef = db.collection("genres")
-        
-        genresRef.getDocuments { querySnapshot, error in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                
-                let genres = querySnapshot!.documents.compactMap { document -> GenreWithColor? in
-                    guard let id = document.data()["id"] as? String,
-                          let name = document.data()["name"] as? String,let mainColor = document.data()["mainColor"] as? String,let secondaryColor = document.data()["secondaryColor"] as? String
-                    else {
-                        print("Invalid data format for document \(document.documentID)")
-                        return nil
-                    }
-                    return GenreWithColor(_id: id, name: name, mainColor: mainColor, secondaryColor: secondaryColor)
-                }
-                
-                self.genres = genres
-                
-                DispatchQueue.main.async {
-                    self.authorsCV.reloadData()
-                }
+        getGenresFromDb(){ genres in
+            self.genres = genres
+            
+            DispatchQueue.main.async {
+                self.authorsCV.reloadData()
             }
         }
-        
-        
         
         DefaultAPI.authorsGet(format:"json") { data, error in
             if let error = error {
@@ -97,6 +67,9 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             
             let colorString = genres?[indexPath.row].mainColor!
             cell.circleBackground.backgroundColor = stringToColor(color: String(colorString?.dropFirst() ?? "FFFFFF"))
+            
+            cell.circleBackground.image = imageWith(name: genres?[indexPath.row].name)
+            
         case 1:
             cell.nameAuthor.text = authors?[indexPath.row].firstName
         default:
@@ -118,4 +91,6 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
     
     
 }
+
+
 

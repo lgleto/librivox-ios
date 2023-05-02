@@ -294,13 +294,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7U-cb-j8k">
-                                                    <rect key="frame" x="105" y="15.999999999999998" width="226" height="23.333333333333329"/>
+                                                    <rect key="frame" x="105" y="16" width="226" height="19"/>
                                                     <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZ7-Gb-Efr">
-                                                    <rect key="frame" x="105" y="49.333333333333336" width="226" height="18.000000000000007"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="si" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZ7-Gb-Efr">
+                                                    <rect key="frame" x="105" y="45" width="226" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="vNQ-MN-QwA"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -308,10 +311,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="RZ7-Gb-Efr" firstAttribute="leading" secondItem="pHN-TW-AQW" secondAttribute="trailing" constant="10" id="96J-SA-Wxa"/>
-                                                <constraint firstItem="RZ7-Gb-Efr" firstAttribute="top" secondItem="X7U-cb-j8k" secondAttribute="bottom" constant="10" id="9YF-Pj-lR8"/>
                                                 <constraint firstItem="pHN-TW-AQW" firstAttribute="leading" secondItem="8XX-CE-OS6" secondAttribute="leading" id="HDP-wi-xQN"/>
                                                 <constraint firstItem="X7U-cb-j8k" firstAttribute="top" secondItem="8XX-CE-OS6" secondAttribute="topMargin" constant="5" id="dma-K7-8Dc"/>
                                                 <constraint firstItem="X7U-cb-j8k" firstAttribute="leading" secondItem="pHN-TW-AQW" secondAttribute="trailing" constant="10" id="fpq-Dz-R0b"/>
+                                                <constraint firstItem="RZ7-Gb-Efr" firstAttribute="bottom" secondItem="8XX-CE-OS6" secondAttribute="bottomMargin" id="hhd-nd-aBg"/>
+                                                <constraint firstItem="RZ7-Gb-Efr" firstAttribute="top" secondItem="X7U-cb-j8k" secondAttribute="bottom" constant="10" id="jsW-Ly-8PA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="RZ7-Gb-Efr" secondAttribute="trailing" constant="10" id="n9c-sl-dqR"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="X7U-cb-j8k" secondAttribute="trailing" constant="10" id="vm0-At-1B8"/>
                                                 <constraint firstAttribute="bottom" secondItem="pHN-TW-AQW" secondAttribute="bottom" constant="11" id="xmu-o4-M8s"/>
@@ -347,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgJ-52-4qV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798" y="725"/>
+            <point key="canvasLocation" x="2797.709923664122" y="724.64788732394368"/>
         </scene>
         <!--GenreVC-->
         <scene sceneID="gVj-vR-0pS">
@@ -1240,7 +1244,7 @@ asdadnasd</string>
     <inferredMetricsTieBreakers>
         <segue reference="QqL-zu-y1L"/>
         <segue reference="IIQ-Pi-tG0"/>
-        <segue reference="vDx-pZ-vS1"/>
+        <segue reference="UtY-K6-b4Z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="28187" width="305" height="475"/>

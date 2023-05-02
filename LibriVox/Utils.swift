@@ -66,6 +66,34 @@ func secondsToMinutes(seconds: Int) -> Int{
     return seconds/60
 }
 
+
+func getGenresFromDb(callback: @escaping ([GenreWithColor]) -> Void){
+    var db = Firestore.firestore()
+    let genresRef = db.collection("genres")
+    
+    genresRef.getDocuments{(querySnapshot, err) in
+        if let error = err{
+            print("Error: \(err?.localizedDescription)")
+            return
+        }
+        else
+        {
+            let genres = querySnapshot!.documents.compactMap { document -> GenreWithColor? in
+                guard let id = document.data()["id"] as? String,
+                      let name = document.data()["name"] as? String,let mainColor = document.data()["mainColor"] as? String,let secondaryColor = document.data()["secondaryColor"] as? String,let descr = document.data()["description"] as? String?
+                else {
+                    print("Invalid data format for document \(document.documentID)")
+                    return nil
+                }
+                return GenreWithColor(_id: id, name: name, mainColor: mainColor, secondaryColor: secondaryColor, descr: descr)
+                
+            }
+            
+            callback(genres)
+        }
+        
+    }
+}
 func getBooksFromUser(isReading: Bool? = nil, isFavorite: Bool? = nil, completion: @escaping ([Audiobook]) -> Void) {
     
     var finalList: [Audiobook] = []
@@ -114,6 +142,39 @@ func getBooksFromUser(isReading: Bool? = nil, isFavorite: Bool? = nil, completio
 }
 
 
+func imageWith(name: String?) -> UIImage? {
+    let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+    let nameLabel = UILabel(frame: frame)
+    nameLabel.textAlignment = .center
+    nameLabel.textColor = .white
+    nameLabel.font = UIFont.boldSystemFont(ofSize: 64)
+    
+    var initials = ""
+    if let initialsArray = name?.components(separatedBy: " ") {
+        if let firstWord = initialsArray.first {
+            if let firstLetter = firstWord.first {
+                initials += String(firstLetter).capitalized }
+        }
+        if initialsArray.count > 1, let lastWord = initialsArray.last {
+            if let lastLetter = lastWord.first { initials += String(lastLetter).capitalized
+            }
+        }
+    } else {
+        return nil
+    }
+    
+    nameLabel.text = initials
+    UIGraphicsBeginImageContext(frame.size)
+    if let currentContext = UIGraphicsGetCurrentContext() {
+        nameLabel.layer.render(in: currentContext)
+        let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+        return nameImage
+    }
+    return nil
+}
+
+
+
 func stringToColor(color: String) -> UIColor {
     guard let i = UInt(color, radix: 16) else {
         return UIColor.white
@@ -124,6 +185,61 @@ func stringToColor(color: String) -> UIColor {
         blue: CGFloat(i & 0xFF) / 255.0,
         alpha: 1.0
     )
+}
+func addDescr(){
+    let genresRef = Firestore.firestore().collection("genres")
+    let genres: [String: String] = [
+        "Epics": "Long narrative poems that typically celebrate heroic deeds and legendary events.",
+        "Fantastic Fiction": "Fictional stories that involve elements of fantasy, such as magic or mythical creatures.",
+        "Historical Fiction": "Fictional stories that are set in a specific time period in history and often incorporate real events or people.",
+        "Poetry": "Literary works that use language to evoke emotion and imagery through the use of meter, rhyme, and other techniques.",
+        "Epistolary Fiction": "Fictional stories that are told through a series of letters or diary entries.","Action & Adventure Fiction": "Fictional stories that are focused on exciting and often dangerous events or exploits.",
+        "Romance": "Fictional stories that focus on romantic relationships and emotions.",
+        "Travel & Geography": "Non-fiction works that describe places, cultures, and landscapes around the world.",
+        "Literary Fiction": "Fictional stories that are focused on the artistry of writing and often explore complex themes and ideas.",
+        "Multi-version (Weekly and Fortnightly poetry)": "Poetry that is published on a regular schedule, often in installments.",
+        "General Fiction": "Fictional stories that do not fit neatly into a specific genre or category.",
+        "Crime & Mystery Fiction": "Fictional stories that are focused on solving a crime or uncovering a mystery.",
+        "Sonnets": "Poems that have a specific form, consisting of 14 lines and a rhyme scheme.",
+        "Children's Fiction": "Fictional stories that are intended for a young audience.",
+        "Nautical & Marine Fiction": "Fictional stories that are set on or around the ocean.",
+        "Religion": "Non-fiction works that explore religious beliefs and practices.",
+        "Humorous Fiction": "Fictional stories that are intended to be funny or humorous.",
+        "War & Military": "Fictional stories that are set during times of war or conflict and often focus on military themes.",
+        "Myths, Legends & Fairy Tales": "Stories that involve mythical or magical elements and are often passed down through generations.",
+        "Psychology": "Non-fiction works that explore human behavior and the mind.",
+        "Biography & Autobiography": "Non-fiction works that tell the story of a person's life.",
+        "Satire": "Literary works that use humor or irony to criticize society or human behavior.",
+        "Philosophy": "Non-fiction works that explore the nature of reality, knowledge, and existence.",
+        "Animals & Nature": "Non-fiction works that explore the natural world and its inhabitants.",
+        "Non-fiction": "Works of literature that are based on real events or information.",
+        "Astronomy, Physics & Mechanics": "Non-fiction works that explore the scientific principles of the natural world.",
+        "Classics (Greek & Latin Antiquity)": "Works of literature from the ancient Greek and Roman civilizations.",
+        "Published 1900 onward": "Literature that has been published since the turn of the 20th century."
+    ]
+    
+    for (key, value) in genres {
+        genresRef.whereField("name", isEqualTo: key).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting documentID for \(key): \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documentID = snapshot?.documents.first?.documentID else {
+                print("DocumentID not found for \(key)")
+                return
+            }
+            
+            genresRef.document(documentID).setData(["description": value], merge: true) { (error) in
+                if let error = error {
+                    print("Error updating description for \(key): \(error.localizedDescription)")
+                    return
+                }
+                
+                print("Description added for \(key)")
+            }
+        }
+    }
 }
 
 func addColorToGenre(){
