@@ -7,6 +7,7 @@
 
 import UIKit
 import SwaggerClient
+import Kingfisher
 
 class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
@@ -46,7 +47,7 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
                     self.booksCV.reloadData()
                     self.spinner.stopAnimating()
                 }
-
+                
             }
         }
     }
@@ -67,6 +68,11 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
         cell.titleBook.text = filteredBooks[indexPath.row].title
+        cell.imageBook.image = nil
+        getCoverFromBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
+            cell.imageBook.kf.setImage(with: img)
+            cell.imageBook.contentMode = .scaleToFill
+        }
         
         return cell
     }

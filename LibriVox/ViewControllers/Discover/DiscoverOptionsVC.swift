@@ -68,7 +68,7 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             let colorString = genres?[indexPath.row].mainColor!
             cell.circleBackground.backgroundColor = stringToColor(color: String(colorString?.dropFirst() ?? "FFFFFF"))
             cell.circleBackground.image = imageWith(name: genres?[indexPath.row].name)
-
+           
             return cell
             
         case 1:
@@ -89,6 +89,36 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
         }
     }
     
+    func getCoverArtUrl(from bookPageLink: String, completion: @escaping (String?) -> Void) {
+        guard let url = URL(string: bookPageLink) else {
+            completion(nil)
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data,
+                  error == nil,
+                  let html = String(data: data, encoding: .utf8),
+                  let range = html.range(of: "<a>Download Cover Art</a>") else {
+                completion(nil)
+                return
+            }
+
+            let startIndex = range.lowerBound
+            let substring = String(html[startIndex...])
+
+            if let startRange = substring.range(of: "https://"),
+               let endRange = substring[startRange.upperBound...].range(of: ".jpg") {
+                let coverArtUrl = String(substring[startRange.lowerBound..<endRange.upperBound])
+                print("\(coverArtUrl) aiii daddyy")
+                completion(coverArtUrl)
+            } else {
+                completion(nil)
+            }
+        }
+
+        task.resume()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGenreSection",
@@ -96,11 +126,12 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
            let genre = genres?[indexPath.item],
            let genreVC = segue.destination as? GenreVC {
             genreVC.genre = genre
-        }else if segue.identifier == "showAuthor",
+        }
+        else if segue.identifier == "showAuthor",
            let indexPath = authorsCV.indexPathsForSelectedItems?.first,
-           let lastName = authors?[indexPath.row].lastName!,
+           let author = authors?[indexPath.row],
            let authorPageVC = segue.destination as? AuthorPageVC {
-            authorPageVC.lastName = lastName
+            authorPageVC.author = author
         }
     }
     

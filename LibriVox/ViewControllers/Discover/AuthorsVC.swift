@@ -65,9 +65,9 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAuthor",
            let indexPath = authorsCV.indexPathsForSelectedItems?.first,
-           let lastName = authors?[indexPath.row].lastName!,
+           let author = authors?[indexPath.row],
            let authorPageVC = segue.destination as? AuthorPageVC {
-            authorPageVC.lastName = lastName
+            authorPageVC.author = author
         }
     }
 }

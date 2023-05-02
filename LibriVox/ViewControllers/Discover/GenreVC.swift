@@ -74,6 +74,13 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
             cell.genresAudioBooks.text! += displayGenres(strings: book?.genres ?? [])
             cell.authorAudioBook.text! += displayAuthors(authors: book?.authors ?? [])
             cell.backgroundAudioBook.backgroundColor = stringToColor(color: String(genre?.secondaryColor?.dropFirst() ?? "FFFFFF"))
+            cell.imgAudioBook.image = nil
+
+    
+            getCoverFromBook(url: (book?.urlLibrivox!)!){img in
+                cell.imgAudioBook.kf.setImage(with: img)
+                cell.imgAudioBook.contentMode = .scaleToFill
+            }
             
             return cell
             

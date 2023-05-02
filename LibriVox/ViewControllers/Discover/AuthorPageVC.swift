@@ -10,41 +10,43 @@ import SwaggerClient
 
 class AuthorPageVC: UIViewController {
     
-    var lastName: String?
     var books: [Audiobook]?
     var isLoaded = false
+    var author: Author?
     
+    @IBOutlet weak var descrAuthor: UILabel!
     @IBOutlet weak var booksTV: UITableView!
     @IBOutlet weak var nameAuthor: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if navigationController != nil {
-            print("View controller is embedded in a navigation controller")
-        } else {
-            print("View controller is not embedded in a navigation controller")
-        }
-        
-        
         booksTV.dataSource = self
         booksTV.delegate = self
         
-        if let lastName = lastName {
-            
-            nameAuthor.text = lastName
-            DefaultAPI.audiobooksAuthorlastnameGet(lastname: lastName, format:"json") { data, error in
-                if let error = error {
-                    print("Error getting root data:", error)
-                    return
+        
+        if let author = author{
+            getDescriptionAuthor(id: author._id!) { description in
+                DispatchQueue.main.async {
+                    self.descrAuthor.text = description
                 }
+            }
+            
+            if let lastName = author.lastName, let firstName = author.firstName{
+                nameAuthor.text = "\(firstName) \(lastName)"
                 
-                if let data = data {
-                    self.books = data.books
-                    DispatchQueue.main.async {
-                        self.isLoaded = true
-                        self.booksTV.reloadData()
+                DefaultAPI.audiobooksAuthorlastnameGet(lastname: lastName, format:"json") { data, error in
+                    if let error = error {
+                        print("Error getting root data:", error)
+                        return
+                    }
+                    
+                    if let data = data {
+                        self.books = data.books
+                        DispatchQueue.main.async {
+                            self.isLoaded = true
+                            self.booksTV.reloadData()
+                        }
                     }
                 }
             }
@@ -88,7 +90,25 @@ class AuthorPageTVC: UITableViewCell
     @IBOutlet weak var title: UILabel!
 }
 
-
-
-
+func getDescriptionAuthor(id: String, _ callbackDecrip: @escaping (String?) -> Void){
+    var request = URLRequest(url: URL(string: "https://librivox.org/author/\(id)")!)
+    request.httpMethod = "GET"
+    
+    let session = URLSession.init(configuration: URLSessionConfiguration.default)
+    session.dataTask(with: request) {data,response,error in
+        
+        if let data = data, let contents = String(data: data, encoding: .ascii) {
+            if let range = contents.range(of: #"<p\s+class=\"description\">(.+?)</p>"#, options: .regularExpression) {
+                let description = String(contents[range].dropFirst(23).dropLast(4))
+                callbackDecrip(description)
+            } else {
+                callbackDecrip("Any description available")
+            }
+            
+        } else {
+            print("Error: \(error?.localizedDescription ?? "unknown error")")
+        }
+        
+    }.resume()
+}
 

@@ -53,6 +53,15 @@ class BookDetailsVC: UIViewController {
             durationBook.text = book.totaltime
             languageBook.text = book.language!
             
+            getCoverFromBook(url: book.urlLibrivox!){
+                img in
+                self.bookImg.kf.setImage(with: img)
+                self.bookImg.contentMode = .scaleToFill
+                
+                self.backgroundImage.kf.setImage(with: img)
+                self.backgroundImage.contentMode = .scaleToFill
+            }
+            
             isInCollection(id: book._id!) { (result) in
                 var state = false
                 if !result.isEmpty {state = true

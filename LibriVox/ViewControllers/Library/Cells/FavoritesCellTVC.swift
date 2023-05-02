@@ -12,5 +12,6 @@ class FavoritesCellTVC: UITableViewCell {
     @IBOutlet weak var genreBook: UILabel!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var authorBook: UILabel!
+    @IBOutlet weak var imgBook: RoundedBookImageView!
     @IBOutlet weak var titleBook: UILabel!
 }

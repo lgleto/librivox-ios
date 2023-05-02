@@ -30,6 +30,11 @@ class FinishedCVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
         cell.titleBook.text = finalList[indexPath.row].title
+        cell.imageBook.image = nil
+        getCoverFromBook(url: finalList[indexPath.row].urlLibrivox!){img in
+            cell.imageBook.kf.setImage(with: img)
+            cell.imageBook.contentMode = .scaleToFill
+        }
         
         return cell
     }

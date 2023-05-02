@@ -173,6 +173,28 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
+func getCoverFromBook(url: String, _ callback: @escaping (URL?) -> Void){
+    var request = URLRequest(url: URL(string: url)!)
+    request.httpMethod = "GET"
+    
+    let session = URLSession.init(configuration: URLSessionConfiguration.default)
+    session.dataTask(with: request) {data,response,error in
+        
+        if let data = data, let contents = String(data: data, encoding: .ascii) {
+            if let range = contents.range(of: #"<img\s+src="([^"]+)".+?alt="book-cover-large".+?>"#, options: .regularExpression) {
+                let imageURL = String(contents[range].split(separator: "\"")[1])
+                callback(URL(string: imageURL))
+            }
+            
+        } else {
+            print("Error: \(error?.localizedDescription ?? "unknown error")")
+        }
+        
+    }.resume()
+}
+
+
+
 
 
 func stringToColor(color: String) -> UIColor {

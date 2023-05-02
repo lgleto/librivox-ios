@@ -39,7 +39,11 @@ class FavoritesVC: UITableViewController {
         if let duration = book.totaltime{
             cell.durationBook.text = "Duration: \(duration)"
         }
-        
+        cell.imgBook.image = nil
+        getCoverFromBook(url: book.urlLibrivox!){img in
+            cell.imgBook.kf.setImage(with: img)
+            cell.imgBook.contentMode = .scaleToFill
+        }
         cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         
         return cell
