@@ -11,23 +11,23 @@ import Alamofire
 
 open class DefaultAPI {
     /**
-     Get all books of a specific gender
+     Returns all the books from a specific genre.
 
-     - parameter lastName: (path) Specify author&#x27;s last name 
-     - parameter format: (query)  (optional)
-     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter lastname: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func audiobooksAuthorlastNameGet(lastName: String, format: String? = nil, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
-        audiobooksAuthorlastNameGetWithRequestBuilder(lastName: lastName, format: format, extended: extended).execute { (response, error) -> Void in
+    open class func audiobooksAuthorlastnameGet(lastname: String, format: String, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        audiobooksAuthorlastnameGetWithRequestBuilder(lastname: lastname, format: format, extended: extended).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
 
     /**
-     Get all books of a specific gender
-     - GET /audiobooks/author/^{lastName}
+     Returns all the books from a specific genre.
+     - GET /audiobooks/author/^{lastname}/
      - 
 
      - examples: [{contentType=application/json, example={
@@ -155,17 +155,17 @@ open class DefaultAPI {
     } ]
   } ]
 }}]
-     - parameter lastName: (path) Specify author&#x27;s last name 
-     - parameter format: (query)  (optional)
-     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter lastname: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
 
      - returns: RequestBuilder<BooksResponse> 
      */
-    open class func audiobooksAuthorlastNameGetWithRequestBuilder(lastName: String, format: String? = nil, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
-        var path = "/audiobooks/author/^{lastName}"
-        let lastNamePreEscape = "\(lastName)"
-        let lastNamePostEscape = lastNamePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{lastName}", with: lastNamePostEscape, options: .literal, range: nil)
+    open class func audiobooksAuthorlastnameGetWithRequestBuilder(lastname: String, format: String, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
+        var path = "/audiobooks/author/^{lastname}/"
+        let lastnamePreEscape = "\(lastname)"
+        let lastnamePostEscape = lastnamePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{lastname}", with: lastnamePostEscape, options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
@@ -180,14 +180,14 @@ open class DefaultAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Get all books of a specific gender
+     Returns all the books from a specific genre.
 
-     - parameter genre: (path) Specify the gender 
-     - parameter format: (query)  (optional)
-     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter genre: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func audiobooksGenregenreGet(genre: String, format: String? = nil, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+    open class func audiobooksGenregenreGet(genre: String, format: String, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
         audiobooksGenregenreGetWithRequestBuilder(genre: genre, format: format, extended: extended).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -195,8 +195,8 @@ open class DefaultAPI {
 
 
     /**
-     Get all books of a specific gender
-     - GET /audiobooks/genre/^{genre}
+     Returns all the books from a specific genre.
+     - GET /audiobooks/genre/^{genre}/
      - 
 
      - examples: [{contentType=application/json, example={
@@ -324,14 +324,14 @@ open class DefaultAPI {
     } ]
   } ]
 }}]
-     - parameter genre: (path) Specify the gender 
-     - parameter format: (query)  (optional)
-     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter genre: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
 
      - returns: RequestBuilder<BooksResponse> 
      */
-    open class func audiobooksGenregenreGetWithRequestBuilder(genre: String, format: String? = nil, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
-        var path = "/audiobooks/genre/^{genre}"
+    open class func audiobooksGenregenreGetWithRequestBuilder(genre: String, format: String, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
+        var path = "/audiobooks/genre/^{genre}/"
         let genrePreEscape = "\(genre)"
         let genrePostEscape = genrePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{genre}", with: genrePostEscape, options: .literal, range: nil)
@@ -351,13 +351,12 @@ open class DefaultAPI {
     /**
      Get all books
 
-     - parameter format: (query)  (optional)
-     - parameter keywords: (query) Search by gender (optional)
-     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter format: (query)  (optional, default to json)
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func audiobooksGet(format: String? = nil, keywords: String? = nil, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
-        audiobooksGetWithRequestBuilder(format: format, keywords: keywords, extended: extended).execute { (response, error) -> Void in
+    open class func audiobooksGet(format: String? = nil, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        audiobooksGetWithRequestBuilder(format: format, extended: extended).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -492,20 +491,18 @@ open class DefaultAPI {
     } ]
   } ]
 }}]
-     - parameter format: (query)  (optional)
-     - parameter keywords: (query) Search by gender (optional)
-     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 0)
+     - parameter format: (query)  (optional, default to json)
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
 
      - returns: RequestBuilder<BooksResponse> 
      */
-    open class func audiobooksGetWithRequestBuilder(format: String? = nil, keywords: String? = nil, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
+    open class func audiobooksGetWithRequestBuilder(format: String? = nil, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
         let path = "/audiobooks"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
                         "format": format, 
-                        "keywords": keywords, 
                         "extended": extended?.encodeToJSON()
         ])
 
@@ -670,6 +667,175 @@ open class DefaultAPI {
         let bookIdPreEscape = "\(bookId)"
         let bookIdPostEscape = bookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{bookId}", with: bookIdPostEscape, options: .literal, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+                        "format": format, 
+                        "extended": extended?.encodeToJSON()
+        ])
+
+
+        let requestBuilder: RequestBuilder<BooksResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+    /**
+     Returns all the books from a specific genre.
+
+     - parameter title: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func audiobooksTitletitleGet(title: String, format: String, extended: Int? = nil, completion: @escaping ((_ data: BooksResponse?,_ error: Error?) -> Void)) {
+        audiobooksTitletitleGetWithRequestBuilder(title: title, format: format, extended: extended).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Returns all the books from a specific genre.
+     - GET /audiobooks/title/^{title}/
+     - 
+
+     - examples: [{contentType=application/json, example={
+  "books" : [ {
+    "num_sections" : "num_sections",
+    "url_rss" : "url_rss",
+    "totaltimesecs" : 0,
+    "description" : "description",
+    "language" : "language",
+    "title" : "title",
+    "sections" : [ {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    }, {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    } ],
+    "url_project" : "url_project",
+    "totaltime" : "totaltime",
+    "genres" : [ {
+      "name" : "name",
+      "id" : "id"
+    }, {
+      "name" : "name",
+      "id" : "id"
+    } ],
+    "url_zip_file" : "url_zip_file",
+    "url_librivox" : "url_librivox",
+    "id" : "id",
+    "authors" : [ {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    }, {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    } ]
+  }, {
+    "num_sections" : "num_sections",
+    "url_rss" : "url_rss",
+    "totaltimesecs" : 0,
+    "description" : "description",
+    "language" : "language",
+    "title" : "title",
+    "sections" : [ {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    }, {
+      "readers" : [ {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      }, {
+        "reader_id" : "reader_id",
+        "display_name" : "display_name"
+      } ],
+      "file_name" : "file_name",
+      "genres" : [ null, null ],
+      "language" : "language",
+      "id" : "id",
+      "playtime" : "playtime",
+      "title" : "title",
+      "listen_url" : "listen_url",
+      "section_number" : "section_number"
+    } ],
+    "url_project" : "url_project",
+    "totaltime" : "totaltime",
+    "genres" : [ {
+      "name" : "name",
+      "id" : "id"
+    }, {
+      "name" : "name",
+      "id" : "id"
+    } ],
+    "url_zip_file" : "url_zip_file",
+    "url_librivox" : "url_librivox",
+    "id" : "id",
+    "authors" : [ {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    }, {
+      "last_name" : "last_name",
+      "id" : "id",
+      "first_name" : "first_name"
+    } ]
+  } ]
+}}]
+     - parameter title: (path) Parameter description in CommonMark or HTML. 
+     - parameter format: (query)  
+     - parameter extended: (query) Set to 1 to retrieve all available information for each book (optional, default to 1)
+
+     - returns: RequestBuilder<BooksResponse> 
+     */
+    open class func audiobooksTitletitleGetWithRequestBuilder(title: String, format: String, extended: Int? = nil) -> RequestBuilder<BooksResponse> {
+        var path = "/audiobooks/title/^{title}/"
+        let titlePreEscape = "\(title)"
+        let titlePostEscape = titlePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{title}", with: titlePostEscape, options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)

@@ -12,12 +12,12 @@
   },
   "authors": "Swagger Codegen",
   "license": "Proprietary",
+  "homepage": "https://github.com/swagger-api/swagger-codegen",
+  "summary": "SwaggerClient",
   "source_files": "SwaggerClient/Classes/**/*.swift",
   "dependencies": {
     "Alamofire": [
       "~> 4.9.0"
     ]
-  },
-  "homepage": "https://github.com/swagger-api/swagger-codegen",
-  "summary": "SwaggerClient"
+  }
 }

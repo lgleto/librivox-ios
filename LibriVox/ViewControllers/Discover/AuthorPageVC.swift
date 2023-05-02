@@ -34,7 +34,7 @@ class AuthorPageVC: UIViewController {
         if let lastName = lastName {
             
             nameAuthor.text = lastName
-            DefaultAPI.audiobooksAuthorlastNameGet(lastName: lastName, format:"json") { data, error in
+            DefaultAPI.audiobooksAuthorlastnameGet(lastname: lastName, format:"json") { data, error in
                 if let error = error {
                     print("Error getting root data:", error)
                     return

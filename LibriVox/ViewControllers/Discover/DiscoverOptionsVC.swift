@@ -71,7 +71,9 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             cell.circleBackground.image = imageWith(name: genres?[indexPath.row].name)
             
         case 1:
-            cell.nameAuthor.text = authors?[indexPath.row].firstName
+            if let firstName = authors?[indexPath.row].firstName, let lastName = authors?[indexPath.row].lastName {
+                cell.nameAuthor.text = "\(firstName) \(lastName)"
+            }
         default:
             fatalError("Invalid collection view tag")
         }

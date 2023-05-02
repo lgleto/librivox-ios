@@ -10,9 +10,8 @@ import SwaggerClient
 
 class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
-    var filteredBooks: [SwaggerClient.Audiobook] = []
-    var books: [SwaggerClient.Audiobook] = []
-    var isLoaded = false
+    var filteredBooks: [Audiobook] = []
+    
     var searchText : String?
     
     @IBOutlet weak var booksCV: UICollectionView!
@@ -23,37 +22,31 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
         
         booksCV.dataSource = self
         booksCV.delegate = self
-        
-        
-        //TODO: Show an alert when an error occur
-        DefaultAPI.audiobooksGet(format: "json",extended: 1) { data, error in
-            if let error = error {
-                print("Error getting root data:", error)
-                return
-            }
-            
-            if let data = data {
-                self.books = data.books ?? []
-                
-                DispatchQueue.main.async {
-                    self.spinner.stopAnimating()
-                    self.isLoaded = true
-                    self.applySearchFilter()
-                }
-            }
-        }
     }
     
+    //TODO: FIX (`-´)
     func applySearchFilter() {
-        if !isLoaded {
-            return
-        }else {
-            if let text = searchText, !text.isEmpty {
-                filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
-                booksCV.reloadData()
-            } else {
-                filteredBooks = books
-                booksCV.reloadData()
+        filteredBooks.removeAll()
+        if let text = searchText, !text.isEmpty {
+            if let spinner = self.spinner {
+                spinner.startAnimating()
+            }
+            
+            DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1){data, error in
+                if let error = error {
+                    print("Error getting root data:", error)
+                    self.filteredBooks.removeAll()
+                }
+                
+                if let data = data {
+                    self.filteredBooks = data.books ?? []
+                }
+                
+                DispatchQueue.main.async {
+                    self.booksCV.reloadData()
+                    self.spinner.stopAnimating()
+                }
+
             }
         }
     }
@@ -63,6 +56,7 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
         applySearchFilter()
     }
 }
+
 extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,11 +67,10 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
         cell.titleBook.text = filteredBooks[indexPath.row].title
-       // cell.onFavToggle()
         
         return cell
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,
