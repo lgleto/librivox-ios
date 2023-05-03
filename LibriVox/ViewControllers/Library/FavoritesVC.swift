@@ -42,7 +42,9 @@ class FavoritesVC: UITableViewController {
         cell.imgBook.image = nil
         getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
-            cell.imgBook.contentMode = .scaleToFill
+            DispatchQueue.main.async {
+             cell.imgBook.contentMode = .scaleToFill
+            }
         }
         cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         

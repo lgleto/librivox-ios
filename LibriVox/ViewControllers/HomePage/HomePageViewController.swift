@@ -121,7 +121,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         cell.bookCover.image = nil
         getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
             cell.bookCover.kf.setImage(with: img)
-            cell.bookCover.contentMode = .scaleToFill
+            DispatchQueue.main.async {
+                   cell.bookCover.contentMode = .scaleToFill
+               }
         }
         
         return cell

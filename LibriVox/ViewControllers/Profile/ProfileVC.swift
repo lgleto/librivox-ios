@@ -16,7 +16,6 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var nameUser: UILabel!
     
     @IBOutlet weak var logoutBtn: UILabel!
-    var name = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +23,18 @@ class ProfileVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         
-        getNameOrUserName("name") { name in
+        getuserInfo(UserData.name) { name in
             if let name = name {
                 self.nameUser.text = name
-                self.name = name
+                downloadProfileImage(name, self.profilePhoto)
             }
-            
-            self.downloadImage(self.name, self.profilePhoto)
         }
         
-        getNameOrUserName("username") { userName in
-            if let userName = userName {
-                self.nicknameUser.text = userName
+        getuserInfo(UserData.email) { email in
+            if let userName = email {
+                self.nicknameUser.text = email
+            }else{
+                self.nicknameUser.text = "Atualiza seu email ai menino dsudsa"
             }
         }
         
@@ -55,27 +54,6 @@ class ProfileVC: UIViewController {
         }
         
     }
-    
-    func downloadImage(_ name: String, _ imageView: UIImageView) {
-        let storageRef = Storage.storage().reference()
-        let imageRef = storageRef.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")
-        
-        let defaultImage = imageWith(name: name)
-        imageView.image = defaultImage
-        imageView.backgroundColor = UIColor(named: "Green Tone")
-        
-        imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            if let error = error {
-                print("Error downloading image: \(error.localizedDescription)")
-            } else {
-                if let imageData = data {
-                    imageView.image = UIImage(data: imageData)
-                }
-            }
-        }
-    }
-
-    
      
     func logoutUser() {
         do { try Auth.auth().signOut() }

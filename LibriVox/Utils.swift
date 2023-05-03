@@ -8,10 +8,11 @@
 import Foundation
 import SwaggerClient
 import FirebaseFirestore
+import FirebaseStorage
 import FirebaseAuth
 
 
-func getNameOrUserName(_ field: String,_ callback: @escaping (String?) -> Void) {
+func getuserInfo(_ field: UserData,_ callback: @escaping (String?) -> Void) {
     let db = Firestore.firestore()
     
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
@@ -31,6 +32,30 @@ func getNameOrUserName(_ field: String,_ callback: @escaping (String?) -> Void) 
     }
 }
 
+func updateDataUser(name: String, username: String, email: String) {
+    let db = Firestore.firestore()
+    var dataToUpdate = [String: Any]()
+    
+    dataToUpdate = [
+        UserData.name.rawValue: name,
+        UserData.username.rawValue: username,
+        UserData.email.rawValue: email
+    ]
+    
+    db.collection("users").document(Auth.auth().currentUser!.uid).updateData(dataToUpdate) { err in
+        if let err = err {
+            print("Error writing document: \(err.localizedDescription)")
+        } else {
+            print("Document successfully updated!")
+        }
+    }
+}
+
+func showAlert(_ view : UIViewController,_ message: String) {
+    let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    view.present(alert, animated: true, completion: nil)
+}
 
 func removeHtmlTagsFromText(text: String)-> String{
     let regex = try! NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)
@@ -173,7 +198,7 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
-func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
+ func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
     var request = URLRequest(url: URL(string: url)!)
     request.httpMethod = "GET"
     
@@ -191,6 +216,25 @@ func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
         }
         
     }.resume()
+}
+
+func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
+    let storageRef = Storage.storage().reference()
+    let imageRef = storageRef.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")
+    
+    let defaultImage = imageWith(name: name)
+    imageView.image = defaultImage
+    imageView.backgroundColor = UIColor(named: "Green Tone")
+    
+    imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+        if let error = error {
+            print("Error downloading image: \(error.localizedDescription)")
+        } else {
+            if let imageData = data {
+                imageView.image = UIImage(data: imageData)
+            }
+        }
+    }
 }
 
 
@@ -291,6 +335,4 @@ func addColorToGenre(){
             }
         }
     }
-    
 }
-

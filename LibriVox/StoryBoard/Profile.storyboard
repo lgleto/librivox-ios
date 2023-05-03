@@ -432,7 +432,7 @@ asdadnasd</string>
         <!--Edit Profile-->
         <scene sceneID="qxj-xJ-QtR">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="VHh-Kz-zov" customClass="EditProfileVC" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="VHh-Kz-zov" customClass="EditProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mi0-VD-SUx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,7 +455,7 @@ asdadnasd</string>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wys-l8-HH2" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wys-l8-HH2" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="121.66666666666669" y="166" width="150" height="150"/>
                                 <color key="backgroundColor" name="Gren Tone"/>
                                 <constraints>
@@ -481,6 +481,9 @@ asdadnasd</string>
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="updateProfile:" destination="VHh-Kz-zov" eventType="touchUpInside" id="6pb-xe-KzK"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHV-oI-6lq">
                                 <rect key="frame" x="24" y="593" width="200.66666666666666" height="33"/>
@@ -500,7 +503,7 @@ asdadnasd</string>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed">
                                     <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" name="Green Tone"/>
+                                        <color key="backgroundColor" name="Lighter Blue Tone"/>
                                     </backgroundConfiguration>
                                     <attributedString key="attributedSubtitle">
                                         <fragment content="Send Email">
@@ -529,10 +532,11 @@ asdadnasd</string>
                             <constraint firstAttribute="trailing" secondItem="odd-vy-C2n" secondAttribute="trailing" constant="24" id="2N7-Lu-Iaa"/>
                             <constraint firstItem="346-J7-0ng" firstAttribute="trailing" secondItem="5YG-ci-nMK" secondAttribute="trailing" constant="24" id="2yN-Nt-iIz"/>
                             <constraint firstItem="a6g-77-7mQ" firstAttribute="leading" secondItem="346-J7-0ng" secondAttribute="leading" constant="24" id="5C5-It-eRO"/>
-                            <constraint firstItem="Wys-l8-HH2" firstAttribute="centerX" secondItem="346-J7-0ng" secondAttribute="centerX" id="8Cz-Gi-yAc"/>
+                            <constraint firstItem="Wys-l8-HH2" firstAttribute="leading" secondItem="346-J7-0ng" secondAttribute="leading" constant="121.67" id="64P-c2-9QN"/>
                             <constraint firstItem="aHV-oI-6lq" firstAttribute="leading" secondItem="346-J7-0ng" secondAttribute="leading" constant="24" id="AcI-H6-oiv"/>
                             <constraint firstItem="VBG-ZL-MpH" firstAttribute="top" secondItem="8ET-f4-jfd" secondAttribute="bottom" constant="30" id="ECE-n3-jH6"/>
                             <constraint firstItem="346-J7-0ng" firstAttribute="trailing" secondItem="a6g-77-7mQ" secondAttribute="trailing" constant="24" id="EQo-oz-Qv9"/>
+                            <constraint firstItem="346-J7-0ng" firstAttribute="trailing" secondItem="Wys-l8-HH2" secondAttribute="trailing" constant="121.33" id="Ed5-kI-Io0"/>
                             <constraint firstItem="5YG-ci-nMK" firstAttribute="top" secondItem="a6g-77-7mQ" secondAttribute="bottom" constant="16" id="L8D-Sd-CmD"/>
                             <constraint firstItem="k2D-ld-urx" firstAttribute="top" secondItem="346-J7-0ng" secondAttribute="top" id="Mt3-nb-ALv"/>
                             <constraint firstItem="odd-vy-C2n" firstAttribute="top" secondItem="aHV-oI-6lq" secondAttribute="bottom" constant="8" symbolic="YES" id="OQd-3A-666"/>
@@ -569,7 +573,6 @@ asdadnasd</string>
         <!--Navigation Controller-->
         <scene sceneID="zyy-Vz-WMo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uJn-Jk-0ge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8Af-dJ-UMm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dN6-vR-IGq">
@@ -581,6 +584,7 @@ asdadnasd</string>
                         <segue destination="DDi-qj-aY5" kind="relationship" relationship="rootViewController" id="RRi-5q-edQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uJn-Jk-0ge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
         </scene>
