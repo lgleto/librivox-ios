@@ -31,7 +31,7 @@ class FinishedCVC: UICollectionViewController {
         
         cell.titleBook.text = finalList[indexPath.row].title
         cell.imageBook.image = nil
-        getCoverFromBook(url: finalList[indexPath.row].urlLibrivox!){img in
+        getCoverBook(url: finalList[indexPath.row].urlLibrivox!){img in
             cell.imageBook.kf.setImage(with: img)
             cell.imageBook.contentMode = .scaleToFill
         }

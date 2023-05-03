@@ -26,8 +26,8 @@ class BlueShadowView: UIView {
     private var shadowLayer: CAShapeLayer!
     private let cornerRadius: CGFloat = 10
     private let fillColor: UIColor = UIColor(red: 252.0, green: 252.0, blue: 252.0, alpha: 1.0)
-    private let shadowColor: UIColor = UIColor(named: "Main Blue Tone")!
-    private let shadowOpacity: Float = 0.5
+    private let shadowColor: UIColor = UIColor(named: "Blue Shadow")!
+    private let shadowOpacity: Float = 1
     private let shadowOffset = CGSize(width: 7, height: 7)
     private let shadowRadius: CGFloat = 0
     

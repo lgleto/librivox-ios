@@ -173,7 +173,7 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
-func getCoverFromBook(url: String, _ callback: @escaping (URL?) -> Void){
+func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
     var request = URLRequest(url: URL(string: url)!)
     request.httpMethod = "GET"
     

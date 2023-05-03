@@ -39,7 +39,7 @@ class ReadingVC: UITableViewController {
         cell.titleBook.text = book.title
         cell.authorsBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
         cell.imgBook.image = nil
-        getCoverFromBook(url: book.urlLibrivox!){img in
+        getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
             cell.imgBook.contentMode = .scaleToFill
         }

@@ -31,25 +31,28 @@ class GenreVC: UIViewController {
             
             let mainColor = genre.mainColor
             backgroundLabel.backgroundColor = stringToColor(color: String(mainColor?.dropFirst() ?? "FFFFFF"))
-        }
-        
-        DefaultAPI.audiobooksGenregenreGet(genre: genre?.name! ?? "", format:"json", extended: 1) { data, error in
-            if let error = error {
-                print("Error getting root data:", error)
-                return
-            }
             
-            if let data = data {
-                self.audioBooks = data.books ?? []
+            
+            DefaultAPI.audiobooksGenregenreGet(genre: genre.name! , format:"json", extended: 1) { data, error in
+                if let error = error {
+                    print("Error getting root data:", error.localizedDescription)
+                    return
+                }
                 
-                DispatchQueue.main.async {
+                if let data = data {
+                    self.audioBooks = data.books ?? []
                     
-                    self.spinner.stopAnimating()
-                    self.tvBooksByGenre.reloadData()
-                    self.isLoaded = true
+                    DispatchQueue.main.async {
+                        
+                        self.spinner.stopAnimating()
+                        self.tvBooksByGenre.reloadData()
+                        self.isLoaded = true
+                    }
                 }
             }
         }
+        
+        
     }
 }
 
@@ -77,7 +80,7 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
             cell.imgAudioBook.image = nil
 
     
-            getCoverFromBook(url: (book?.urlLibrivox!)!){img in
+            getCoverBook(url: (book?.urlLibrivox!)!){img in
                 cell.imgAudioBook.kf.setImage(with: img)
                 cell.imgAudioBook.contentMode = .scaleToFill
             }

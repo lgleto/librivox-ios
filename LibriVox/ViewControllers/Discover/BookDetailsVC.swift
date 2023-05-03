@@ -53,7 +53,7 @@ class BookDetailsVC: UIViewController {
             durationBook.text = book.totaltime
             languageBook.text = book.language!
             
-            getCoverFromBook(url: book.urlLibrivox!){
+            getCoverBook(url: book.urlLibrivox!){
                 img in
                 self.bookImg.kf.setImage(with: img)
                 self.bookImg.contentMode = .scaleToFill

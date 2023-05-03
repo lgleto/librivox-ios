@@ -69,7 +69,7 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         
         cell.titleBook.text = filteredBooks[indexPath.row].title
         cell.imageBook.image = nil
-        getCoverFromBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
+        getCoverBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
             cell.imageBook.kf.setImage(with: img)
             cell.imageBook.contentMode = .scaleToFill
         }

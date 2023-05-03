@@ -40,7 +40,7 @@ class FavoritesVC: UITableViewController {
             cell.durationBook.text = "Duration: \(duration)"
         }
         cell.imgBook.image = nil
-        getCoverFromBook(url: book.urlLibrivox!){img in
+        getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
             cell.imgBook.contentMode = .scaleToFill
         }

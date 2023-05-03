@@ -119,7 +119,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         cell.trendingNumber.text = "\(indexPath.row+1)."
         
         cell.bookCover.image = nil
-        getCoverFromBook(url: localBooks[indexPath.row].urlLibrivox!){img in
+        getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
             cell.bookCover.kf.setImage(with: img)
             cell.bookCover.contentMode = .scaleToFill
         }

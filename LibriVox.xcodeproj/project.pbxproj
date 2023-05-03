@@ -64,6 +64,7 @@
 		6F4EC1EF29C9E0020025B204 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EE29C9E0020025B204 /* RoundView.swift */; };
 		6F4EC1F229C9EBF60025B204 /* BlueShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1F129C9EBF60025B204 /* BlueShadowView.swift */; };
 		6F54867529F9A67B00F89955 /* ReadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F54867429F9A67B00F89955 /* ReadingVC.swift */; };
+		6F5D64502A02714500A5B64D /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5D644F2A02714500A5B64D /* EditProfileVC.swift */; };
 		6F6765E929DADF190080874E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6765E829DADF190080874E /* Utils.swift */; };
 		6F711C2329C3A0770029D7B1 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */; };
 		6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */; };
@@ -128,6 +129,7 @@
 		6F4EC1EE29C9E0020025B204 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		6F4EC1F129C9EBF60025B204 /* BlueShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueShadowView.swift; sourceTree = "<group>"; };
 		6F54867429F9A67B00F89955 /* ReadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingVC.swift; sourceTree = "<group>"; };
+		6F5D644F2A02714500A5B64D /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		6F6765E829DADF190080874E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				31C883C929C8ABA600A53C78 /* ProfileVC.swift */,
+				6F5D644F2A02714500A5B64D /* EditProfileVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				317B4C0529CC9D3C0058F4B9 /* User.swift in Sources */,
+				6F5D64502A02714500A5B64D /* EditProfileVC.swift in Sources */,
 				31C883CD29C8ABA600A53C78 /* ProfileVC.swift in Sources */,
 				6F3648D029DB576700B3A398 /* SectionsCell.swift in Sources */,
 				6FCCCA002A008C3300658231 /* GenreWithColor.swift in Sources */,
