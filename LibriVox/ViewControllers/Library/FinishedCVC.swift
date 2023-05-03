@@ -33,10 +33,7 @@ class FinishedCVC: UICollectionViewController {
         cell.imageBook.image = nil
         getCoverBook(url: finalList[indexPath.row].urlLibrivox!){img in
             cell.imageBook.kf.setImage(with: img)
-            DispatchQueue.main.async {
-                cell.imageBook.contentMode = .scaleToFill
-            }
-            
+            cell.imageBook.contentMode = .scaleToFill
         }
         
         return cell

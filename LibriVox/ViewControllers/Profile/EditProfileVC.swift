@@ -24,7 +24,18 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
     }
     
     @IBAction func sendEmail(_ sender: Any) {
+        guard let email = email.text, !email.isEmpty else{
+            showAlert(self, "A valid email is required")
+            return
+        }
         
+        Auth.auth().sendPasswordReset(withEmail: email) { err in
+            if let err = err {
+                print("Error writing document: \(err.localizedDescription)")
+            } else {
+                print("Email sent succesfully")
+            }
+        }
     }
     
     @IBOutlet weak var email: BlueShadowUITextField!
@@ -35,6 +46,7 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
     let label = UILabel()
     var imagePicker = UIImagePickerController()
     var photoDarkened = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

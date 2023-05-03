@@ -11,8 +11,8 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
-    var finalList: [Audiobook] = []
     
+    var finalList: [Audiobook] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +42,7 @@ class FavoritesVC: UITableViewController {
         cell.imgBook.image = nil
         getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
-            DispatchQueue.main.async {
-             cell.imgBook.contentMode = .scaleToFill
-            }
+            cell.imgBook.contentMode = .scaleToFill
         }
         cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         

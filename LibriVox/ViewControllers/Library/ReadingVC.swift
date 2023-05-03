@@ -41,9 +41,8 @@ class ReadingVC: UITableViewController {
         cell.imgBook.image = nil
         getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
-            DispatchQueue.main.async {
-                cell.imgBook.contentMode = .scaleToFill
-            }
+            cell.imgBook.contentMode = .scaleToFill
+        
         }
         if let duration = book.totaltime{
             cell.durationBook.text = "Duration: \(duration)"
