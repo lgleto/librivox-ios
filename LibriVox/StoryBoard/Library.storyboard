@@ -97,7 +97,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Get-br-Ail">
                                 <rect key="frame" x="16" y="301" width="361" height="468"/>
                                 <connections>
-                                    <segue destination="g2d-10-gio" kind="embed" id="Wyd-vd-C8F"/>
+                                    <segue destination="p8b-f0-UyA" kind="embed" id="G1u-ah-ikx"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -244,11 +244,19 @@
             <point key="canvasLocation" x="2718" y="382"/>
         </scene>
         <!--Container PagesVC-->
+        <scene sceneID="2n1-HS-pGy">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="p8b-f0-UyA" customClass="ContainerPagesVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6no-cD-DFj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1232" y="655"/>
+        </scene>
+        <!--Container PagesVC-->
         <scene sceneID="qX1-6T-lGc">
             <objects>
                 <viewController modalTransitionStyle="flipHorizontal" id="g2d-10-gio" customClass="ContainerPagesVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5U0-rY-qsA">
-                        <rect key="frame" x="0.0" y="0.0" width="361" height="468"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="w1W-yw-xQr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -256,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzC-Hw-01X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1911" y="586"/>
+            <point key="canvasLocation" x="2329" y="790"/>
         </scene>
         <!--FavoritesVC-->
         <scene sceneID="e1T-7l-2CY">
@@ -313,7 +321,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeG-1D-zCM">
-                                            <rect key="frame" x="358" y="-2.3333333333333339" width="35" height="35.333333333333336"/>
+                                            <rect key="frame" x="358" y="-2" width="35" height="34.666666666666664"/>
                                             <color key="tintColor" name="AccentColor"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" image="star" catalog="system"/>
@@ -471,7 +479,7 @@
         <image name="play" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

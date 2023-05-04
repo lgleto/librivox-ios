@@ -22,9 +22,9 @@ class ContainerPagesVC: UIPageViewController, UIPageViewControllerDelegate, UIPa
         let storyBoard : UIStoryboard = UIStoryboard(name: "Library", bundle: nil)
         
         
-        let readingVC = storyboard?.instantiateViewController(withIdentifier: "ReadingVC") as! UIViewController
-        let toStartVC = storyboard?.instantiateViewController(withIdentifier: "ToStartVC") as! UIViewController
-        let finishedVC = storyboard?.instantiateViewController(withIdentifier: "FinishedVC") as! UIViewController
+        let readingVC = storyboard?.instantiateViewController(withIdentifier: "ReadingVC") as! ReadingVC
+        let toStartVC = storyboard?.instantiateViewController(withIdentifier: "ToStartVC") as! FavoritesVC
+        let finishedVC = storyboard?.instantiateViewController(withIdentifier: "FinishedVC") as! FinishedCVC
         pages = [readingVC, toStartVC, finishedVC]
         
         self.delegate = self
