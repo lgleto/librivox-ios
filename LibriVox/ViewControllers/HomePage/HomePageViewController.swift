@@ -123,8 +123,15 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         cell.genre.text = "Genre: \(self.localBooks[indexPath.row].genres![0].name!)"
-        cell.bookCover.image = UIImage(named: "28187")
         cell.trendingNumber.text = "\(indexPath.row+1)."
+        
+        cell.bookCover.image = nil
+        getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
+            cell.bookCover.kf.setImage(with: img)
+            DispatchQueue.main.async {
+                   cell.bookCover.contentMode = .scaleToFill
+               }
+        }
         
         return cell
     }

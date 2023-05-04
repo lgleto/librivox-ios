@@ -9,60 +9,31 @@ import UIKit
 import SwaggerClient
 import FirebaseFirestore
 
-public struct GenreWithColor{
-    
-    public var _id: String?
-    public var name: String?
-    public var mainColor: String?
-    public var secondaryColor: String?
-}
-
 class DiscoverOptionsVC: UIViewController {
     
     var authors: [Author]?
     var genres: [GenreWithColor]?
     
     @IBOutlet weak var genresCV: UICollectionView!
+
     @IBOutlet weak var authorsCV: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       genresCV.dataSource = self
+        genresCV.delegate = self
+        
         authorsCV.dataSource = self
         authorsCV.delegate = self
         
-        genresCV.dataSource = self
-        genresCV.dataSource = self
-        
-        //addColorToGenre()
-        
-        let db = Firestore.firestore()
-        let genresRef = db.collection("genres")
-        
-        genresRef.getDocuments { querySnapshot, error in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                
-                let genres = querySnapshot!.documents.compactMap { document -> GenreWithColor? in
-                    guard let id = document.data()["id"] as? String,
-                          let name = document.data()["name"] as? String,let mainColor = document.data()["mainColor"] as? String,let secondaryColor = document.data()["secondaryColor"] as? String
-                    else {
-                        print("Invalid data format for document \(document.documentID)")
-                        return nil
-                    }
-                    return GenreWithColor(_id: id, name: name, mainColor: mainColor, secondaryColor: secondaryColor)
-                }
-                
-                self.genres = genres
-                
-                DispatchQueue.main.async {
-                    self.authorsCV.reloadData()
-                }
+        getGenresFromDb(){ genres in
+            self.genres = genres
+            
+            DispatchQueue.main.async {
+              self.genresCV.reloadData()
             }
         }
-        
-        
         
         DefaultAPI.authorsGet(format:"json") { data, error in
             if let error = error {
@@ -73,7 +44,7 @@ class DiscoverOptionsVC: UIViewController {
             if let data = data {
                 self.authors = data.authors
                 DispatchQueue.main.async {
-                    self.genresCV.reloadData()
+                    self.authorsCV.reloadData()
                 }
             }
         }
@@ -89,39 +60,83 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell", for: indexPath) as! AuthorsCell
-        
         switch collectionView.tag {
         case 0:
-            cell.nameAuthor.text = genres?[indexPath.row].name
+            let cell = genresCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell", for: indexPath) as! AuthorsCell
             
+            cell.nameAuthor.text = genres?[indexPath.row].name
             let colorString = genres?[indexPath.row].mainColor!
             cell.circleBackground.backgroundColor = stringToColor(color: String(colorString?.dropFirst() ?? "FFFFFF"))
+            cell.circleBackground.image = imageWith(name: genres?[indexPath.row].name)
+           
+            return cell
+            
         case 1:
-            cell.nameAuthor.text = authors?[indexPath.row].firstName
+            let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell2", for: indexPath) as! AuthorsCell
+            
+            cell.circleBackground.backgroundColor = .black
+            if let author = authors?[indexPath.row] {
+                let firstName = author.firstName ?? "Unknown"
+                let lastName = author.lastName ?? "Author"
+                
+                cell.nameAuthor.text = "\(firstName) \(lastName)"
+                
+            }
+            
+            return cell
         default:
             fatalError("Invalid collection view tag")
         }
-        
-        return cell
     }
     
+    func getCoverArtUrl(from bookPageLink: String, completion: @escaping (String?) -> Void) {
+        guard let url = URL(string: bookPageLink) else {
+            completion(nil)
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data,
+                  error == nil,
+                  let html = String(data: data, encoding: .utf8),
+                  let range = html.range(of: "<a>Download Cover Art</a>") else {
+                completion(nil)
+                return
+            }
+
+            let startIndex = range.lowerBound
+            let substring = String(html[startIndex...])
+
+            if let startRange = substring.range(of: "https://"),
+               let endRange = substring[startRange.upperBound...].range(of: ".jpg") {
+                let coverArtUrl = String(substring[startRange.lowerBound..<endRange.upperBound])
+                print("\(coverArtUrl) aiii daddyy")
+                completion(coverArtUrl)
+            } else {
+                completion(nil)
+            }
+        }
+
+        task.resume()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showGenreSection",
-           let indexPath = authorsCV.indexPathsForSelectedItems?.first,
+           let indexPath = genresCV.indexPathsForSelectedItems?.first,
            let genre = genres?[indexPath.item],
            let genreVC = segue.destination as? GenreVC {
             genreVC.genre = genre
         }
-        /*else if segue.identifier == "showAuthorSection",
-         let indexPath = genresCV.indexPathsForSelectedItems?.first,
-         let genre = genres?[indexPath.item].name,
-         let genreVC = segue.destination as? AuthorVC {
-         genreVC.genre = genre
-         }*/
+        else if segue.identifier == "showAuthor",
+           let indexPath = authorsCV.indexPathsForSelectedItems?.first,
+           let author = authors?[indexPath.row],
+           let authorPageVC = segue.destination as? AuthorPageVC {
+            authorPageVC.author = author
+        }
     }
     
     
 }
+
+
 

@@ -7,16 +7,15 @@
 
 import UIKit
 import SwaggerClient
+import Kingfisher
 
 class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
-    var filteredBooks: [SwaggerClient.Audiobook] = []
+    var filteredBooks: [Audiobook] = []
     
-    var books: [SwaggerClient.Audiobook] = []
-    
+    var searchText : String?
     
     @IBOutlet weak var booksCV: UICollectionView!
-    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -24,41 +23,41 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
         
         booksCV.dataSource = self
         booksCV.delegate = self
-        
-        if let discoverRealVC = navigationController?.viewControllers.first(where: { $0 is DiscoverVC }) as? DiscoverVC {
-            discoverRealVC.delegate = self
-        }
-        
-        //TODO: Show an alert when an error occur
-        DefaultAPI.audiobooksGet(format: "json",extended: 1) { data, error in
-            if let error = error {
-                print("Error getting root data:", error)
-                return
+    }
+    
+    //TODO: FIX (`-´)
+    func applySearchFilter() {
+        filteredBooks.removeAll()
+        if let text = searchText, !text.isEmpty {
+            if let spinner = self.spinner {
+                spinner.startAnimating()
             }
             
-            if let data = data {
-                self.books = data.books ?? []
+            DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1){data, error in
+                if let error = error {
+                    print("Error getting root data:", error)
+                    self.filteredBooks.removeAll()
+                }
+                
+                if let data = data {
+                    self.filteredBooks = data.books ?? []
+                }
                 
                 DispatchQueue.main.async {
-                    self.spinner.stopAnimating()
-                    
-                    self.filteredBooks = self.books
                     self.booksCV.reloadData()
+                    self.spinner.stopAnimating()
                 }
+                
             }
         }
     }
     
-    func didChangeSearchText(_ text: String) {
-        print("entrou aqui")
-        if !text.isEmpty {
-            filteredBooks = books.filter { $0.title?.range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
-        } else {
-            filteredBooks = books
-        }
-        booksCV.reloadData()
+    public func didChangeSearchText(_ text: String) {
+        searchText = text
+        applySearchFilter()
     }
 }
+
 extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,8 +68,15 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         let cell = booksCV.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
         cell.titleBook.text = filteredBooks[indexPath.row].title
+        cell.imageBook.image = nil
+        getCoverBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
+            cell.imageBook.kf.setImage(with: img)
+            cell.imageBook.contentMode = .scaleToFill
+        }
+        
         return cell
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsPage", let indexPath = booksCV.indexPathsForSelectedItems?.first,
