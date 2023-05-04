@@ -1,99 +1,26 @@
 //
-//  HomePageViewController.swift
+//  TrendingBooksVC.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 16/03/2023.
+//  Created by Leandro Silva on 17/04/2023.
 //
 
 import UIKit
+import SwaggerClient
 import FirebaseCore
 import FirebaseFirestore
-import FirebaseAuth
-import SwaggerClient
 
-class HomePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var trendingBooksTable: UITableView!
     
-    
-    @IBOutlet weak var nameText: UILabel!
-    @IBOutlet weak var imgBook: UIImageView!
-    @IBOutlet weak var backgroundContinueReading: UIView!
-    @IBOutlet weak var logo: UIImageView!
-    @IBOutlet weak var progress: UIProgressView!
-    let db = Firestore.firestore()
-    @IBOutlet weak var trendingBooks: UITableView!
-    var booksTrending = [Audiobook]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadTrending {
-            print("sdasda")
-            self.trendingBooks.reloadData()
-            
-        }
-        
-        
-        
-        loadCurrentUser { user in
-            self.nameText.text = "Hello \(user?.username ?? "User not found")"
-        }
-        
-        //getCurrentUserName()
-        
-        //nameText.text = "Hello \(Auth.auth().currentUser!.displayName!)"
-        
-        logo.layer.cornerRadius = logo.layer.bounds.height / 2
-        
-        imgBook.layer.cornerRadius = 5
-        view.clipsToBounds = true
-        
-        progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
-        
-        
-        
-        trendingBooks.delegate = self
-        trendingBooks.dataSource = self
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "homeToBookDetail", sender: localBooks[indexPath.row])
     }
-    
-    func getCurrentUserName(){
-        let db = Firestore.firestore()
-        
-        let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Document data: \(dataDescription)")
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "HomepageToTrendingBooks") {
-                
-        } else if (segue.identifier == "homeToBookDetail"){
-            let destVC = segue.destination as! BookDetailsVC
-            destVC.book = sender as? Audiobook
-        }
-        
-    }
-
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (localBooks.count > 3) {
-            return 3
-        } else {
-            print("Local Books count->" , localBooks.count)
-            return localBooks.count
-        }
-        
+        return localBooks.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellBook
@@ -129,23 +56,36 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    @IBAction func BTNTrendingBooks(_ sender: Any) {
-        performSegue(withIdentifier: "HomepageToTrendingBooks", sender: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "homeToBookDetail", sender: localBooks[indexPath.row])
-    }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        trendingBooksTable.delegate = self
+        trendingBooksTable.dataSource = self
+        // Do any additional setup after loading the view.
+        loadTrending {
+            print("sdasda")
+            self.trendingBooksTable.reloadData()
+            
+        }
+        
+    }
     
-    
-    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
     var trending = [Trending]()
     var localBooks = [Audiobook]()
     func addForTrending(  onCompelition : (()->())? = nil ) {
         if let trend = trending.first {
             DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
-                //print(error!)
                 print(data!.books![0].title!)
                 self.localBooks.append(data!.books![0])
                 self.trending.removeFirst()
@@ -160,13 +100,13 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             
         }
     }
-    
+
     func loadTrending(callback: @escaping ()->() ) {
         
         
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
-        booksRef.order(by: "trending", descending: true).limit(to: 3)
+        booksRef.order(by: "trending", descending: true)
         
         booksRef.getDocuments { querySnapshot, err in
             if let err = err {
@@ -195,24 +135,24 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "HomepageToTrendingBooks") {
+            
+        } else if (segue.identifier == "homeToBookDetail"){
+            let destVC = segue.destination as! BookDetailsVC
+            destVC.book = sender as? Audiobook
+        }
+        
+    }
 
+
+    
+    
+    
+    
     
 }
 
 
-func loadCurrentUser( callback: @escaping (User?)->() ) {
-    let db = Firestore.firestore()
-    let currentUser = Auth.auth().currentUser
-    db.collection("users")
-      .document(currentUser!.uid)
-      .addSnapshotListener({ snapshot, error in
-        if let s = snapshot,
-          let d = s.data(),
-          let user = User.init(dict: d ) {
-          callback(user )
-        }else {
-          callback(nil)
-        }
-      })
-  }
+
 
