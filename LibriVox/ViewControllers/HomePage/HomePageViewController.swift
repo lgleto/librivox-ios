@@ -72,9 +72,16 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destVC = segue.destination as! BookDetailsVC
-        destVC.book = sender as? Audiobook
+        if (segue.identifier == "HomepageToTrendingBooks") {
+                
+        } else if (segue.identifier == "homeToBookDetail"){
+            let destVC = segue.destination as! BookDetailsVC
+            destVC.book = sender as? Audiobook
+        }
+        
     }
+
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (localBooks.count > 3) {
@@ -129,6 +136,10 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    @IBAction func BTNTrendingBooks(_ sender: Any) {
+        performSegue(withIdentifier: "HomepageToTrendingBooks", sender: nil)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "homeToBookDetail", sender: localBooks[indexPath.row])
     }
@@ -141,6 +152,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     func addForTrending(  onCompelition : (()->())? = nil ) {
         if let trend = trending.first {
             DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
+                //print(error!)
                 print(data!.books![0].title!)
                 self.localBooks.append(data!.books![0])
                 self.trending.removeFirst()
