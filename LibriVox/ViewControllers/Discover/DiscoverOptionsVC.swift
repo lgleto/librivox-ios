@@ -73,12 +73,12 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             
         case 1:
             let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell2", for: indexPath) as! AuthorsCell
-            
-            //cell.circleBackground.backgroundColor = .black
+        
             if let author = authors?[indexPath.row] {
                 let firstName = author.firstName ?? "Unknown"
                 let lastName = author.lastName ?? "Author"
                 
+                cell.circleBackground.image = nil
                 cell.nameAuthor.text = "\(firstName) \(lastName)"
                 getPhotoAuthor(authorId: author._id ?? "0", img: cell.circleBackground)
                 

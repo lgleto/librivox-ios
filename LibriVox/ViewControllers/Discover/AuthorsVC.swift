@@ -56,6 +56,8 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
             
             var author = authors?[indexPath.row]
             
+            cell.authorPhoto.image = nil
+            
             if let author = author{
                 getPhotoAuthor(authorId: author._id ?? "0", img: cell.authorPhoto)
                 

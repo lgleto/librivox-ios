@@ -16,6 +16,7 @@ class AuthorPageVC: UIViewController {
     
     @IBOutlet weak var descrAuthor: UILabel!
     @IBOutlet weak var booksTV: UITableView!
+    @IBOutlet weak var authorPhoto: CircularImageView!
     @IBOutlet weak var nameAuthor: UILabel!
     
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class AuthorPageVC: UIViewController {
         
         
         if let author = author{
+            getPhotoAuthor(authorId: author._id!, img: authorPhoto)
+            
             getDescriptionAuthor(id: author._id!) { description in
                 DispatchQueue.main.async {
                     self.descrAuthor.text = description
@@ -102,7 +105,7 @@ func getDescriptionAuthor(id: String, _ callbackDecrip: @escaping (String?) -> V
                 let description = String(contents[range].dropFirst(23).dropLast(4))
                 callbackDecrip(description)
             } else {
-                callbackDecrip("Any description available")
+                callbackDecrip("No description available")
             }
             
         } else {
