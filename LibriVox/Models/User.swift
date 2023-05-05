@@ -7,13 +7,10 @@
 
 import Foundation
 
-enum UserData: String{
-    case name = "name"
-    case username = "username"
-    case email = "email"
-}
-
 class User {
+    static let NAME = "name"
+    static let USERNAME = "username"
+
     var name: String
     var username: String
     var description: String?

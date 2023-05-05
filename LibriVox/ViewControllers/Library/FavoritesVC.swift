@@ -17,9 +17,16 @@ class FavoritesVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getBooksFromUser(isFavorite: true) { audiobooks in
-            self.finalList = audiobooks
-            self.tableView.reloadData()
+        getBooksFromUser(field: BookUser.IS_FAV, value: true) { audiobooks in
+            if audiobooks.isEmpty{
+                let alertImage = UIImage(named: "favoritesBook")
+                let alertText = "No book to start reading"
+                setImageNLabelAlert(view: self.tableView, img: alertImage!, text: alertText)
+            }
+            else{
+                self.finalList = audiobooks
+                self.tableView.reloadData()
+            }
         }
 
     }

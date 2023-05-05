@@ -54,22 +54,16 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
         userPhoto.addGestureRecognizer(tapGestureRecognizer)
         
-        getUserInfo(UserData.name) { name in
+        getUserInfo(User.NAME) { name in
             if let name = name {
                 self.name.text = name
                 downloadProfileImage(name, self.userPhoto)
             }
         }
         
-        getUserInfo(UserData.username) { userName in
+        getUserInfo(User.USERNAME) { userName in
             if let userName = userName {
                 self.userName.text = userName
-            }
-        }
-        
-        getUserInfo(UserData.email) { email in
-            if let email = email {
-                self.email.text = email
             }
         }
     }

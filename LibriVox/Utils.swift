@@ -7,49 +7,6 @@
 
 import Foundation
 import SwaggerClient
-import FirebaseFirestore
-import FirebaseStorage
-import FirebaseAuth
-
-
-func getUserInfo(_ field: UserData,_ callback: @escaping (String?) -> Void) {
-    let db = Firestore.firestore()
-    
-    let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-    
-    userRef.getDocument { (document, error) in
-        if let error = error {
-            print("Error getting user document: \(error.localizedDescription)")
-            callback(nil)
-        } else if let document = document, document.exists {
-            let data = document.data()
-            let name = data?["\(field)"] as? String
-            callback(name)
-        } else {
-            print("User document does not exist")
-            callback(nil)
-        }
-    }
-}
-
-func updateUserInfo(name: String, username: String, email: String) {
-    let db = Firestore.firestore()
-    var dataToUpdate = [String: Any]()
-    
-    dataToUpdate = [
-        UserData.name.rawValue: name,
-        UserData.username.rawValue: username,
-        UserData.email.rawValue: email
-    ]
-    
-    db.collection("users").document(Auth.auth().currentUser!.uid).updateData(dataToUpdate) { err in
-        if let err = err {
-            print("Error writing document: \(err.localizedDescription)")
-        } else {
-            print("Document successfully updated!")
-        }
-    }
-}
 
 func showAlert(_ view : UIViewController,_ message: String) {
     let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
@@ -90,82 +47,6 @@ func displayAuthors(authors: [Author]) -> String {
 func secondsToMinutes(seconds: Int) -> Int{
     return seconds/60
 }
-
-
-func getGenresFromDb(callback: @escaping ([GenreWithColor]) -> Void){
-    var db = Firestore.firestore()
-    let genresRef = db.collection("genres")
-    
-    genresRef.getDocuments{(querySnapshot, err) in
-        if let error = err{
-            print("Error: \(err?.localizedDescription)")
-            return
-        }
-        else
-        {
-            let genres = querySnapshot!.documents.compactMap { document -> GenreWithColor? in
-                guard let id = document.data()["id"] as? String,
-                      let name = document.data()["name"] as? String,let mainColor = document.data()["mainColor"] as? String,let secondaryColor = document.data()["secondaryColor"] as? String,let descr = document.data()["description"] as? String?
-                else {
-                    print("Invalid data format for document \(document.documentID)")
-                    return nil
-                }
-                return GenreWithColor(_id: id, name: name, mainColor: mainColor, secondaryColor: secondaryColor, descr: descr)
-                
-            }
-            
-            callback(genres)
-        }
-        
-    }
-}
-func getBooksFromUser(isReading: Bool? = nil, isFavorite: Bool? = nil, completion: @escaping ([Audiobook]) -> Void) {
-    
-    var finalList: [Audiobook] = []
-    
-    let db = Firestore.firestore()
-    let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-    let bookCollectionRef = userRef.collection("bookCollection")
-    
-    bookCollectionRef.getDocuments { (querySnapshot, error) in
-        if let error = error {
-            print("Error getting documents: \(error.localizedDescription)")
-            return
-        }
-        
-        guard let documents = querySnapshot?.documents else {
-            print("No documents found")
-            return
-        }
-        
-        for document in documents {
-            if let book = BookUser(data: document.data()) {
-                
-                if let isReading = isReading, book.isReading != isReading {
-                    continue
-                }
-                
-                if let isFavorite = isFavorite, book.isFav != isFavorite {
-                    continue
-                }
-                
-                DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id)!, format: "json", extended: 1) { data, error in
-                    if let error = error {
-                        print("Error:", error.localizedDescription)
-                        return
-                    }
-                    if let data = data {
-                        finalList.append(contentsOf: data.books!)
-                        print(data)
-                    }
-                    
-                    completion(finalList)
-                }
-            }
-        }
-    }
-}
-
 
 func imageWith(name: String?) -> UIImage? {
     let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
@@ -216,25 +97,6 @@ func imageWith(name: String?) -> UIImage? {
         }
         
     }.resume()
-}
-
-func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
-    let storageRef = Storage.storage().reference()
-    let imageRef = storageRef.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")
-    
-    let defaultImage = imageWith(name: name)
-    imageView.image = defaultImage
-    imageView.backgroundColor = UIColor(named: "Green Tone")
-    
-    imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-        if let error = error {
-            print("Error downloading image: \(error.localizedDescription)")
-        } else {
-            if let imageData = data {
-                imageView.image = UIImage(data: imageData)
-            }
-        }
-    }
 }
 
 func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){

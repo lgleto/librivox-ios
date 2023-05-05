@@ -16,15 +16,20 @@ class ReadingVC: UITableViewController {
     
     var finalList: [Audiobook] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getBooksFromUser(isReading: true) { audiobooks in
-            self.finalList = audiobooks
-            self.tableView.reloadData()
+        getBooksFromUser(field: BookUser.IS_READING,value: true) { audiobooks in
+            if audiobooks.isEmpty{
+                let alertImage = UIImage(named: "readingBook")
+                let alertText = "No book being read"
+                setImageNLabelAlert(view: self.tableView, img: alertImage!, text: alertText)
+            }
+            else{
+                self.finalList = audiobooks
+                self.tableView.reloadData()
+            }
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,7 +47,7 @@ class ReadingVC: UITableViewController {
         getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
             cell.imgBook.contentMode = .scaleToFill
-        
+            
         }
         if let duration = book.totaltime{
             cell.durationBook.text = "Duration: \(duration)"

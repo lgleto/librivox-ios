@@ -57,7 +57,7 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
                 if let error = error {
                     print("Error getting root data:", error)
                     
-                    let alertImage = UIImage(named: "search 1")
+                    let alertImage = UIImage(named: "notFound")
                     let alertText = "No data available"
                     setImageNLabelAlert(view: self.booksCV, img: alertImage!, text: alertText)
                 }

@@ -23,21 +23,12 @@ class ProfileVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         
-        getUserInfo(UserData.name) { name in
+        getUserInfo(User.NAME) { name in
             if let name = name {
                 self.nameUser.text = name
                 downloadProfileImage(name, self.profilePhoto)
             }
         }
-        
-        getUserInfo(UserData.email) { email in
-            if let userName = email {
-                self.nicknameUser.text = email
-            }else{
-                self.nicknameUser.text = "Atualiza seu email ai menino dsudsa"
-            }
-        }
-        
     }
     
     @IBAction func tapFunction(sender: UITapGestureRecognizer) {
@@ -52,7 +43,6 @@ class ProfileVC: UIViewController {
             let newTheme: UIUserInterfaceStyle = currentTheme == .dark ? .light : .dark
             firstWindow.overrideUserInterfaceStyle = newTheme
         }
-        
     }
      
     func logoutUser() {

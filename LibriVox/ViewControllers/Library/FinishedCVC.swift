@@ -11,17 +11,25 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class FinishedCVC: UICollectionViewController {
-
+    
     var finalList: [Audiobook] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBooksFromUser(isReading: false) { audiobooks in
-            self.finalList = audiobooks
-            self.collectionView.reloadData()
+        
+        getBooksFromUser(field: BookUser.IS_READING, value: false) { audiobooks in
+            if audiobooks.isEmpty{
+                let alertImage = UIImage(named: "completedBook")
+                let alertText = "No book finished yet"
+                setImageNLabelAlert(view: self.collectionView, img: alertImage!, text: alertText)
+            }
+            else{
+                self.finalList = audiobooks
+                
+                self.collectionView.reloadData()
+            }
         }
     }
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return finalList.count
     }
