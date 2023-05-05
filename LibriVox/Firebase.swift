@@ -38,7 +38,7 @@ func getUserInfo(_ field: String,_ callback: @escaping (String?) -> Void) {
     }
 }
 
-func updateUserInfo(name: String, username: String, email: String) {
+func updateUserInfo(name: String, username: String, view: UIViewController) {
     var dataToUpdate = [String: Any]()
     
     dataToUpdate = [
@@ -50,7 +50,7 @@ func updateUserInfo(name: String, username: String, email: String) {
         if let err = err {
             print("Error writing document: \(err.localizedDescription)")
         } else {
-            print("Document successfully updated!")
+            showConfirmationAlert(view, "Profile updated succesfully!")
         }
     }
 }
@@ -86,7 +86,7 @@ func getGenresFromDb(callback: @escaping ([GenreWithColor]) -> Void){
 func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiobook]) -> Void) {
     let userRef = firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid)
     let bookCollectionRef =  userRef.collection(USERBOOK_COLLECTION).whereField(field, isEqualTo: value)
-
+    
     var finalList: [Audiobook] = []
     
     bookCollectionRef.getDocuments { (querySnapshot, error) in
@@ -138,3 +138,28 @@ func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
         }
     }
 }
+
+func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewController){
+    if let user = Auth.auth().currentUser{
+        user.reauthenticate(with: credential) { (result, error) in
+            if let error = error {
+                print("Error reauthenticating user: \(error.localizedDescription)")
+                showAlert(view, "Wrong password. Try again.")
+                return
+            }
+            user.updateEmail(to: email) { (error) in
+                if let error = error {
+                    print("Error updating email: \(error.localizedDescription)")
+                    return
+                }
+                else{
+                    showConfirmationAlert(view, "Email updated sucessfully")
+                }
+            }
+        }
+
+
+    }
+    
+}
+

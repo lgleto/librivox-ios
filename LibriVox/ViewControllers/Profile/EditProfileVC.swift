@@ -12,32 +12,6 @@ import MobileCoreServices
 
 class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBAction func updateProfile(_ sender: Any) {
-        
-        guard let name = name.text, !name.isEmpty,
-              let email = email.text, !email.isEmpty,
-              let username = userName.text, !username.isEmpty else {
-            showAlert(self, "All fields are required")
-            return
-        }
-        updateUserInfo(name: name, username: username, email: email)
-    }
-    
-    @IBAction func sendEmail(_ sender: Any) {
-        guard let email = email.text, !email.isEmpty else{
-            showAlert(self, "A valid email is required")
-            return
-        }
-        
-        Auth.auth().sendPasswordReset(withEmail: email) { err in
-            if let err = err {
-                print("Error writing document: \(err.localizedDescription)")
-            } else {
-                print("Email sent succesfully")
-            }
-        }
-    }
-    
     @IBOutlet weak var email: BlueShadowUITextField!
     @IBOutlet weak var userName: BlueShadowUITextField!
     @IBOutlet weak var name: BlueShadowUITextField!
@@ -46,8 +20,44 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
     let label = UILabel()
     var imagePicker = UIImagePickerController()
     var photoDarkened = false
+    var originalEmail: String?
+    var originalName: String?
+    var originalUserName: String?
     
+    @IBAction func updateProfile(_ sender: Any) {
+        
+        guard let name = name.text, !name.isEmpty,
+              let email = email.text, !email.isEmpty,
+              let username = userName.text, !username.isEmpty else {
+            showConfirmationAlert(self, "There's missing fields","All fields are required")
+            return
+        }
+        
+        if name != originalName || username != originalUserName{
+            updateUserInfo(name: name, username: username, view: self)
+        }
+        
+        if email != originalEmail{
+            updateEmail(email)
+        }
+    }
     
+    @IBAction func sendEmail(_ sender: Any) {
+        guard let email = email.text, !email.isEmpty else{
+            showConfirmationAlert(self, "Fail to send email to:  \(originalEmail)", "Try again later.")
+            return
+        }
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { err in
+            if let err = err {
+                print("Error writing document: \(err.localizedDescription)")
+            } else {
+                showConfirmationAlert(self, "Email sent succesfully")
+            }
+        }
+    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +67,7 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
         getUserInfo(User.NAME) { name in
             if let name = name {
                 self.name.text = name
+                self.originalName = name
                 downloadProfileImage(name, self.userPhoto)
             }
         }
@@ -64,7 +75,13 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
         getUserInfo(User.USERNAME) { userName in
             if let userName = userName {
                 self.userName.text = userName
+                self.originalUserName = userName
             }
+        }
+        
+        if let email = Auth.auth().currentUser?.email{
+            self.email.text = email
+            self.originalEmail = email
         }
     }
     
@@ -122,6 +139,34 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
                 print(error.localizedDescription)
                 return
             }
+        }
+    }
+    
+    func updateEmail(_ email: String){
+        if isValidEmail(email){
+            let alertController = UIAlertController(title: "Password required to continue", message: "To update your email, please provide your password for authentication", preferredStyle: .alert)
+
+            alertController.addTextField { (textField) in
+                textField.isSecureTextEntry = true
+                textField.placeholder = "Password"
+            }
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                if let password = alertController.textFields?.first?.text {
+                    let credential = EmailAuthProvider.credential(withEmail: self.originalEmail!, password: password)
+                    
+                    LibriVox.updateEmail(credential, email, view: self)
+                }
+            }
+
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+
+            present(alertController, animated: true, completion: nil)
+           
+        }else{
+            showConfirmationAlert(self, "The email address is badly formatted.")
         }
     }
     

@@ -29,6 +29,8 @@ class ProfileVC: UIViewController {
                 downloadProfileImage(name, self.profilePhoto)
             }
         }
+        
+        nicknameUser.text = Auth.auth().currentUser?.email
     }
     
     @IBAction func tapFunction(sender: UITapGestureRecognizer) {

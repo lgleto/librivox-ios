@@ -8,9 +8,14 @@
 import Foundation
 import SwaggerClient
 
-func showAlert(_ view : UIViewController,_ message: String) {
-    let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+func showConfirmationAlert(_ view: UIViewController, _ title: String, _ msg: String? = nil){
+    let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        alert.dismiss(animated: true)
+        //view.navigationController?.popViewController(animated: true)
+    }))
+
     view.present(alert, animated: true, completion: nil)
 }
 
@@ -146,4 +151,11 @@ func stringToColor(color: String) -> UIColor {
         blue: CGFloat(i & 0xFF) / 255.0,
         alpha: 1.0
     )
+}
+
+func isValidEmail(_ email: String) -> Bool {
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+    let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    return emailPred.evaluate(with: email)
 }
