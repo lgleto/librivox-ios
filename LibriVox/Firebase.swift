@@ -144,7 +144,7 @@ func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewCon
         user.reauthenticate(with: credential) { (result, error) in
             if let error = error {
                 print("Error reauthenticating user: \(error.localizedDescription)")
-                showAlert(view, "Wrong password. Try again.")
+                showConfirmationAlert(view, "Wrong password. Try again.")
                 return
             }
             user.updateEmail(to: email) { (error) in

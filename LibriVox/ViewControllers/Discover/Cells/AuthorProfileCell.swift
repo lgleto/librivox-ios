@@ -9,5 +9,6 @@ import UIKit
 
 class AuthorProfileCell: UICollectionViewCell {
     
+    @IBOutlet weak var authorPhoto: UIImageView!
     @IBOutlet weak var nameAuthor: UILabel!
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwaggerClient
+import Kingfisher
 
 func showConfirmationAlert(_ view: UIViewController, _ title: String, _ msg: String? = nil){
     let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
@@ -103,6 +104,86 @@ func imageWith(name: String?) -> UIImage? {
         
     }.resume()
 }
+
+func getPhotoAuthor(authorId: String, img: UIImageView){
+    getWikipediaLink(authorId: authorId){ title in
+        
+        let name = title.lastPathComponent
+        getMainImageFromWikipedia(name: name){imgC in
+            
+            if let imgC = imgC{
+                img.kf.setImage(with: imgC)
+                img.contentMode = .scaleAspectFill
+                
+            }else{
+                img.image =  imageWith(name: name)
+            }
+        }
+    }
+}
+
+func getWikipediaLink(authorId: String, _ callback: @escaping (URL) -> Void){
+    var request = URLRequest(url: URL(string: "https://librivox.org/author/\(authorId)")!)
+    request.httpMethod = "GET"
+    
+    let session = URLSession.init(configuration: URLSessionConfiguration.default)
+    session.dataTask(with: request) { data, response, error in
+        if let data = data, let contents = String(data: data, encoding: .ascii) {
+            if let range = contents.range(of: #"<a\s+href="([^"]+)">Wiki - [^<]+</a>"#, options: .regularExpression) {
+                let wikiURL = String(contents[range].split(separator: "\"")[1])
+                if let url = URL(string: wikiURL) {
+                    callback(url)
+                }
+            }
+        } else {
+            print("Error: \(error?.localizedDescription ?? "unknown error")")
+        }
+    }.resume()
+}
+
+
+
+func getMainImageFromWikipedia(name: String,_ callback: @escaping (URL?) -> Void) {
+    guard let url = URL(string: "https://en.wikipedia.org/w/api.php?action=query&titles=\(name)&prop=pageimages&format=json&piprop=original") else {
+        print("Error: Invalid URL")
+        return
+    }
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+
+    let session = URLSession(configuration: URLSessionConfiguration.default)
+    let task = session.dataTask(with: request) { (data, response, error) in
+        DispatchQueue.main.async {
+            guard let data = data else {
+                print("Error: \(error?.localizedDescription ?? "unknown error")")
+                callback(nil)
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let query = json["query"] as? [String: Any],
+                   let pages = query["pages"] as? [String: Any],
+                   let page = pages.values.first as? [String: Any],
+                   let props = page["original"] as? [String: Any],
+                   let originalURLString = props["source"] as? String,
+                   let url = URL(string: originalURLString) {
+                    callback(url)
+                
+                } else {
+                    callback(nil)
+                }
+            } catch {
+                print("Error: \(error.localizedDescription)")
+                callback(nil)
+            }
+        }
+    }
+    task.resume()
+}
+
+
 
 func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
     let templateImage = img.withRenderingMode(.alwaysTemplate)

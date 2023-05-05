@@ -74,12 +74,13 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
         case 1:
             let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell2", for: indexPath) as! AuthorsCell
             
-            cell.circleBackground.backgroundColor = .black
+            //cell.circleBackground.backgroundColor = .black
             if let author = authors?[indexPath.row] {
                 let firstName = author.firstName ?? "Unknown"
                 let lastName = author.lastName ?? "Author"
                 
                 cell.nameAuthor.text = "\(firstName) \(lastName)"
+                getPhotoAuthor(authorId: author._id ?? "0", img: cell.circleBackground)
                 
             }
             
@@ -87,37 +88,6 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
         default:
             fatalError("Invalid collection view tag")
         }
-    }
-    
-    func getCoverArtUrl(from bookPageLink: String, completion: @escaping (String?) -> Void) {
-        guard let url = URL(string: bookPageLink) else {
-            completion(nil)
-            return
-        }
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data,
-                  error == nil,
-                  let html = String(data: data, encoding: .utf8),
-                  let range = html.range(of: "<a>Download Cover Art</a>") else {
-                completion(nil)
-                return
-            }
-
-            let startIndex = range.lowerBound
-            let substring = String(html[startIndex...])
-
-            if let startRange = substring.range(of: "https://"),
-               let endRange = substring[startRange.upperBound...].range(of: ".jpg") {
-                let coverArtUrl = String(substring[startRange.lowerBound..<endRange.upperBound])
-                print("\(coverArtUrl) aiii daddyy")
-                completion(coverArtUrl)
-            } else {
-                completion(nil)
-            }
-        }
-
-        task.resume()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

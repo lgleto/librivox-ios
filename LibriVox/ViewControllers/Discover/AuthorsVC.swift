@@ -54,8 +54,13 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
         else{
             let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorProfileCell", for: indexPath) as! AuthorProfileCell
             
-            cell.nameAuthor.text = (authors?[indexPath.row].firstName ?? "") + " " + (authors?[indexPath.row].lastName ?? " ")
+            var author = authors?[indexPath.row]
             
+            if let author = author{
+                getPhotoAuthor(authorId: author._id ?? "0", img: cell.authorPhoto)
+                
+                cell.nameAuthor.text = (author.firstName ?? "") + " " + (author.lastName ?? " ")
+            }
             return cell
             
         }
