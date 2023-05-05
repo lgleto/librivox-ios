@@ -747,32 +747,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEx-Zn-TBX" customClass="FavoritesToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="125" y="0.0" width="35" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="qvL-Zt-Iqf"/>
-                                                        <constraint firstAttribute="width" constant="35" id="x2S-6w-ghm"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="tinted"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="RSR-JH-auc" secondAttribute="trailing" id="H2H-3b-2Qe"/>
-                                                <constraint firstAttribute="trailing" secondItem="DEx-Zn-TBX" secondAttribute="trailing" constant="15" id="UTp-lw-QAw"/>
-                                                <constraint firstItem="DEx-Zn-TBX" firstAttribute="top" secondItem="LGh-Cn-fbY" secondAttribute="top" id="Yan-b6-kFq"/>
                                                 <constraint firstAttribute="bottom" secondItem="RSR-JH-auc" secondAttribute="bottom" id="Zmd-3n-0Dd"/>
                                                 <constraint firstItem="8bW-7Y-Xpn" firstAttribute="centerX" secondItem="LGh-Cn-fbY" secondAttribute="centerX" id="bBk-hg-k8U"/>
                                                 <constraint firstItem="RSR-JH-auc" firstAttribute="top" secondItem="8bW-7Y-Xpn" secondAttribute="bottom" constant="5" id="bNU-HF-yAz"/>
                                                 <constraint firstItem="8bW-7Y-Xpn" firstAttribute="top" secondItem="LGh-Cn-fbY" secondAttribute="top" constant="10" id="d1m-qh-KMd"/>
                                                 <constraint firstItem="RSR-JH-auc" firstAttribute="leading" secondItem="LGh-Cn-fbY" secondAttribute="leading" id="jIh-4O-9jY"/>
-                                                <constraint firstItem="8bW-7Y-Xpn" firstAttribute="top" secondItem="DEx-Zn-TBX" secondAttribute="bottom" constant="-25" id="yq7-lD-fWQ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <connections>
                                             <outlet property="imageBook" destination="8bW-7Y-Xpn" id="Vyq-ow-tcV"/>
-                                            <outlet property="isFav" destination="DEx-Zn-TBX" id="Pc4-p8-MI7"/>
                                             <outlet property="titleBook" destination="RSR-JH-auc" id="bVl-uS-svb"/>
                                             <segue destination="lgZ-vp-vZD" kind="show" identifier="showDetailsPage" id="IIQ-Pi-tG0"/>
                                         </connections>
@@ -1313,9 +1300,6 @@
         <designable name="BqQ-RH-DeQ">
             <size key="intrinsicContentSize" width="305" height="475"/>
         </designable>
-        <designable name="DEx-Zn-TBX">
-            <size key="intrinsicContentSize" width="61" height="43.666666666666664"/>
-        </designable>
         <designable name="uoZ-gY-XOm">
             <size key="intrinsicContentSize" width="305" height="475"/>
         </designable>
@@ -1334,8 +1318,8 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="play" width="512" height="512"/>
         <image name="play-button" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="wiki" width="512" height="512"/>
         <namedColor name="Lighter Blue Tone">
             <color red="0.43500000238418579" green="0.67799997329711914" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
