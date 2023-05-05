@@ -8,37 +8,61 @@
 import UIKit
 import SwaggerClient
 import Kingfisher
+import Alamofire
 
 class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
     var filteredBooks: [Audiobook] = []
     
-    var searchText : String?
-    
+    private var timer: Timer?
+    private let searchDelay = 0.5
+
     @IBOutlet weak var booksCV: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        filteredBooks = []
+        booksCV.reloadData()
+     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         
         booksCV.dataSource = self
         booksCV.delegate = self
     }
     
-    //TODO: FIX (`-´)
-    func applySearchFilter() {
-        filteredBooks.removeAll()
-        if let text = searchText, !text.isEmpty {
+    public func didChangeSearchText(_ text: String) {
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: searchDelay, repeats: false) { _ in
+            self.applySearchFilter(text)
+            print("didChange executou \(text)")
+            
+        }
+    }
+    
+    //TODO: FIX (`-´) ele continua mesmo se mudo para o outro controller
+    func applySearchFilter(_ text: String) {
+        filteredBooks = []
+        removeImageNLabelAlert(view: booksCV)
+        if !text.isEmpty {
             if let spinner = self.spinner {
                 spinner.startAnimating()
             }
             
-            DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1){data, error in
+             DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { data, error in
                 if let error = error {
                     print("Error getting root data:", error)
-                    self.filteredBooks.removeAll()
+                    
+                    let alertImage = UIImage(named: "search 1")
+                    let alertText = "No data available"
+                    setImageNLabelAlert(view: self.booksCV, img: alertImage!, text: alertText)
                 }
                 
+                print("executou com \(text)")
                 if let data = data {
                     self.filteredBooks = data.books ?? []
                 }
@@ -47,21 +71,15 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
                     self.booksCV.reloadData()
                     self.spinner.stopAnimating()
                 }
-                
             }
         }
-    }
-    
-    public func didChangeSearchText(_ text: String) {
-        searchText = text
-        applySearchFilter()
     }
 }
 
 extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredBooks.count
+        return filteredBooks.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,6 +104,4 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         }
     }
 }
-
-
 

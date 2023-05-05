@@ -23,14 +23,14 @@ class ProfileVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         
-        getuserInfo(UserData.name) { name in
+        getUserInfo(UserData.name) { name in
             if let name = name {
                 self.nameUser.text = name
                 downloadProfileImage(name, self.profilePhoto)
             }
         }
         
-        getuserInfo(UserData.email) { email in
+        getUserInfo(UserData.email) { email in
             if let userName = email {
                 self.nicknameUser.text = email
             }else{

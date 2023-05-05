@@ -736,6 +736,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bW-7Y-Xpn" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="27.666666666666671" y="10" width="120.00000000000001" height="182"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" red="0.3921568627" green="0.67799997329999995" blue="0.91799998279999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="cIN-CW-FjW"/>
                                                         <constraint firstAttribute="height" constant="182" id="ofa-0K-5e2"/>

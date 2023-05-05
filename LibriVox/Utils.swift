@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseAuth
 
 
-func getuserInfo(_ field: UserData,_ callback: @escaping (String?) -> Void) {
+func getUserInfo(_ field: UserData,_ callback: @escaping (String?) -> Void) {
     let db = Firestore.firestore()
     
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
@@ -32,7 +32,7 @@ func getuserInfo(_ field: UserData,_ callback: @escaping (String?) -> Void) {
     }
 }
 
-func updateDataUser(name: String, username: String, email: String) {
+func updateUserInfo(name: String, username: String, email: String) {
     let db = Firestore.firestore()
     var dataToUpdate = [String: Any]()
     
@@ -237,8 +237,41 @@ func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
     }
 }
 
+func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
+    let templateImage = img.withRenderingMode(.alwaysTemplate)
+    let imageView = UIImageView(image: templateImage)
+    imageView.contentMode = .scaleAspectFill
+    imageView.tintColor = UIColor.lightGray
+    imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+    
+    let label = UILabel()
+    label.text = text
+    label.textAlignment = .center
+    label.textColor = UIColor.lightGray
+    label.font = UIFont(name: "Nunito", size: 17)
+    
+    let stackView = UIStackView(arrangedSubviews: [imageView, label])
+    stackView.axis = .vertical
+    stackView.spacing = 15
+    
+    view.addSubview(stackView)
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    ])
+}
 
-
+func removeImageNLabelAlert(view: UIScrollView) {
+    for subview in view.subviews {
+        if let stackView = subview as? UIStackView {
+            stackView.removeFromSuperview()
+            return
+        }
+    }
+}
 
 
 func stringToColor(color: String) -> UIColor {
@@ -251,88 +284,4 @@ func stringToColor(color: String) -> UIColor {
         blue: CGFloat(i & 0xFF) / 255.0,
         alpha: 1.0
     )
-}
-func addDescr(){
-    let genresRef = Firestore.firestore().collection("genres")
-    let genres: [String: String] = [
-        "Epics": "Long narrative poems that typically celebrate heroic deeds and legendary events.",
-        "Fantastic Fiction": "Fictional stories that involve elements of fantasy, such as magic or mythical creatures.",
-        "Historical Fiction": "Fictional stories that are set in a specific time period in history and often incorporate real events or people.",
-        "Poetry": "Literary works that use language to evoke emotion and imagery through the use of meter, rhyme, and other techniques.",
-        "Epistolary Fiction": "Fictional stories that are told through a series of letters or diary entries.","Action & Adventure Fiction": "Fictional stories that are focused on exciting and often dangerous events or exploits.",
-        "Romance": "Fictional stories that focus on romantic relationships and emotions.",
-        "Travel & Geography": "Non-fiction works that describe places, cultures, and landscapes around the world.",
-        "Literary Fiction": "Fictional stories that are focused on the artistry of writing and often explore complex themes and ideas.",
-        "Multi-version (Weekly and Fortnightly poetry)": "Poetry that is published on a regular schedule, often in installments.",
-        "General Fiction": "Fictional stories that do not fit neatly into a specific genre or category.",
-        "Crime & Mystery Fiction": "Fictional stories that are focused on solving a crime or uncovering a mystery.",
-        "Sonnets": "Poems that have a specific form, consisting of 14 lines and a rhyme scheme.",
-        "Children's Fiction": "Fictional stories that are intended for a young audience.",
-        "Nautical & Marine Fiction": "Fictional stories that are set on or around the ocean.",
-        "Religion": "Non-fiction works that explore religious beliefs and practices.",
-        "Humorous Fiction": "Fictional stories that are intended to be funny or humorous.",
-        "War & Military": "Fictional stories that are set during times of war or conflict and often focus on military themes.",
-        "Myths, Legends & Fairy Tales": "Stories that involve mythical or magical elements and are often passed down through generations.",
-        "Psychology": "Non-fiction works that explore human behavior and the mind.",
-        "Biography & Autobiography": "Non-fiction works that tell the story of a person's life.",
-        "Satire": "Literary works that use humor or irony to criticize society or human behavior.",
-        "Philosophy": "Non-fiction works that explore the nature of reality, knowledge, and existence.",
-        "Animals & Nature": "Non-fiction works that explore the natural world and its inhabitants.",
-        "Non-fiction": "Works of literature that are based on real events or information.",
-        "Astronomy, Physics & Mechanics": "Non-fiction works that explore the scientific principles of the natural world.",
-        "Classics (Greek & Latin Antiquity)": "Works of literature from the ancient Greek and Roman civilizations.",
-        "Published 1900 onward": "Literature that has been published since the turn of the 20th century."
-    ]
-    
-    for (key, value) in genres {
-        genresRef.whereField("name", isEqualTo: key).getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error getting documentID for \(key): \(error.localizedDescription)")
-                return
-            }
-            
-            guard let documentID = snapshot?.documents.first?.documentID else {
-                print("DocumentID not found for \(key)")
-                return
-            }
-            
-            genresRef.document(documentID).setData(["description": value], merge: true) { (error) in
-                if let error = error {
-                    print("Error updating description for \(key): \(error.localizedDescription)")
-                    return
-                }
-                
-                print("Description added for \(key)")
-            }
-        }
-    }
-}
-
-func addColorToGenre(){
-    let baseColors = ["#CEB3E0", "#E5CDBE", "#D5B3E5", "#C1D5C7", "#A9C7E0", "#E5E4C1", "#E5BED1", "#D5B3A9", "#B3E5BE", "#B3D5E5", "#E5A9C1", "#B3E5A9", "#E0DCCD", "#BEBCE5", "#E5B3D5", "#F2DCC1", "#A9FFE5", "#E5CDBE", "#B39FDD", "#B3D5A9", "#BEC1E5", "#9FA9D5", "#F2B6B5", "#E5BEFF", "#A9C7FF", "#C7E5A9", "#B3E5B3", "#D6C1A9", "#E5B3E5", "#A9B3E5"]
-    
-    let lighterColors = ["#E6D4F2", "#F2E6E0", "#F1E6F2", "#E4F2E3", "#D4E6F1", "#F2F1E6", "#F2E0E6", "#F1E6D4", "#E6F2E0", "#E6F1F2", "#F2D4E6", "#E6F2D4", "#F4F1DE", "#E6E4F2", "#F2E6F1", "#F7E7CE", "#D4F2E6", "#F2E6E4", "#E6D4EF", "#E6F1D4", "#E0E6F2", "#D4F1E6", "#F7CAC9", "#E6E0F2", "#D4E6F2", "#E4F2E6", "#E6F2E6", "#EFE6D4", "#F2E6F2", "#E0E6F2"]
-    
-    let genresRef = Firestore.firestore().collection("genres")
-    genresRef.getDocuments { querySnapshot, error in
-        if let error = error {
-            print("Error getting documents: \(error)")
-        } else {
-            let genres = querySnapshot!.documents
-            for (index, genre) in genres.enumerated() {
-                let mainColor = baseColors[index]
-                let secondaryColor = lighterColors[index]
-                genresRef.document(genre.documentID).updateData([
-                    "mainColor": mainColor,
-                    "secondaryColor": secondaryColor
-                ]) { error in
-                    if let error = error {
-                        print("Error updating genre document: \(error)")
-                    } else {
-                        print("Genre document updated successfully")
-                    }
-                }
-            }
-        }
-    }
 }

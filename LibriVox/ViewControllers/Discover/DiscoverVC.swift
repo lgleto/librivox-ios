@@ -17,22 +17,18 @@ class DiscoverVC: UIViewController {
     
     private var emptyStateVC: DiscoverOptionsVC?
     private var resultsVC: ResultBooksVC?
-    private var timer: Timer?
-    private let searchDelay = 0.3
     
     @IBAction func searchHandler(_ sender: UITextField) {
         if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
             
-            timer?.invalidate()
-            
-            timer = Timer.scheduledTimer(withTimeInterval: searchDelay, repeats: false) { _ in
                 self.resultsVC?.didChangeSearchText(searchText)
-            }
+        
             
             addViewController(resultsVC!, container, emptyStateVC)
             
         } else {
             addViewController(emptyStateVC!,container,resultsVC)
+            print("executou inicio")
         }
     }
     

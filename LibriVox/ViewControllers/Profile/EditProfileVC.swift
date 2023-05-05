@@ -20,7 +20,7 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
             showAlert(self, "All fields are required")
             return
         }
-        updateDataUser(name: name, username: username, email: email)
+        updateUserInfo(name: name, username: username, email: email)
     }
     
     @IBAction func sendEmail(_ sender: Any) {
@@ -54,20 +54,20 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
         userPhoto.addGestureRecognizer(tapGestureRecognizer)
         
-        getuserInfo(UserData.name) { name in
+        getUserInfo(UserData.name) { name in
             if let name = name {
                 self.name.text = name
                 downloadProfileImage(name, self.userPhoto)
             }
         }
         
-        getuserInfo(UserData.username) { userName in
+        getUserInfo(UserData.username) { userName in
             if let userName = userName {
                 self.userName.text = userName
             }
         }
         
-        getuserInfo(UserData.email) { email in
+        getUserInfo(UserData.email) { email in
             if let email = email {
                 self.email.text = email
             }
