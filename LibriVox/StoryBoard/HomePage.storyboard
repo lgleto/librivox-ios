@@ -226,6 +226,10 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="bRL-z3-kfn"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="rVt-aq-SHm">
+                                <rect key="frame" x="16" y="383" width="343" height="330"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -247,6 +251,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="76W-U2-02L"/>
                     <connections>
+                        <outlet property="IndicatorView" destination="rVt-aq-SHm" id="DbN-fF-PLY"/>
                         <outlet property="backgroundContinueReading" destination="oqc-aF-cfm" id="CuM-lk-h2K"/>
                         <outlet property="imgBook" destination="C1L-mf-Iv7" id="MUN-od-s9G"/>
                         <outlet property="logo" destination="3nx-NT-hZh" id="9t4-Ci-TOg"/>
