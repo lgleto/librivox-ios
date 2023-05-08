@@ -10,11 +10,13 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import SwaggerClient
+import Reachability
 
 class HomePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
+    @IBOutlet weak var IndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var imgBook: UIImageView!
     @IBOutlet weak var backgroundContinueReading: UIView!
@@ -24,15 +26,19 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var trendingBooks: UITableView!
     var booksTrending = [Audiobook]()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTrending {
-            print("sdasda")
-            self.trendingBooks.reloadData()
-            
-        }
-        
-        
+        IndicatorView.startAnimating()
+        IndicatorView.hidesWhenStopped = true
+        self.tabBarController?.tabBar.isHidden = false
+
+        checkWifi()
         
         loadCurrentUser { user in
             self.nameText.text = "Hello \(user?.username ?? "User not found")"
@@ -53,6 +59,10 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         trendingBooks.delegate = self
         trendingBooks.dataSource = self
+        
+        
+        
+
         
     }
     
@@ -203,7 +213,38 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
-    
+    func checkWifi() {
+        let networkCheck = NetworkCheck.sharedInstance()
+        print("enter check wifi")
+        if networkCheck.currentStatus == .satisfied{
+                        //Do something
+            self.loadTrending {
+                print("sdasda")
+                self.trendingBooks.reloadData()
+                self.IndicatorView.stopAnimating()
+            }
+                    }else{
+                        //Show no network alert
+                        let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { action in
+                            switch action.style{
+                                case .default:
+                                self.checkWifi()
+                                
+                                case .cancel:
+                                print("cancel")
+                                
+                                case .destructive:
+                                print("destructive")
+                                
+                            @unknown default:
+                                print("this wasnt suposed to happen")
+                            }
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+    }
+
 }
 
 

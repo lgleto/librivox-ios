@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3115156229DB2099007FB168 /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3115156129DB2099007FB168 /* Trending.swift */; };
 		31167AA929ED547800B9845A /* TrendingBooksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31167AA829ED547800B9845A /* TrendingBooksVC.swift */; };
+		312809882A08F3B400B6BAE7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 312809872A08F3B400B6BAE7 /* Reachability */; };
 		317B4BFE29CC6FD30058F4B9 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */; };
 		317B4C0129CC78540058F4B9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0029CC78540058F4B9 /* GoogleSignIn */; };
 		317B4C0329CC78540058F4B9 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0229CC78540058F4B9 /* GoogleSignInSwift */; };
@@ -155,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31DB788F29C8648D00006CE8 /* FirebaseDatabaseSwift in Frameworks */,
+				312809882A08F3B400B6BAE7 /* Reachability in Frameworks */,
 				31DB789329C8648D00006CE8 /* FirebaseFunctions in Frameworks */,
 				31DB789729C8648D00006CE8 /* FirebaseStorage in Frameworks */,
 				31DB788929C8648D00006CE8 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -395,6 +397,7 @@
 				317B4C0029CC78540058F4B9 /* GoogleSignIn */,
 				317B4C0229CC78540058F4B9 /* GoogleSignInSwift */,
 				317B4C0929CCBD6A0058F4B9 /* SimpleToast */,
+				312809872A08F3B400B6BAE7 /* Reachability */,
 			);
 			productName = LibriVox;
 			productReference = 319FA01329C36445006895CB /* LibriVox.app */;
@@ -428,6 +431,7 @@
 				31DB788529C8648D00006CE8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				317B4C0829CCBD6A0058F4B9 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				312809862A08F3B400B6BAE7 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 319FA01429C36445006895CB /* Products */;
 			projectDirPath = "";
@@ -769,6 +773,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		312809862A08F3B400B6BAE7 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
@@ -796,6 +808,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		312809872A08F3B400B6BAE7 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 312809862A08F3B400B6BAE7 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		317B4C0029CC78540058F4B9 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 317B4BFF29CC78540058F4B9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
