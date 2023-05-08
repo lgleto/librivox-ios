@@ -818,21 +818,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uoZ-gY-XOm" customClass="BlurredImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="cGR-NF-Gvc"/>
+                                    <constraint firstAttribute="height" constant="350" id="cGR-NF-Gvc"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BqQ-RH-DeQ" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="16" y="20" width="142" height="230"/>
+                                <rect key="frame" x="16" y="123" width="142" height="230"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="142" id="Lax-ws-5vo"/>
                                     <constraint firstAttribute="height" constant="230" id="YSZ-gs-QIG"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ome-aY-r6e">
-                                <rect key="frame" x="183" y="35" width="64" height="20.666666666666671"/>
+                                <rect key="frame" x="183" y="138" width="64" height="20.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="ykz-fc-490"/>
                                 </constraints>
@@ -841,7 +841,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJx-0e-0gz">
-                                <rect key="frame" x="183" y="65.666666666666671" width="45" height="20.666666666666671"/>
+                                <rect key="frame" x="183" y="168.66666666666666" width="45" height="20.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="Pdu-lg-sUp"/>
                                 </constraints>
@@ -850,13 +850,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-Ob-d0u">
-                                <rect key="frame" x="233" y="65.666666666666671" width="144" height="20.666666666666671"/>
+                                <rect key="frame" x="233" y="168.66666666666666" width="144" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Author:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwZ-5T-BQQ">
-                                <rect key="frame" x="183" y="96.333333333333329" width="55" height="20.666666666666671"/>
+                                <rect key="frame" x="183" y="199.33333333333334" width="55" height="20.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="W1b-LZ-Fkf"/>
                                 </constraints>
@@ -865,13 +865,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afh-3e-fIw">
-                                <rect key="frame" x="243" y="96.333333333333329" width="134" height="20.666666666666671"/>
+                                <rect key="frame" x="243" y="199.33333333333334" width="134" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Nº Sections:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGe-JO-Air">
-                                <rect key="frame" x="183" y="127.00000000000001" width="82" height="20.666666666666671"/>
+                                <rect key="frame" x="183" y="230" width="82" height="20.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="82" id="EmB-jA-jM0"/>
                                 </constraints>
@@ -880,26 +880,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maU-nG-kv0">
-                                <rect key="frame" x="270" y="137.33333333333334" width="107" height="0.0"/>
+                                <rect key="frame" x="270" y="240.33333333333334" width="107" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synopses" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EF-E9-WnD">
-                                <rect key="frame" x="16" y="350" width="361" height="20.666666666666686"/>
+                                <rect key="frame" x="16" y="380" width="361" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3H-Y0-UCq">
-                                <rect key="frame" x="16" y="380.66666666666669" width="361" height="134.00000000000006"/>
+                                <rect key="frame" x="16" y="410.66666666666669" width="361" height="134.00000000000006"/>
                                 <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rRa-6w-Ngk">
-                                <rect key="frame" x="0.0" y="560.33333333333337" width="393" height="291.66666666666663"/>
+                                <rect key="frame" x="0.0" y="590.33333333333337" width="393" height="178.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionsCell" id="4X0-5L-oM6" customClass="SectionsCell" customModule="LibriVox" customModuleProvider="target">
@@ -960,19 +960,19 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsV-Ie-0eX">
-                                <rect key="frame" x="16" y="529.66666666666663" width="357" height="20.666666666666629"/>
+                                <rect key="frame" x="16" y="559.66666666666663" width="357" height="20.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKR-gU-dVx">
-                                <rect key="frame" x="255" y="35" width="122" height="20.666666666666671"/>
+                                <rect key="frame" x="255" y="138" width="122" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="Language:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn2-N2-AyB">
-                                <rect key="frame" x="183" y="155.66666666666666" width="71.333333333333314" height="20.666666666666657"/>
+                                <rect key="frame" x="183" y="258.66666666666669" width="71.333333333333314" height="20.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71.329999999999998" id="MZL-3Z-zFO"/>
                                 </constraints>
@@ -981,13 +981,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Portuguese" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUn-HA-qwg">
-                                <rect key="frame" x="262.33333333333331" y="155.66666666666666" width="114.66666666666669" height="20.666666666666657"/>
+                                <rect key="frame" x="262.33333333333331" y="258.66666666666669" width="114.66666666666669" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-Zd-hsb">
-                                <rect key="frame" x="327" y="200" width="50" height="50"/>
+                                <rect key="frame" x="327" y="293" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="ozG-3Q-iOa"/>
@@ -1002,8 +1002,8 @@
                                     <action selector="didClick:" destination="lgZ-vp-vZD" eventType="touchUpInside" id="UsY-Gl-f9u"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuA-Wl-j9P">
-                                <rect key="frame" x="352" y="20" width="25" height="25"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuA-Wl-j9P" customClass="FavoritesToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                <rect key="frame" x="352" y="123" width="25" height="25"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="1IQ-wb-l20"/>
@@ -1031,7 +1031,6 @@
                             <constraint firstItem="uoZ-gY-XOm" firstAttribute="leading" secondItem="Rq7-th-1iH" secondAttribute="leading" id="2sc-m4-J8D"/>
                             <constraint firstItem="Afh-3e-fIw" firstAttribute="leading" secondItem="AwZ-5T-BQQ" secondAttribute="trailing" constant="5" id="4V7-kc-lEz"/>
                             <constraint firstItem="Rq7-th-1iH" firstAttribute="trailing" secondItem="RUn-HA-qwg" secondAttribute="trailing" constant="16" id="4ji-yy-vee"/>
-                            <constraint firstItem="2EF-E9-WnD" firstAttribute="top" secondItem="uoZ-gY-XOm" secondAttribute="bottom" constant="30" id="5mI-Cd-h06"/>
                             <constraint firstItem="WJx-0e-0gz" firstAttribute="leading" secondItem="BqQ-RH-DeQ" secondAttribute="trailing" constant="25" id="6f4-Bi-Aqd"/>
                             <constraint firstItem="oeW-Ob-d0u" firstAttribute="leading" secondItem="WJx-0e-0gz" secondAttribute="trailing" constant="5" id="6rR-Xb-nhS"/>
                             <constraint firstItem="Rq7-th-1iH" firstAttribute="trailing" secondItem="DNe-Zd-hsb" secondAttribute="trailing" constant="16" id="7uX-yr-muv"/>
@@ -1062,13 +1061,14 @@
                             <constraint firstAttribute="trailing" secondItem="uoZ-gY-XOm" secondAttribute="trailing" id="fVz-h0-k6g"/>
                             <constraint firstItem="MKR-gU-dVx" firstAttribute="leading" secondItem="Ome-aY-r6e" secondAttribute="trailing" constant="8" id="h4h-kt-1ad"/>
                             <constraint firstItem="Rq7-th-1iH" firstAttribute="trailing" secondItem="rRa-6w-Ngk" secondAttribute="trailing" id="he4-ZK-UmH"/>
+                            <constraint firstItem="2EF-E9-WnD" firstAttribute="top" secondItem="uoZ-gY-XOm" secondAttribute="bottom" constant="30" id="jGx-MW-whG"/>
                             <constraint firstItem="MKR-gU-dVx" firstAttribute="top" secondItem="Ome-aY-r6e" secondAttribute="top" id="lbE-yR-Cty"/>
                             <constraint firstItem="WsV-Ie-0eX" firstAttribute="top" secondItem="I3H-Y0-UCq" secondAttribute="bottom" constant="15" id="nRl-iX-ilW"/>
                             <constraint firstItem="KGe-JO-Air" firstAttribute="top" secondItem="AwZ-5T-BQQ" secondAttribute="bottom" constant="10" id="nV9-ha-Fjh"/>
                             <constraint firstItem="Rq7-th-1iH" firstAttribute="trailing" secondItem="WsV-Ie-0eX" secondAttribute="trailing" constant="20" id="pJU-bj-ppv"/>
                             <constraint firstItem="AwZ-5T-BQQ" firstAttribute="leading" secondItem="BqQ-RH-DeQ" secondAttribute="trailing" constant="25" id="uS4-Mt-DGn"/>
                             <constraint firstItem="uoZ-gY-XOm" firstAttribute="top" secondItem="CXv-Wv-dOB" secondAttribute="top" id="v3Y-oM-UOs"/>
-                            <constraint firstItem="DNe-Zd-hsb" firstAttribute="bottom" secondItem="BqQ-RH-DeQ" secondAttribute="bottom" id="wcz-Y4-4kq"/>
+                            <constraint firstItem="DNe-Zd-hsb" firstAttribute="bottom" secondItem="BqQ-RH-DeQ" secondAttribute="bottom" constant="-10" id="wcz-Y4-4kq"/>
                             <constraint firstItem="Rq7-th-1iH" firstAttribute="trailing" secondItem="MKR-gU-dVx" secondAttribute="trailing" constant="16" id="ydH-x6-ej1"/>
                             <constraint firstItem="BqQ-RH-DeQ" firstAttribute="top" secondItem="Rq7-th-1iH" secondAttribute="top" constant="20" id="zdp-II-ypE"/>
                         </constraints>
@@ -1256,16 +1256,11 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="title" destination="QiY-UF-HoN" id="j0a-YV-U8I"/>
+                                            <segue destination="lgZ-vp-vZD" kind="show" id="yxa-Fc-y6T"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9Y-GS-qmy">
-                                <rect key="frame" x="302" y="32" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ueH-3K-CCk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1308,7 +1303,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="QqL-zu-y1L"/>
-        <segue reference="IIQ-Pi-tG0"/>
+        <segue reference="yxa-Fc-y6T"/>
         <segue reference="vDx-pZ-vS1"/>
     </inferredMetricsTieBreakers>
     <resources>

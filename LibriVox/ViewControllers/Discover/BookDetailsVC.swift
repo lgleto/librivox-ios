@@ -39,9 +39,6 @@ class BookDetailsVC: UIViewController {
         playBtn.setImage(normalImage, for: .normal)
         playBtn.setImage(selectedImage, for: .selected)
         
-        favBtn.setImage(UIImage(named: "star"), for: .normal)
-        favBtn.setImage(UIImage(named: "starOn"), for: .selected)
-        
         sectionsTV.dataSource = self
         sectionsTV.delegate = self
         
@@ -107,9 +104,6 @@ class BookDetailsVC: UIViewController {
         }else
         {
             let bookData: [String: Any] = [
-                "id": book?._id,
-                "timeStopped": "",
-                "isReading": false,
                 "isFav": true
             ]
             
