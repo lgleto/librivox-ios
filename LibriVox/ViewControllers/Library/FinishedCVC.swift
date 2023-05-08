@@ -41,9 +41,16 @@ class FinishedCVC: UICollectionViewController {
         cell.imageBook.image = nil
         getCoverBook(url: finalList[indexPath.row].urlLibrivox!){img in
             cell.imageBook.kf.setImage(with: img)
-            cell.imageBook.contentMode = .scaleToFill
         }
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailsBook", let indexPath = collectionView.indexPathsForSelectedItems?.first,
+           let detailVC = segue.destination as? BookDetailsVC {
+            let item = indexPath.item
+            detailVC.book = finalList[item]
+        }
     }
 }

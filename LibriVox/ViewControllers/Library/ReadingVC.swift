@@ -46,7 +46,6 @@ class ReadingVC: UITableViewController {
         cell.imgBook.image = nil
         getCoverBook(url: book.urlLibrivox!){img in
             cell.imgBook.kf.setImage(with: img)
-            cell.imgBook.contentMode = .scaleToFill
             
         }
         if let duration = book.totaltime{
@@ -54,5 +53,13 @@ class ReadingVC: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
+           let detailVC = segue.destination as? BookDetailsVC {
+            let item = indexPath.item
+            detailVC.book = finalList[indexPath.row]
+        }
     }
 }

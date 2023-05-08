@@ -89,7 +89,6 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.imageBook.image = nil
         getCoverBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
             cell.imageBook.kf.setImage(with: img)
-            cell.imageBook.contentMode = .scaleToFill
         }
         
         return cell

@@ -72,11 +72,10 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
                     }
                 }
                 
-                
                 cell.nameAuthor.text = (author.firstName ?? "") + " " + (author.lastName ?? " ")
             }
             return cell
-            
+    
         }
         
     }

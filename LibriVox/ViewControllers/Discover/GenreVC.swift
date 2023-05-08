@@ -82,7 +82,6 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
     
             getCoverBook(url: (book?.urlLibrivox!)!){img in
                 cell.imgAudioBook.kf.setImage(with: img)
-                cell.imgAudioBook.contentMode = .scaleToFill
             }
             
             return cell

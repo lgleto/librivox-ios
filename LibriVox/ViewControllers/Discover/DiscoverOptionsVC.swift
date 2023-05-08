@@ -68,6 +68,7 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             let colorString = genres?[indexPath.row].mainColor!
             cell.circleBackground.backgroundColor = stringToColor(color: String(colorString?.dropFirst() ?? "FFFFFF"))
             cell.circleBackground.image = imageWith(name: genres?[indexPath.row].name)
+            
            
             return cell
             
