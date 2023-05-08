@@ -293,13 +293,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9E-br-CQK">
-                                <rect key="frame" x="16" y="58.999999999999993" width="361" height="31.666666666666664"/>
+                                <rect key="frame" x="16" y="27" width="361" height="31.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Seach by title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2kQ-zL-BTo">
-                                <rect key="frame" x="16" y="100.66666666666667" width="361" height="26.333333333333329"/>
+                                <rect key="frame" x="16" y="68.666666666666671" width="361" height="26.333333333333329"/>
                                 <color key="tintColor" name="Main Blue Tone"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -308,7 +308,7 @@
                                 </connections>
                             </textField>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n29-2E-J42">
-                                <rect key="frame" x="0.0" y="157" width="393" height="612"/>
+                                <rect key="frame" x="0.0" y="125" width="393" height="644"/>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nNy-Rx-W6u"/>
@@ -321,7 +321,7 @@
                             <constraint firstItem="nNy-Rx-W6u" firstAttribute="trailing" secondItem="n29-2E-J42" secondAttribute="trailing" id="SSM-b8-PBf"/>
                             <constraint firstItem="2kQ-zL-BTo" firstAttribute="top" secondItem="S9E-br-CQK" secondAttribute="bottom" constant="10" id="evd-K7-uox"/>
                             <constraint firstItem="n29-2E-J42" firstAttribute="top" secondItem="2kQ-zL-BTo" secondAttribute="bottom" constant="30" id="ex3-Ta-t3e"/>
-                            <constraint firstItem="S9E-br-CQK" firstAttribute="top" secondItem="nNy-Rx-W6u" secondAttribute="top" id="lIz-jP-gia"/>
+                            <constraint firstItem="S9E-br-CQK" firstAttribute="top" secondItem="nNy-Rx-W6u" secondAttribute="top" constant="-32" id="lIz-jP-gia"/>
                             <constraint firstItem="nNy-Rx-W6u" firstAttribute="trailing" secondItem="2kQ-zL-BTo" secondAttribute="trailing" constant="16" id="ow3-ba-jfS"/>
                             <constraint firstItem="n29-2E-J42" firstAttribute="bottom" secondItem="nNy-Rx-W6u" secondAttribute="bottom" id="t0j-mp-uUW"/>
                             <constraint firstItem="n29-2E-J42" firstAttribute="leading" secondItem="nNy-Rx-W6u" secondAttribute="leading" id="wdb-EQ-9AK"/>
@@ -1307,7 +1307,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IQw-s6-9v8"/>
+        <segue reference="QqL-zu-y1L"/>
         <segue reference="IIQ-Pi-tG0"/>
         <segue reference="vDx-pZ-vS1"/>
     </inferredMetricsTieBreakers>

@@ -25,10 +25,12 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     let db = Firestore.firestore()
     @IBOutlet weak var trendingBooks: UITableView!
     var booksTrending = [Audiobook]()
+    var networkCheck = NetworkCheck.sharedInstance()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
         
     }
     
@@ -214,7 +216,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func checkWifi() {
-        let networkCheck = NetworkCheck.sharedInstance()
+        networkCheck = NetworkCheck.sharedInstance()
         print("enter check wifi")
         if networkCheck.currentStatus == .satisfied{
                         //Do something

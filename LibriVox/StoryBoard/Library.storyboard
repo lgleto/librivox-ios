@@ -32,13 +32,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hr-O9-Ajt">
-                                <rect key="frame" x="16" y="59" width="361" height="33"/>
+                                <rect key="frame" x="16" y="27" width="361" height="33"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="et3-JV-DZ3" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="16" y="121" width="361" height="88"/>
+                                <rect key="frame" x="16" y="89" width="361" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total hours listened" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-dW-Yjw">
                                         <rect key="frame" x="33" y="51.333333333333343" width="131" height="20.666666666666671"/>
@@ -80,7 +80,7 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HCo-hA-CH5">
-                                <rect key="frame" x="16" y="241" width="361" height="36"/>
+                                <rect key="frame" x="16" y="209" width="361" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="avE-Yr-UTO"/>
                                 </constraints>
@@ -95,7 +95,7 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Get-br-Ail">
-                                <rect key="frame" x="16" y="301" width="361" height="468"/>
+                                <rect key="frame" x="16" y="269" width="361" height="500"/>
                                 <connections>
                                     <segue destination="p8b-f0-UyA" kind="embed" id="G1u-ah-ikx"/>
                                 </connections>
@@ -108,7 +108,7 @@
                             <constraint firstItem="HCo-hA-CH5" firstAttribute="top" secondItem="et3-JV-DZ3" secondAttribute="bottom" constant="32" id="Bfr-qR-mOh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HCo-hA-CH5" secondAttribute="trailing" constant="16" id="CBN-5y-PQG"/>
                             <constraint firstItem="0Hr-O9-Ajt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="IJ8-Nv-37d"/>
-                            <constraint firstItem="0Hr-O9-Ajt" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Lqd-Po-Cb6"/>
+                            <constraint firstItem="0Hr-O9-Ajt" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="-32" id="Lqd-Po-Cb6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Get-br-Ail" secondAttribute="bottom" id="UL8-3r-v3p"/>
                             <constraint firstItem="Get-br-Ail" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="h3O-cC-sWO"/>
                             <constraint firstItem="HCo-hA-CH5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="hp1-4n-v6c"/>
@@ -321,7 +321,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeG-1D-zCM">
-                                            <rect key="frame" x="358" y="-2.3333333333333339" width="35" height="35.333333333333329"/>
+                                            <rect key="frame" x="358" y="-2" width="35" height="34.666666666666664"/>
                                             <color key="tintColor" name="AccentColor"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" image="star" catalog="system"/>
@@ -479,7 +479,7 @@
         <image name="play" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
