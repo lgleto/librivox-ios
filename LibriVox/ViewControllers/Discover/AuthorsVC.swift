@@ -59,7 +59,19 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
             cell.authorPhoto.image = nil
             
             if let author = author{
-                getPhotoAuthor(authorId: author._id ?? "0", img: cell.authorPhoto)
+                
+                if let id = author._id{
+                    getPhotoAuthor(authorId: id){img in
+                        
+                        if let img = img{
+                            cell.authorPhoto.kf.setImage(with: img)
+                        }
+                        else{
+                            cell.authorPhoto.image = imageWith(name: author.firstName)
+                        }
+                    }
+                }
+                
                 
                 cell.nameAuthor.text = (author.firstName ?? "") + " " + (author.lastName ?? " ")
             }

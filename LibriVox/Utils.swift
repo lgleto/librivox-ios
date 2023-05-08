@@ -11,12 +11,12 @@ import Kingfisher
 
 func showConfirmationAlert(_ view: UIViewController, _ title: String, _ msg: String? = nil){
     let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
-
+    
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
         alert.dismiss(animated: true)
         //view.navigationController?.popViewController(animated: true)
     }))
-
+    
     view.present(alert, animated: true, completion: nil)
 }
 
@@ -85,7 +85,7 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
- func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
+func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
     var request = URLRequest(url: URL(string: url)!)
     request.httpMethod = "GET"
     
@@ -105,18 +105,20 @@ func imageWith(name: String?) -> UIImage? {
     }.resume()
 }
 
-func getPhotoAuthor(authorId: String, img: UIImageView){
+func getPhotoAuthor(authorId: String, _ callback: @escaping (URL?) -> Void){
     getWikipediaLink(authorId: authorId){ title in
         
         let name = title.lastPathComponent
         getMainImageFromWikipedia(name: name){imgC in
             
             if let imgC = imgC{
-                img.kf.setImage(with: imgC)
-                img.contentMode = .scaleAspectFill
+              //  img.kf.setImage(with: imgC)
+              //  img.contentMode = .scaleAspectFill
+                callback(imgC)
                 
             }else{
-                img.image =  imageWith(name: name)
+                callback(nil)
+                //img.image =  imageWith(name: name)
             }
         }
     }
@@ -148,10 +150,10 @@ func getMainImageFromWikipedia(name: String,_ callback: @escaping (URL?) -> Void
         print("Error: Invalid URL")
         return
     }
-
+    
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
-
+    
     let session = URLSession(configuration: URLSessionConfiguration.default)
     let task = session.dataTask(with: request) { (data, response, error) in
         DispatchQueue.main.async {
@@ -170,7 +172,7 @@ func getMainImageFromWikipedia(name: String,_ callback: @escaping (URL?) -> Void
                    let originalURLString = props["source"] as? String,
                    let url = URL(string: originalURLString) {
                     callback(url)
-                
+                    
                 } else {
                     callback(nil)
                 }
@@ -236,7 +238,7 @@ func stringToColor(color: String) -> UIColor {
 
 func isValidEmail(_ email: String) -> Bool {
     let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
+    
     let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
     return emailPred.evaluate(with: email)
 }

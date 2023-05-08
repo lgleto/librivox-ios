@@ -80,8 +80,17 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
                 
                 cell.circleBackground.image = nil
                 cell.nameAuthor.text = "\(firstName) \(lastName)"
-                getPhotoAuthor(authorId: author._id ?? "0", img: cell.circleBackground)
                 
+                if let id = author._id{
+                    getPhotoAuthor(authorId: id){img in
+                        if let img = img{
+                            cell.circleBackground.kf.setImage(with: img)
+                        }
+                        else{
+                            cell.circleBackground.image = imageWith(name: author.firstName)
+                        }
+                    }
+                }
             }
             
             return cell

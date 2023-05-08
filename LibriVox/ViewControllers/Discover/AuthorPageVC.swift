@@ -27,13 +27,27 @@ class AuthorPageVC: UIViewController {
         
         
         if let author = author{
-            getPhotoAuthor(authorId: author._id!, img: authorPhoto)
             
-            getDescriptionAuthor(id: author._id!) { description in
-                DispatchQueue.main.async {
-                    self.descrAuthor.text = description
+            if let id = author._id{
+                getPhotoAuthor(authorId: id){img in
+                    
+                    if let img = img{
+                        self.authorPhoto.kf.setImage(with: img)
+                    }
+                    else{
+                        self.authorPhoto.image = imageWith(name: author.firstName)
+                    }
+                    
+                    
+                }
+                
+                getDescriptionAuthor(id: id) { description in
+                    DispatchQueue.main.async {
+                        self.descrAuthor.text = description
+                    }
                 }
             }
+         
             
             if let lastName = author.lastName, let firstName = author.firstName{
                 nameAuthor.text = "\(firstName) \(lastName)"
