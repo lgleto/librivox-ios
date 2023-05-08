@@ -88,7 +88,7 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
                             cell.circleBackground.kf.setImage(with: img)
                         }
                         else{
-                            cell.circleBackground.image = imageWith(name: author.firstName)
+                            cell.circleBackground.image = imageWith(name: "\(author.firstName) \(author.lastName)")
                         }
                     }
                 }
