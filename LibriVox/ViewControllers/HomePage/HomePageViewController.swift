@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import SwaggerClient
 import Reachability
+import Alamofire
 
 class HomePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -187,9 +188,37 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         let booksRef = db.collection("books")
         booksRef.order(by: "trending", descending: true).limit(to: 3)
         
+        //let timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
+        //      print("Time is Over")
+        //    callback()
+        //   }
+        //       timer.invalidate()
+        
         booksRef.getDocuments { querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
+                let alert = UIAlertController(title: "Error getting Trending", message: "Error getting the trending books, probably due to slow internet connection", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { action in
+                    switch action.style{
+                        case .default:
+                        self.IndicatorView.startAnimating()
+                        self.checkWifi()
+                        
+                        
+                        case .cancel:
+                        print("cancel")
+                        
+                        case .destructive:
+                        print("destructive")
+                        
+                    @unknown default:
+                        print("this wasnt suposed to happen")
+                    }
+                }))
+                self.IndicatorView.stopAnimating()
+                self.present(alert, animated: true, completion: nil)
+                
+
             } else {
                 for document in querySnapshot!.documents {
                     let s = document.data()
@@ -231,7 +260,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                         alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { action in
                             switch action.style{
                                 case .default:
+                                self.IndicatorView.startAnimating()
                                 self.checkWifi()
+                                
                                 
                                 case .cancel:
                                 print("cancel")
@@ -243,6 +274,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                                 print("this wasnt suposed to happen")
                             }
                         }))
+                        self.IndicatorView.stopAnimating()
                         self.present(alert, animated: true, completion: nil)
                     }
     }
