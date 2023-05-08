@@ -56,7 +56,6 @@ class BookDetailsVC: UIViewController {
                 self.bookImg.contentMode = .scaleToFill
                 
                 self.backgroundImage.kf.setImage(with: img)
-                self.backgroundImage.contentMode = .scaleToFill
             }
             
             isInCollection(id: book._id!) { (result) in
