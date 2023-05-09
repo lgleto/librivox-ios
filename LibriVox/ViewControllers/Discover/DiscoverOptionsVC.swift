@@ -85,8 +85,7 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
                 if let id = author._id{
                     getPhotoAuthor(authorId: id){img in
                         if let img = img{
-                            cell.circleBackground.kf.setImage(with: img)
-                        }
+                            cell.circleBackground.loadImage(from: img)                        }
                         else{
                             cell.circleBackground.image = imageWith(name: "\(author.firstName) \(author.lastName)")
                         }

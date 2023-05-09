@@ -33,8 +33,8 @@ class AuthorPageVC: UIViewController {
                 getPhotoAuthor(authorId: id){img in
                     
                     if let img = img{
-                        self.authorPhoto.kf.setImage(with: img)
-                        self.backgroundAuthor.kf.setImage(with: img)
+                        self.authorPhoto.loadImage(from: img)
+                        //self.backgroundAuthor.loadImage(from: img)
                     }
                     else{
                         self.authorPhoto.image = imageWith(name: author.firstName)

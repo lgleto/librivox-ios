@@ -139,6 +139,7 @@ func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
     }
 }
 
+
 func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewController){
     if let user = Auth.auth().currentUser{
         user.reauthenticate(with: credential) { (result, error) in
@@ -157,8 +158,8 @@ func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewCon
                 }
             }
         }
-
-
+        
+        
     }
     
 }
