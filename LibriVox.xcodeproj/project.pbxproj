@@ -66,6 +66,8 @@
 		6F4EC1ED29C9DFFB0025B204 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */; };
 		6F4EC1EF29C9E0020025B204 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1EE29C9E0020025B204 /* RoundView.swift */; };
 		6F4EC1F229C9EBF60025B204 /* BlueShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EC1F129C9EBF60025B204 /* BlueShadowView.swift */; };
+		6F50A7932A0A65E400C6EDEC /* LoadingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F50A7922A0A65E400C6EDEC /* LoadingImage.swift */; };
+		6F50A7952A0A782700C6EDEC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F50A7942A0A782700C6EDEC /* ImageCache.swift */; };
 		6F54867529F9A67B00F89955 /* ReadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F54867429F9A67B00F89955 /* ReadingVC.swift */; };
 		6F5D64502A02714500A5B64D /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5D644F2A02714500A5B64D /* EditProfileVC.swift */; };
 		6F6765E929DADF190080874E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6765E829DADF190080874E /* Utils.swift */; };
@@ -133,6 +135,8 @@
 		6F4EC1EC29C9DFFB0025B204 /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		6F4EC1EE29C9E0020025B204 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		6F4EC1F129C9EBF60025B204 /* BlueShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueShadowView.swift; sourceTree = "<group>"; };
+		6F50A7922A0A65E400C6EDEC /* LoadingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImage.swift; sourceTree = "<group>"; };
+		6F50A7942A0A782700C6EDEC /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		6F54867429F9A67B00F89955 /* ReadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingVC.swift; sourceTree = "<group>"; };
 		6F5D644F2A02714500A5B64D /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		6F6765E829DADF190080874E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */,
 				319FA02429C36446006895CB /* Info.plist */,
 				31C883D429C8CA3B00A53C78 /* GoogleService-Info.plist */,
+				6F50A7942A0A782700C6EDEC /* ImageCache.swift */,
 			);
 			path = LibriVox;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				3183B78A29DF315C00F1AE0A /* LoadingView.swift */,
 				6F7D5D1329F2910900826D1F /* FavoritesToggleBtn.swift */,
 				6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */,
+				6F50A7922A0A65E400C6EDEC /* LoadingImage.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -545,6 +551,7 @@
 				6F34F9FF29FAC6A6009A7EDB /* FavoritesVC.swift in Sources */,
 				6F34FA0129FAD682009A7EDB /* BookUser.swift in Sources */,
 				317B4C0729CCB5F80058F4B9 /* GIDSignInButton.swift in Sources */,
+				6F50A7952A0A782700C6EDEC /* ImageCache.swift in Sources */,
 				317B4BFE29CC6FD30058F4B9 /* RegisterVC.swift in Sources */,
 				6F34F9FD29FA975F009A7EDB /* ReadingCellTVC.swift in Sources */,
 				6F34FA0329FAE48A009A7EDB /* FavoritesCellTVC.swift in Sources */,
@@ -553,6 +560,7 @@
 				31B272CB29CE10090041FBA0 /* RequestPhoto.swift in Sources */,
 				31167AA929ED547800B9845A /* TrendingBooksVC.swift in Sources */,
 				6F152E2829CCD2030008846B /* ContainerPagesVC.swift in Sources */,
+				6F50A7932A0A65E400C6EDEC /* LoadingImage.swift in Sources */,
 				3183B78B29DF315C00F1AE0A /* LoadingView.swift in Sources */,
 				6F4EC1EF29C9E0020025B204 /* RoundView.swift in Sources */,
 				6F04C47C29DF37BE008AA945 /* DiscoverVC.swift in Sources */,

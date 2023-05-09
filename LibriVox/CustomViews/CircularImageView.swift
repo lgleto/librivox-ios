@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class CircularImageView: UIImageView {
+class CircularImageView: LoadingImage {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.height / 2

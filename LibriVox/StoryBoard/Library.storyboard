@@ -460,7 +460,7 @@
     </scenes>
     <designables>
         <designable name="eeG-1D-zCM">
-            <size key="intrinsicContentSize" width="22" height="22"/>
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
