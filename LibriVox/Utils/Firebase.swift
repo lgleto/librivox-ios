@@ -158,8 +158,6 @@ func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewCon
                 }
             }
         }
-        
-        
     }
     
 }

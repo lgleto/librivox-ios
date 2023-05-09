@@ -8,7 +8,11 @@
 import UIKit
 
 class LoadingImage: UIImageView {
+    
+    private let cache = NSCache<NSURL, UIImage>()
+    
     private let spinner = UIActivityIndicatorView()
+    private static let imageCache = NSCache<NSURL, UIImage>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,42 +24,44 @@ class LoadingImage: UIImageView {
         
         spinner.startAnimating()
         
-        
         spinner.isHidden = false
         spinner.hidesWhenStopped = true
         
         self.backgroundColor = .systemGray6
-        contentMode = .center
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        spinner.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        contentMode = .scaleAspectFill
     }
     
     func loadImage(from url: URL) {
+        if let cachedImage = LoadingImage.imageCache.object(forKey: url as NSURL) {
+            print("iupiii it's on cache :D")
+            DispatchQueue.main.async() {
+                self.image = cachedImage
+                self.spinner.stopAnimating()
+            }
+            return
+        }
+
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
                 let data = data, error == nil,
                 let image = UIImage(data: data)
             else {
-                self.spinner.stopAnimating()
                 return
             }
-            
+
             DispatchQueue.main.async() { [weak self] in
                 self?.image = image
-                self?.contentMode = .scaleAspectFill
+                LoadingImage.imageCache.setObject(image, forKey: url as NSURL)
                 self?.spinner.stopAnimating()
             }
+
         }.resume()
     }
+
     
     func loadImage(from image: UIImage) {
             self.image = image
-            self.contentMode = .scaleAspectFit
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.spinner.stopAnimating()
-            }
+            self.spinner.stopAnimating()
+        
     }
 }

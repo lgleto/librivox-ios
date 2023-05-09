@@ -111,15 +111,11 @@ func getPhotoAuthor(authorId: String, _ callback: @escaping (URL?) -> Void){
         
         let name = title.lastPathComponent
         getMainImageFromWikipedia(name: name){imgC in
-            
             if let imgC = imgC{
-              //  img.kf.setImage(with: imgC)
-              //  img.contentMode = .scaleAspectFill
                 callback(imgC)
                 
             }else{
                 callback(nil)
-                //img.image =  imageWith(name: name)
             }
         }
     }
