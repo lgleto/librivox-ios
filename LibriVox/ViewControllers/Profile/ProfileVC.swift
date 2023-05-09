@@ -21,6 +21,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         profilePhoto.contentMode = .scaleToFill
         
+        self.tabBarController?.tabBar.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         

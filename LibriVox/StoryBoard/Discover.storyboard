@@ -667,7 +667,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QEw-mV-yK3">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QEw-mV-yK3" customClass="LoadingImage" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="168" height="160"/>
                                                 </imageView>
                                             </subviews>
@@ -723,38 +723,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="M96-1Q-jAS">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hog-ie-Uu2">
                                 <rect key="frame" x="16" y="59" width="361" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aon-kL-7Ib">
-                                    <size key="itemSize" width="175" height="236"/>
-                                    <size key="estimatedItemSize" width="175" height="236"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v5S-DZ-Hsw">
+                                    <size key="itemSize" width="168" height="246"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListBooksCell" id="wcd-WD-MO0" customClass="ListBooksCell" customModule="LibriVox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="175" height="236"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListBooksCell" id="k34-FF-Efx" customClass="ListBooksCell" customModule="LibriVox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="246"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LGh-Cn-fbY">
-                                            <rect key="frame" x="0.0" y="0.0" width="175" height="236"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2wm-eI-zED">
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="246"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bW-7Y-Xpn" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="27.666666666666671" y="10" width="120.00000000000001" height="182"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZJ-1p-GUM" customClass="BlurredImageView" customModule="LibriVox" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="175" height="246"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="246" id="VpB-ax-2PT"/>
+                                                        <constraint firstAttribute="width" constant="175" id="zAP-LT-ozs"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Dt-iS-m7a" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                    <rect key="frame" x="27.666666666666671" y="10" width="120.00000000000001" height="175"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" red="0.3921568627" green="0.67799997329999995" blue="0.91799998279999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="120" id="cIN-CW-FjW"/>
-                                                        <constraint firstAttribute="height" constant="182" id="ofa-0K-5e2"/>
+                                                        <constraint firstAttribute="height" constant="175" id="WUS-nj-vOJ"/>
+                                                        <constraint firstAttribute="width" constant="120" id="a6o-wc-Kqs"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: Visitou Morpheus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSR-JH-auc">
-                                                    <rect key="frame" x="0.0" y="197" width="175" height="39"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: Visitou Morpheus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ru-Mu-QVE">
+                                                    <rect key="frame" x="0.0" y="195" width="175" height="41"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="175" id="THb-m0-N1z"/>
+                                                        <constraint firstAttribute="height" constant="41" id="1VN-B7-MYm"/>
+                                                        <constraint firstAttribute="width" constant="170" id="lPY-vn-16R"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -762,20 +768,24 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="RSR-JH-auc" secondAttribute="trailing" id="H2H-3b-2Qe"/>
-                                                <constraint firstAttribute="bottom" secondItem="RSR-JH-auc" secondAttribute="bottom" id="Zmd-3n-0Dd"/>
-                                                <constraint firstItem="8bW-7Y-Xpn" firstAttribute="centerX" secondItem="LGh-Cn-fbY" secondAttribute="centerX" id="bBk-hg-k8U"/>
-                                                <constraint firstItem="RSR-JH-auc" firstAttribute="top" secondItem="8bW-7Y-Xpn" secondAttribute="bottom" constant="5" id="bNU-HF-yAz"/>
-                                                <constraint firstItem="8bW-7Y-Xpn" firstAttribute="top" secondItem="LGh-Cn-fbY" secondAttribute="top" constant="10" id="d1m-qh-KMd"/>
-                                                <constraint firstItem="RSR-JH-auc" firstAttribute="leading" secondItem="LGh-Cn-fbY" secondAttribute="leading" id="jIh-4O-9jY"/>
+                                                <constraint firstItem="5Dt-iS-m7a" firstAttribute="centerX" secondItem="2wm-eI-zED" secondAttribute="centerX" id="9nZ-GK-iIu"/>
+                                                <constraint firstItem="zZJ-1p-GUM" firstAttribute="leading" secondItem="2wm-eI-zED" secondAttribute="leading" id="Gp3-XB-MR4"/>
+                                                <constraint firstItem="5Dt-iS-m7a" firstAttribute="top" secondItem="2wm-eI-zED" secondAttribute="top" constant="10" id="Jdl-Xu-Qy9"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Ru-Mu-QVE" secondAttribute="bottom" constant="10" id="Jqt-VL-bqq"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Ru-Mu-QVE" secondAttribute="trailing" id="Yti-vd-rnI"/>
+                                                <constraint firstItem="zZJ-1p-GUM" firstAttribute="top" secondItem="2wm-eI-zED" secondAttribute="top" id="aCe-6W-IhS"/>
+                                                <constraint firstItem="1Ru-Mu-QVE" firstAttribute="top" secondItem="5Dt-iS-m7a" secondAttribute="bottom" constant="10" id="nZ1-aM-lnu"/>
+                                                <constraint firstItem="1Ru-Mu-QVE" firstAttribute="leading" secondItem="2wm-eI-zED" secondAttribute="leading" id="zEI-pS-uOD"/>
+                                                <constraint firstAttribute="trailing" secondItem="zZJ-1p-GUM" secondAttribute="trailing" id="ziT-fc-HV8"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                        <size key="customSize" width="175" height="236"/>
+                                        <size key="customSize" width="175" height="246"/>
                                         <connections>
-                                            <outlet property="imageBook" destination="8bW-7Y-Xpn" id="Vyq-ow-tcV"/>
-                                            <outlet property="titleBook" destination="RSR-JH-auc" id="bVl-uS-svb"/>
-                                            <segue destination="lgZ-vp-vZD" kind="show" identifier="showDetailsPage" id="IIQ-Pi-tG0"/>
+                                            <outlet property="background" destination="zZJ-1p-GUM" id="cXc-Ge-bd9"/>
+                                            <outlet property="imageBook" destination="5Dt-iS-m7a" id="Ze6-nb-61U"/>
+                                            <outlet property="titleBook" destination="1Ru-Mu-QVE" id="jj1-p1-NrM"/>
+                                            <segue destination="lgZ-vp-vZD" kind="show" identifier="showDetailsPage" id="18a-bY-TE8"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -793,11 +803,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="M96-1Q-jAS" firstAttribute="top" secondItem="4it-v4-wcq" secondAttribute="top" id="J84-8Q-GYv"/>
-                            <constraint firstItem="M96-1Q-jAS" firstAttribute="leading" secondItem="4it-v4-wcq" secondAttribute="leading" constant="16" id="Mtg-u9-0Xv"/>
-                            <constraint firstItem="4it-v4-wcq" firstAttribute="bottom" secondItem="M96-1Q-jAS" secondAttribute="bottom" id="NjA-bF-p2g"/>
-                            <constraint firstItem="4it-v4-wcq" firstAttribute="trailing" secondItem="M96-1Q-jAS" secondAttribute="trailing" constant="16" id="SJz-Fj-gmv"/>
+                            <constraint firstItem="Hog-ie-Uu2" firstAttribute="leading" secondItem="4it-v4-wcq" secondAttribute="leading" constant="16" id="Vsd-4R-p7K"/>
+                            <constraint firstItem="4it-v4-wcq" firstAttribute="bottom" secondItem="Hog-ie-Uu2" secondAttribute="bottom" id="Zpb-ph-wBE"/>
                             <constraint firstItem="o4U-km-v25" firstAttribute="centerY" secondItem="4it-v4-wcq" secondAttribute="centerY" id="eKF-KD-ecA"/>
+                            <constraint firstItem="Hog-ie-Uu2" firstAttribute="top" secondItem="4it-v4-wcq" secondAttribute="top" id="fNh-H2-XnC"/>
+                            <constraint firstItem="4it-v4-wcq" firstAttribute="trailing" secondItem="Hog-ie-Uu2" secondAttribute="trailing" constant="16" id="ktX-lp-Mm0"/>
                             <constraint firstItem="o4U-km-v25" firstAttribute="centerX" secondItem="4it-v4-wcq" secondAttribute="centerX" id="rdB-Hp-WrN"/>
                         </constraints>
                     </view>
@@ -806,7 +816,7 @@
                         <barButtonItem key="backBarButtonItem" title="gfi" id="Yzq-hk-cEb"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="booksCV" destination="M96-1Q-jAS" id="Jx7-Nl-c5d"/>
+                        <outlet property="booksCV" destination="Hog-ie-Uu2" id="9W3-CM-0or"/>
                         <outlet property="spinner" destination="o4U-km-v25" id="Tkm-CT-Kfc"/>
                     </connections>
                 </viewController>
@@ -1094,32 +1104,6 @@
             </objects>
             <point key="canvasLocation" x="7562.5954198473282" y="724.64788732394368"/>
         </scene>
-        <!--ScroolView-->
-        <scene sceneID="0nY-Sl-AGd">
-            <objects>
-                <viewController title="ScroolView" id="HMK-nb-Gpx" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qTn-0x-Vfa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlT-gg-XiS">
-                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Hr6-1G-P0q"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="zlT-gg-XiS" firstAttribute="trailing" secondItem="Hr6-1G-P0q" secondAttribute="trailing" id="1tb-fj-FqY"/>
-                            <constraint firstItem="zlT-gg-XiS" firstAttribute="top" secondItem="Hr6-1G-P0q" secondAttribute="top" id="8Ki-bC-bsj"/>
-                            <constraint firstItem="zlT-gg-XiS" firstAttribute="leading" secondItem="Hr6-1G-P0q" secondAttribute="leading" id="Z3c-W5-Hbv"/>
-                            <constraint firstAttribute="bottom" secondItem="zlT-gg-XiS" secondAttribute="bottom" id="xf9-Xz-VT6"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cH0-Lt-JrC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9619.0839694656479" y="0.0"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="z0X-6G-VP2">
             <objects>
@@ -1293,8 +1277,8 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="QqL-zu-y1L"/>
-        <segue reference="IIQ-Pi-tG0"/>
+        <segue reference="IQw-s6-9v8"/>
+        <segue reference="18a-bY-TE8"/>
         <segue reference="vDx-pZ-vS1"/>
     </inferredMetricsTieBreakers>
     <resources>

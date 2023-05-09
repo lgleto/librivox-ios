@@ -44,7 +44,8 @@ extension CategoriesVC: UITableViewDataSource, UITableViewDelegate {
             cell.nameCategory.text = genre.name
             cell.backGroundCategory.backgroundColor = stringToColor(color: String(genre.mainColor?.dropFirst() ?? "FFFFFF"))
             cell.descriptionCategory.text = genre.descr
-            cell.backGroundCategory.image = imageWith(name: genre.name)
+           
+            cell.backGroundCategory.loadImage(from: imageWith(name: genre.name)!)
         }
         
         return cell

@@ -52,10 +52,10 @@ class BookDetailsVC: UIViewController {
             
             getCoverBook(url: book.urlLibrivox!){
                 img in
-                self.bookImg.kf.setImage(with: img)
-                self.bookImg.contentMode = .scaleToFill
-                
-                self.backgroundImage.kf.setImage(with: img)
+                if let img = img{
+                    self.bookImg.loadImage(from: img)
+                    self.backgroundImage.kf.setImage(with: img)
+                }
             }
             
             isInCollection(id: book._id!) { (result) in

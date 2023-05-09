@@ -64,10 +64,10 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
                     getPhotoAuthor(authorId: id){img in
                         
                         if let img = img{
-                            cell.authorPhoto.kf.setImage(with: img)
+                            cell.authorPhoto.loadImage(from: img)
                         }
                         else{
-                            cell.authorPhoto.image = imageWith(name: author.firstName)
+                            cell.authorPhoto.loadImage(from: imageWith(name: author.firstName)!)
                         }
                     }
                 }

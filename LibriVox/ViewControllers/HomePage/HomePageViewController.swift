@@ -143,10 +143,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.bookCover.image = nil
         getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
-            cell.bookCover.kf.setImage(with: img)
-            DispatchQueue.main.async {
-                   cell.bookCover.contentMode = .scaleToFill
-               }
+            if let img = img{
+                cell.bookCover.loadImage(from: img)
+            }
         }
         
         return cell

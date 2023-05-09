@@ -88,7 +88,10 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.titleBook.text = filteredBooks[indexPath.row].title
         cell.imageBook.image = nil
         getCoverBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
-            cell.imageBook.kf.setImage(with: img)
+            if let img = img{
+                cell.imageBook.loadImage(from: img)
+                cell.background.kf.setImage(with: img)
+            }
         }
         
         return cell
