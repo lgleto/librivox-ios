@@ -31,6 +31,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="rVt-aq-SHm">
+                                <rect key="frame" x="16" y="383" width="343" height="330"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="3nx-NT-hZh">
                                 <rect key="frame" x="16" y="48" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,21 +134,21 @@
                                     <constraint firstItem="pxx-Kk-uQi" firstAttribute="top" secondItem="z8L-2w-Kh3" secondAttribute="bottom" constant="2" id="zZE-K9-rtG"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="140" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lcC-6f-bEm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="114" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lcC-6f-bEm">
                                 <rect key="frame" x="16" y="383.33333333333326" width="343" height="329.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="140" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="343" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="114" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="343" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E03-yn-IXx" id="rkb-Iu-aQd">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-jY-LHy" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="10" width="80" height="115"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-jY-LHy" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="10" width="80" height="92"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-Ma-xU9">
                                                             <rect key="frame" x="4" y="6" width="28" height="44"/>
@@ -166,25 +170,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8i-j1-jKH">
-                                                    <rect key="frame" x="120" y="72" width="115.33333333333331" height="18"/>
+                                                    <rect key="frame" x="120" y="46" width="115.33333333333331" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Drama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-8V-yfx">
-                                                    <rect key="frame" x="120" y="112" width="78.333333333333314" height="18"/>
+                                                    <rect key="frame" x="120" y="86" width="78.333333333333314" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H3-k0-uBX">
-                                                    <rect key="frame" x="120" y="92" width="107" height="18"/>
+                                                    <rect key="frame" x="120" y="66" width="107" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJd-5j-a9E" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="20" width="70" height="110"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJd-5j-a9E" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="20" width="70" height="90"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="110" id="IqU-6w-Tnm"/>
@@ -226,10 +230,16 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="bRL-z3-kfn"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="rVt-aq-SHm">
-                                <rect key="frame" x="16" y="383" width="343" height="330"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmy-3I-gVG">
+                                <rect key="frame" x="309" y="346" width="50" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="ellipsis.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="allTrending:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8LC-u4-hx0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -259,6 +269,7 @@
                         <outlet property="progress" destination="yXE-Yg-jDF" id="wOm-na-nxz"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
                         <segue destination="y1Z-nm-UYf" kind="show" identifier="homeToBookDetail" id="Sw7-E8-QYW"/>
+                        <segue destination="MjL-5a-e21" kind="show" identifier="allTrending" id="m8l-VF-jl2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -273,29 +284,29 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62N-uO-3zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3158" y="395"/>
+            <point key="canvasLocation" x="3192" y="434"/>
         </scene>
         <!--Trending Books-->
         <scene sceneID="JvO-ZD-RFB">
             <objects>
-                <viewController title="Trending Books" id="MjL-5a-e21" sceneMemberID="viewController">
+                <viewController title="Trending Books" id="MjL-5a-e21" customClass="TrendingBooksVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uGI-je-Ehw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhp-6e-8Kk">
-                                <rect key="frame" x="16" y="49.999999999999993" width="166.33333333333334" height="31.666666666666664"/>
+                                <rect key="frame" x="16" y="94" width="166.33333333333334" height="31.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-ge-UHi">
-                                <rect key="frame" x="16" y="95.666666666666686" width="343" height="682.33333333333326"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="115" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-ge-UHi" customClass="Tre">
+                                <rect key="frame" x="16" y="139.66666666666669" width="343" height="589.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="1jF-tm-9z9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="1jF-tm-9z9" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="343" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1jF-tm-9z9" id="dBD-Sf-Jdx">
@@ -379,6 +390,14 @@
                                                 <constraint firstAttribute="bottom" secondItem="1oq-6v-02E" secondAttribute="bottom" id="yg4-8D-Fsc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="G1N-J2-FVt" id="IFQ-GF-WbN"/>
+                                            <outlet property="bookCover" destination="8Zm-3b-Ntz" id="0uj-Bj-u5F"/>
+                                            <outlet property="duration" destination="fc2-p6-Fze" id="hpY-hh-ked"/>
+                                            <outlet property="genre" destination="1oq-6v-02E" id="udC-Sw-GKP"/>
+                                            <outlet property="title" destination="fdp-p7-HtF" id="pjc-Rz-p1l"/>
+                                            <outlet property="trendingNumber" destination="GfF-2i-ibs" id="lhf-66-YZk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -394,6 +413,11 @@
                             <constraint firstItem="BPp-ge-UHi" firstAttribute="top" secondItem="zhp-6e-8Kk" secondAttribute="bottom" constant="14" id="rQO-0u-EWi"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Vqc-f9-oGv"/>
+                    <connections>
+                        <outlet property="trendingBooksTable" destination="BPp-ge-UHi" id="7rn-2z-bKH"/>
+                        <segue destination="y1Z-nm-UYf" kind="show" identifier="homeToBookDetail" id="g3y-Fd-V1A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LO6-nM-TM2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -777,8 +801,12 @@
             <size key="intrinsicContentSize" width="305" height="475"/>
         </designable>
     </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="g3y-Fd-V1A"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="28187" width="305" height="475"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="logo" width="400" height="400"/>
         <image name="play" width="512" height="512"/>
