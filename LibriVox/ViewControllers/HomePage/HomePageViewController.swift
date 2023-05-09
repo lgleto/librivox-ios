@@ -69,6 +69,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    @IBAction func allTrending(_ sender: Any) {
+        performSegue(withIdentifier: "allTrending", sender: nil)
+    }
     func getCurrentUserName(){
         let db = Firestore.firestore()
         
