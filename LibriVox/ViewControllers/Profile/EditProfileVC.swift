@@ -25,7 +25,6 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
     var originalUserName: String?
     
     @IBAction func updateProfile(_ sender: Any) {
-        
         guard let name = name.text, !name.isEmpty,
               let email = email.text, !email.isEmpty,
               let username = userName.text, !username.isEmpty else {
@@ -60,6 +59,8 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userPhoto.contentMode = .scaleToFill
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
         userPhoto.addGestureRecognizer(tapGestureRecognizer)

@@ -20,9 +20,11 @@ class LoadingImage: UIImageView {
         
         spinner.startAnimating()
         
+        
         spinner.isHidden = false
         spinner.hidesWhenStopped = true
         
+        self.backgroundColor = .systemGray6
         contentMode = .center
     }
     
@@ -34,18 +36,12 @@ class LoadingImage: UIImageView {
     func loadImage(from url: URL) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let data = data, error == nil,
                 let image = UIImage(data: data)
             else {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    let alertImage = UIImage(systemName: "red-alert")
-                    self.image = alertImage
-                    self.contentMode = .center
-                    self.spinner.stopAnimating()
-                }
-                return }
+                self.spinner.stopAnimating()
+                return
+            }
             
             DispatchQueue.main.async() { [weak self] in
                 self?.image = image
@@ -53,6 +49,13 @@ class LoadingImage: UIImageView {
                 self?.spinner.stopAnimating()
             }
         }.resume()
-        
+    }
+    
+    func loadImage(from image: UIImage) {
+            self.image = image
+            self.contentMode = .scaleAspectFit
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.spinner.stopAnimating()
+            }
     }
 }

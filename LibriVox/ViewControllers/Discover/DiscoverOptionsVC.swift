@@ -15,13 +15,13 @@ class DiscoverOptionsVC: UIViewController {
     var genres: [GenreWithColor]?
     
     @IBOutlet weak var genresCV: UICollectionView!
-
+    
     @IBOutlet weak var authorsCV: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       genresCV.dataSource = self
+        genresCV.dataSource = self
         genresCV.delegate = self
         
         authorsCV.dataSource = self
@@ -31,7 +31,7 @@ class DiscoverOptionsVC: UIViewController {
             self.genres = genres
             
             DispatchQueue.main.async {
-              self.genresCV.reloadData()
+                self.genresCV.reloadData()
             }
         }
         
@@ -69,12 +69,12 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             cell.circleBackground.backgroundColor = stringToColor(color: String(colorString?.dropFirst() ?? "FFFFFF"))
             cell.circleBackground.image = imageWith(name: genres?[indexPath.row].name)
             
-           
+            
             return cell
             
         case 1:
             let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorsCell2", for: indexPath) as! AuthorsCell
-        
+            
             if let author = authors?[indexPath.row] {
                 let firstName = author.firstName ?? "Unknown"
                 let lastName = author.lastName ?? "Author"
@@ -85,9 +85,10 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
                 if let id = author._id{
                     getPhotoAuthor(authorId: id){img in
                         if let img = img{
-                            cell.circleBackground.loadImage(from: img)                        }
+                            cell.circleBackground.loadImage(from: img)
+                        }
                         else{
-                            cell.circleBackground.image = imageWith(name: "\(author.firstName) \(author.lastName)")
+                            cell.circleBackground.loadImage(from: imageWith(name: "\(author.firstName) \(author.lastName)")!)
                         }
                     }
                 }
@@ -107,9 +108,9 @@ extension DiscoverOptionsVC: UICollectionViewDataSource, UICollectionViewDelegat
             genreVC.genre = genre
         }
         else if segue.identifier == "showAuthor",
-           let indexPath = authorsCV.indexPathsForSelectedItems?.first,
-           let author = authors?[indexPath.row],
-           let authorPageVC = segue.destination as? AuthorPageVC {
+                let indexPath = authorsCV.indexPathsForSelectedItems?.first,
+                let author = authors?[indexPath.row],
+                let authorPageVC = segue.destination as? AuthorPageVC {
             authorPageVC.author = author
         }
     }

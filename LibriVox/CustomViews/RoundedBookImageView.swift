@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class RoundedBookImageView: UIImageView {
+class RoundedBookImageView: LoadingImage {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
+        self.contentMode = .scaleToFill
     }
 }
