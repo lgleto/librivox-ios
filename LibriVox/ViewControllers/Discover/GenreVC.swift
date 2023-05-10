@@ -71,7 +71,7 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
             
             cell.titleAudioBook.text = title
             cell.genresAudioBooks.text! += displayGenres(strings: book.genres ?? [])
-            cell.authorAudioBook.text! += displayAuthors(authors: book.authors ?? [])
+            cell.authorAudioBook.text = displayAuthors(authors: book.authors ?? [])
             cell.backgroundAudioBook.backgroundColor = stringToColor(color: String(secondaryColor))
             cell.imgAudioBook.image = nil
             

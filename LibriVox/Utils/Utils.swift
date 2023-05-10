@@ -221,6 +221,18 @@ func removeImageNLabelAlert(view: UIScrollView) {
 }
 
 
+func stringFormatted(textBold: String, textRegular: String, size: CGFloat) -> NSMutableAttributedString{
+    let attrsBold = [NSAttributedString.Key.font : UIFont(name: "Nunito ExtraLight SemiBold", size: size)]
+    let attributedString = NSMutableAttributedString(string:textBold, attributes:attrsBold)
+    
+    let attrsLight = [NSAttributedString.Key.font : UIFont(name: "Nunito ExtraLight Light", size: size)]
+    let normalString = NSMutableAttributedString(string: textRegular, attributes: attrsLight)
+
+    attributedString.append(normalString)
+    
+    return attributedString
+}
+
 func stringToColor(color: String) -> UIColor {
     guard let i = UInt(color, radix: 16) else {
         return UIColor.white

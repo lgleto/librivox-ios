@@ -103,9 +103,9 @@ func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiob
         }
         
         for document in documents {
-            if let book = BookUser(data: document.data()) {
+            if let book = BookUser(dict: document.data()) {
                 
-                DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id)!, format: "json", extended: 1) { data, error in
+                DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id!)!, format: "json", extended: 1) { data, error in
                     if let error = error {
                         print("Error:", error.localizedDescription)
                         return

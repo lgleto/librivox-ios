@@ -15,25 +15,21 @@ struct BookUser {
     static let TIME_STOPPED = "timeStopped"
     
     
-    let id: String
-    let timeStopped: String
-    let isReading: Bool
-    let isFav: Bool?
-    var key: String
+    var id: String?
+    var timeStopped: String?
+    var isReading: Bool?
+    var isFav: Bool?
+    var key: String?
     
-    init?(data: [String: Any]) {
-        guard let id = data[BookUser.ID] as? String,
-              let timeStopped = data[BookUser.TIME_STOPPED] as? String,
-              let isReading = data[BookUser.IS_READING] as? Bool else {
-            return nil
-        }
-        let isFav = data[BookUser.IS_FAV] as? Bool
+    
+    init?(dict: [String:Any]) {
         
-        self.id = id
-        self.timeStopped = timeStopped
-        self.isReading = isReading
-        self.isFav = isFav
+        self.id = ((dict[BookUser.ID] as? String))
+        self.timeStopped = ((dict[BookUser.TIME_STOPPED] as? String))
+        self.isReading = ((dict[BookUser.IS_READING] as? Bool))
+        self.isFav = (dict[BookUser.IS_FAV] as? Bool)
         self.key = ""
+ 
     }
     
     var dictionary: [String: Any] {

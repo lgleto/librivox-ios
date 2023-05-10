@@ -460,11 +460,11 @@
     </scenes>
     <designables>
         <designable name="eeG-1D-zCM">
-            <size key="intrinsicContentSize" width="22" height="22"/>
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="HzN-ii-n4s"/>
+        <segue reference="6q9-2R-TJS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="books.vertical" catalog="system" width="128" height="107"/>

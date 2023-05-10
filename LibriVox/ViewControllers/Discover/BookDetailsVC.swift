@@ -28,7 +28,7 @@ class BookDetailsVC: UIViewController {
     var book: Audiobook?
     var bookUser: BookUser?
     var sections: [Section] = []
-    let isAtLibrary = false
+    var key : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,82 +43,71 @@ class BookDetailsVC: UIViewController {
         sectionsTV.delegate = self
         
         if let book = book {
-            descrBook.text = removeHtmlTagsFromText(text: book._description ?? "")
-            numSectionsBook.text = book.numSections
-            genreBook.text = displayGenres(strings: book.genres ?? [])
-            authorBook.text = (book.authors?[0].firstName ?? "") + " " + (book.authors?[0].lastName ?? "")
-            durationBook.text = book.totaltime
-            languageBook.text = book.language!
-            
-            getCoverBook(url: book.urlLibrivox!){
-                img in
-                if let img = img{
-                    self.bookImg.loadImage(from: img)
-                    self.backgroundImage.kf.setImage(with: img)
-                }
-            }
-            
-            isInCollection(id: book._id!) { (result) in
-                var state = false
-                if !result.isEmpty {state = true
-                    self.bookUser?.key = result
-                }
-                self.playBtn.isSelected = state
-            }
-            
             self.title = book.title!
-            self.tabBarController?.tabBar.isHidden = true
+            self.bookUser?.id = book._id!
+            
+            setData(book: book)
+            
+            isInCollection(id: book._id!) { result in
+                if !result.isEmpty {
+                    self.key = result
+                    self.isFav(key: self.key!) { isFavorite in
+                        DispatchQueue.main.async {
+                            self.favBtn.isSelected = isFavorite
+                        }
+                    }
+                    
+                }
+            }
         }
+    }
+    
+    func setData(book : Audiobook){
+        getCoverBook(url: book.urlLibrivox!){
+            img in
+            if let img = img{
+                self.bookImg.loadImage(from: img)
+                self.backgroundImage.kf.setImage(with: img)
+            }
+        }
+        
+        let authors = displayAuthors(authors: book.authors ?? [])
+        let genres = displayGenres(strings: book.genres ?? [])
+        
+        durationBook.attributedText = stringFormatted(textBold: "Duration: ", textRegular: book.totaltime ?? "00:00:00", size: 15.0)
+        genreBook.attributedText = stringFormatted(textBold: "Genre(s): ", textRegular: genres, size: 15.0)
+        authorBook.attributedText = stringFormatted(textBold: "Author(s): ", textRegular: authors, size: 15.0)
+        numSectionsBook.attributedText = stringFormatted(textBold: "Nº Sections: ", textRegular: book.numSections ?? "0", size: 15.0)
+        languageBook.attributedText = stringFormatted(textBold: "Language: ", textRegular: book.language ?? "Not specified", size: 15.0)
+        
+        descrBook.text = removeHtmlTagsFromText(text: book._description ?? "No sinopse available")
     }
     
     //Check if already exists
     @IBAction func didClick(_ sender: UIButton) {
-        playBtn.isSelected = !playBtn.isSelected
-        
-        if playBtn.isSelected {
+        guard let key = key else {
             let bookData: [String: Any] = [
-                "id": book?._id,
-                "timeStopped": "",
-                "isReading": true
+                BookUser.ID: book?._id,
+                BookUser.IS_READING: true
             ]
-            if let bookUser = BookUser(data: bookData) {
+            
+            if let bookUser = BookUser(dict: bookData) {
                 addToCollection(bookUser)
             }
+            return
         }
+        playBtn.isSelected = !playBtn.isSelected
     }
     
     @IBAction func clickFav(_ sender: Any) {
-        favBtn.isSelected = !favBtn.isSelected
+        let newIsFavValue = !favBtn.isSelected
         
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        let bookCollectionRef = userRef.collection("bookCollection")
-        
-        if bookUser?.key != nil{
-            bookCollectionRef.document(bookUser!.key).updateData(["isFav": favBtn.isSelected]) { (error) in
-                if let error = error {
-                    print("Error updating document: \(error.localizedDescription)")
-                }
-            }
-        }else
-        {
-            let bookData: [String: Any] = [
-                "isFav": true
-            ]
-            
-            let newDocumentRef = bookCollectionRef.document()
-            let documentID = newDocumentRef.documentID
-            
-            newDocumentRef.setData(bookData) { (error) in
-                if let error = error {
-                    print("Error adding document: \(error.localizedDescription)")
-                } else {
-                    self.bookUser?.key = documentID
-                }
-            }
+        if let key = key {
+            updateIsFavValue(key: key, isFav: newIsFavValue)
+        } else {
+            addBookToFavorites()
         }
     }
-    
     
     func isInCollection(id: String, completion: @escaping (String) -> Void) {
         let db = Firestore.firestore()
@@ -139,35 +128,71 @@ class BookDetailsVC: UIViewController {
             }
         }
     }
-}
-
-
-
-
-
-func addToCollection(_ book: BookUser) {
-    let db = Firestore.firestore()
-    let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-    let bookCollectionRef = userRef.collection("bookCollection")
-    let bookId = book.id
     
-    bookCollectionRef.whereField("id", isEqualTo: bookId).getDocuments { (querySnapshot, error) in
-        if let error = error {
-            print("Error querying book collection: \(error.localizedDescription)")
-            return
-        }
+    func isFav(key: String, completion: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        let bookCollectionRef = userRef.collection("bookCollection").document(key)
         
-        guard querySnapshot!.documents.isEmpty else {
-            print("Book already exists in collection")
-            return
+        bookCollectionRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error getting document: \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            
+            if let document = document, let isFav = document.data()?["isFav"] as? Bool {
+                completion(isFav)
+            } else {
+                completion(false)
+            }
         }
+    }
+    
+    func addToCollection(_ book: BookUser) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        let bookCollectionRef = userRef.collection("bookCollection")
         
         let newDocRef = bookCollectionRef.document()
+        let documentID = newDocRef.documentID
+        
         newDocRef.setData(book.dictionary) { error in
             if let error = error {
                 print("Error adding book to collection: \(error.localizedDescription)")
             } else {
+                self.key = documentID
                 print("Book added to collection with ID: \(newDocRef.documentID)")
+            }
+        }
+    }
+    
+    func updateIsFavValue(key: String, isFav: Bool) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        let bookCollectionRef = userRef.collection("bookCollection").document(key)
+        
+        bookCollectionRef.updateData(["isFav": isFav]) { error in
+            if let error = error {
+                print("Error updating document: \(error.localizedDescription)")
+            } else {
+                DispatchQueue.main.async {
+                    self.favBtn.isSelected = isFav
+                }
+            }
+        }
+    }
+    
+    func addBookToFavorites() {
+        let bookData: [String: Any] = [
+            BookUser.ID: book?._id,
+            BookUser.IS_FAV: true
+        ]
+        
+        if let bookUser = BookUser(dict: bookData) {
+            addToCollection(bookUser)
+            DispatchQueue.main.async {
+                self.favBtn.isSelected = true
             }
         }
     }
@@ -189,4 +214,3 @@ extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
-

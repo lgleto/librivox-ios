@@ -20,11 +20,6 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     @IBOutlet weak var booksCV: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    override func viewWillAppear(_ animated: Bool) {
-        filteredBooks = []
-        booksCV.reloadData()
-     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
