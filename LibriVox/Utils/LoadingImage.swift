@@ -8,7 +8,11 @@
 import UIKit
 
 class LoadingImage: UIImageView {
+    
+    private let cache = NSCache<NSURL, UIImage>()
+    
     private let spinner = UIActivityIndicatorView()
+    private static let imageCache = NSCache<NSURL, UIImage>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,36 +27,41 @@ class LoadingImage: UIImageView {
         spinner.isHidden = false
         spinner.hidesWhenStopped = true
         
-        contentMode = .center
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        spinner.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        self.backgroundColor = .systemGray6
+        contentMode = .scaleAspectFill
     }
     
     func loadImage(from url: URL) {
+        if let cachedImage = LoadingImage.imageCache.object(forKey: url as NSURL) {
+            print("iupiii it's on cache :D")
+            DispatchQueue.main.async() {
+                self.image = cachedImage
+                self.spinner.stopAnimating()
+            }
+            return
+        }
+
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let data = data, error == nil,
                 let image = UIImage(data: data)
             else {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    let alertImage = UIImage(systemName: "red-alert")
-                    self.image = alertImage
-                    self.contentMode = .center
-                    self.spinner.stopAnimating()
-                }
-                return }
-            
+                return
+            }
+
             DispatchQueue.main.async() { [weak self] in
                 self?.image = image
-                self?.contentMode = .scaleAspectFill
+                LoadingImage.imageCache.setObject(image, forKey: url as NSURL)
                 self?.spinner.stopAnimating()
             }
+
         }.resume()
+    }
+
+    
+    func loadImage(from image: UIImage) {
+            self.image = image
+            self.spinner.stopAnimating()
         
     }
 }

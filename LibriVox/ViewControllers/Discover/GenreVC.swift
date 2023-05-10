@@ -17,7 +17,6 @@ class GenreVC: UIViewController {
     var audioBooks: [Audiobook]?
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    var isLoaded = false
     @IBOutlet weak var backgroundLabel: RoundedBookImageView!
     
     override func viewDidLoad() {
@@ -27,15 +26,18 @@ class GenreVC: UIViewController {
         tvBooksByGenre.dataSource = self
         
         if let genre = genre{
-            genreLabel.text = genre.name
+            guard let id = genre._id, let name = genre.name, let mainColor = genre.mainColor else{
+                //TODO: Make an alert to retry, popback to the previous controller
+                return
+            }
             
-            let mainColor = genre.mainColor
-            backgroundLabel.backgroundColor = stringToColor(color: String(mainColor?.dropFirst() ?? "FFFFFF"))
+            genreLabel.text = name
+            backgroundLabel.backgroundColor = stringToColor(color: String(mainColor.dropFirst()))
             
-            
-            DefaultAPI.audiobooksGenregenreGet(genre: genre.name! , format:"json", extended: 1) { data, error in
+            DefaultAPI.audiobooksGenregenreGet(genre: name.URLEncoded , format:"json", extended: 1) { data, error in
                 if let error = error {
                     print("Error getting root data:", error.localizedDescription)
+                    self.spinner.stopAnimating()
                     return
                 }
                 
@@ -43,16 +45,12 @@ class GenreVC: UIViewController {
                     self.audioBooks = data.books ?? []
                     
                     DispatchQueue.main.async {
-                        
                         self.spinner.stopAnimating()
                         self.tvBooksByGenre.reloadData()
-                        self.isLoaded = true
                     }
                 }
             }
         }
-        
-        
     }
 }
 
@@ -64,29 +62,32 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if !isLoaded{ return UITableViewCell() }
-        else{
-            let cell = tvBooksByGenre.dequeueReusableCell(withIdentifier: "AudioBooksTVC", for: indexPath) as! AudioBooksTVC
+        let cell = tvBooksByGenre.dequeueReusableCell(withIdentifier: "AudioBooksTVC", for: indexPath) as! AudioBooksTVC
+        
+        if let book = audioBooks?[indexPath.row]{
+            guard let id = book._id, let title = book.title, let secondaryColor = genre?.secondaryColor?.dropFirst() else{
+                return UITableViewCell()
+            }
             
-            let book = audioBooks?[indexPath.row]
+            cell.titleAudioBook.text = title
+            cell.genresAudioBooks.text! += displayGenres(strings: book.genres ?? [])
+            cell.authorAudioBook.text! += displayAuthors(authors: book.authors ?? [])
+            cell.backgroundAudioBook.backgroundColor = stringToColor(color: String(secondaryColor))
+            cell.imgAudioBook.image = nil
             
-            cell.titleAudioBook.text = book?.title
-            if let duration = book?.totaltime{
+            if let duration = book.totaltime{
                 cell.durationAudioBook.text! = duration
             }
-            cell.genresAudioBooks.text! += displayGenres(strings: book?.genres ?? [])
-            cell.authorAudioBook.text! += displayAuthors(authors: book?.authors ?? [])
-            cell.backgroundAudioBook.backgroundColor = stringToColor(color: String(genre?.secondaryColor?.dropFirst() ?? "FFFFFF"))
-            cell.imgAudioBook.image = nil
-
-    
-            getCoverBook(url: (book?.urlLibrivox!)!){img in
-                cell.imgAudioBook.kf.setImage(with: img)
+            
+            getCoverBook(url: (book.urlLibrivox!)){img in
+                guard let img = img else{
+                    //TODO: Generate a book cover
+                    return
+                }
+                cell.imgAudioBook.loadImage(from: img)
             }
-            
-            return cell
-            
         }
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,3 +99,11 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension String {
+    var URLEncoded:String {
+        let unreservedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~"
+        let unreservedCharsSet: CharacterSet = CharacterSet(charactersIn: unreservedChars)
+        let encodedString = self.addingPercentEncoding(withAllowedCharacters: unreservedCharsSet)!
+        return encodedString
+    }
+}

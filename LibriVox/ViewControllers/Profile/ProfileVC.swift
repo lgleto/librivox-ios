@@ -19,7 +19,9 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        profilePhoto.contentMode = .scaleToFill
         
+        self.tabBarController?.tabBar.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         

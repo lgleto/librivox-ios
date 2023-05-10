@@ -11,8 +11,7 @@ import SwaggerClient
 
 class AuthorsVC: UIViewController {
     
-    var isLoaded = false
-    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var authorsCV: UICollectionView!
     var authors : [Author]?
     
@@ -25,6 +24,7 @@ class AuthorsVC: UIViewController {
         
         DefaultAPI.authorsGet(format:"json") { data, error in
             if let error = error {
+                self.spinner.stopAnimating()
                 print("Error getting root data:", error)
                 return
             }
@@ -32,7 +32,7 @@ class AuthorsVC: UIViewController {
             if let data = data {
                 self.authors = data.authors
                 DispatchQueue.main.async {
-                    self.isLoaded = true
+                    self.spinner.stopAnimating()
                     self.authorsCV.reloadData()
                 }
             }
@@ -50,34 +50,29 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if !isLoaded{ return UICollectionViewCell()}
-        else{
-            let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorProfileCell", for: indexPath) as! AuthorProfileCell
+        let cell = authorsCV.dequeueReusableCell(withReuseIdentifier: "AuthorProfileCell", for: indexPath) as! AuthorProfileCell
+        
+        if let author = authors?[indexPath.row]{
+            let name = "\(author.firstName ?? "") \(author.lastName ?? "")"
             
-            var author = authors?[indexPath.row]
+            guard let id = author._id, !name.isEmpty else {
+                return UICollectionViewCell()
+            }
             
+            cell.nameAuthor.text = name
             cell.authorPhoto.image = nil
             
-            if let author = author{
-                
-                if let id = author._id{
-                    getPhotoAuthor(authorId: id){img in
-                        
-                        if let img = img{
-                            cell.authorPhoto.kf.setImage(with: img)
-                        }
-                        else{
-                            cell.authorPhoto.image = imageWith(name: author.firstName)
-                        }
-                    }
+            getPhotoAuthor(authorId: id){img in
+                if let img = img{
+                    cell.authorPhoto.loadImage(from: img)
                 }
-                
-                cell.nameAuthor.text = (author.firstName ?? "") + " " + (author.lastName ?? " ")
+                else{
+                    cell.authorPhoto.loadImage(from: imageWith(name: name)!)
+                }
             }
-            return cell
-    
         }
         
+        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
