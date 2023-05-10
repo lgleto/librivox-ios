@@ -27,9 +27,7 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
+    
         booksCV.dataSource = self
         booksCV.delegate = self
     }

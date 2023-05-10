@@ -693,22 +693,33 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="7gR-25-ndo">
+                                <rect key="frame" x="181.66666666666666" y="447" width="30" height="30"/>
+                                <color key="tintColor" name="Main Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CjL-Kz-OHU"/>
+                                    <constraint firstAttribute="width" constant="30" id="KsQ-7F-rYl"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pVf-ak-bFD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pVf-ak-bFD" firstAttribute="trailing" secondItem="kKu-l2-XLP" secondAttribute="trailing" constant="16" id="3Qt-6p-Njv"/>
+                            <constraint firstItem="7gR-25-ndo" firstAttribute="centerY" secondItem="vCs-PL-U7M" secondAttribute="centerY" id="8Ox-o1-iUp"/>
                             <constraint firstItem="vCs-PL-U7M" firstAttribute="top" secondItem="kKu-l2-XLP" secondAttribute="bottom" constant="20" id="Gc2-tt-NRQ"/>
                             <constraint firstItem="vCs-PL-U7M" firstAttribute="leading" secondItem="pVf-ak-bFD" secondAttribute="leading" constant="16" id="V7R-2N-6tq"/>
                             <constraint firstItem="kKu-l2-XLP" firstAttribute="leading" secondItem="pVf-ak-bFD" secondAttribute="leading" constant="16" id="XD3-NM-p3k"/>
                             <constraint firstItem="kKu-l2-XLP" firstAttribute="top" secondItem="pVf-ak-bFD" secondAttribute="top" id="dZU-6o-eNC"/>
                             <constraint firstItem="pVf-ak-bFD" firstAttribute="bottom" secondItem="vCs-PL-U7M" secondAttribute="bottom" id="fqs-JZ-9mp"/>
                             <constraint firstItem="pVf-ak-bFD" firstAttribute="trailing" secondItem="vCs-PL-U7M" secondAttribute="trailing" constant="16" id="u6l-Ja-HCA"/>
+                            <constraint firstItem="7gR-25-ndo" firstAttribute="centerX" secondItem="vCs-PL-U7M" secondAttribute="centerX" id="uvZ-K0-Jec"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="E86-tq-9aT"/>
                     <connections>
                         <outlet property="authorsCV" destination="vCs-PL-U7M" id="GJj-wq-YFK"/>
+                        <outlet property="spinner" destination="7gR-25-ndo" id="hwi-y2-Ldy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUb-wJ-4K5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

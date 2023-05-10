@@ -41,11 +41,15 @@ extension CategoriesVC: UITableViewDataSource, UITableViewDelegate {
         let cell = categoriesTV.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! CategoriesCell
         
         if let genre = genres?[indexPath.row]{
-            cell.nameCategory.text = genre.name
-            cell.backGroundCategory.backgroundColor = stringToColor(color: String(genre.mainColor?.dropFirst() ?? "FFFFFF"))
+            guard let id = genre._id, let name = genre.name, let mainColor = genre.mainColor?.dropFirst()else{
+                return UITableViewCell()
+            }
+            
+            cell.nameCategory.text = name
+            cell.backGroundCategory.backgroundColor = stringToColor(color: String(mainColor))
             cell.descriptionCategory.text = genre.descr
            
-            cell.backGroundCategory.loadImage(from: imageWith(name: genre.name)!)
+            cell.backGroundCategory.loadImage(from: imageWith(name: name)!)
         }
         
         return cell
