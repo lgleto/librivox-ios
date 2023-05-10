@@ -8,15 +8,51 @@
 import UIKit
 import FirebaseCore
 import GoogleSignIn
+import SwaggerClient
+import Alamofire
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    
+    class AppRequestBuilderFactory: RequestBuilderFactory {
+            func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {
+                return AppRequestBuilder<T>.self
+            }
 
+            func getBuilder<T: Decodable>() -> RequestBuilder<T>.Type {
+                return AppDecodableRequestBuilder<T>.self
+            }
+        }
+
+        class AppDecodableRequestBuilder<T: Decodable>: AlamofireDecodableRequestBuilder<T> {
+            override public func createSessionManager() -> Alamofire.SessionManager {
+                let configuration = URLSessionConfiguration.default
+                configuration.httpAdditionalHeaders = buildHeaders()
+                configuration.timeoutIntervalForRequest = TimeInterval(90)
+                configuration.timeoutIntervalForResource = TimeInterval(120)
+                configuration.requestCachePolicy = .reloadRevalidatingCacheData
+                return Alamofire.SessionManager(configuration: configuration)
+            }
+        }
+
+        class AppRequestBuilder<T>: AlamofireRequestBuilder<T> {
+            override public func createSessionManager() -> Alamofire.SessionManager {
+                let configuration = URLSessionConfiguration.default
+                configuration.httpAdditionalHeaders = buildHeaders()
+                configuration.timeoutIntervalForRequest = TimeInterval(90)
+                configuration.timeoutIntervalForResource = TimeInterval(120)
+                configuration.requestCachePolicy = .reloadRevalidatingCacheData
+                return Alamofire.SessionManager(configuration: configuration)
+            }
+        }
+
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        SwaggerClientAPI.requestBuilderFactory = AppRequestBuilderFactory()
         return true
     }
 
