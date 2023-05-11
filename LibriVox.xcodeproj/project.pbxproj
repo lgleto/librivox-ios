@@ -16,6 +16,7 @@
 		317B4C0529CC9D3C0058F4B9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4C0429CC9D3C0058F4B9 /* User.swift */; };
 		317B4C0729CCB5F80058F4B9 /* GIDSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4C0629CCB5F80058F4B9 /* GIDSignInButton.swift */; };
 		317B4C0A29CCBD6A0058F4B9 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 317B4C0929CCBD6A0058F4B9 /* SimpleToast */; };
+		317CDC902A0CE43100C63456 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317CDC8F2A0CE43100C63456 /* PlayerVC.swift */; };
 		317FC6A429CE0A3E00E5922A /* HomepageTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */; };
 		3183B78B29DF315C00F1AE0A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183B78A29DF315C00F1AE0A /* LoadingView.swift */; };
 		319FA01729C36445006895CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319FA01629C36445006895CB /* AppDelegate.swift */; };
@@ -90,6 +91,7 @@
 		317B4BFD29CC6FD30058F4B9 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		317B4C0429CC9D3C0058F4B9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		317B4C0629CCB5F80058F4B9 /* GIDSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInButton.swift; sourceTree = "<group>"; };
+		317CDC8F2A0CE43100C63456 /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerVC.swift; path = LibriVox/ViewControllers/HomePage/PlayerVC.swift; sourceTree = SOURCE_ROOT; };
 		317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageTBC.swift; sourceTree = "<group>"; };
 		3183B78A29DF315C00F1AE0A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		319FA01329C36445006895CB /* LibriVox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibriVox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +276,7 @@
 		6F43C7D729D1F0760013232C /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				317CDC8F2A0CE43100C63456 /* PlayerVC.swift */,
 				31167AA829ED547800B9845A /* TrendingBooksVC.swift */,
 				6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */,
 			);
@@ -520,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				317CDC902A0CE43100C63456 /* PlayerVC.swift in Sources */,
 				317B4C0529CC9D3C0058F4B9 /* User.swift in Sources */,
 				6F5D64502A02714500A5B64D /* EditProfileVC.swift in Sources */,
 				31C883CD29C8ABA600A53C78 /* ProfileVC.swift in Sources */,

@@ -129,6 +129,10 @@ class BookDetailsVC: UIViewController {
         }
     }
     
+    
+    
+    
+    
     func isFav(key: String, completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
         let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)

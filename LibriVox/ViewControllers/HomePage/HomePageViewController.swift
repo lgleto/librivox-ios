@@ -17,6 +17,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     
+    @IBOutlet weak var playBTN: UIButton!
     @IBOutlet weak var IndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var imgBook: UIImageView!
@@ -40,7 +41,11 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         IndicatorView.startAnimating()
         IndicatorView.hidesWhenStopped = true
         self.tabBarController?.tabBar.isHidden = false
-
+        let  selectedImage  = UIImage(named: "pause.svg")
+        let normalImage = UIImage(named: "play.svg")
+        
+        playBTN.setImage(normalImage, for: .normal)
+        playBTN.setImage(selectedImage, for: .selected)
         checkWifi()
         
         loadCurrentUser { user in
@@ -67,6 +72,11 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
 
         
+    }
+    
+    
+    @IBAction func playButton(_ sender: Any) {
+        performSegue(withIdentifier: "homepageToPlayer", sender: nil)
     }
     
     @IBAction func allTrending(_ sender: Any) {

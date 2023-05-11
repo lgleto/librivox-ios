@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.httpAdditionalHeaders = buildHeaders()
                 configuration.timeoutIntervalForRequest = TimeInterval(90)
                 configuration.timeoutIntervalForResource = TimeInterval(120)
-                configuration.requestCachePolicy = .reloadRevalidatingCacheData
+                configuration.requestCachePolicy = .returnCacheDataElseLoad
                 return Alamofire.SessionManager(configuration: configuration)
             }
         }
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.httpAdditionalHeaders = buildHeaders()
                 configuration.timeoutIntervalForRequest = TimeInterval(90)
                 configuration.timeoutIntervalForResource = TimeInterval(120)
-                configuration.requestCachePolicy = .reloadRevalidatingCacheData
+                configuration.requestCachePolicy = .returnCacheDataElseLoad
                 return Alamofire.SessionManager(configuration: configuration)
             }
         }
