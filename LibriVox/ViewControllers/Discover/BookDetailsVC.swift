@@ -33,12 +33,6 @@ class BookDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let  selectedImage  = UIImage(named: "pause.svg")
-        let normalImage = UIImage(named: "play.svg")
-        
-        playBtn.setImage(normalImage, for: .normal)
-        playBtn.setImage(selectedImage, for: .selected)
-        
         sectionsTV.dataSource = self
         sectionsTV.delegate = self
         
@@ -96,7 +90,6 @@ class BookDetailsVC: UIViewController {
             }
             return
         }
-        playBtn.isSelected = !playBtn.isSelected
     }
     
     @IBAction func clickFav(_ sender: Any) {
