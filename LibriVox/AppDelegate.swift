@@ -26,27 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        class AppDecodableRequestBuilder<T: Decodable>: AlamofireDecodableRequestBuilder<T> {
-            override public func createSessionManager() -> Alamofire.SessionManager {
-                let configuration = URLSessionConfiguration.default
-                configuration.httpAdditionalHeaders = buildHeaders()
-                configuration.timeoutIntervalForRequest = TimeInterval(90)
-                configuration.timeoutIntervalForResource = TimeInterval(120)
-                configuration.requestCachePolicy = .returnCacheDataElseLoad
-                return Alamofire.SessionManager(configuration: configuration)
-            }
+    class AppDecodableRequestBuilder<T: Decodable>: AlamofireDecodableRequestBuilder<T> {
+        override public func createSessionManager() -> Alamofire.SessionManager {
+            let configuration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = buildHeaders()
+            configuration.timeoutIntervalForRequest = TimeInterval(90)
+            configuration.timeoutIntervalForResource = TimeInterval(120)
+            configuration.requestCachePolicy = .useProtocolCachePolicy
+            return Alamofire.SessionManager(configuration: configuration)
         }
+    }
 
-        class AppRequestBuilder<T>: AlamofireRequestBuilder<T> {
-            override public func createSessionManager() -> Alamofire.SessionManager {
-                let configuration = URLSessionConfiguration.default
-                configuration.httpAdditionalHeaders = buildHeaders()
-                configuration.timeoutIntervalForRequest = TimeInterval(90)
-                configuration.timeoutIntervalForResource = TimeInterval(120)
-                configuration.requestCachePolicy = .returnCacheDataElseLoad
-                return Alamofire.SessionManager(configuration: configuration)
-            }
+    class AppRequestBuilder<T>: AlamofireRequestBuilder<T> {
+        override public func createSessionManager() -> Alamofire.SessionManager {
+            let configuration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = buildHeaders()
+            configuration.timeoutIntervalForRequest = TimeInterval(90)
+            configuration.timeoutIntervalForResource = TimeInterval(120)
+            configuration.requestCachePolicy = .useProtocolCachePolicy
+            return Alamofire.SessionManager(configuration: configuration)
         }
+    }
+
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
