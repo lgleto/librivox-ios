@@ -10,7 +10,7 @@ import UIKit
 import CoreImage
 
 @IBDesignable
-class BlurredImageView: UIImageView {
+class BlurredImageView: LoadingImage {
     override func layoutSubviews() {
         super.layoutSubviews()
         

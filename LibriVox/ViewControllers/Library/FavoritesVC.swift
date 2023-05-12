@@ -48,7 +48,10 @@ class FavoritesVC: UITableViewController {
         }
         cell.imgBook.image = nil
         getCoverBook(url: book.urlLibrivox!){img in
-            cell.imgBook.kf.setImage(with: img)
+            
+            if let img = img{
+                cell.imgBook.loadImage(from: img)
+            }
         }
         cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         

@@ -7,7 +7,6 @@
 
 import UIKit
 import SwaggerClient
-import Kingfisher
 import Alamofire
 
 class ResultBooksVC: UIViewController, DiscoverRealDelegate {
@@ -83,7 +82,7 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         getCoverBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
             if let img = img{
                 cell.imageBook.loadImage(from: img)
-                cell.background.kf.setImage(with: img)
+                cell.background.loadImage(from: img)
             }
         }
         

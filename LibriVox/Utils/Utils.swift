@@ -7,7 +7,6 @@
 
 import Foundation
 import SwaggerClient
-import Kingfisher
 import Network
 
 func showConfirmationAlert(_ view: UIViewController, _ title: String, _ msg: String? = nil){

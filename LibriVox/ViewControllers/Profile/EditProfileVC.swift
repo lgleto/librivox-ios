@@ -69,7 +69,14 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
             if let name = name {
                 self.name.text = name
                 self.originalName = name
+            
                 downloadProfileImage(name, self.userPhoto)
+            }else{
+                guard let url = Auth.auth().currentUser?.photoURL else{
+                    self.userPhoto.loadImage(from: imageWith(name: name)!)
+                    return
+                }
+                self.userPhoto.loadImage(from:url)
             }
         }
         

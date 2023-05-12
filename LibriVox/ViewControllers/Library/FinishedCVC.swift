@@ -40,7 +40,10 @@ class FinishedCVC: UICollectionViewController {
         cell.titleBook.text = finalList[indexPath.row].title
         cell.imageBook.image = nil
         getCoverBook(url: finalList[indexPath.row].urlLibrivox!){img in
-            cell.imageBook.kf.setImage(with: img)
+            
+            if let img = img{
+                cell.imageBook.loadImage(from: img)
+            }
         }
         
         return cell

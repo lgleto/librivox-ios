@@ -49,7 +49,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         checkWifi()
         
         loadCurrentUser { user in
-            self.nameText.text = "Hello \(user?.username ?? "User not found")"
+            guard let name = Auth.auth().currentUser?.displayName else { return }
+            self.nameText.text = "Hello \(user?.username ?? name )"
         }
         
         logo.layer.cornerRadius = logo.layer.bounds.height / 2

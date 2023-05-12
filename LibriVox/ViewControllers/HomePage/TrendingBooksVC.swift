@@ -53,10 +53,11 @@ class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         cell.bookCover.image = UIImage(named: "28187")
         getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
-            cell.bookCover.kf.setImage(with: img)
-            DispatchQueue.main.async {
-                   cell.bookCover.contentMode = .scaleToFill
-               }
+            guard let img = img else{//TODO: generete a cover
+                return
+            }
+            cell.bookCover.loadImage(from: img)
+           
         }
         
         cell.trendingNumber.text = "\(indexPath.row+1)."

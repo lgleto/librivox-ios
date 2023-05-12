@@ -61,7 +61,7 @@ class BookDetailsVC: UIViewController {
             img in
             if let img = img{
                 self.bookImg.loadImage(from: img)
-                self.backgroundImage.kf.setImage(with: img)
+                self.backgroundImage.loadImage(from: img)
             }
         }
         
