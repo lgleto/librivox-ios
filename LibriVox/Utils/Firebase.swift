@@ -87,8 +87,6 @@ func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiob
     let userRef = firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid)
     let bookCollectionRef =  userRef.collection(USERBOOK_COLLECTION).whereField(field, isEqualTo: value)
     
-    var finalList: [Audiobook] = []
-    
     bookCollectionRef.getDocuments { (querySnapshot, error) in
         if let error = error {
             print("Error getting documents: \(error.localizedDescription)")
@@ -96,12 +94,13 @@ func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiob
             return
         }
         
-        guard let documents = querySnapshot?.documents else {
+        guard let documents = querySnapshot?.documents, !documents.isEmpty else {
             print("No documents found")
             completion([])
             return
         }
-        
+       
+        var finalList: [Audiobook] = []
         for document in documents {
             if let book = BookUser(dict: document.data()) {
                 
@@ -112,12 +111,11 @@ func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiob
                     }
                     if let data = data {
                         finalList.append(contentsOf: data.books!)
-                        completion(finalList ?? [])
+                        completion(finalList)
                     }
                 }
             }
         }
-        
     }
 }
 

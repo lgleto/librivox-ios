@@ -24,11 +24,11 @@ class ReadingVC: UITableViewController {
                 let alertImage = UIImage(named: "readingBook")
                 let alertText = "No book being read"
                 setImageNLabelAlert(view: self.tableView, img: alertImage!, text: alertText)
+                return
             }
-            else{
-                self.finalList = audiobooks
-                self.tableView.reloadData()
-            }
+            
+            self.finalList = audiobooks
+            self.tableView.reloadData()
         }
     }
     
