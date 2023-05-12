@@ -48,9 +48,6 @@ class RegisterDetailVC: UIViewController, UIImagePickerControllerDelegate, UINav
                 print(error.localizedDescription)
                 return
             }else{
-            //store downloadURL
-                //let downloadURL = metaData!.name
-            //store downloadURL at database
                 self.db.collection("users").document(Auth.auth().currentUser!   .uid).updateData([
                     "description": self.descText.text ?? ""
                 ]) { err in
@@ -94,18 +91,5 @@ class RegisterDetailVC: UIViewController, UIImagePickerControllerDelegate, UINav
         }
 
     }
-
-    
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

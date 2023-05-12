@@ -77,17 +77,6 @@ class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     var trending = [Trending]()
     var localBooks = [Audiobook]()
@@ -141,13 +130,6 @@ class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
     }
-
-
-    
-    
-    
-    
-    
 }
 
 
