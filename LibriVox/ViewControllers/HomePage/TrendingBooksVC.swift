@@ -110,8 +110,6 @@ class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     func loadTrending(callback: @escaping ()->() ) {
-        
-        
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
         booksRef.order(by: "trending", descending: true)
@@ -124,16 +122,7 @@ class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     let s = document.data()
                     let book = Trending(dict: s)
                     self.trending.append(book!)
-                    //print("\(document.documentID) => \(document.data())")
                 }
-                /*
-                 for trend in trending {
-                 print(Int64(trend.id)!)
-                 DefaultAPI.idBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
-                 print(data!.books![0].title!)
-                 books.append(data!.books![0])
-                 }
-                 }*/
                 self.addForTrending() {
                     print("inside loadTrending")
                     callback()

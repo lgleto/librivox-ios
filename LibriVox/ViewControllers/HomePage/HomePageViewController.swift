@@ -52,10 +52,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             self.nameText.text = "Hello \(user?.username ?? "User not found")"
         }
         
-        //getCurrentUserName()
-        
-        //nameText.text = "Hello \(Auth.auth().currentUser!.displayName!)"
-        
         logo.layer.cornerRadius = logo.layer.bounds.height / 2
         
         imgBook.layer.cornerRadius = 5
@@ -82,20 +78,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func allTrending(_ sender: Any) {
         performSegue(withIdentifier: "allTrending", sender: nil)
     }
-    func getCurrentUserName(){
-        let db = Firestore.firestore()
-        
-        let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                print("Document data: \(dataDescription)")
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "HomepageToTrendingBooks") {
@@ -200,11 +183,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         let booksRef = db.collection("books")
         booksRef.order(by: "trending", descending: true).limit(to: 3)
         
-        //let timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { timer in
-        //      print("Time is Over")
-        //    callback()
-        //   }
-        //       timer.invalidate()
         
         booksRef.getDocuments { querySnapshot, err in
             if let err = err {
@@ -236,16 +214,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                     let s = document.data()
                     let book = Trending(dict: s)
                     self.trending.append(book!)
-                    //print("\(document.documentID) => \(document.data())")
                 }
-                /*
-                 for trend in trending {
-                 print(Int64(trend.id)!)
-                 DefaultAPI.idBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
-                 print(data!.books![0].title!)
-                 books.append(data!.books![0])
-                 }
-                 }*/
                 self.addForTrending() {
                     print("inside loadTrending")
                     callback()
@@ -266,47 +235,34 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.trendingBooks.reloadData()
                 self.IndicatorView.stopAnimating()
             }
-                    }else{
-                        //Show no network alert
-                        let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { action in
-                            switch action.style{
-                                case .default:
-                                self.IndicatorView.startAnimating()
-                                self.checkWifi()
-                                
-                                
-                                case .cancel:
-                                print("cancel")
-                                
-                                case .destructive:
-                                print("destructive")
-                                
-                            @unknown default:
-                                print("this wasnt suposed to happen")
-                            }
-                        }))
-                        self.IndicatorView.stopAnimating()
-                        self.present(alert, animated: true, completion: nil)
-                    }
+        
+        }else{
+            //Show no network alert
+            let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Retry",style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    self.IndicatorView.startAnimating()
+                    self.checkWifi()
+                    
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                @unknown default:
+                    print("this wasnt suposed to happen")
+                }
+            }))
+            self.IndicatorView.stopAnimating()
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
 }
 
 
-func loadCurrentUser( callback: @escaping (User?)->() ) {
-    let db = Firestore.firestore()
-    let currentUser = Auth.auth().currentUser
-    db.collection("users")
-      .document(currentUser!.uid)
-      .addSnapshotListener({ snapshot, error in
-        if let s = snapshot,
-          let d = s.data(),
-          let user = User.init(dict: d ) {
-          callback(user )
-        }else {
-          callback(nil)
-        }
-      })
-  }
+
 

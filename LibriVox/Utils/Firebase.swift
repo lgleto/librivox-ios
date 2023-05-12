@@ -162,3 +162,19 @@ func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewCon
     
 }
 
+func loadCurrentUser( callback: @escaping (User?)->() ) {
+    let db = Firestore.firestore()
+    let currentUser = Auth.auth().currentUser
+    db.collection("users")
+      .document(currentUser!.uid)
+      .addSnapshotListener({ snapshot, error in
+        if let s = snapshot,
+          let d = s.data(),
+          let user = User.init(dict: d ) {
+          callback(user )
+        }else {
+          callback(nil)
+        }
+      })
+  }
+
