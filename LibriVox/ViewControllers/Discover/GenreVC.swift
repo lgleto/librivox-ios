@@ -19,8 +19,11 @@ class GenreVC: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var backgroundLabel: RoundedBookImageView!
     
+    @IBOutlet weak var tabBar: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         tvBooksByGenre.delegate = self
         tvBooksByGenre.dataSource = self
@@ -30,7 +33,6 @@ class GenreVC: UIViewController {
                 //TODO: Make an alert to retry, popback to the previous controller
                 return
             }
-            
             genreLabel.text = name
             backgroundLabel.backgroundColor = stringToColor(color: String(mainColor.dropFirst()))
             

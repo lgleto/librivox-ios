@@ -11,5 +11,5 @@ class ListBooksCell: UICollectionViewCell {
     @IBOutlet weak var background: BlurredImageView!
     @IBOutlet weak var titleBook: UILabel!
     @IBOutlet weak var imageBook: RoundedBookImageView!
-    @IBOutlet weak var isFav: FavoritesToggleBtn!
+    @IBOutlet weak var isFav: ToggleBtn!
 }
