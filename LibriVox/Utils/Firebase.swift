@@ -82,7 +82,6 @@ func getGenresFromDb(callback: @escaping ([GenreWithColor]) -> Void){
     }
 }
 
-
 func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiobook]) -> Void) {
     let userRef = firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid)
     let bookCollectionRef =  userRef.collection(USERBOOK_COLLECTION).whereField(field, isEqualTo: value)
@@ -118,6 +117,53 @@ func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiob
         }
     }
 }
+/*func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiobook]) -> Void) {
+    let userRef = firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid)
+    let bookCollectionRef = userRef.collection(USERBOOK_COLLECTION).whereField(field, isEqualTo: value)
+    
+    // Add a listener to observe changes in the book collection
+    bookCollectionRef.addSnapshotListener { (querySnapshot, error) in
+        if let error = error {
+            print("Error getting documents: \(error.localizedDescription)")
+            completion([])
+            return
+        }
+        
+        guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+            print("No documents found")
+            completion([])
+            return
+        }
+        
+        var finalList: [Audiobook] = []
+        var remainingTasks = documents.count
+        
+        for document in documents {
+            if let book = BookUser(dict: document.data()) {
+                DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(book.id!)!, format: "json", extended: 1) { data, error in
+                    if let error = error {
+                        print("Error:", error.localizedDescription)
+                        remainingTasks -= 1
+                        checkCompletion()
+                        return
+                    }
+                    if let data = data {
+                        finalList.append(contentsOf: data.books!)
+                    }
+                    remainingTasks -= 1
+                    checkCompletion()
+                }
+            }
+        }
+        
+        func checkCompletion() {
+            if remainingTasks == 0 {
+                completion(finalList)
+            }
+        }
+    }
+}
+*/
 
 func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
     let imageRef = storage.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")

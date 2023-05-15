@@ -11,15 +11,15 @@ class User {
     static let NAME = "name"
     static let USERNAME = "username"
 
-    var name: String
-    var username: String
+    var name: String?
+    var username: String?
     var description: String?
-    var email: String
+    var email: String?
     
     init?(dict: [String:Any]) {
-        self.name     = (dict["name"] as? String)!
-        self.username       = (dict["username"       ]as? String)!
+        self.name     = (dict["name"] as? String)
+        self.username       = (dict["username"       ]as? String)
         self.description      = (dict["description"      ] as? String)
-        self.email = (dict["email"] as? String ?? "")! //TODO: remove ??
+        self.email = (dict["email"] as? String ?? "")//TODO: remove ??
     }
 }

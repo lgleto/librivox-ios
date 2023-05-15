@@ -33,29 +33,30 @@ class LoadingImage: UIImageView {
     
     func loadImage(from url: URL) {
         if let cachedImage = LoadingImage.imageCache.object(forKey: url as NSURL) {
-            print("iupiii it's on cache :D")
             DispatchQueue.main.async() {
                 self.image = cachedImage
                 self.spinner.stopAnimating()
             }
             return
+        }else{
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard
+                    let data = data, error == nil,
+                    let image = UIImage(data: data)
+                else {
+                    return
+                }
+
+                DispatchQueue.main.async() { [weak self] in
+                    self?.image = image
+                    LoadingImage.imageCache.setObject(image, forKey: url as NSURL)
+                    self?.spinner.stopAnimating()
+                }
+
+            }.resume()
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-            else {
-                return
-            }
-
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-                LoadingImage.imageCache.setObject(image, forKey: url as NSURL)
-                self?.spinner.stopAnimating()
-            }
-
-        }.resume()
+      
     }
 
     

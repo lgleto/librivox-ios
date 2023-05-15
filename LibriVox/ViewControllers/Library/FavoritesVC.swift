@@ -12,8 +12,16 @@ import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
     
-    var finalList: [Audiobook] = []
+    private func checkAndUpdateEmptyState() {
+            if finalList.isEmpty {
+                let alertImage = UIImage(named: "favoritesBook")
+                let alertText = "No books to display."
+                setImageNLabelAlert(view: tableView, img: alertImage!, text: alertText)
+            }
+        }
     
+    var finalList: [Audiobook] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +36,8 @@ class FavoritesVC: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        
 
     }
     
@@ -40,8 +50,11 @@ class FavoritesVC: UITableViewController {
         
         let book = finalList[indexPath.row]
         
+        cell.favBtn.isSelected = true
+        
         cell.titleBook.text = book.title
         cell.authorBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
+        
         
         if let duration = book.totaltime{
             cell.durationBook.text = "Duration: \(duration)"
@@ -55,9 +68,49 @@ class FavoritesVC: UITableViewController {
         }
         cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         
+        cell.favBtn.tag = indexPath.row
+        cell.favBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
         return cell
     }
     
+    @objc func click(_ sender: UIButton) {
+        let rowIndex = sender.tag
+        let book = finalList[rowIndex]
+        
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        
+        let bookCollectionRef = userRef.collection("bookCollection").whereField("id", isEqualTo: book._id)
+        
+        bookCollectionRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error retrieving book collection: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No matching documents found.")
+                return
+            }
+            
+            for document in documents {
+                let docRef = userRef.collection("bookCollection").document(document.documentID)
+                docRef.updateData([BookUser.IS_FAV: false]) { error in
+                    if let error = error {
+                        print("Error updating document: \(error.localizedDescription)")
+                    } else {
+                        self.finalList.remove(at: rowIndex)
+                        let indexPath = IndexPath(item: rowIndex, section: 0)
+                        self.tableView.deleteRows(at: [indexPath], with: .left)
+                        self.checkAndUpdateEmptyState()
+                    }
+                }
+            }
+        }
+    }
+    
+    
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
            let detailVC = segue.destination as? BookDetailsVC {
@@ -65,4 +118,28 @@ class FavoritesVC: UITableViewController {
             detailVC.book = finalList[indexPath.row]
         }
     }
+}
+
+
+
+class FavoritesCellTVC: UITableViewCell {
+    
+    @IBOutlet weak var genreBook: UILabel!
+    @IBOutlet weak var durationBook: UILabel!
+    @IBOutlet weak var authorBook: UILabel!
+    @IBOutlet weak var imgBook: RoundedBookImageView!
+    @IBOutlet weak var favBtn: ToggleBtn!
+    @IBOutlet weak var titleBook: UILabel!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        favBtn.isSelected = true
+    }
+    
+    @IBAction func click(_ sender: Any) {
+        
+    }
+    
+    
 }

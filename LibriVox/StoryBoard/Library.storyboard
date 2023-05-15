@@ -348,6 +348,7 @@
                                 <connections>
                                     <outlet property="authorBook" destination="xvR-S9-KMM" id="0RD-Xh-9me"/>
                                     <outlet property="durationBook" destination="0Uz-sa-4Mv" id="og4-8N-AQg"/>
+                                    <outlet property="favBtn" destination="eeG-1D-zCM" id="pLf-dy-Byl"/>
                                     <outlet property="genreBook" destination="iib-PH-hrF" id="joZ-MY-MOg"/>
                                     <outlet property="imgBook" destination="O1I-E8-xzJ" id="Wug-Kd-3IL"/>
                                     <outlet property="titleBook" destination="oHD-S1-uK2" id="ZC2-4c-P2e"/>
