@@ -354,20 +354,23 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laf-3e-kNv" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="170" y="678" width="35" height="35"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="0Tg-Pz-aVb"/>
                                     <constraint firstAttribute="width" secondItem="laf-3e-kNv" secondAttribute="height" multiplier="1:1" id="RpR-vR-hnO"/>
                                     <constraint firstAttribute="height" constant="35" id="Xoi-FO-UiB"/>
                                 </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal">
+                                <state key="normal" image="play.circle" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playBTN:" destination="akk-5b-9ff" eventType="touchUpInside" id="o9i-Jb-xoF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C32-ni-jcR"/>
@@ -395,7 +398,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title Of BOOK" id="uke-ez-Ksa"/>
                     <connections>
-                        <outlet property="playBtn" destination="laf-3e-kNv" id="d0o-kk-ZU2"/>
+                        <outlet property="playBtn" destination="laf-3e-kNv" id="uGW-Pt-wQa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3W6-2B-h2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -690,8 +693,9 @@
         <image name="logo" width="400" height="400"/>
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
+        <image name="play.circle" catalog="system" width="128" height="123"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

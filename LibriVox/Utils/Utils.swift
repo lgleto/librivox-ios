@@ -305,3 +305,50 @@ class NetworkCheck {
 
 }
 
+func folderPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(string: documentsDirectory)!
+        //let dataPath = docURL.appendingPathComponent("/mp3")
+        return docURL.absoluteString
+    }
+
+func millisToTime(_ timeMillis: Int) -> String {
+    let seconds = abs(timeMillis / 1000)
+    let minutes: Int = seconds / 60
+    return String(format: "%02d:%02d", (minutes % 60), (seconds % 60))
+}
+
+func downloadImage(url: URL, imageView: UIImageView) {
+
+    getDataFromUrl(url: url) { (data, response, error)  in
+        guard let data = data, error == nil else {
+            return
+        }
+        DispatchQueue.main.async() { () -> Void in
+            imageView.alpha = 0.0
+            UIView.transition(with: imageView, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                imageView.image = UIImage(data: data)
+                imageView.alpha = 1.0;
+            }, completion: nil)
+        }
+    }
+}
+
+func downloadImage(url: URL, callback: @escaping  (UIImage)->() ) {
+    getDataFromUrl(url: url) { (data, response, error)  in
+        guard let data = data, error == nil else {
+            return
+        }
+        DispatchQueue.main.async() { () -> Void in
+            callback(UIImage(data: data) ?? UIImage())
+        }
+    }
+}
+
+func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+    URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        completion(data, response, error)
+        }.resume()
+}

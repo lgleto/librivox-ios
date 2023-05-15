@@ -7,6 +7,7 @@ target 'LibriVox' do
 
   # Pods for LibriVox
   pod 'SwaggerClient', :path => './swagger-ios'
+  pod 'SSZipArchive'
 end
 
 post_install do |installer|
