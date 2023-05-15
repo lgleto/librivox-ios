@@ -8,6 +8,7 @@
 import Foundation
 import SwaggerClient
 import Network
+import UIKit
 
 func showConfirmationAlert(_ view: UIViewController, _ title: String, _ msg: String? = nil){
     let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
@@ -194,6 +195,7 @@ func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
     let label = UILabel()
     label.text = text
     label.textAlignment = .center
+    label.numberOfLines = 0
     label.textColor = UIColor.lightGray
     label.font = UIFont(name: "Nunito", size: 17)
     
@@ -208,6 +210,11 @@ func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ])
+}
+
+
+func checkAndUpdateEmptyState(list: [Audiobook], alertImage: UIImage, view: UIScrollView, alertText: String) {
+    list.isEmpty ? setImageNLabelAlert(view: view, img: alertImage, text: alertText) : removeImageNLabelAlert(view: view)
 }
 
 func removeImageNLabelAlert(view: UIScrollView) {
@@ -226,7 +233,7 @@ func stringFormatted(textBold: String, textRegular: String, size: CGFloat) -> NS
     
     let attrsLight = [NSAttributedString.Key.font : UIFont(name: "Nunito ExtraLight Light", size: size)]
     let normalString = NSMutableAttributedString(string: textRegular, attributes: attrsLight)
-
+    
     attributedString.append(normalString)
     
     return attributedString
@@ -257,11 +264,11 @@ protocol NetworkCheckObserver: class {
 }
 
 class NetworkCheck {
-
+    
     struct NetworkChangeObservation {
         weak var observer: NetworkCheckObserver?
     }
-
+    
     private var monitor = NWPathMonitor()
     private static let _sharedInstance = NetworkCheck()
     private var observations = [ObjectIdentifier: NetworkChangeObservation]()
@@ -270,21 +277,21 @@ class NetworkCheck {
             return monitor.currentPath.status
         }
     }
-
+    
     class func sharedInstance() -> NetworkCheck {
         return _sharedInstance
     }
-
+    
     init() {
         monitor.pathUpdateHandler = { [unowned self] path in
             for (id, observations) in self.observations {
-
+                
                 //If any observer is nil, remove it from the list of observers
                 guard let observer = observations.observer else {
                     self.observations.removeValue(forKey: id)
                     continue
                 }
-
+                
                 DispatchQueue.main.async(execute: {
                     observer.statusDidChange(status: path.status)
                 })
@@ -292,16 +299,16 @@ class NetworkCheck {
         }
         monitor.start(queue: DispatchQueue.global(qos: .background))
     }
-
+    
     func addObserver(observer: NetworkCheckObserver) {
         let id = ObjectIdentifier(observer)
         observations[id] = NetworkChangeObservation(observer: observer)
     }
-
+    
     func removeObserver(observer: NetworkCheckObserver) {
         let id = ObjectIdentifier(observer)
         observations.removeValue(forKey: id)
     }
-
+    
 }
 

@@ -290,8 +290,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iib-PH-hrF">
-                                            <rect key="frame" x="87" y="112" width="142" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iib-PH-hrF">
+                                            <rect key="frame" x="87" y="112" width="251" height="18"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -336,6 +336,7 @@
                                         <constraint firstItem="xvR-S9-KMM" firstAttribute="leading" secondItem="O1I-E8-xzJ" secondAttribute="trailing" constant="10" id="RTS-b4-eYv"/>
                                         <constraint firstItem="0Uz-sa-4Mv" firstAttribute="top" secondItem="xvR-S9-KMM" secondAttribute="bottom" constant="2" id="TGH-8h-dam"/>
                                         <constraint firstAttribute="bottom" secondItem="O1I-E8-xzJ" secondAttribute="bottom" constant="10" id="ViK-rM-Akr"/>
+                                        <constraint firstItem="5Lf-Ln-QkG" firstAttribute="leading" secondItem="iib-PH-hrF" secondAttribute="trailing" constant="20" id="dDg-Ms-o72"/>
                                         <constraint firstItem="0Uz-sa-4Mv" firstAttribute="leading" secondItem="O1I-E8-xzJ" secondAttribute="trailing" constant="10" id="i1j-TU-mmu"/>
                                         <constraint firstAttribute="trailing" secondItem="oHD-S1-uK2" secondAttribute="trailing" constant="50" id="if5-Ur-Kam"/>
                                         <constraint firstItem="eeG-1D-zCM" firstAttribute="centerY" secondItem="oHD-S1-uK2" secondAttribute="centerY" id="sLs-7s-0Gd"/>
