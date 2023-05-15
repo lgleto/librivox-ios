@@ -603,11 +603,7 @@
                             <constraint firstItem="dcA-MV-fKf" firstAttribute="leading" secondItem="Rqz-G1-WGW" secondAttribute="leading" constant="16" id="gpl-Rk-idF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="yft-an-xRQ">
-                        <barButtonItem key="backBarButtonItem" title="lkkkk" style="plain" id="v97-Kb-fNM">
-                            <color key="tintColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="yft-an-xRQ"/>
                     <connections>
                         <outlet property="backgroundLabel" destination="i9r-bU-wlW" id="BTL-6x-E3J"/>
                         <outlet property="genreLabel" destination="ESe-dR-hbB" id="MC2-1I-fO7"/>
@@ -768,7 +764,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: Visitou Morpheus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ru-Mu-QVE">
-                                                    <rect key="frame" x="0.0" y="195" width="170" height="41"/>
+                                                    <rect key="frame" x="0.0" y="195" width="175" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="41" id="1VN-B7-MYm"/>
                                                         <constraint firstAttribute="width" constant="170" id="lPY-vn-16R"/>
@@ -1239,11 +1235,6 @@
             <point key="canvasLocation" x="4105" y="1791"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="M3G-pU-hTl">
-            <size key="intrinsicContentSize" width="22" height="22"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="IQw-s6-9v8"/>
         <segue reference="AcP-9N-3vd"/>
