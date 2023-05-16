@@ -66,17 +66,10 @@ class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigat
         userPhoto.addGestureRecognizer(tapGestureRecognizer)
         
         getUserInfo(User.NAME) { name in
-            if let name = name {
-                self.name.text = name
+            if let name = name ?? Auth.auth().currentUser?.displayName {
+                self.userName.text = name
                 self.originalName = name
-            
                 downloadProfileImage(name, self.userPhoto)
-            }else{
-                guard let url = Auth.auth().currentUser?.photoURL else{
-                    self.userPhoto.loadImage(from: imageWith(name: name)!)
-                    return
-                }
-                self.userPhoto.loadImage(from:url)
             }
         }
         

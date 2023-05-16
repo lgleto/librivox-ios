@@ -15,20 +15,20 @@ import SwaggerClient
 class ReadingVC: UITableViewController {
     
     var finalList: [Audiobook] = []
+    let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        spinner.startAnimating()
+        tableView.backgroundView = spinner
+        
         getBooksFromUser(field: BookUser.IS_READING,value: true) { audiobooks in
-            if audiobooks.isEmpty{
-                let alertImage = UIImage(named: "readingBook")
-                let alertText = "No book being read"
-                setImageNLabelAlert(view: self.tableView, img: alertImage!, text: alertText)
-                return
-            }
-            
             self.finalList = audiobooks
-            self.tableView.reloadData()
+            self.spinner.stopAnimating()
+        
+            self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+            checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
         }
     }
     

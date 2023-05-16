@@ -12,12 +12,18 @@ import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
     var finalList: [Audiobook] = []
+    let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        spinner.startAnimating()
+        tableView.backgroundView = spinner
+        
         getBooksFromUser(field: BookUser.IS_FAV, value: true) { audiobooks in
             self.finalList = audiobooks
+            self.spinner.stopAnimating()
+            
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
         }

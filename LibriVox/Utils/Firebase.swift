@@ -20,23 +20,24 @@ let firestore = Firestore.firestore()
 let storage = Storage.storage().reference()
 
 
-func getUserInfo(_ field: String,_ callback: @escaping (String?) -> Void) {
+func getUserInfo(_ field: String, _ callback: @escaping (String?) -> Void) {
     let userRef = firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid)
     
-    userRef.getDocument { (document, error) in
+    userRef.addSnapshotListener { (documentSnapshot, error) in
         if let error = error {
             print("Error getting user document: \(error.localizedDescription)")
             callback(nil)
-        } else if let document = document, document.exists {
+        } else if let document = documentSnapshot, document.exists {
             let data = document.data()
-            let name = data?["\(field)"] as? String
-            callback(name)
+            let info = data?[field] as? String
+            callback(info)
         } else {
             print("User document does not exist")
             callback(nil)
         }
     }
 }
+
 
 func updateUserInfo(name: String, username: String, view: UIViewController) {
     var dataToUpdate = [String: Any]()
@@ -129,24 +130,21 @@ func getBooksFromUser(field: String, value: Bool, completion: @escaping ([Audiob
     }
 }
 
-func downloadProfileImage(_ name: String, _ imageView: UIImageView) {
+func downloadProfileImage(_ name: String,_ imageView: LoadingImage) {
     let imageRef = storage.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")
-    
-    let defaultImage = imageWith(name: name)
-    imageView.image = defaultImage
-    imageView.backgroundColor = UIColor(named: "Green Tone")
     
     imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
         if let error = error {
             print("Error downloading image: \(error.localizedDescription)")
+        } else if let imageData = data {
+            imageView.loadImage(from: UIImage(data: imageData)!)
+        } else if let url = Auth.auth().currentUser?.photoURL {
+            imageView.loadImage(from: url)
         } else {
-            if let imageData = data {
-                imageView.image = UIImage(data: imageData)
-            }
+            imageView.loadImage(from: imageWith(name: name)!)
         }
     }
 }
-
 
 func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewController){
     if let user = Auth.auth().currentUser{
@@ -167,22 +165,21 @@ func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewCon
             }
         }
     }
-    
 }
 
 func loadCurrentUser( callback: @escaping (User?)->() ) {
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
     db.collection("users")
-      .document(currentUser!.uid)
-      .addSnapshotListener({ snapshot, error in
-        if let s = snapshot,
-          let d = s.data(),
-          let user = User.init(dict: d ) {
-          callback(user )
-        }else {
-          callback(nil)
-        }
-      })
-  }
+        .document(currentUser!.uid)
+        .addSnapshotListener({ snapshot, error in
+            if let s = snapshot,
+               let d = s.data(),
+               let user = User.init(dict: d ) {
+                callback(user )
+            }else {
+                callback(nil)
+            }
+        })
+}
 

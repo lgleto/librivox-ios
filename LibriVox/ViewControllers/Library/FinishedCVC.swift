@@ -14,20 +14,19 @@ class FinishedCVC: UICollectionViewController {
     
     var finalList: [Audiobook] = []
     
+    let spinner = UIActivityIndicatorView(style: .medium)
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        spinner.startAnimating()
+        collectionView.backgroundView = spinner
+        
         getBooksFromUser(field: BookUser.IS_READING, value: false) { audiobooks in
-            if audiobooks.isEmpty{
-                let alertImage = UIImage(named: "completedBook")
-                let alertText = "No book finished yet"
-                setImageNLabelAlert(view: self.collectionView, img: alertImage!, text: alertText)
-            }
-            else{
-                self.finalList = audiobooks
-                
-                self.collectionView.reloadData()
-            }
+            self.finalList = audiobooks
+            self.spinner.stopAnimating()
+            
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+            checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "completedBook")!,view: self.collectionView, alertText: "No books finished yet")
         }
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

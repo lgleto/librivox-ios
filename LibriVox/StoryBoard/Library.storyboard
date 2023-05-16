@@ -397,14 +397,6 @@
                                                 <constraint firstAttribute="width" constant="110" id="uz6-mc-9Vh"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQX-Uc-8Wz" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                            <rect key="frame" x="114" y="8" width="28" height="28"/>
-                                            <color key="backgroundColor" name="Main Blue Tone"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="28" id="CgJ-CO-V8H"/>
-                                                <constraint firstAttribute="height" constant="28" id="Pon-Mg-RYm"/>
-                                            </constraints>
-                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: Visitou Morpheus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBd-US-yq9">
                                             <rect key="frame" x="0.0" y="193" width="156" height="43"/>
                                             <constraints>
@@ -419,10 +411,8 @@
                                         <constraint firstItem="96F-Gt-DxQ" firstAttribute="centerX" secondItem="DBd-US-yq9" secondAttribute="centerX" id="13A-Vi-vio"/>
                                         <constraint firstAttribute="bottom" secondItem="DBd-US-yq9" secondAttribute="bottom" id="6QW-gz-CoZ"/>
                                         <constraint firstItem="DBd-US-yq9" firstAttribute="top" secondItem="96F-Gt-DxQ" secondAttribute="bottom" constant="11" id="Cdj-cg-3w4"/>
-                                        <constraint firstItem="aQX-Uc-8Wz" firstAttribute="top" secondItem="F3g-po-Wkq" secondAttribute="topMargin" id="WLG-Cm-55q"/>
                                         <constraint firstAttribute="trailing" secondItem="DBd-US-yq9" secondAttribute="trailing" id="fHt-xb-nPc"/>
                                         <constraint firstItem="96F-Gt-DxQ" firstAttribute="top" secondItem="F3g-po-Wkq" secondAttribute="top" constant="10" id="hIa-CC-7pg"/>
-                                        <constraint firstAttribute="trailing" secondItem="aQX-Uc-8Wz" secondAttribute="trailing" constant="14" id="kiF-8i-LqE"/>
                                         <constraint firstItem="DBd-US-yq9" firstAttribute="leading" secondItem="F3g-po-Wkq" secondAttribute="leading" id="qHR-dT-jpd"/>
                                     </constraints>
                                 </collectionViewCellContentView>

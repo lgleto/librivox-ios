@@ -29,19 +29,9 @@ class ProfileVC: UIViewController {
         logoutBtn.addGestureRecognizer(tap)
         
         getUserInfo(User.NAME) { name in
-            if let name = name {
+            if let name = name ?? Auth.auth().currentUser?.displayName {
                 self.nameUser.text = name
                 downloadProfileImage(name, self.profilePhoto)
-            }else{
-                guard let name = Auth.auth().currentUser?.displayName else { return }
-                self.nameUser.text = name
-                
-                guard let url = Auth.auth().currentUser?.photoURL else{
-                    self.profilePhoto.loadImage(from: imageWith(name: name)!)
-                    return
-                }
-                
-                self.profilePhoto.loadImage(from:url)
             }
         }
         
