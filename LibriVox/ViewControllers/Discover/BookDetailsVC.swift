@@ -193,6 +193,23 @@ class BookDetailsVC: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "detailsToPlayer") {
+            let destVC = segue.destination as! PlayerVC
+            destVC.book = sender as! Audiobook
+        } else if (segue.identifier == "homeToBookDetail"){
+            
+        }
+        
+    }
+    
+    @IBAction func playBookBtn(_ sender: Any) {
+        
+        performSegue(withIdentifier: "detailsToPlayer", sender: book)
+    }
+    
+    
 }
 
 extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {

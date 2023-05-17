@@ -243,9 +243,8 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="bRL-z3-kfn"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmy-3I-gVG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmy-3I-gVG">
                                 <rect key="frame" x="309" y="346" width="50" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="ellipsis.circle" catalog="system"/>
@@ -257,6 +256,8 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gmy-3I-gVG" secondAttribute="trailing" constant="16" id="2r8-E6-ksp"/>
+                            <constraint firstItem="gmy-3I-gVG" firstAttribute="top" secondItem="oqc-aF-cfm" secondAttribute="bottom" constant="10" id="Aph-zj-Vu1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lcC-6f-bEm" secondAttribute="trailing" constant="16" id="Fcs-H3-MCZ"/>
                             <constraint firstItem="JmE-sY-adk" firstAttribute="top" secondItem="oqc-aF-cfm" secondAttribute="bottom" constant="16" id="Jj2-Bs-Kgh"/>
                             <constraint firstItem="3nx-NT-hZh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="NMO-sD-bAy"/>
@@ -304,16 +305,19 @@
         <!--Title Of BOOK-->
         <scene sceneID="0Rp-zp-DbB">
             <objects>
-                <viewController id="akk-5b-9ff" customClass="PlayerVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerVC" id="akk-5b-9ff" customClass="PlayerVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WS1-bA-1xY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bME-vC-fKE">
                                 <rect key="frame" x="32" y="678" width="51" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bME-vC-fKE" secondAttribute="height" multiplier="51:35" id="y64-p1-UTs"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="list.triangle" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="list.triangle" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-7D-iw7" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="308" y="678" width="35" height="35"/>
@@ -334,9 +338,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-UC-bdt">
                                 <rect key="frame" x="236" y="678" width="64" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fkb-UC-bdt" secondAttribute="height" multiplier="64:35" id="QrI-zk-PK1"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="forward.end.alt.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="forward.end.alt.fill" catalog="system"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6aI-cz-EdD">
                                 <rect key="frame" x="32" y="110" width="311" height="560"/>
@@ -348,9 +355,12 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-3O-FPr">
                                 <rect key="frame" x="90" y="678" width="64" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QkF-3O-FPr" secondAttribute="height" multiplier="64:35" id="CYJ-ej-qUk"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="backward.end.alt.fill" catalog="system"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="backward.end.alt.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laf-3e-kNv" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="170" y="678" width="35" height="35"/>
@@ -372,6 +382,10 @@
                                     <action selector="playBTN:" destination="akk-5b-9ff" eventType="touchUpInside" id="o9i-Jb-xoF"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-9f-QBm">
+                                <rect key="frame" x="32" y="721" width="311" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C32-ni-jcR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -384,14 +398,14 @@
                             <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="bME-vC-fKE" secondAttribute="bottom" constant="16" id="NBb-mZ-VZU"/>
                             <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="FXG-7D-iw7" secondAttribute="bottom" constant="16" id="Pgw-Lu-aQm"/>
                             <constraint firstItem="6aI-cz-EdD" firstAttribute="top" secondItem="C32-ni-jcR" secondAttribute="top" constant="16" id="QOd-Rc-mr2"/>
+                            <constraint firstItem="laf-3e-kNv" firstAttribute="leading" secondItem="QkF-3O-FPr" secondAttribute="trailing" constant="16" id="QvC-3V-iZf"/>
+                            <constraint firstItem="fkb-UC-bdt" firstAttribute="leading" secondItem="laf-3e-kNv" secondAttribute="trailing" constant="31" id="WYd-hj-Cgu"/>
                             <constraint firstItem="C32-ni-jcR" firstAttribute="trailing" secondItem="6aI-cz-EdD" secondAttribute="trailing" constant="32" id="XF1-bM-Trx"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="trailing" secondItem="laf-3e-kNv" secondAttribute="trailing" constant="170" id="biO-kL-4ea"/>
                             <constraint firstItem="6aI-cz-EdD" firstAttribute="leading" secondItem="C32-ni-jcR" secondAttribute="leading" constant="32" id="dSc-N3-lsa"/>
                             <constraint firstItem="C32-ni-jcR" firstAttribute="trailing" secondItem="FXG-7D-iw7" secondAttribute="trailing" constant="32" id="fJM-Os-aEb"/>
                             <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="QkF-3O-FPr" secondAttribute="bottom" constant="16" id="gTi-Up-6iz"/>
                             <constraint firstItem="laf-3e-kNv" firstAttribute="top" secondItem="6aI-cz-EdD" secondAttribute="bottom" constant="8" id="gfp-0I-bg3"/>
                             <constraint firstItem="fkb-UC-bdt" firstAttribute="top" secondItem="6aI-cz-EdD" secondAttribute="bottom" constant="8" symbolic="YES" id="hww-u0-H4P"/>
-                            <constraint firstItem="laf-3e-kNv" firstAttribute="leading" secondItem="C32-ni-jcR" secondAttribute="leading" constant="170" id="tG4-LO-ujm"/>
                             <constraint firstItem="FXG-7D-iw7" firstAttribute="leading" secondItem="fkb-UC-bdt" secondAttribute="trailing" constant="8" symbolic="YES" id="uq7-eU-6mk"/>
                             <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="fkb-UC-bdt" secondAttribute="bottom" constant="16" id="zHY-qx-8aO"/>
                         </constraints>
@@ -399,6 +413,7 @@
                     <navigationItem key="navigationItem" title="Title Of BOOK" id="uke-ez-Ksa"/>
                     <connections>
                         <outlet property="playBtn" destination="laf-3e-kNv" id="uGW-Pt-wQa"/>
+                        <outlet property="progressBar" destination="wdP-9f-QBm" id="YDE-pK-D3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3W6-2B-h2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -681,7 +696,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="g3y-Fd-V1A"/>
+        <segue reference="Sw7-E8-QYW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="28187" width="305" height="475"/>
@@ -694,8 +709,8 @@
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
         <image name="play.circle" catalog="system" width="128" height="123"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="512" height="512"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

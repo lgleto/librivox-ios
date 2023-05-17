@@ -993,6 +993,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didClick:" destination="lgZ-vp-vZD" eventType="touchUpInside" id="UsY-Gl-f9u"/>
+                                    <action selector="playBookBtn:" destination="lgZ-vp-vZD" eventType="touchUpInside" id="78B-gH-DP0"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BqQ-RH-DeQ" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
@@ -1062,11 +1063,22 @@
                         <outlet property="numSectionsBook" destination="maU-nG-kv0" id="69a-Vl-Hvw"/>
                         <outlet property="playBtn" destination="DNe-Zd-hsb" id="oCu-K5-x4c"/>
                         <outlet property="sectionsTV" destination="rRa-6w-Ngk" id="WVr-WE-MT1"/>
+                        <segue destination="cnZ-fR-Mt7" kind="show" identifier="detailsToPlayer" id="DFn-Wl-vCI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zry-on-kYx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7562.5954198473282" y="724.64788732394368"/>
+        </scene>
+        <!--PlayerVC-->
+        <scene sceneID="1a1-eE-p37">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HomePage" referencedIdentifier="PlayerVC" id="cnZ-fR-Mt7" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="H1P-08-4E3"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76Y-DR-dtw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7563" y="1151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z0X-6G-VP2">
@@ -1248,8 +1260,8 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="play" width="512" height="512"/>
         <image name="play-button" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <image name="wiki" width="512" height="512"/>
         <namedColor name="AccentColor">

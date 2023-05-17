@@ -11,16 +11,47 @@ import SSZipArchive
 import AVFoundation
 
 class PlayerVC: UIViewController {
+    
+    let delegate = DownloadDelegate()
+    @IBOutlet weak var progressBar: UIProgressView!
     var playerHandler : PlayerHandler = PlayerHandler()
     @IBOutlet weak var playBtn: ToggleBtn!
     var coverbook : UIImage?
-    var book = Audiobook(_id: "52", title: "", _description: "", genres: [], authors: [], numSections: "", sections: [], language: "", urlZipFile: "https://www.archive.org/download/letters_brides_0709_librivox/letters_brides_0709_librivox_64kb_mp3.zip", urlLibrivox: "", urlProject: "", urlRss: "", totaltime: "", totaltimesecs: 0)
+    //var book = Audiobook(_id: "52", title: "", _description: "", genres: [], authors: [], numSections: "", sections: [], language: "", urlZipFile: "https://www.archive.org/download/letters_brides_0709_librivox/letters_brides_0709_librivox_64kb_mp3.zip", urlLibrivox: "", urlProject: "", urlRss: "", totaltime: "", totaltimesecs: 0)
+    var book = Audiobook()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        delegate.progressBar = progressBar
+        let fileManager = FileManager.default
+
+        let specificFolderName = "mp3"
         
-        print("\(folderPath())/\(self.book._id!)/mp3/letters_of_two_brides_01_debalzac_64kb.mp3")
-        //getMP3()
+        
+        if(fileManager.fileExists(atPath: "\(folderPath())/\(self.book._id!)/mp3/")) {
+            do {
+                    let attributes = try fileManager.attributesOfItem(atPath: "\(folderPath())/\(self.book._id!)/mp3/")
+                    if let type = attributes[FileAttributeKey.type] as? FileAttributeType,
+                       type == FileAttributeType.typeDirectory {
+                        // The specific folder exists
+                        print("The specific folder exists.")
+                    } else {
+                        // A file with the same name exists, but it's not a folder
+                        print("A file with the same name exists, but it's not a folder.")
+                    }
+                } catch {
+                    // Error occurred while retrieving attributes
+                    print("Error: \(error)")
+                }
+        } else {
+            // The specific folder does not exist
+            print("The specific folder does not exist.")
+            getMP3()
+        }
+        
+
+        
+        
         let url = URL(fileURLWithPath: "\(folderPath())/\(self.book._id!)/mp3/letters_of_two_brides_01_debalzac_64kb.mp3" )
         
         playerHandler.prepareSongAndSession(
@@ -52,6 +83,10 @@ class PlayerVC: UIViewController {
     
     
     func getMP3() {
+        
+        
+        let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: .main)
+
         guard let url = URL(string: self.book.urlZipFile!) else {
             return
         }
@@ -66,7 +101,7 @@ class PlayerVC: UIViewController {
 
             let destinationUrl = URL(fileURLWithPath: destinationPath).appendingPathComponent("audio.zip")
 
-            let task = URLSession.shared.downloadTask(with: url) { localUrl, response, error in
+            let task = session.downloadTask(with: url) { localUrl, response, error in
                 if let localUrl = localUrl {
                     do {
                         if fileManager.fileExists(atPath: destinationUrl.path) {
@@ -115,6 +150,32 @@ class PlayerVC: UIViewController {
             task.resume()
         } catch {
             print("Error creating destination directory: \(error.localizedDescription)")
+        }
+    }
+}
+
+class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
+    var startTime: Date?
+    var progressBar: UIProgressView?
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        // File download completed
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        // Calculate the remaining time
+        guard let startTime = startTime else { return }
+        let elapsedTime = Date().timeIntervalSince(startTime)
+        let bytesPerSecond = Double(totalBytesWritten) / elapsedTime
+        let remainingBytes = totalBytesExpectedToWrite - totalBytesWritten
+        let remainingTime = TimeInterval(remainingBytes / Int64(bytesPerSecond))
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+
+        // Update your UI with the remaining time
+        DispatchQueue.main.async {
+            // Update your UI elements with the remaining time
+            self.progressBar?.progress = progress
+            print("Remaining time: \(remainingTime) seconds")
         }
     }
 }
