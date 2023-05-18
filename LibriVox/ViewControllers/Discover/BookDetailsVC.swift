@@ -57,7 +57,7 @@ class BookDetailsVC: UIViewController {
     }
     
     func setData(book : Audiobook){
-        getCoverBook(url: book.urlLibrivox!){
+        self.getCoverBook(id: book._id!,url: book.urlLibrivox!){
             img in
             if let img = img{
                 self.bookImg.loadImage(from: img)
@@ -209,6 +209,45 @@ class BookDetailsVC: UIViewController {
         performSegue(withIdentifier: "detailsToPlayer", sender: book)
     }
     
+    private func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
+        if let image = loadImageFromDocumentDirectory(id: id){
+            callback(image)
+        }else{
+            getBookCoverFromURL(url: url){image in
+                guard let image = image else{return}
+                self.saveImageToDocumentDirectory(id: id, image: image)
+                callback(image)
+            }
+        }
+    }
+    
+    private func saveImageToDocumentDirectory(id: String, image: UIImage) {
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
+
+        if !fileManager.fileExists(atPath: imgBooksDirectory.path) {
+            do {
+                try fileManager.createDirectory(at: imgBooksDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Error creating ImgBooks directory:", error)
+                return
+            }
+        }
+
+        let fileURL = imgBooksDirectory.appendingPathComponent(id)
+
+        if !fileManager.fileExists(atPath: fileURL.path) {
+            if let data = image.jpegData(compressionQuality: 1.0) {
+                do {
+                    try data.write(to: fileURL)
+                    //print("File saved:", fileURL.path)
+                } catch {
+                    //print("Error saving file:", error)
+                }
+            }
+        }
+    }
     
 }
 

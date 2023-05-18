@@ -79,7 +79,7 @@ extension ResultBooksVC: UICollectionViewDataSource, UICollectionViewDelegate{
         
         cell.titleBook.text = filteredBooks[indexPath.row].title
         cell.imageBook.image = nil
-        getCoverBook(url: filteredBooks[indexPath.row].urlLibrivox!){img in
+        getCoverBook(id:filteredBooks[indexPath.row]._id!, url: filteredBooks[indexPath.row].urlLibrivox!){img in
             if let img = img{
                 cell.imageBook.loadImage(from: img)
                 cell.background.loadImage(from: img)

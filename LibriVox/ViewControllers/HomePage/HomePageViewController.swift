@@ -38,6 +38,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Diretoria: \(NSHomeDirectory())")
+        
         IndicatorView.startAnimating()
         IndicatorView.hidesWhenStopped = true
         self.tabBarController?.tabBar.isHidden = false
@@ -136,7 +139,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         cell.trendingNumber.text = "\(indexPath.row+1)."
         
         cell.bookCover.image = nil
-        getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
+        getCoverBook(id: localBooks[indexPath.row]._id!, url: localBooks[indexPath.row].urlLibrivox!){img in
             if let img = img{
                 cell.bookCover.loadImage(from: img)
             }
@@ -161,9 +164,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     func addForTrending(  onCompelition : (()->())? = nil ) {
         if let trend = trending.first {
             DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
-                //print(error!)
-                print(data!.books![0].title!)
-                self.localBooks.append(data!.books![0])
+                guard let data = data else {return}
+                print(data.books![0].title!)
+                self.localBooks.append(data.books![0])
                 self.trending.removeFirst()
                 self.addForTrending(onCompelition: onCompelition)
             }

@@ -52,7 +52,7 @@ class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.genre.text = "Genre: \(self.localBooks[indexPath.row].genres![0].name!)"
         
         cell.bookCover.image = UIImage(named: "28187")
-        getCoverBook(url: localBooks[indexPath.row].urlLibrivox!){img in
+        getCoverBook(id: localBooks[indexPath.row]._id!, url: localBooks[indexPath.row].urlLibrivox!){img in
             guard let img = img else{//TODO: generete a cover
                 return
             }

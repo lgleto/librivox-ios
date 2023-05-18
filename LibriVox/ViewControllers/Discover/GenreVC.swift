@@ -81,7 +81,7 @@ extension GenreVC: UITableViewDataSource, UITableViewDelegate {
                 cell.durationAudioBook.text! = duration
             }
             
-            getCoverBook(url: (book.urlLibrivox!)){img in
+            getCoverBook(id: book._id!, url: (book.urlLibrivox!)){img in
                 guard let img = img else{
                     //TODO: Generate a book cover
                     return

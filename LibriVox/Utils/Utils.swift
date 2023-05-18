@@ -86,25 +86,64 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
-func getCoverBook(url: String, _ callback: @escaping (URL?) -> Void){
-    var request = URLRequest(url: URL(string: url)!)
+
+func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
+    if let image = loadImageFromDocumentDirectory(id: id){
+        print("foi do diretorio")
+        callback(image)
+    }else{
+        getBookCoverFromURL(url: url){image in
+            guard let image = image else{return}
+            callback(image)
+        }
+    }
+}
+
+func getBookCoverFromURL(url: String?, _ callback: @escaping (UIImage?) -> Void){
+    guard let url = URL(string: url ?? "") else{return}
+    
+    var request = URLRequest(url: url)
     request.httpMethod = "GET"
     
-    let session = URLSession.init(configuration: URLSessionConfiguration.default)
-    session.dataTask(with: request) {data,response,error in
+    let session = URLSession(configuration: .default)
+    session.dataTask(with: request) { data, response, error in
         
         if let data = data, let contents = String(data: data, encoding: .ascii) {
             if let range = contents.range(of: #"<img\s+src="([^"]+)".+?alt="book-cover-large".+?>"#, options: .regularExpression) {
                 let imageURL = String(contents[range].split(separator: "\"")[1])
-                callback(URL(string: imageURL))
+                if let imageData = try? Data(contentsOf: URL(string: imageURL)!) {
+                    let image = UIImage(data: imageData)
+                    callback(image)
+                } else {
+                    callback(nil)
+                }
             }
-            
         } else {
-            print("Error: \(error?.localizedDescription ?? "unknown error")")
+            callback(nil)
         }
         
     }.resume()
 }
+
+
+
+
+func loadImageFromDocumentDirectory(id: String) -> UIImage? {
+    let fileManager = FileManager.default
+    let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let imageURL = documentsDirectory.appendingPathComponent("ImgBooks").appendingPathComponent(id)
+
+    guard fileManager.fileExists(atPath: imageURL.path) else {
+        return nil
+    }
+
+    if let image = UIImage(contentsOfFile: imageURL.path) {
+        return image
+    }
+
+    return nil
+}
+
 
 func getPhotoAuthor(authorId: String, _ callback: @escaping (URL?) -> Void){
     getWikipediaLink(authorId: authorId){ title in

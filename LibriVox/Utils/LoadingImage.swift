@@ -31,6 +31,8 @@ class LoadingImage: UIImageView {
         contentMode = .scaleAspectFill
     }
     
+    /// Load image into ImageView from URL
+    /// - Parameter url: Pass the image url
     func loadImage(from url: URL) {
         if let cachedImage = LoadingImage.imageCache.object(forKey: url as NSURL) {
             DispatchQueue.main.async() {
@@ -55,14 +57,16 @@ class LoadingImage: UIImageView {
 
             }.resume()
         }
-
       
     }
 
     
+    /// Load image into ImageView
+    /// - Parameter image: Image to be put in imageView
     func loadImage(from image: UIImage) {
+        DispatchQueue.main.async {
             self.image = image
             self.spinner.stopAnimating()
-        
+        }
     }
 }

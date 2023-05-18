@@ -48,7 +48,7 @@ class FavoritesVC: UITableViewController {
             cell.durationBook.text = "Duration: \(duration)"
         }
         cell.imgBook.image = nil
-        getCoverBook(url: book.urlLibrivox!){img in
+        getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
             
             if let img = img{
                 cell.imgBook.loadImage(from: img)
