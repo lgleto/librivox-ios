@@ -13,6 +13,7 @@ import FirebaseFirestore
 
 class BookDetailsVC: UIViewController {
     
+    
     @IBOutlet weak var languageBook: UILabel!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var genreBook: UILabel!
@@ -29,9 +30,16 @@ class BookDetailsVC: UIViewController {
     var bookUser: BookUser?
     var sections: [Section] = []
     var key : String?
-    
+
+
+    // Usage
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
+
         
         sectionsTV.dataSource = self
         sectionsTV.delegate = self
