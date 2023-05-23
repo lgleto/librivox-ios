@@ -14,6 +14,8 @@ import FirebaseFirestore
 class BookDetailsVC: UIViewController {
     
     
+    @IBOutlet weak var heightConstant: NSLayoutConstraint!
+    @IBOutlet weak var showMoreBtn: UIButton!
     @IBOutlet weak var languageBook: UILabel!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var genreBook: UILabel!
@@ -30,20 +32,19 @@ class BookDetailsVC: UIViewController {
     var bookUser: BookUser?
     var sections: [Section] = []
     var key : String?
-
-
-    // Usage
-   
-
+    
+    private var rowsToBeShow:Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    
-
-        
         sectionsTV.dataSource = self
         sectionsTV.delegate = self
         
+        showMoreBtn.setTitle("Show all", for: .normal)
+        showMoreBtn.setTitle("Hide all", for: .selected)
+        
+        sectionsTV.alwaysBounceVertical = false
+
         if let book = book {
             self.title = book.title!
             self.bookUser?.id = book._id!
@@ -61,7 +62,15 @@ class BookDetailsVC: UIViewController {
                     
                 }
             }
+           
         }
+        
+    }
+    
+    @IBAction func clickShowMore(_ sender: Any) {
+        showMoreBtn.isSelected = !showMoreBtn.isSelected
+    
+        sectionsTV.reloadData()
     }
     
     func setData(book : Audiobook){
@@ -83,6 +92,7 @@ class BookDetailsVC: UIViewController {
         languageBook.attributedText = stringFormatted(textBold: "Language: ", textRegular: book.language ?? "Not specified", size: 15.0)
         
         descrBook.text = removeHtmlTagsFromText(text: book._description ?? "No sinopse available")
+        
     }
     
     //Check if already exists
@@ -129,10 +139,6 @@ class BookDetailsVC: UIViewController {
             }
         }
     }
-    
-    
-    
-    
     
     func isFav(key: String, completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
@@ -233,7 +239,7 @@ class BookDetailsVC: UIViewController {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
-
+        
         if !fileManager.fileExists(atPath: imgBooksDirectory.path) {
             do {
                 try fileManager.createDirectory(at: imgBooksDirectory, withIntermediateDirectories: true, attributes: nil)
@@ -242,9 +248,9 @@ class BookDetailsVC: UIViewController {
                 return
             }
         }
-
+        
         let fileURL = imgBooksDirectory.appendingPathComponent(id)
-
+        
         if !fileManager.fileExists(atPath: fileURL.path) {
             if let data = image.jpegData(compressionQuality: 1.0) {
                 do {
@@ -261,7 +267,20 @@ class BookDetailsVC: UIViewController {
 
 extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return book?.sections?.count ?? 0
+        guard let sectionsNum = book?.sections?.count else{return 0}
+        
+        let showAllRows = showMoreBtn.isSelected
+        switch sectionsNum{
+        case ..<20:
+            rowsToBeShow =  showAllRows ?  sectionsNum : sectionsNum / 2
+        case 20..<50:
+            rowsToBeShow = showAllRows ?  sectionsNum : sectionsNum / 3
+        default:
+            rowsToBeShow = showAllRows ? sectionsNum : 30
+        }
+        
+        heightConstant.constant = CGFloat(Double(rowsToBeShow!) * 80)
+        return rowsToBeShow!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
