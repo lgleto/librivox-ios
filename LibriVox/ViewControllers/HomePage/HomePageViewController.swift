@@ -22,7 +22,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var imgBook: UIImageView!
     @IBOutlet weak var backgroundContinueReading: UIView!
-    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var progress: UIProgressView!
     let db = Firestore.firestore()
     @IBOutlet weak var trendingBooks: UITableView!
@@ -32,8 +31,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        
-        
     }
     
     override func viewDidLoad() {
@@ -43,7 +40,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         IndicatorView.startAnimating()
         IndicatorView.hidesWhenStopped = true
-        self.tabBarController?.tabBar.isHidden = false
         let  selectedImage  = UIImage(named: "pause.svg")
         let normalImage = UIImage(named: "play.svg")
         
@@ -56,25 +52,14 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             self.nameText.text = "Hello \(user?.username ?? name )"
         }
         
-        logo.layer.cornerRadius = logo.layer.bounds.height / 2
-        
         imgBook.layer.cornerRadius = 5
         view.clipsToBounds = true
         
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
-        
-        
-        
+
         trendingBooks.delegate = self
         trendingBooks.dataSource = self
-        
-        
-        
-        
-        
-        
 
-        
     }
     
     
