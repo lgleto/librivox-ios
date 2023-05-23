@@ -70,13 +70,18 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         
+        
+        
+        
 
         
     }
     
     
     @IBAction func playButton(_ sender: Any) {
-        performSegue(withIdentifier: "homepageToPlayer", sender: nil)
+        PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[0]) { _ in
+            //TODO Whats this
+        }
     }
     
     @IBAction func allTrending(_ sender: Any) {
@@ -85,8 +90,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "HomepageToTrendingBooks") {
-                
+        if (segue.identifier == "homepageToPlayer") {
+            let destVC = segue.destination as! DownloadVC
+            destVC.book = sender as! Audiobook
         } else if (segue.identifier == "homeToBookDetail"){
             let destVC = segue.destination as! BookDetailsVC
             destVC.book = sender as? Audiobook
@@ -144,6 +150,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.bookCover.loadImage(from: img)
             }
         }
+    
         
         return cell
     }

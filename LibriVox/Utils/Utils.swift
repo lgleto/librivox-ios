@@ -351,10 +351,11 @@ class NetworkCheck {
     
 }
 
-func folderPath() -> String {
+func folderPath(id:String) -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
-        let docURL = URL(string: documentsDirectory)!
+        let docURL = URL(string: "\(documentsDirectory)/\(id)/mp3")!
+        print("Datapath ->", docURL.absoluteString)
         //let dataPath = docURL.appendingPathComponent("/mp3")
         return docURL.absoluteString
     }
@@ -397,4 +398,67 @@ func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response:
         (data, response, error) in
         completion(data, response, error)
         }.resume()
+}
+
+func showProgressBarAlert(_ view: UIViewController) {
+    // Create a UIAlertController
+    let alertController = UIAlertController(title: "Progress", message: "Please wait...", preferredStyle: .alert)
+    
+    alertController.preferredContentSize = CGSize(width: 300, height: 250)
+    
+    
+    // Create a UIProgressView
+    let progressView = UIProgressView(progressViewStyle: .default)
+    progressView.translatesAutoresizingMaskIntoConstraints = false
+    
+    // Add the progress view to the alert controller
+    alertController.view.addSubview(progressView)
+    
+    // Add constraints to center the progress view
+    progressView.leadingAnchor.constraint(equalTo: alertController.view.leadingAnchor, constant: 8).isActive = true
+    progressView.trailingAnchor.constraint(equalTo: alertController.view.trailingAnchor, constant: -8).isActive = true
+    progressView.centerYAnchor.constraint(equalTo: alertController.view.centerYAnchor, constant: 32).isActive = true
+    //alertController.view.bottomAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 8).isActive = true
+    // Adjust the constant value as needed
+        
+    // Adjust the frame of the progress view to create additional space below it
+    progressView.frame = CGRect(x: progressView.frame.origin.x,
+                                y: progressView.frame.origin.y,
+                                width: progressView.frame.size.width,
+                                height: progressView.frame.size.height + 150) // Adjust the height as needed
+    
+     // Adjust the width as needed
+        
+    
+    // Start the progress animation
+    progressView.setProgress(0.3, animated: true)
+    
+    // Present the alert controller
+    view.present(alertController, animated: true, completion: nil)
+}
+
+class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
+    var startTime: Date?
+    var progressBar: UIProgressView?
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        // File download completed
+    }
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        // Calculate the remaining time
+        guard let startTime = startTime else { return }
+        let elapsedTime = Date().timeIntervalSince(startTime)
+        let bytesPerSecond = Double(totalBytesWritten) / elapsedTime
+        let remainingBytes = totalBytesExpectedToWrite - totalBytesWritten
+        let remainingTime = TimeInterval(remainingBytes / Int64(bytesPerSecond))
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+
+        // Update your UI with the remaining time
+        DispatchQueue.main.async {
+            // Update your UI elements with the remaining time
+            self.progressBar?.progress = progress
+            print("Remaining time: \(remainingTime) seconds")
+        }
+    }
 }
