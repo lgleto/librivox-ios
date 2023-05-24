@@ -31,10 +31,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="rVt-aq-SHm">
-                                <rect key="frame" x="16" y="383" width="343" height="330"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lcC-6f-bEm">
                                 <rect key="frame" x="16" y="94" width="343" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -177,6 +173,10 @@
                                         <constraint firstAttribute="trailing" secondItem="ome-gd-QKQ" secondAttribute="trailing" id="uFa-SX-Yze"/>
                                     </constraints>
                                 </view>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="mru-ug-zyu">
+                                    <rect key="frame" x="0.0" y="538" width="343" height="330"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="145" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="365" width="343" height="145"/>
@@ -302,7 +302,7 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" style="editor" id="76W-U2-02L"/>
                     <connections>
-                        <outlet property="IndicatorView" destination="rVt-aq-SHm" id="DbN-fF-PLY"/>
+                        <outlet property="IndicatorView" destination="mru-ug-zyu" id="0Xd-W1-cKn"/>
                         <outlet property="backgroundContinueReading" destination="cPd-i5-3P4" id="ibQ-3m-Mxa"/>
                         <outlet property="imgBook" destination="geb-Va-GlX" id="bm2-Gh-CzO"/>
                         <outlet property="nameText" destination="aoj-7l-jfp" id="HiY-gl-li3"/>
@@ -883,8 +883,8 @@
         <image name="play" width="512" height="512"/>
         <image name="play-button" width="512" height="512"/>
         <image name="play.circle" catalog="system" width="128" height="123"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="512" height="512"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
