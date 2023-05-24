@@ -381,7 +381,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Fmx-ws-J80"/>
                                     <constraint firstAttribute="bottom" secondItem="Pkt-mj-U9M" secondAttribute="bottom" id="KFV-6W-t27"/>
