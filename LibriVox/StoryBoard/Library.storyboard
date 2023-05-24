@@ -32,13 +32,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hr-O9-Ajt">
-                                <rect key="frame" x="16" y="27" width="361" height="33"/>
+                                <rect key="frame" x="16" y="59" width="361" height="33"/>
                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="et3-JV-DZ3" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="16" y="89" width="361" height="88"/>
+                                <rect key="frame" x="16" y="102" width="361" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total hours listened" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-dW-Yjw">
                                         <rect key="frame" x="33" y="51.333333333333343" width="131" height="20.666666666666671"/>
@@ -80,7 +80,7 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HCo-hA-CH5">
-                                <rect key="frame" x="16" y="209" width="361" height="36"/>
+                                <rect key="frame" x="16" y="222" width="361" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="avE-Yr-UTO"/>
                                 </constraints>
@@ -95,7 +95,7 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Get-br-Ail">
-                                <rect key="frame" x="16" y="269" width="361" height="500"/>
+                                <rect key="frame" x="16" y="282" width="361" height="536"/>
                                 <connections>
                                     <segue destination="p8b-f0-UyA" kind="embed" id="G1u-ah-ikx"/>
                                 </connections>
@@ -108,12 +108,12 @@
                             <constraint firstItem="HCo-hA-CH5" firstAttribute="top" secondItem="et3-JV-DZ3" secondAttribute="bottom" constant="32" id="Bfr-qR-mOh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HCo-hA-CH5" secondAttribute="trailing" constant="16" id="CBN-5y-PQG"/>
                             <constraint firstItem="0Hr-O9-Ajt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="IJ8-Nv-37d"/>
-                            <constraint firstItem="0Hr-O9-Ajt" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="-32" id="Lqd-Po-Cb6"/>
+                            <constraint firstItem="0Hr-O9-Ajt" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Lqd-Po-Cb6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Get-br-Ail" secondAttribute="bottom" id="UL8-3r-v3p"/>
                             <constraint firstItem="Get-br-Ail" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="h3O-cC-sWO"/>
                             <constraint firstItem="HCo-hA-CH5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="hp1-4n-v6c"/>
                             <constraint firstItem="Get-br-Ail" firstAttribute="top" secondItem="HCo-hA-CH5" secondAttribute="bottom" constant="25" id="iXL-B7-zvR"/>
-                            <constraint firstItem="et3-JV-DZ3" firstAttribute="top" secondItem="0Hr-O9-Ajt" secondAttribute="bottom" constant="29" id="m36-12-P2P"/>
+                            <constraint firstItem="et3-JV-DZ3" firstAttribute="top" secondItem="0Hr-O9-Ajt" secondAttribute="bottom" constant="10" id="m36-12-P2P"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Get-br-Ail" secondAttribute="trailing" constant="16" id="mEh-PD-GwV"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0Hr-O9-Ajt" secondAttribute="trailing" constant="16" id="pYq-vy-sEc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="et3-JV-DZ3" secondAttribute="trailing" constant="16" id="rHr-Ze-gs6"/>
@@ -434,25 +434,6 @@
             </objects>
             <point key="canvasLocation" x="3964.1221374045799" y="-2.1126760563380285"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="cOm-4q-5RW">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gcO-94-2mX" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SyZ-JI-cKM">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" name="Lighter Blue Tone"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="gtb-ai-iNx"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C79-LT-bbW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="983.96946564885491" y="-2.1126760563380285"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6q9-2R-TJS"/>
@@ -461,8 +442,8 @@
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
         <image name="play" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -471,10 +452,10 @@
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Lighter Blue Tone">
-            <color red="0.43500000238418579" green="0.67799997329711914" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.43529411764705883" green="0.67843137254901964" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Main Blue Tone">
-            <color red="0.36899998784065247" green="0.66299998760223389" blue="0.82700002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.36862745098039218" green="0.66274509803921566" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -17,13 +17,11 @@ class GenreVC: UIViewController {
     var audioBooks: [Audiobook]?
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var backgroundLabel: RoundedBookImageView!
     
-    @IBOutlet weak var tabBar: UINavigationItem!
+    @IBOutlet weak var backgroundLabel: RoundView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         tvBooksByGenre.delegate = self
         tvBooksByGenre.dataSource = self
