@@ -75,6 +75,11 @@ class PreparePlayerAlert: UIViewController {
                       // The specific folder exists
                       changeStatus(label: "Found audiobook, changing to Player", roundIndicatior: true, progressIndicator: 4.0)
                       DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                          self.dismiss(animated: true) {
+                            if let c = self.callback {
+                              c(true)
+                            }
+                          }
                           
                       }
                       //performSegue(withIdentifier: "PlayerToSections", sender: book)

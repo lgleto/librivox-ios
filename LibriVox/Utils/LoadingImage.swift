@@ -22,8 +22,8 @@ class LoadingImage: UIImageView {
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         spinner.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        spinner.startAnimating()
         
+        spinner.startAnimating()
         spinner.isHidden = false
         spinner.hidesWhenStopped = true
         
@@ -34,6 +34,7 @@ class LoadingImage: UIImageView {
     /// Load image into ImageView from URL
     /// - Parameter url: Pass the image url
     func loadImage(from url: URL) {
+        
         if let cachedImage = LoadingImage.imageCache.object(forKey: url as NSURL) {
             DispatchQueue.main.async() {
                 self.image = cachedImage
