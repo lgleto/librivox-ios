@@ -32,7 +32,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>LoginRegister</string>
+					<string>LaunchScreen</string>
 				</dict>
 			</array>
 		</dict>

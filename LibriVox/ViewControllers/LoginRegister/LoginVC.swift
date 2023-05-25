@@ -19,37 +19,11 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
-        
-        DispatchQueue.main.async {
-            if Auth.auth().currentUser != nil {
-                let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
-                let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController
-                home.modalTransitionStyle = .crossDissolve
-                home.modalPresentationStyle = .fullScreen
-                self.present(home, animated: true, completion: nil)
-                print("there is user")
-            } else {
-              // No user is signed in.
-              // ...
-            }
-        }
-        
-        
-        
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-
-        
-        
-        
-
-        // Do any additional setup after loading the view.
+        GIDSignIn.sharedInstance.configuration = config        // Do any additional setup after loading the view.
     }
     
     @IBAction func loginButton(_ sender: UIButton) {

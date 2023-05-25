@@ -79,6 +79,7 @@
 		6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */; };
 		6F793CD029E86B0E004763DE /* Prata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F152E2429CCA56A0008846B /* Prata-Regular.ttf */; };
 		6F7E80892A114F2800B76D9F /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7E80882A114F2800B76D9F /* ToggleBtn.swift */; };
+		6F83BD592A1E603900D39ADF /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F83BD582A1E603900D39ADF /* LaunchScreenVC.swift */; };
 		6F99531F29DC781C0016B1AC /* DiscoverOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */; };
 		6F99532129DC78340016B1AC /* AuthorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99532029DC78340016B1AC /* AuthorsCell.swift */; };
 		6FB33FEA29CC9726008CC60C /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB33FE929CC9726008CC60C /* Library.storyboard */; };
@@ -151,6 +152,7 @@
 		6F711C2229C3A0770029D7B1 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
 		6F7E80882A114F2800B76D9F /* ToggleBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBtn.swift; sourceTree = "<group>"; };
+		6F83BD582A1E603900D39ADF /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverOptionsVC.swift; sourceTree = "<group>"; };
 		6F99532029DC78340016B1AC /* AuthorsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsCell.swift; sourceTree = "<group>"; };
 		6FB33FE929CC9726008CC60C /* Library.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				6F4EC1F029C9E61D0025B204 /* CustomViews */,
 				6F50A7982A0AFC2700C6EDEC /* Utils */,
 				319FA01629C36445006895CB /* AppDelegate.swift */,
+				6F83BD582A1E603900D39ADF /* LaunchScreenVC.swift */,
 				319FA01829C36445006895CB /* SceneDelegate.swift */,
 				319FA02129C36446006895CB /* LaunchScreen.storyboard */,
 				319FA01F29C36446006895CB /* Assets.xcassets */,
@@ -554,6 +557,7 @@
 				6F425A1729D5CF0600D21047 /* BookDetailsVC.swift in Sources */,
 				6F4EC1ED29C9DFFB0025B204 /* CircularImageView.swift in Sources */,
 				315F0D872A1CEBA400B4B0CB /* preparePlayerAlert.swift in Sources */,
+				6F83BD592A1E603900D39ADF /* LaunchScreenVC.swift in Sources */,
 				6F7E80892A114F2800B76D9F /* ToggleBtn.swift in Sources */,
 				6FCF9F9F29E7143F00A5DD62 /* CategoriesVC.swift in Sources */,
 				6FCF9FA129E715EC00A5DD62 /* CategoriesCell.swift in Sources */,
