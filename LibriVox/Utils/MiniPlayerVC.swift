@@ -11,12 +11,8 @@ import SwaggerClient
 protocol MiniPlayerDelegate {
     func presentPlayerView()
     func closeMiniPlayer()
-   
 }
 
-protocol ShowMiniPlayerDelegate{
-    func showMiniPlayer(book: Audiobook)
-}
 class MiniPlayerVC: UIViewController {
     
     var delegate: MiniPlayerDelegate?
@@ -31,8 +27,10 @@ class MiniPlayerVC: UIViewController {
         let btn = ToggleBtn()
         btn.imgSelected = UIImage(named: "play-button")
         btn.imgNotSelected = UIImage(named: "pause-button")
-        btn.isSelected = true
+        btn.isSelected = false
+        btn.isUserInteractionEnabled = true
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(playBtnClicked), for: .touchUpInside)
         return btn
     }()
     
@@ -72,12 +70,12 @@ class MiniPlayerVC: UIViewController {
             updateUI()
         }
     }
-
+    
     func updateUI() {
         guard let book = book else {
             return
         }
-
+        
         titleBook.text = book.title
         author.text = displayAuthors(authors: book.authors!)
         getCoverBook(id: book._id!, url: book.urlLibrivox!) { img in
@@ -87,7 +85,7 @@ class MiniPlayerVC: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -127,13 +125,14 @@ class MiniPlayerVC: UIViewController {
             author.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60 )
         ])
         
+        
         view.insertSubview(playBtn, at: 4)
+        
         NSLayoutConstraint.activate([
             playBtn.centerXAnchor.constraint(equalTo: booksImg.centerXAnchor, constant: 3),
             playBtn.centerYAnchor.constraint(equalTo: booksImg.centerYAnchor),
             playBtn.widthAnchor.constraint(equalToConstant: 30),
             playBtn.heightAnchor.constraint(equalToConstant: 30)
-            
         ])
         
         view.insertSubview(closeBtn, at: 5)
@@ -144,15 +143,18 @@ class MiniPlayerVC: UIViewController {
             closeBtn.trailingAnchor.constraint(equalTo: backgroundImg.trailingAnchor, constant: -12)
         ])
         
-       /* let tap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
-        view.addGestureRecognizer(tap)
-        view.isUserInteractionEnabled = true*/
+        /* let tap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
+         view.addGestureRecognizer(tap)
+         view.isUserInteractionEnabled = true*/
         let closeTap = UITapGestureRecognizer(target: self, action: #selector(closeTap))
         closeBtn.addGestureRecognizer(closeTap)
         closeBtn.isUserInteractionEnabled = true
-
-        playBtn.isUserInteractionEnabled = true
-
+        
+        
+    }
+    
+    @objc func playBtnClicked() {
+        playBtn.isSelected = !playBtn.isSelected
     }
     
     @objc func tapDetected() {

@@ -10,7 +10,7 @@ import FirebaseStorage
 import FirebaseAuth
 import MobileCoreServices
 
-class EditProfileVC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var email: BlueShadowUITextField!
     @IBOutlet weak var userName: BlueShadowUITextField!

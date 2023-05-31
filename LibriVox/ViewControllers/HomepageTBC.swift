@@ -23,14 +23,14 @@ class HomepageTBC: UITabBarController {
         view.addSubview(newContainerView)
         
         if let existingMiniPlayer = miniPlayer {
-             existingMiniPlayer.removeFromParent()
-             existingMiniPlayer.view.removeFromSuperview()
-         }
+            existingMiniPlayer.removeFromParent()
+            existingMiniPlayer.view.removeFromSuperview()
+        }
         
-        miniPlayer = MiniPlayerVC() // Instantiate MiniPlayerVC
-        miniPlayer!.view.translatesAutoresizingMaskIntoConstraints = false
+        miniPlayer = MiniPlayerVC()
         miniPlayer!.delegate = self
         miniPlayer!.book = book
+        miniPlayer!.view.translatesAutoresizingMaskIntoConstraints = false
         
         addChild(miniPlayer!)
         newContainerView.addSubview(miniPlayer!.view)
@@ -40,8 +40,15 @@ class HomepageTBC: UITabBarController {
             viewControllers?.remove(at: childIndex)
         }
         
-        containerView = newContainerView // Update the reference to containerView
+        containerView = newContainerView
         setConstraints()
+    
+         newContainerView.alpha = 0.0
+         newContainerView.transform = CGAffineTransform(translationX: -view.bounds.width, y: 0.0)
+         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+         newContainerView.alpha = 1.0
+         newContainerView.transform = CGAffineTransform.identity
+         }, completion: nil)
         
     }
     
@@ -62,22 +69,25 @@ class HomepageTBC: UITabBarController {
         }}
 }
 
-extension HomepageTBC: MiniPlayerDelegate, ShowMiniPlayerDelegate {
-    func showMiniPlayer(book: Audiobook) {
-        addChildView(book: book)
-    }
-    
+extension HomepageTBC: MiniPlayerDelegate {
     func closeMiniPlayer() {
-        UIView.animate(withDuration: 0.2, animations: {self.containerView!.alpha = 0.0},
-                       completion: {(value: Bool) in
+        containerView!.alpha = 1.0
+        containerView!.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
+        
+        let translationX = view.bounds.width + containerView!.frame.size.width
+
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.containerView!.transform = CGAffineTransform(translationX: translationX, y: 0.0)
+            self.containerView!.alpha = 0.0
+        }, completion: {_ in
             self.containerView!.removeFromSuperview()
             self.containerView = nil
         })
+                       
     }
-    
-    func presentPlayerView() {
-        /*let vc = PlayerVC2()
-         vc.modalPresentationStyle = .fullScreen
-         present(vc, animated: true)*/
+        func presentPlayerView() {
+            /*let vc = PlayerVC2()
+             vc.modalPresentationStyle = .fullScreen
+             present(vc, animated: true)*/
+        }
     }
-}

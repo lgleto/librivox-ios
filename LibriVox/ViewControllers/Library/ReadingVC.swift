@@ -12,12 +12,8 @@ import FirebaseCore
 import FirebaseFirestore
 import SwaggerClient
 
-class ReadingVC: UITableViewController,ShowMiniPlayerDelegate {
-    func showMiniPlayer(book: Audiobook) {
-        if let tabBarController = tabBarController as? HomepageTBC {
-            tabBarController.addChildView(book: book)
-        }
-    }
+class ReadingVC: UITableViewController {
+ 
     
     var finalList: [Audiobook] = []
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -64,8 +60,11 @@ class ReadingVC: UITableViewController,ShowMiniPlayerDelegate {
         cell.playBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
         return cell
     }
+    
     @objc func click(_ sender: UIButton) {
-        showMiniPlayer(book: finalList[sender.tag])
+        if let tabBarController = tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: finalList[sender.tag])
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

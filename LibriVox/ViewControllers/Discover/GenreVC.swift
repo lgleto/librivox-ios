@@ -8,7 +8,7 @@
 import UIKit
 import SwaggerClient
 
-class GenreVC: UIViewController {
+class GenreVC: AdaptedVC {
     
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var tvBooksByGenre: UITableView!
@@ -19,6 +19,16 @@ class GenreVC: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var backgroundLabel: RoundView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

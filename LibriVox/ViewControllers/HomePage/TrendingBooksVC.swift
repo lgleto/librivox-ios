@@ -10,7 +10,7 @@ import SwaggerClient
 import FirebaseCore
 import FirebaseFirestore
 
-class TrendingBooksVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TrendingBooksVC: AdaptedVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var trendingBooksTable: UITableView!
     

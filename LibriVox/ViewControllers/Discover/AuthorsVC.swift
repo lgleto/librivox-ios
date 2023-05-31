@@ -9,7 +9,7 @@
 import UIKit
 import SwaggerClient
 
-class AuthorsVC: UIViewController {
+class AuthorsVC: AdaptedVC {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var authorsCV: UICollectionView!
