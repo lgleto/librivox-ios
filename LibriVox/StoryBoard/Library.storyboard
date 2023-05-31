@@ -172,41 +172,49 @@
                                                 <constraint firstAttribute="height" constant="10" id="HNX-Fs-gmA"/>
                                             </constraints>
                                         </progressView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="rfT-Bq-lF5">
-                                            <rect key="frame" x="358" y="80" width="35" height="35"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="35" id="29O-lT-Mfx"/>
-                                                <constraint firstAttribute="height" constant="35" id="Dq9-LP-d6V"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-xX-ljE">
                                             <rect key="frame" x="87" y="67.666666666666671" width="115.33333333333331" height="18"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrH-pZ-nCA" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                            <rect key="frame" x="358" y="80" width="35" height="35"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="ODW-Wc-Dus"/>
+                                                <constraint firstAttribute="width" constant="35" id="sSY-81-odC"/>
+                                            </constraints>
+                                            <color key="tintColor" name="Lighter Blue Tone"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="rfT-Bq-lF5" secondAttribute="trailing" id="1n3-vB-7r2"/>
                                         <constraint firstItem="o31-Ix-j3I" firstAttribute="bottom" secondItem="vsD-d5-zyM" secondAttribute="bottom" id="5Re-6g-GN4"/>
                                         <constraint firstItem="pwH-ag-zxo" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="5p8-rI-SLk"/>
                                         <constraint firstItem="O8g-xX-ljE" firstAttribute="top" secondItem="9JA-iJ-UCe" secondAttribute="bottom" constant="27" id="60o-tb-97X"/>
                                         <constraint firstItem="pwH-ag-zxo" firstAttribute="top" secondItem="O8g-xX-ljE" secondAttribute="bottom" constant="2" id="7bO-vd-BW6"/>
+                                        <constraint firstItem="o31-Ix-j3I" firstAttribute="top" secondItem="yrH-pZ-nCA" secondAttribute="bottom" constant="10" id="7lb-Hf-U85"/>
                                         <constraint firstItem="9JA-iJ-UCe" firstAttribute="top" secondItem="vsD-d5-zyM" secondAttribute="top" constant="10" id="DbZ-3Q-vCf"/>
                                         <constraint firstItem="vsD-d5-zyM" firstAttribute="leading" secondItem="e4p-3h-hDN" secondAttribute="leading" id="Dg8-YX-7hg"/>
                                         <constraint firstItem="vsD-d5-zyM" firstAttribute="top" secondItem="e4p-3h-hDN" secondAttribute="top" constant="10" id="JM0-vm-pbc"/>
-                                        <constraint firstItem="o31-Ix-j3I" firstAttribute="top" secondItem="rfT-Bq-lF5" secondAttribute="bottom" constant="10" id="Jlr-li-iwG"/>
                                         <constraint firstAttribute="trailing" secondItem="o31-Ix-j3I" secondAttribute="trailing" id="RWj-j8-sF9"/>
                                         <constraint firstItem="O8g-xX-ljE" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="YS9-n4-Jxk"/>
                                         <constraint firstAttribute="bottom" secondItem="vsD-d5-zyM" secondAttribute="bottom" constant="10" id="cLx-cm-bkM"/>
                                         <constraint firstItem="o31-Ix-j3I" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="e1a-yv-Xme"/>
                                         <constraint firstItem="9JA-iJ-UCe" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="ran-dn-2MM"/>
+                                        <constraint firstAttribute="trailing" secondItem="yrH-pZ-nCA" secondAttribute="trailing" id="s7z-ud-uHd"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorsBook" destination="O8g-xX-ljE" id="lRx-uR-J4Q"/>
                                     <outlet property="durationBook" destination="pwH-ag-zxo" id="C6g-Xs-58p"/>
                                     <outlet property="imgBook" destination="vsD-d5-zyM" id="aFd-FW-Fzw"/>
+                                    <outlet property="playBtn" destination="yrH-pZ-nCA" id="VTh-ZW-XY6"/>
                                     <outlet property="titleBook" destination="9JA-iJ-UCe" id="yPJ-DT-cIK"/>
                                     <segue destination="c0e-yd-uVQ" kind="show" identifier="showDetailsBook" id="HzN-ii-n4s"/>
                                 </connections>
@@ -220,7 +228,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXh-jl-8Rs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608.3969465648852" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="2606.8702290076335" y="-2.1126760563380285"/>
         </scene>
         <!--detailsBook-->
         <scene sceneID="0Q6-O4-Z5N">
@@ -436,26 +444,27 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6q9-2R-TJS"/>
+        <segue reference="HzN-ii-n4s"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
+        <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Lighter Blue Tone">
-            <color red="0.43529411764705883" green="0.67843137254901964" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.43500000238418579" green="0.67799997329711914" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Main Blue Tone">
-            <color red="0.36862745098039218" green="0.66274509803921566" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.36899998784065247" green="0.66299998760223389" blue="0.82700002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

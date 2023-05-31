@@ -13,6 +13,7 @@ class ReadingCellTVC: UITableViewCell {
     
     @IBOutlet weak var titleBook: UILabel!
     
+    @IBOutlet weak var playBtn: ToggleBtn!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var authorsBook: UILabel!
     /*override func awakeFromNib() {
