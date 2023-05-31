@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import SwaggerClient
 
 protocol MiniPlayerDelegate {
     func presentPlayerView()
     func closeMiniPlayer()
-    func showMiniPlayer()
+   
 }
 
 protocol ShowMiniPlayerDelegate{
-    func showMiniPlayer()
+    func showMiniPlayer(book: Audiobook)
 }
 class MiniPlayerVC: UIViewController {
     
@@ -22,7 +23,6 @@ class MiniPlayerVC: UIViewController {
     
     let backgroundImg: BlurredImageView = {
         let theImageView = BlurredImageView()
-        theImageView.image = UIImage(named: "28187")
         theImageView.translatesAutoresizingMaskIntoConstraints = false
         return theImageView
     }()
@@ -38,7 +38,6 @@ class MiniPlayerVC: UIViewController {
     
     let booksImg: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "28187")
         img.contentMode = .scaleAspectFill
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
@@ -46,7 +45,6 @@ class MiniPlayerVC: UIViewController {
     
     lazy var titleBook: UILabel = {
         let label = UILabel()
-        label.text = "Percy Jackson and the Lightining Thief "
         label.font = UIFont(name: "Nunito-Regular", size: 15)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +53,6 @@ class MiniPlayerVC: UIViewController {
     
     lazy var author: UILabel = {
         let label = UILabel()
-        label.text = "Rick Riordan"
         label.font = UIFont(name: "Nunito-Light", size: 13)
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,12 +67,27 @@ class MiniPlayerVC: UIViewController {
         return btn
     }()
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        print("Width occupied by titleBook label: \(titleBook.intrinsicContentSize.width)")
+    var book: Audiobook? {
+        didSet {
+            updateUI()
+        }
     }
-    
+
+    func updateUI() {
+        guard let book = book else {
+            return
+        }
+
+        titleBook.text = book.title
+        author.text = displayAuthors(authors: book.authors!)
+        getCoverBook(id: book._id!, url: book.urlLibrivox!) { img in
+            if let img = img {
+                self.booksImg.image = img
+                self.backgroundImg.loadImage(from: img)
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -152,7 +164,4 @@ class MiniPlayerVC: UIViewController {
         guard let delegate = delegate else { return }
         delegate.closeMiniPlayer()
     }
-
-
-
 }
