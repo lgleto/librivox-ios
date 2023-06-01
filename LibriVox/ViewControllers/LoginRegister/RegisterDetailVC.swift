@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class RegisterDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class RegisterDetailVC: AdaptedVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var descText: UITextView!
     
     @IBOutlet weak var buttonPicture: UIButton!

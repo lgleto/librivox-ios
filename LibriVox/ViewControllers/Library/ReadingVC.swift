@@ -13,6 +13,7 @@ import FirebaseFirestore
 import SwaggerClient
 
 class ReadingVC: UITableViewController {
+ 
     
     var finalList: [Audiobook] = []
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -26,7 +27,7 @@ class ReadingVC: UITableViewController {
         getBooksFromUser(field: BookUser.IS_READING,value: true) { audiobooks in
             self.finalList = audiobooks
             self.spinner.stopAnimating()
-        
+            
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
         }
@@ -55,7 +56,15 @@ class ReadingVC: UITableViewController {
             cell.durationBook.text = "Duration: \(duration)"
         }
         
+        cell.playBtn.tag = indexPath.row
+        cell.playBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func click(_ sender: UIButton) {
+        if let tabBarController = tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: finalList[sender.tag])
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

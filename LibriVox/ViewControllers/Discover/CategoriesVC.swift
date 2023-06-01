@@ -8,13 +8,13 @@
 import UIKit
 import FirebaseFirestore
 
-class CategoriesVC: UIViewController {
+class CategoriesVC: AdaptedVC {
     
     var genres: [GenreWithColor]?
     var isLoaded = false
     
     @IBOutlet weak var categoriesTV: UITableView!
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         

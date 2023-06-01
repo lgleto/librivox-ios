@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "pause-button 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "play-_3_.svg",
+      "filename" : "pause-button.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -22,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "play (4).png",
+      "filename" : "pause (3).png",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -8,7 +8,7 @@
 import UIKit
 import SwaggerClient
 
-class AuthorPageVC: UIViewController {
+class AuthorPageVC: AdaptedVC {
     
     var books: [Audiobook]?
     var isLoaded = false
