@@ -71,24 +71,15 @@ class MiniPlayerVC: UIViewController {
         }
     }
     
-    func updateUI() {
-        guard let book = book else {
-            return
-        }
-        
-        titleBook.text = book.title
-        author.text = displayAuthors(authors: book.authors!)
-        getCoverBook(id: book._id!, url: book.urlLibrivox!) { img in
-            if let img = img {
-                self.booksImg.image = img
-                self.backgroundImg.loadImage(from: img)
-            }
-        }
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setViews()
+    }
+    
+    func setViews(){
         view.insertSubview(backgroundImg, at: 0)
         
         backgroundImg.layer.cornerRadius = 10
@@ -149,8 +140,21 @@ class MiniPlayerVC: UIViewController {
         let closeTap = UITapGestureRecognizer(target: self, action: #selector(closeTap))
         closeBtn.addGestureRecognizer(closeTap)
         closeBtn.isUserInteractionEnabled = true
+    }
+    
+    func updateUI() {
+        guard let book = book else {
+            return
+        }
         
-        
+        titleBook.text = book.title
+        author.text = displayAuthors(authors: book.authors!)
+        getCoverBook(id: book._id!, url: book.urlLibrivox!) { img in
+            if let img = img {
+                self.booksImg.image = img
+                self.backgroundImg.loadImage(from: img)
+            }
+        }
     }
     
     @objc func playBtnClicked() {

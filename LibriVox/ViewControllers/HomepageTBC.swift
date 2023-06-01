@@ -12,10 +12,12 @@ class HomepageTBC: UITabBarController {
     
     var miniPlayer: MiniPlayerVC?
     var containerView: UIView?
-    
+    private var tabBarHiddenContext = 0
+    var isHidden = false
+
     override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+           super.viewDidLoad()
+       }
     
     func addChildView(book: Audiobook) {
         let newContainerView = UIView()
@@ -53,20 +55,34 @@ class HomepageTBC: UITabBarController {
     }
     
     func setConstraints() {
-        let g = view.safeAreaLayoutGuide
-        if let containerView = containerView{
+        if let containerView = containerView {
+            containerView.removeConstraints(containerView.constraints)
+            
+            let bottomConstraint: NSLayoutConstraint
+           
+            if isHidden == true {
+                bottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+              //  print("ta")
+            } else {
+                // Tab bar is visible
+                bottomConstraint = containerView.bottomAnchor.constraint(equalTo: tabBar.topAnchor)
+                //print("nao ta")
+            }
+            
             NSLayoutConstraint.activate([
-                containerView.leadingAnchor.constraint(equalTo: g.leadingAnchor),
-                containerView.trailingAnchor.constraint(equalTo: g.trailingAnchor),
-                containerView.bottomAnchor.constraint(equalTo: tabBar.topAnchor),
+                containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 containerView.heightAnchor.constraint(equalToConstant: 78),
+                bottomConstraint,
                 
                 miniPlayer!.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
                 miniPlayer!.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
                 miniPlayer!.view.topAnchor.constraint(equalTo: containerView.topAnchor),
                 miniPlayer!.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             ])
-        }}
+        }
+    }
+
 }
 
 extension HomepageTBC: MiniPlayerDelegate {
@@ -91,3 +107,4 @@ extension HomepageTBC: MiniPlayerDelegate {
              present(vc, animated: true)*/
         }
     }
+

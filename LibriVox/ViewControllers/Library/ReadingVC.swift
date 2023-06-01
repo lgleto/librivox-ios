@@ -13,9 +13,11 @@ import FirebaseFirestore
 import SwaggerClient
 
 class ReadingVC: UITableViewController {
- 
+    
     
     var finalList: [Audiobook] = []
+    var allButtons: [ToggleBtn] = []
+    var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
@@ -55,16 +57,27 @@ class ReadingVC: UITableViewController {
         if let duration = book.totaltime{
             cell.durationBook.text = "Duration: \(duration)"
         }
+        allButtons.append(cell.playBtn)
+        
         
         cell.playBtn.tag = indexPath.row
+        
         cell.playBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
         return cell
     }
     
     @objc func click(_ sender: UIButton) {
-        if let tabBarController = tabBarController as? HomepageTBC {
-            tabBarController.addChildView(book: finalList[sender.tag])
-        }
+        allButtons.forEach { $0.isSelected = false}
+        
+        sender.isSelected = true
+        
+        if lastBook != sender.tag{
+            if let tabBarController = tabBarController as? HomepageTBC {
+                tabBarController.addChildView(book: finalList[sender.tag])
+            }
+        }else{sender.isSelected = false}
+        
+        self.lastBook = sender.tag
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,4 +87,6 @@ class ReadingVC: UITableViewController {
             detailVC.book = finalList[indexPath.row]
         }
     }
+    
+    
 }
