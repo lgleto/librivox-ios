@@ -71,6 +71,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func playButton(_ sender: Any) {
         PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[0]) { _ in
             //TODO Whats this
+            
         }
     }
     

@@ -39,13 +39,14 @@ class PreparePlayerAlert: UIViewController {
     parentVC.present(vc, animated: true, completion: nil)
   }
     
-  @IBOutlet var backgroundView: UIView!
-  @IBOutlet var imageIcon: UIImageView!
-  @IBOutlet var labelTitle: UILabel!
-   
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  //@IBOutlet var imageIcon: UIImageView!
+  //@IBOutlet var labelTitle: UILabel!
     
     @IBOutlet weak var progressBar: UIProgressView!
+    
+    @IBOutlet weak var expectedBytes: UILabel!
+    @IBOutlet weak var currentBytes: UILabel!
+    
     
   var callback: ((Bool) -> Void)?
     var book: Audiobook?
@@ -59,8 +60,6 @@ class PreparePlayerAlert: UIViewController {
 
     // Do any additional setup after loading the view.
       
-      backgroundView.layer.cornerRadius = 8
-      activityIndicator.startAnimating()
       progressBar.setProgress(0.3, animated: true)
       let fileManager = FileManager.default
       let basefolder = folderPath(id: book?._id ?? "52")
@@ -75,11 +74,7 @@ class PreparePlayerAlert: UIViewController {
                       // The specific folder exists
                       changeStatus(label: "Found audiobook, changing to Player", roundIndicatior: true, progressIndicator: 4.0)
                       DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                          self.dismiss(animated: true) {
-                            if let c = self.callback {
-                              c(true)
-                            }
-                          }
+                          
                           
                       }
                       //performSegue(withIdentifier: "PlayerToSections", sender: book)
@@ -95,6 +90,7 @@ class PreparePlayerAlert: UIViewController {
       } else {
           changeStatus(label: "No audiobook found, starting download", roundIndicatior: true, progressIndicator: 2.0)
           DownloadMP3()
+          
           // The specific folder does not exist
           print("The specific folder does not exist.")
           
@@ -102,79 +98,62 @@ class PreparePlayerAlert: UIViewController {
       }
   }
     func changeStatus(label:String, roundIndicatior:Bool, progressIndicator:Float) {
-        self.labelTitle.text = label
-        if (roundIndicatior) {
-            self.activityIndicator.startAnimating()
-        } else {
-            self.activityIndicator.stopAnimating()
-        }
+        //
+        //self.labelTitle.text = label
         self.progressBar.setProgress(progressIndicator/4, animated: true)
     }
 
 
   @IBAction func buttonConfirm(_ sender: Any) {
-    dismiss(animated: true) {
       if let c = self.callback {
         c(true)
       }
-    }
   }
    
   @IBAction func buttonCancel(_ sender: Any) {
-    dismiss(animated: true) {
+      DownloadManager.shared.cancelDownload()
+      dismiss(animated: true) {
       if let c = self.callback {
         c(false)
       }
     }
+      
   }
     func DownloadMP3() {
-        let delegate = DownloadDelegate()
-        delegate.progressBar = self.progressBar //Not working
+        let fileManager = FileManager()
         
-        let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: .main)
-        var basefolder = folderPath(id: book!._id!)
         guard let url = URL(string: self.book!.urlZipFile!) else {
             return
         }
-         //not working
+        
+         let baseUrl = filePathFromDownloadUrl2(url: URL(string: self.book!.urlZipFile!)!)
+        
+        let destinationPath = folderPath(id: book!._id!)
 
-        let destinationPath = basefolder
-        let fileManager = FileManager.default
-
-        do {
-            if !fileManager.fileExists(atPath: destinationPath) {
-                try fileManager.createDirectory(atPath: destinationPath, withIntermediateDirectories: true, attributes: nil)
-            }
-
-            let destinationUrl = URL(fileURLWithPath: destinationPath).appendingPathComponent("audio.zip")
-
-            let task = session.downloadTask(with: url) { localUrl, response, error in
-                if let localUrl = localUrl {
-                    do {
-                        if fileManager.fileExists(atPath: destinationUrl.path) {
-                            try fileManager.removeItem(at: destinationUrl)
-                        }
-
-                        try fileManager.moveItem(at: localUrl, to: destinationUrl)
-                        print("Zip file downloaded and saved to: \(destinationUrl.path)")
-
-                        do {
-                            try SSZipArchive.unzipFile(atPath: destinationUrl.path, toDestination: destinationPath, overwrite: true, password: nil)
-                        } catch {
-                            print("Error extracting zip file: \(error.localizedDescription)")
-                        }
-                    } catch {
-                        print("Error moving zip file: \(error.localizedDescription)")
-                    }
-                } else {
-                    print("Error downloading zip file: \(error?.localizedDescription ?? "Unknown error")")
+        DownloadManager.shared.addDownload(url: url, destinationURL: baseUrl) { progress, currentBits, expectedBits in
+            self.progressBar.progress = progress
+            self.currentBytes.text = bitToMegabyteString(currentBits)
+            self.expectedBytes.text = bitToMegabyteString(expectedBits)
+        } onCompletion: { err, url, localURL in
+            do {
+                if !fileManager.fileExists(atPath: destinationPath) {
+                    try fileManager.createDirectory(atPath: destinationPath, withIntermediateDirectories: true, attributes: nil)
                 }
+                do {
+                    try SSZipArchive.unzipFile(atPath: localURL.path, toDestination: destinationPath, overwrite: true, password: nil)
+                    do {
+                        try fileManager.removeItem(at: baseUrl)
+                    } catch {
+                        print("Error removing rar file")
+                    }
+                } catch {
+                    print("Error extracting zip file: \(error.localizedDescription)")
+                }
+            } catch {
+                print("Error moving zip file: \(error.localizedDescription)")
             }
-
-            task.resume()
-        } catch {
-            print("Error creating destination directory: \(error.localizedDescription)")
         }
+        
     }
 
 
