@@ -360,6 +360,13 @@ func folderPath(id:String) -> String {
         return docURL.absoluteString
     }
 
+func documentPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        //let dataPath = docURL.appendingPathComponent("/mp3")
+        return documentsDirectory
+    }
+
 func millisToTime(_ timeMillis: Int) -> String {
     let seconds = abs(timeMillis / 1000)
     let minutes: Int = seconds / 60
@@ -461,4 +468,19 @@ class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
             print("Remaining time: \(remainingTime) seconds")
         }
     }
+}
+
+func bitToMegabyteString(_ bits:Int64) -> String {
+    let megabytes = bits / 8 / 1024 / 1024
+    let correctString = "\(megabytes)MB"
+    return correctString
+}
+
+func filePathFromDownloadUrl2(url:URL) -> URL {
+    let componenents = url.pathComponents
+    let lastpathComponent = componenents.last
+    let fileManager = FileManager.default
+    let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let filePath = URL(fileURLWithPath: documentsURL.absoluteString).appendingPathComponent(lastpathComponent!)
+    return filePath
 }

@@ -27,6 +27,7 @@
 		319FA02329C36446006895CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02129C36446006895CB /* LaunchScreen.storyboard */; };
 		319FA02B29C37136006895CB /* LoginRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02A29C37136006895CB /* LoginRegister.storyboard */; };
 		319FA02D29C37677006895CB /* Nunito-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */; };
+		31A13AD12A24A97C00A577BC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A13AD02A24A97C00A577BC /* DownloadManager.swift */; };
 		31B272CB29CE10090041FBA0 /* RequestPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B272CA29CE10090041FBA0 /* RequestPhoto.swift */; };
 		31B6E3532A179E1D0002DD87 /* SectionsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B6E3522A179E1D0002DD87 /* SectionsTVC.swift */; };
 		31B94D252A1B6A7E0000A452 /* DownloadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B94D242A1B6A7E0000A452 /* DownloadVC.swift */; };
@@ -112,6 +113,7 @@
 		319FA02A29C37136006895CB /* LoginRegister.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginRegister.storyboard; sourceTree = "<group>"; };
 		319FA02C29C37677006895CB /* Nunito-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		319FA02F29C381E8006895CB /* LibriVox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LibriVox.entitlements; sourceTree = "<group>"; };
+		31A13AD02A24A97C00A577BC /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		31B272CA29CE10090041FBA0 /* RequestPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPhoto.swift; sourceTree = "<group>"; };
 		31B6E3522A179E1D0002DD87 /* SectionsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsTVC.swift; sourceTree = "<group>"; };
 		31B94D242A1B6A7E0000A452 /* DownloadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVC.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				6F50A7922A0A65E400C6EDEC /* LoadingImage.swift */,
 				6F6765E829DADF190080874E /* Utils.swift */,
 				6F1C2F9C2A055E6900CABC33 /* Firebase.swift */,
+				31A13AD02A24A97C00A577BC /* DownloadManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				31B6E3532A179E1D0002DD87 /* SectionsTVC.swift in Sources */,
 				6F50A7932A0A65E400C6EDEC /* LoadingImage.swift in Sources */,
 				3183B78B29DF315C00F1AE0A /* LoadingView.swift in Sources */,
+				31A13AD12A24A97C00A577BC /* DownloadManager.swift in Sources */,
 				6F4EC1EF29C9E0020025B204 /* RoundView.swift in Sources */,
 				6F04C47C29DF37BE008AA945 /* DiscoverVC.swift in Sources */,
 				6F152E2629CCD12C0008846B /* LibraryVC.swift in Sources */,
