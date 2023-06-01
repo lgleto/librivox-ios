@@ -8,7 +8,8 @@
 import UIKit
 
 class AdaptedVC: UIViewController {
-
+    var homepageTBC: HomepageTBC?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -16,11 +17,15 @@ class AdaptedVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        /*homepageTBC?.isHidden = true
+        homepageTBC?.setConstraints()*/
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        /*homepageTBC?.isHidden = false
+        homepageTBC?.setConstraints()*/
     }
   
 
