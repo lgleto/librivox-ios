@@ -249,9 +249,6 @@
                                                         <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="UVU-Dh-frf"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -311,6 +308,7 @@
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
                         <segue destination="y1Z-nm-UYf" kind="show" identifier="homeToBookDetail" id="Sw7-E8-QYW"/>
                         <segue destination="MjL-5a-e21" kind="show" identifier="allTrending" id="7XY-Ah-lvC"/>
+                        <segue destination="akk-5b-9ff" kind="show" identifier="homepageToPlayer" id="tYx-zU-Bnf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -417,7 +415,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bME-vC-fKE">
-                                <rect key="frame" x="32" y="727" width="51" height="35"/>
+                                <rect key="frame" x="32" y="678" width="51" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bME-vC-fKE" secondAttribute="height" multiplier="51:35" id="y64-p1-UTs"/>
                                 </constraints>
@@ -429,7 +427,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-7D-iw7" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="308" y="727" width="35" height="35"/>
+                                <rect key="frame" x="308" y="678" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="20N-Nt-PlS"/>
                                     <constraint firstAttribute="width" constant="35" id="NKT-9J-9UC"/>
@@ -446,7 +444,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-UC-bdt">
-                                <rect key="frame" x="236" y="727" width="64" height="35"/>
+                                <rect key="frame" x="236" y="678" width="64" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fkb-UC-bdt" secondAttribute="height" multiplier="64:35" id="QrI-zk-PK1"/>
                                 </constraints>
@@ -455,7 +453,7 @@
                                 <state key="normal" image="forward.end.alt.fill" catalog="system"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aI-cz-EdD">
-                                <rect key="frame" x="32" y="66" width="311" height="653"/>
+                                <rect key="frame" x="32" y="110" width="311" height="560"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -463,7 +461,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-3O-FPr">
-                                <rect key="frame" x="90" y="727" width="64" height="35"/>
+                                <rect key="frame" x="90" y="678" width="64" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QkF-3O-FPr" secondAttribute="height" multiplier="64:35" id="CYJ-ej-qUk"/>
                                 </constraints>
@@ -472,7 +470,7 @@
                                 <state key="normal" image="backward.end.alt.fill" catalog="system"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laf-3e-kNv" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="170" y="727" width="35" height="35"/>
+                                <rect key="frame" x="170" y="678" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="0Tg-Pz-aVb"/>
                                     <constraint firstAttribute="width" secondItem="laf-3e-kNv" secondAttribute="height" multiplier="1:1" id="RpR-vR-hnO"/>
@@ -783,7 +781,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrT-oc-wRk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6173.6000000000004" y="742.61083743842369"/>
+            <point key="canvasLocation" x="2324" y="724"/>
         </scene>
         <!--HomepageTBC-->
         <scene sceneID="bAN-FB-Ewr">
@@ -924,7 +922,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="g3y-Fd-V1A"/>
+        <segue reference="Sw7-E8-QYW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="28187" width="305" height="475"/>
@@ -938,8 +936,8 @@
         <image name="play" width="512" height="512"/>
         <image name="play-button" width="512" height="512"/>
         <image name="play.circle" catalog="system" width="128" height="123"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="Green Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

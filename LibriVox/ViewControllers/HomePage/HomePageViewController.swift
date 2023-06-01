@@ -69,8 +69,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func playButton(_ sender: Any) {
-        PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[0]) { _ in
-            //TODO Whats this
+        PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1]) { _ , book in
+            self.performSegue(withIdentifier: "homepageToPlayer", sender: book)
             
         }
     }
@@ -82,12 +82,13 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "homepageToPlayer") {
-            let destVC = segue.destination as! DownloadVC
+            let destVC = segue.destination as! PlayerVC
             destVC.book = sender as! Audiobook
         } else if (segue.identifier == "homeToBookDetail"){
             let destVC = segue.destination as! BookDetailsVC
             destVC.book = sender as? Audiobook
         }
+        
         
     }
 

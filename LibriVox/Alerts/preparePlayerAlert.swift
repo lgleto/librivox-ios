@@ -14,7 +14,7 @@ class PreparePlayerAlert: UIViewController {
   static func show(parentVC: UIViewController,
            title: String,
                    book: Audiobook,
-           onCallback: ((Bool) -> Void)?)
+           onCallback: ((Bool, Audiobook) -> Void)?)
   {
       PreparePlayerAlert.show(parentVC: parentVC, content: .error(title: title), book: book, onCallback: onCallback)
   }
@@ -22,15 +22,15 @@ class PreparePlayerAlert: UIViewController {
   static func show(parentVC: UIViewController,
            content: Content,
                    book: Audiobook,
-           onCallback: ((Bool) -> Void)?)
+           onCallback: ((Bool,Audiobook) -> Void)?)
   {
     let storyBoard = UIStoryboard(name: "HomePage", bundle: nil)
     let vc: PreparePlayerAlert = storyBoard.instantiateViewController(withIdentifier: "PreparePlayerAlert") as! PreparePlayerAlert
     vc.content = content
       vc.book = book
-    vc.callback = { yes in
+    vc.callback = { yes, book in
       if let callback = onCallback {
-        callback(yes)
+        callback(yes, book)
       }
     }
     vc.modalTransitionStyle = .coverVertical
@@ -48,7 +48,7 @@ class PreparePlayerAlert: UIViewController {
     @IBOutlet weak var currentBytes: UILabel!
     
     
-  var callback: ((Bool) -> Void)?
+  var callback: ((Bool , Audiobook) -> Void)?
     var book: Audiobook?
     
   var content: Content = .empty
@@ -74,10 +74,14 @@ class PreparePlayerAlert: UIViewController {
                       // The specific folder exists
                       changeStatus(label: "Found audiobook, changing to Player", roundIndicatior: true, progressIndicator: 4.0)
                       DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                          
-                          
+                          self.dismiss(animated: true) {
+                          if let c = self.callback {
+                              c(false, self.book!)
+                          }
+                        }
+
                       }
-                      //performSegue(withIdentifier: "PlayerToSections", sender: book)
+                      //
                       print("The specific folder exists.")
                   } else {
                       // A file with the same name exists, but it's not a folder
@@ -106,15 +110,16 @@ class PreparePlayerAlert: UIViewController {
 
   @IBAction func buttonConfirm(_ sender: Any) {
       if let c = self.callback {
-        c(true)
+          c(true, self.book!)
       }
   }
+    
    
   @IBAction func buttonCancel(_ sender: Any) {
       DownloadManager.shared.cancelDownload()
       dismiss(animated: true) {
       if let c = self.callback {
-        c(false)
+          c(false, self.book!)
       }
     }
       
@@ -143,6 +148,11 @@ class PreparePlayerAlert: UIViewController {
                     try SSZipArchive.unzipFile(atPath: localURL.path, toDestination: destinationPath, overwrite: true, password: nil)
                     do {
                         try fileManager.removeItem(at: baseUrl)
+                        self.dismiss(animated: true) {
+                        if let c = self.callback {
+                            c(false, self.book!)
+                        }
+                      }
                     } catch {
                         print("Error removing rar file")
                     }
