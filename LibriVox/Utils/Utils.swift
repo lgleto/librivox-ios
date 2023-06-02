@@ -484,3 +484,18 @@ func filePathFromDownloadUrl2(url:URL) -> URL {
     let filePath = URL(fileURLWithPath: documentsURL.absoluteString).appendingPathComponent(lastpathComponent!)
     return filePath
 }
+
+func getFilesInFolder(folderPath: String) -> [String]? {
+    do {
+        let fileManager = FileManager.default
+        let fileURLs = try fileManager.contentsOfDirectory(atPath: folderPath)
+        
+        // Sort the file names in alphabetical order
+        let sortedFileNames = fileURLs.sorted()
+        return sortedFileNames
+    } catch {
+        print("Error while getting the files: \(error.localizedDescription)")
+        return nil
+    }
+}
+

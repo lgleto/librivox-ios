@@ -134,7 +134,7 @@ class PreparePlayerAlert: UIViewController {
          let baseUrl = filePathFromDownloadUrl2(url: URL(string: self.book!.urlZipFile!)!)
         
         let destinationPath = folderPath(id: book!._id!)
-
+        
         DownloadManager.shared.addDownload(url: url, destinationURL: baseUrl) { progress, currentBits, expectedBits in
             self.progressBar.progress = progress
             self.currentBytes.text = bitToMegabyteString(currentBits)
