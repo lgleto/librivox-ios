@@ -86,15 +86,66 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
+class ImageCache {
+    static let shared = ImageCache()
+    
+    private let cache = NSCache<NSString, UIImage>()
+    private let authorPhotoCache = NSCache<NSString, UIImage>()
+    
+    private init() {
+        cache.countLimit = 100 // Adjust the cache limit as needed
+        authorPhotoCache.countLimit = 100
+    }
+    
+    func image(for id: String) -> UIImage? {
+        return cache.object(forKey: id as NSString)
+    }
+    
+    func insertImage(_ image: UIImage?, for id: String) {
+        guard let image = image else {
+            cache.removeObject(forKey: id as NSString)
+            return
+        }
+        
+        cache.setObject(image, forKey: id as NSString)
+    }
+    
+    func authorPhoto(for id: String) -> UIImage? {
+        return authorPhotoCache.object(forKey: id as NSString)
+    }
+    
+    func insertAuthorPhoto(_ image: UIImage?, for id: String) {
+        guard let image = image else {
+            authorPhotoCache.removeObject(forKey: id as NSString)
+            return
+        }
+        
+        authorPhotoCache.setObject(image, forKey: id as NSString)
+    }
+}
+
+
 
 func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
-    if let image = loadImageFromDocumentDirectory(id: id){
-        print("foi do diretorio")
-        callback(image)
-    }else{
-        getBookCoverFromURL(url: url){image in
-            guard let image = image else{return}
-            callback(image)
+    guard let imageURL = URL(string: url) else {
+        DispatchQueue.main.async {
+            callback(nil)
+        }
+        return
+    }
+    
+    if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String) {
+        DispatchQueue.main.async {
+            callback(cachedImage)
+        }
+    } else {
+        getBookCoverFromURL(url: url) { fetchedImageURL in
+            guard let fetchedImageURL = fetchedImageURL else {
+                callback(nil)
+                return
+            }
+            ImageCache.shared.insertImage(fetchedImageURL, for: (id as NSString) as String)
+            callback(fetchedImageURL)
         }
     }
 }
@@ -132,32 +183,44 @@ func loadImageFromDocumentDirectory(id: String) -> UIImage? {
     let fileManager = FileManager.default
     let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
     let imageURL = documentsDirectory.appendingPathComponent("ImgBooks").appendingPathComponent(id)
-
+    
     guard fileManager.fileExists(atPath: imageURL.path) else {
         return nil
     }
-
+    
     if let image = UIImage(contentsOfFile: imageURL.path) {
         return image
     }
-
+    
     return nil
 }
 
 
-func getPhotoAuthor(authorId: String, _ callback: @escaping (URL?) -> Void){
-    getWikipediaLink(authorId: authorId){ title in
-        
-        let name = title.lastPathComponent
-        getMainImageFromWikipedia(name: name){imgC in
-            if let imgC = imgC{
-                callback(imgC)
-                
-            }else{
-                callback(nil)
+func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void){
+    guard let authorId = authorId else {
+        DispatchQueue.main.async {
+            callback(nil)
+        }
+        return
+    }
+    
+    if let cachedImage = ImageCache.shared.authorPhoto(for: authorId) {
+        DispatchQueue.main.async {
+            callback(cachedImage)
+        }
+    }else{
+        getWikipediaLink(authorId: authorId){ title in
+            
+            let name = title.lastPathComponent
+            getMainImageFromWikipedia(name: name){imgC in
+                if let imgC = imgC{
+                    callback(imgC)
+                    ImageCache.shared.insertAuthorPhoto(imgC, for: (authorId as NSString) as String)
+                }else{callback(nil)}
             }
         }
     }
+    
 }
 
 func getWikipediaLink(authorId: String, _ callback: @escaping (URL) -> Void){
@@ -181,7 +244,7 @@ func getWikipediaLink(authorId: String, _ callback: @escaping (URL) -> Void){
 
 
 
-func getMainImageFromWikipedia(name: String,_ callback: @escaping (URL?) -> Void) {
+func getMainImageFromWikipedia(name: String,_ callback: @escaping (UIImage?) -> Void) {
     guard let url = URL(string: "https://en.wikipedia.org/w/api.php?action=query&titles=\(name)&prop=pageimages&format=json&piprop=original") else {
         print("Error: Invalid URL")
         return
@@ -207,10 +270,10 @@ func getMainImageFromWikipedia(name: String,_ callback: @escaping (URL?) -> Void
                    let props = page["original"] as? [String: Any],
                    let originalURLString = props["source"] as? String,
                    let url = URL(string: originalURLString) {
-                    callback(url)
-                    
-                } else {
-                    callback(nil)
+                    if let imageData = try? Data(contentsOf: url) {
+                        let image = UIImage(data: imageData)
+                        callback(image)
+                    } else {callback(nil)}
                 }
             } catch {
                 print("Error: \(error.localizedDescription)")
@@ -352,20 +415,20 @@ class NetworkCheck {
 }
 
 func folderPath(id:String) -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        let docURL = URL(string: "\(documentsDirectory)/\(id)/mp3")!
-        print("Datapath ->", docURL.absoluteString)
-        //let dataPath = docURL.appendingPathComponent("/mp3")
-        return docURL.absoluteString
-    }
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let documentsDirectory = paths[0]
+    let docURL = URL(string: "\(documentsDirectory)/\(id)/mp3")!
+    print("Datapath ->", docURL.absoluteString)
+    //let dataPath = docURL.appendingPathComponent("/mp3")
+    return docURL.absoluteString
+}
 
 func documentPath() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        //let dataPath = docURL.appendingPathComponent("/mp3")
-        return documentsDirectory
-    }
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let documentsDirectory = paths[0]
+    //let dataPath = docURL.appendingPathComponent("/mp3")
+    return documentsDirectory
+}
 
 func millisToTime(_ timeMillis: Int) -> String {
     let seconds = abs(timeMillis / 1000)
@@ -374,7 +437,7 @@ func millisToTime(_ timeMillis: Int) -> String {
 }
 
 func downloadImage(url: URL, imageView: UIImageView) {
-
+    
     getDataFromUrl(url: url) { (data, response, error)  in
         guard let data = data, error == nil else {
             return
@@ -404,7 +467,7 @@ func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response:
     URLSession.shared.dataTask(with: url) {
         (data, response, error) in
         completion(data, response, error)
-        }.resume()
+    }.resume()
 }
 
 func showProgressBarAlert(_ view: UIViewController) {
@@ -427,15 +490,15 @@ func showProgressBarAlert(_ view: UIViewController) {
     progressView.centerYAnchor.constraint(equalTo: alertController.view.centerYAnchor, constant: 32).isActive = true
     //alertController.view.bottomAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 8).isActive = true
     // Adjust the constant value as needed
-        
+    
     // Adjust the frame of the progress view to create additional space below it
     progressView.frame = CGRect(x: progressView.frame.origin.x,
                                 y: progressView.frame.origin.y,
                                 width: progressView.frame.size.width,
                                 height: progressView.frame.size.height + 150) // Adjust the height as needed
     
-     // Adjust the width as needed
-        
+    // Adjust the width as needed
+    
     
     // Start the progress animation
     progressView.setProgress(0.3, animated: true)
@@ -447,11 +510,11 @@ func showProgressBarAlert(_ view: UIViewController) {
 class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
     var startTime: Date?
     var progressBar: UIProgressView?
-
+    
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         // File download completed
     }
-
+    
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         // Calculate the remaining time
         guard let startTime = startTime else { return }
@@ -460,7 +523,7 @@ class DownloadDelegate: NSObject, URLSessionDownloadDelegate {
         let remainingBytes = totalBytesExpectedToWrite - totalBytesWritten
         let remainingTime = TimeInterval(remainingBytes / Int64(bytesPerSecond))
         let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-
+        
         // Update your UI with the remaining time
         DispatchQueue.main.async {
             // Update your UI elements with the remaining time
