@@ -35,8 +35,33 @@ class BookDetailsVC: UIViewController {
     
     private var rowsToBeShow:Int?
     
+    private func syncPlayPauseButton() {
+        guard let id = book?._id else {
+            return
+        }
+        
+        /*if let currentAudiobookID = MiniPlayerManager.shared.currentAudiobookID,currentAudiobookID == id {
+         playBtn.isSelected = MiniPlayerManager.shared.isPlaying
+         }*/
+    }
+    
+    @objc func miniPlayerDidUpdatePlayState(_ notification: Notification) {
+        
+        
+        
+        
+        guard let userInfo = notification.userInfo,
+              let isPlaying = userInfo["state"] as? Bool else {return}
+        playBtn.isSelected = isPlaying
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let id = book?._id, let currentAudiobookID = MiniPlayerManager.shared.currentAudiobookID,currentAudiobookID == id {
+            NotificationCenter.default.addObserver(self, selector: #selector(miniPlayerDidUpdatePlayState(_:)), name: Notification.Name("miniPlayerState"), object: nil)
+        }
+        
         sectionsTV.dataSource = self
         sectionsTV.delegate = self
         
@@ -44,7 +69,7 @@ class BookDetailsVC: UIViewController {
         showMoreBtn.setTitle("Hide all", for: .selected)
         
         sectionsTV.alwaysBounceVertical = false
-
+        
         if let book = book {
             self.title = book.title!
             self.bookUser?.id = book._id!
@@ -62,19 +87,19 @@ class BookDetailsVC: UIViewController {
                     
                 }
             }
-           
+            
         }
         
     }
     
     @IBAction func clickShowMore(_ sender: Any) {
         showMoreBtn.isSelected = !showMoreBtn.isSelected
-    
+        
         sectionsTV.reloadData()
     }
     
     func setData(book : Audiobook){
-        self.getCoverBook(id: book._id!,url: book.urlLibrivox!){
+        getCoverBook(id: book._id!,url: book.urlLibrivox!){
             img in
             if let img = img{
                 self.bookImg.loadImage(from: img)
@@ -219,48 +244,8 @@ class BookDetailsVC: UIViewController {
     }
     
     @IBAction func playBookBtn(_ sender: Any) {
-        
+        playBtn.isSelected = !playBtn.isSelected
         performSegue(withIdentifier: "detailsToPlayer", sender: book)
-    }
-    
-    private func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
-        if let image = loadImageFromDocumentDirectory(id: id){
-            callback(image)
-        }else{
-            getBookCoverFromURL(url: url){image in
-                guard let image = image else{return}
-                self.saveImageToDocumentDirectory(id: id, image: image)
-                callback(image)
-            }
-        }
-    }
-    
-    private func saveImageToDocumentDirectory(id: String, image: UIImage) {
-        let fileManager = FileManager.default
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
-        
-        if !fileManager.fileExists(atPath: imgBooksDirectory.path) {
-            do {
-                try fileManager.createDirectory(at: imgBooksDirectory, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                print("Error creating ImgBooks directory:", error)
-                return
-            }
-        }
-        
-        let fileURL = imgBooksDirectory.appendingPathComponent(id)
-        
-        if !fileManager.fileExists(atPath: fileURL.path) {
-            if let data = image.jpegData(compressionQuality: 1.0) {
-                do {
-                    try data.write(to: fileURL)
-                    //print("File saved:", fileURL.path)
-                } catch {
-                    //print("Error saving file:", error)
-                }
-            }
-        }
     }
     
 }

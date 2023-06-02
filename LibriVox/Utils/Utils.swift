@@ -93,7 +93,7 @@ class ImageCache {
     private let authorPhotoCache = NSCache<NSString, UIImage>()
     
     private init() {
-        cache.countLimit = 100 // Adjust the cache limit as needed
+        cache.countLimit = 100
         authorPhotoCache.countLimit = 100
     }
     
