@@ -13,6 +13,16 @@ protocol MiniPlayerDelegate {
     func closeMiniPlayer()
 }
 
+class MiniPlayerManager {
+    static let shared = MiniPlayerManager()
+
+    var currentAudiobookID: String?
+    //var isPlaying: Bool = true
+
+    private init() {}
+}
+
+
 class MiniPlayerVC: UIViewController {
     
     var delegate: MiniPlayerDelegate?
@@ -25,9 +35,9 @@ class MiniPlayerVC: UIViewController {
     
     let playBtn: ToggleBtn = {
         let btn = ToggleBtn()
-        btn.imgSelected = UIImage(named: "play-button")
-        btn.imgNotSelected = UIImage(named: "pause-button")
-        btn.isSelected = false
+        btn.imgSelected = UIImage(named: "pause-button")
+        btn.imgNotSelected = UIImage(named: "play-button")
+        btn.isSelected = true
         btn.isUserInteractionEnabled = true
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTarget(self, action: #selector(playBtnClicked), for: .touchUpInside)
@@ -76,6 +86,7 @@ class MiniPlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
         setViews()
     }
     
@@ -147,6 +158,8 @@ class MiniPlayerVC: UIViewController {
             return
         }
         
+        MiniPlayerManager.shared.currentAudiobookID = book._id
+        
         titleBook.text = book.title
         author.text = displayAuthors(authors: book.authors!)
         getCoverBook(id: book._id!, url: book.urlLibrivox!) { img in
@@ -159,7 +172,10 @@ class MiniPlayerVC: UIViewController {
     
     @objc func playBtnClicked() {
         playBtn.isSelected = !playBtn.isSelected
+        NotificationCenter.default.post(name: Notification.Name("miniPlayerState"), object: nil, userInfo: ["state": playBtn.isSelected])
+
     }
+
     
     @objc func tapDetected() {
         guard let delegate = delegate else { return }
@@ -168,6 +184,7 @@ class MiniPlayerVC: UIViewController {
     
     @objc func closeTap() {
         guard let delegate = delegate else { return }
+        NotificationCenter.default.post(name: Notification.Name("miniPlayerState"), object: nil, userInfo: ["state": playBtn.isSelected])
         delegate.closeMiniPlayer()
     }
 }

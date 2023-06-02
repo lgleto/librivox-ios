@@ -139,7 +139,7 @@ func downloadProfileImage(_ name: String,_ imageView: LoadingImage) {
         } else if let imageData = data {
             imageView.loadImage(from: UIImage(data: imageData)!)
         } else if let url = Auth.auth().currentUser?.photoURL {
-            imageView.loadImage(from: url)
+            imageView.loadImageURL(from: url)
         } else {
             imageView.loadImage(from: imageWith(name: name)!)
         }

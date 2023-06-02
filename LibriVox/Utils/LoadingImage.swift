@@ -6,10 +6,9 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class LoadingImage: UIImageView {
-    
-    private let cache = NSCache<NSURL, UIImage>()
     
     private let spinner = UIActivityIndicatorView()
     private static let imageCache = NSCache<NSURL, UIImage>()
@@ -31,36 +30,23 @@ class LoadingImage: UIImageView {
         contentMode = .scaleAspectFill
     }
     
-    /// Load image into ImageView from URL
-    /// - Parameter url: Pass the image url
-    func loadImage(from url: URL) {
-        
-        if let cachedImage = LoadingImage.imageCache.object(forKey: url as NSURL) {
-            DispatchQueue.main.async() {
-                self.image = cachedImage
-                self.spinner.stopAnimating()
+    func loadImageURL(from url: URL) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+            else {
+                return
             }
-            return
-        }else{
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard
-                    let data = data, error == nil,
-                    let image = UIImage(data: data)
-                else {
-                    return
-                }
-
-                DispatchQueue.main.async() { [weak self] in
-                    self?.image = image
-                    LoadingImage.imageCache.setObject(image, forKey: url as NSURL)
-                    self?.spinner.stopAnimating()
-                }
-
-            }.resume()
-        }
-      
+            
+            DispatchQueue.main.async() { [weak self] in
+                self?.image = image
+                LoadingImage.imageCache.setObject(image, forKey: url as NSURL)
+                self?.spinner.stopAnimating()
+            }
+        }.resume()
+        
     }
-
     
     /// Load image into ImageView
     /// - Parameter image: Image to be put in imageView
@@ -71,3 +57,5 @@ class LoadingImage: UIImageView {
         }
     }
 }
+
+
