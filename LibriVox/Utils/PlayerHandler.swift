@@ -73,7 +73,7 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 if thePlayerItem.status == .readyToPlay {
                     return thePlayerItem.duration
                 }else {
-                    return CMTimeMake(value: Int64(duration/1000), timescale: 1)
+                    return CMTimeMake(value: Int64(duration), timescale: 1)
                 }
             }
             return CMTime.invalid
@@ -301,7 +301,7 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
         
        
         
-        let totalDuration = Float (duration / 1000)
+        let totalDuration = Float (duration)
         nowPlayingInfo[MPMediaItemPropertyArtwork] =
         MPMediaItemArtwork(boundsSize: image!.size) { size in
             return self.image!

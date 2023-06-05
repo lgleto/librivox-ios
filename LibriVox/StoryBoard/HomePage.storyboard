@@ -308,7 +308,7 @@
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
                         <segue destination="y1Z-nm-UYf" kind="show" identifier="homeToBookDetail" id="Sw7-E8-QYW"/>
                         <segue destination="MjL-5a-e21" kind="show" identifier="allTrending" id="7XY-Ah-lvC"/>
-                        <segue destination="akk-5b-9ff" kind="show" identifier="homepageToPlayer" id="tYx-zU-Bnf"/>
+                        <segue destination="eKj-cy-cEV" kind="show" identifier="homepageToPlayer" id="8x7-nn-R4v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -405,99 +405,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFQ-wh-fkU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1722" y="1442"/>
-        </scene>
-        <!--Title Of BOOK-->
-        <scene sceneID="0Rp-zp-DbB">
-            <objects>
-                <viewController storyboardIdentifier="PlayerVC" id="akk-5b-9ff" customClass="PlayerVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WS1-bA-1xY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bME-vC-fKE">
-                                <rect key="frame" x="32" y="685.33333333333337" width="31.666666666666671" height="21.666666666666629"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="list.triangle" catalog="system"/>
-                                <connections>
-                                    <action selector="sectionsBTN:" destination="akk-5b-9ff" eventType="touchUpInside" id="GBH-qc-D1I"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-7D-iw7" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="308" y="678" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="star" catalog="system">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="star"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="starOn"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-UC-bdt">
-                                <rect key="frame" x="230" y="678" width="53" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="forward.end.alt.fill" catalog="system"/>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aI-cz-EdD">
-                                <rect key="frame" x="32" y="110" width="311" height="536"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-3O-FPr">
-                                <rect key="frame" x="84" y="678" width="41" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="backward.end.alt.fill" catalog="system"/>
-                            </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-9f-QBm">
-                                <rect key="frame" x="32" y="666" width="311" height="4"/>
-                            </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laf-3e-kNv" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="170" y="685" width="35" height="35"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="play.circle" catalog="system">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="playBTN:" destination="akk-5b-9ff" eventType="touchUpInside" id="o9i-Jb-xoF"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="C32-ni-jcR"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="laf-3e-kNv" firstAttribute="top" secondItem="wdP-9f-QBm" secondAttribute="bottom" constant="16" id="5Gl-76-Ibc"/>
-                            <constraint firstItem="wdP-9f-QBm" firstAttribute="firstBaseline" secondItem="6aI-cz-EdD" secondAttribute="baseline" constant="16" id="ETQ-gZ-ZPR"/>
-                            <constraint firstItem="6aI-cz-EdD" firstAttribute="top" secondItem="C32-ni-jcR" secondAttribute="top" constant="16" id="QOd-Rc-mr2"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="trailing" secondItem="6aI-cz-EdD" secondAttribute="trailing" constant="32" id="XF1-bM-Trx"/>
-                            <constraint firstItem="6aI-cz-EdD" firstAttribute="leading" secondItem="C32-ni-jcR" secondAttribute="leading" constant="32" id="dSc-N3-lsa"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title Of BOOK" id="uke-ez-Ksa"/>
-                    <connections>
-                        <outlet property="playBtn" destination="laf-3e-kNv" id="uGW-Pt-wQa"/>
-                        <outlet property="progressBar" destination="wdP-9f-QBm" id="YDE-pK-D3I"/>
-                        <segue destination="fWw-Xy-m8Q" kind="presentation" identifier="PlayerToSections" id="ViK-tV-h91"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3W6-2B-h2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3013.5999999999999" y="1410.5911330049262"/>
         </scene>
         <!--Trending Books-->
         <scene sceneID="JvO-ZD-RFB">
@@ -886,6 +793,159 @@
             </objects>
             <point key="canvasLocation" x="-798" y="746"/>
         </scene>
+        <!--Title Of BOOK-->
+        <scene sceneID="yEA-Qu-Q48">
+            <objects>
+                <viewController storyboardIdentifier="PlayerVC" id="eKj-cy-cEV" customClass="PlayerVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aN7-zR-W4y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmT-W7-36I">
+                                <rect key="frame" x="16" y="110" width="343" height="513"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7f9-DD-LPv">
+                                <rect key="frame" x="93.333333333333329" y="679" width="39.333333333333329" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FIf-Yn-NrJ"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="backward.end.alt.fill" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLt-WO-k0g" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                <rect key="frame" x="162.66666666666666" y="669" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="sTG-Kl-MbH"/>
+                                    <constraint firstAttribute="height" constant="50" id="uJb-pQ-522"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="pause">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playBTN:" destination="eKj-cy-cEV" eventType="touchUpInside" id="9B8-t7-3Wf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIu-R2-6UO" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                <rect key="frame" x="329" y="679" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="uGw-6Y-XwJ"/>
+                                    <constraint firstAttribute="width" constant="30" id="uTV-hh-OhE"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="star">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="star"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="starOn"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTH-yN-7qV">
+                                <rect key="frame" x="16" y="682" width="30" height="24.666666666666629"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Z2Q-yw-h66"/>
+                                    <constraint firstAttribute="height" constant="30" id="vNu-df-1Bq"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" backgroundImage="list.triangle" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="star"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="starOn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="sectionsBTN:" destination="eKj-cy-cEV" eventType="touchUpInside" id="ku3-S6-OmL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GqV-XP-pHy">
+                                <rect key="frame" x="242.66666666666666" y="679" width="39.333333333333343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bwm-t8-JDp"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="forward.end.alt.fill" catalog="system"/>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ui4-VC-J8Z">
+                                <rect key="frame" x="54" y="631" width="271" height="31"/>
+                                <connections>
+                                    <action selector="sliderPositionBeginChanged:" destination="eKj-cy-cEV" eventType="valueChanged" id="4s0-9p-quk"/>
+                                    <action selector="sliderPositionChanged:" destination="eKj-cy-cEV" eventType="valueChanged" id="x0V-vz-g3M"/>
+                                    <action selector="sliderPositionEndChanged:" destination="eKj-cy-cEV" eventType="valueChanged" id="Xo4-w2-and"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYk-4V-S6I">
+                                <rect key="frame" x="16" y="631" width="32" height="30"/>
+                                <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imr-BI-zqB">
+                                <rect key="frame" x="327" y="631" width="32" height="30"/>
+                                <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f16-Cc-myp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="imr-BI-zqB" firstAttribute="top" secondItem="Ui4-VC-J8Z" secondAttribute="top" id="1e8-85-fOY"/>
+                            <constraint firstItem="XLt-WO-k0g" firstAttribute="centerX" secondItem="f16-Cc-myp" secondAttribute="centerX" id="301-hJ-CD4"/>
+                            <constraint firstItem="KYk-4V-S6I" firstAttribute="bottom" secondItem="Ui4-VC-J8Z" secondAttribute="bottom" id="3ZF-pZ-F2q"/>
+                            <constraint firstItem="XLt-WO-k0g" firstAttribute="top" secondItem="Ui4-VC-J8Z" secondAttribute="bottom" constant="8" id="52Q-Lo-vFu"/>
+                            <constraint firstItem="Ui4-VC-J8Z" firstAttribute="leading" secondItem="KYk-4V-S6I" secondAttribute="trailing" constant="8" id="5dM-JH-yBt"/>
+                            <constraint firstItem="tmT-W7-36I" firstAttribute="leading" secondItem="f16-Cc-myp" secondAttribute="leading" constant="16" id="9vr-lI-dog"/>
+                            <constraint firstItem="oTH-yN-7qV" firstAttribute="centerY" secondItem="XLt-WO-k0g" secondAttribute="centerY" id="CRZ-OR-EQW"/>
+                            <constraint firstItem="KYk-4V-S6I" firstAttribute="leading" secondItem="f16-Cc-myp" secondAttribute="leading" constant="16" id="D75-Sv-c0o"/>
+                            <constraint firstItem="f16-Cc-myp" firstAttribute="trailing" secondItem="imr-BI-zqB" secondAttribute="trailing" constant="16" id="H2F-FF-tfW"/>
+                            <constraint firstItem="tmT-W7-36I" firstAttribute="top" secondItem="f16-Cc-myp" secondAttribute="top" constant="16" id="HBt-Y2-sXn"/>
+                            <constraint firstItem="f16-Cc-myp" firstAttribute="trailing" secondItem="tIu-R2-6UO" secondAttribute="trailing" constant="16" id="HeE-5X-z8l"/>
+                            <constraint firstItem="7f9-DD-LPv" firstAttribute="centerY" secondItem="XLt-WO-k0g" secondAttribute="centerY" id="K4e-bt-zog"/>
+                            <constraint firstItem="imr-BI-zqB" firstAttribute="leading" secondItem="Ui4-VC-J8Z" secondAttribute="trailing" constant="4" id="KFX-Vc-4qA"/>
+                            <constraint firstItem="imr-BI-zqB" firstAttribute="bottom" secondItem="Ui4-VC-J8Z" secondAttribute="bottom" id="Nxi-MU-JRT"/>
+                            <constraint firstItem="XLt-WO-k0g" firstAttribute="leading" secondItem="7f9-DD-LPv" secondAttribute="trailing" constant="30" id="Sld-kF-CHN"/>
+                            <constraint firstItem="f16-Cc-myp" firstAttribute="bottom" secondItem="XLt-WO-k0g" secondAttribute="bottom" constant="10" id="T0B-F3-Uit"/>
+                            <constraint firstItem="GqV-XP-pHy" firstAttribute="leading" secondItem="XLt-WO-k0g" secondAttribute="trailing" constant="30" id="Y5d-Is-7sw"/>
+                            <constraint firstItem="oTH-yN-7qV" firstAttribute="leading" secondItem="f16-Cc-myp" secondAttribute="leading" constant="16" id="djG-sc-HaS"/>
+                            <constraint firstItem="GqV-XP-pHy" firstAttribute="centerY" secondItem="XLt-WO-k0g" secondAttribute="centerY" id="gPp-kr-9vo"/>
+                            <constraint firstItem="f16-Cc-myp" firstAttribute="trailing" secondItem="tmT-W7-36I" secondAttribute="trailing" constant="16" id="gVR-FH-kjz"/>
+                            <constraint firstItem="Ui4-VC-J8Z" firstAttribute="top" secondItem="tmT-W7-36I" secondAttribute="bottom" constant="8" symbolic="YES" id="qac-tO-rKh"/>
+                            <constraint firstItem="KYk-4V-S6I" firstAttribute="top" secondItem="Ui4-VC-J8Z" secondAttribute="top" id="uRw-Wi-Sq2"/>
+                            <constraint firstItem="tIu-R2-6UO" firstAttribute="centerY" secondItem="XLt-WO-k0g" secondAttribute="centerY" id="v5T-2k-Y90"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title Of BOOK" id="0Ei-tS-ACA"/>
+                    <connections>
+                        <outlet property="labelMaxTime" destination="imr-BI-zqB" id="G0D-rL-Tfi"/>
+                        <outlet property="labelRemainingTime" destination="KYk-4V-S6I" id="D1Y-Be-3Ln"/>
+                        <outlet property="playBtn" destination="XLt-WO-k0g" id="ZnU-lh-yaF"/>
+                        <outlet property="slider" destination="Ui4-VC-J8Z" id="rym-B4-URc"/>
+                        <segue destination="fWw-Xy-m8Q" kind="showDetail" identifier="PlayerToSections" id="SOH-1O-kHW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U8R-Vl-29s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2936.8000000000002" y="1424.6305418719212"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="geb-Va-GlX">
@@ -906,8 +966,6 @@
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
         <image name="play-button" width="512" height="512"/>
-        <image name="play.circle" catalog="system" width="128" height="123"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="Green Tone">
