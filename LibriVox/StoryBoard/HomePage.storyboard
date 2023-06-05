@@ -414,11 +414,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bME-vC-fKE">
-                                <rect key="frame" x="32" y="678" width="51" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="bME-vC-fKE" secondAttribute="height" multiplier="51:35" id="y64-p1-UTs"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bME-vC-fKE">
+                                <rect key="frame" x="32" y="685.33333333333337" width="31.666666666666671" height="21.666666666666629"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="list.triangle" catalog="system"/>
@@ -426,13 +424,9 @@
                                     <action selector="sectionsBTN:" destination="akk-5b-9ff" eventType="touchUpInside" id="GBH-qc-D1I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-7D-iw7" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-7D-iw7" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
                                 <rect key="frame" x="308" y="678" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="20N-Nt-PlS"/>
-                                    <constraint firstAttribute="width" constant="35" id="NKT-9J-9UC"/>
-                                    <constraint firstAttribute="width" secondItem="FXG-7D-iw7" secondAttribute="height" multiplier="1:1" id="bLO-UM-dR1"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="star" catalog="system">
@@ -443,39 +437,33 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="starOn"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-UC-bdt">
-                                <rect key="frame" x="236" y="678" width="64" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="fkb-UC-bdt" secondAttribute="height" multiplier="64:35" id="QrI-zk-PK1"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-UC-bdt">
+                                <rect key="frame" x="230" y="678" width="53" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="forward.end.alt.fill" catalog="system"/>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aI-cz-EdD">
-                                <rect key="frame" x="32" y="110" width="311" height="560"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aI-cz-EdD">
+                                <rect key="frame" x="32" y="110" width="311" height="536"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-3O-FPr">
-                                <rect key="frame" x="90" y="678" width="64" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="QkF-3O-FPr" secondAttribute="height" multiplier="64:35" id="CYJ-ej-qUk"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-3O-FPr">
+                                <rect key="frame" x="84" y="678" width="41" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="backward.end.alt.fill" catalog="system"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laf-3e-kNv" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="170" y="678" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="0Tg-Pz-aVb"/>
-                                    <constraint firstAttribute="width" secondItem="laf-3e-kNv" secondAttribute="height" multiplier="1:1" id="RpR-vR-hnO"/>
-                                    <constraint firstAttribute="height" constant="35" id="Xoi-FO-UiB"/>
-                                </constraints>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-9f-QBm">
+                                <rect key="frame" x="32" y="666" width="311" height="4"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laf-3e-kNv" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                <rect key="frame" x="170" y="685" width="35" height="35"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="play.circle" catalog="system">
@@ -489,32 +477,15 @@
                                     <action selector="playBTN:" destination="akk-5b-9ff" eventType="touchUpInside" id="o9i-Jb-xoF"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wdP-9f-QBm">
-                                <rect key="frame" x="32" y="721" width="311" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C32-ni-jcR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bME-vC-fKE" firstAttribute="leading" secondItem="C32-ni-jcR" secondAttribute="leading" constant="32" id="0L9-Hz-C7M"/>
-                            <constraint firstItem="QkF-3O-FPr" firstAttribute="top" secondItem="6aI-cz-EdD" secondAttribute="bottom" constant="8" symbolic="YES" id="1M6-7v-SfK"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="laf-3e-kNv" secondAttribute="bottom" constant="16" id="9FE-U2-5uA"/>
-                            <constraint firstItem="bME-vC-fKE" firstAttribute="top" secondItem="6aI-cz-EdD" secondAttribute="bottom" constant="8" symbolic="YES" id="DnN-Nj-Maj"/>
-                            <constraint firstItem="QkF-3O-FPr" firstAttribute="leading" secondItem="bME-vC-fKE" secondAttribute="trailing" constant="7" id="Mbj-zk-Ucb"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="bME-vC-fKE" secondAttribute="bottom" constant="16" id="NBb-mZ-VZU"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="FXG-7D-iw7" secondAttribute="bottom" constant="16" id="Pgw-Lu-aQm"/>
+                            <constraint firstItem="laf-3e-kNv" firstAttribute="top" secondItem="wdP-9f-QBm" secondAttribute="bottom" constant="16" id="5Gl-76-Ibc"/>
+                            <constraint firstItem="wdP-9f-QBm" firstAttribute="firstBaseline" secondItem="6aI-cz-EdD" secondAttribute="baseline" constant="16" id="ETQ-gZ-ZPR"/>
                             <constraint firstItem="6aI-cz-EdD" firstAttribute="top" secondItem="C32-ni-jcR" secondAttribute="top" constant="16" id="QOd-Rc-mr2"/>
-                            <constraint firstItem="laf-3e-kNv" firstAttribute="leading" secondItem="QkF-3O-FPr" secondAttribute="trailing" constant="16" id="QvC-3V-iZf"/>
-                            <constraint firstItem="fkb-UC-bdt" firstAttribute="leading" secondItem="laf-3e-kNv" secondAttribute="trailing" constant="31" id="WYd-hj-Cgu"/>
                             <constraint firstItem="C32-ni-jcR" firstAttribute="trailing" secondItem="6aI-cz-EdD" secondAttribute="trailing" constant="32" id="XF1-bM-Trx"/>
                             <constraint firstItem="6aI-cz-EdD" firstAttribute="leading" secondItem="C32-ni-jcR" secondAttribute="leading" constant="32" id="dSc-N3-lsa"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="trailing" secondItem="FXG-7D-iw7" secondAttribute="trailing" constant="32" id="fJM-Os-aEb"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="QkF-3O-FPr" secondAttribute="bottom" constant="16" id="gTi-Up-6iz"/>
-                            <constraint firstItem="laf-3e-kNv" firstAttribute="top" secondItem="6aI-cz-EdD" secondAttribute="bottom" constant="8" id="gfp-0I-bg3"/>
-                            <constraint firstItem="fkb-UC-bdt" firstAttribute="top" secondItem="6aI-cz-EdD" secondAttribute="bottom" constant="8" symbolic="YES" id="hww-u0-H4P"/>
-                            <constraint firstItem="FXG-7D-iw7" firstAttribute="leading" secondItem="fkb-UC-bdt" secondAttribute="trailing" constant="8" symbolic="YES" id="uq7-eU-6mk"/>
-                            <constraint firstItem="C32-ni-jcR" firstAttribute="bottom" secondItem="fkb-UC-bdt" secondAttribute="bottom" constant="16" id="zHY-qx-8aO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title Of BOOK" id="uke-ez-Ksa"/>
@@ -526,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3W6-2B-h2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3015" y="1411"/>
+            <point key="canvasLocation" x="3013.5999999999999" y="1410.5911330049262"/>
         </scene>
         <!--Trending Books-->
         <scene sceneID="JvO-ZD-RFB">

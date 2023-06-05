@@ -34,7 +34,7 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     private var progressUpdateTimer: Timer?
     
     var urlString   : String?
-    var imageUrl    : String?
+    var image    : UIImage?
     var title       : String?
     var artist      : String?
     var albumTitle  : String?
@@ -82,14 +82,14 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     
     func prepareSongAndSession(
         urlString  : String,
-        imageUrl   : String,
+        image      : UIImage,
         title      : String,
         artist     : String,
         albumTitle : String,
         duration   : Int) {
         
         self.urlString  = urlString
-        self.imageUrl   = imageUrl
+        self.image      = image
         self.title      = title
         self.artist     = artist
         self.albumTitle = albumTitle
@@ -297,17 +297,15 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     func setupNowPlaying() {
         // Define Now Playing Info
         
-        if let url = URL(string: imageUrl ?? "") {
-            downloadImage(url:url) { image in
-                self.nowPlayingInfo[MPMediaItemPropertyArtwork] =
-                    MPMediaItemArtwork(boundsSize: image.size) { size in
-                        return image
-                    }
-                MPNowPlayingInfoCenter.default().nowPlayingInfo = self.nowPlayingInfo
-            }
-        }
+
+        
+       
         
         let totalDuration = Float (duration / 1000)
+        nowPlayingInfo[MPMediaItemPropertyArtwork] =
+        MPMediaItemArtwork(boundsSize: image!.size) { size in
+            return self.image!
+        }
         nowPlayingInfo[MPMediaItemPropertyTitle] = title
         nowPlayingInfo[MPMediaItemPropertyArtist] = artist
         nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = albumTitle
