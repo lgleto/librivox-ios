@@ -15,6 +15,7 @@ class PlayerVC: UIViewController {
     var playerHandler : PlayerHandler = PlayerHandler()
     @IBOutlet weak var playBtn: ToggleBtn!
     var coverbook : UIImage?
+    var currentSection : Int?
     var book = Audiobook()
     var basefolder = ""
     override func viewDidLoad() {
@@ -22,7 +23,7 @@ class PlayerVC: UIViewController {
         // Do any additional setup after loading the view.
         let fileManager = FileManager.default
         basefolder = folderPath(id: book._id!)
-        
+        self.navigationItem.title = book.title
         if let fileNames = getFilesInFolder(folderPath: basefolder) {
             playMP3(url: "\(basefolder)/\(fileNames[0])")
         }
@@ -32,13 +33,17 @@ class PlayerVC: UIViewController {
     }
     func playMP3(url: String ){
         let urlString = URL(fileURLWithPath:  url )
-        playerHandler.prepareSongAndSession(
-            urlString: urlString.absoluteString,
-            imageUrl: "",
-            title: book.title ?? "Title Not found",
-            artist: displayAuthors(authors: book.authors!),
-            albumTitle: book.title!,
-            duration: book.totaltimesecs!)
+        
+        getCoverBook(id: book._id!, url: book.urlLibrivox!) {  image in
+            self.playerHandler.prepareSongAndSession(
+                urlString: urlString.absoluteString,
+                image: image!,
+                title: self.book.title ?? "Title Not found",
+                artist: displayAuthors(authors: self.book.authors!),
+                albumTitle: self.book.title!,
+                duration: self.book.totaltimesecs!)
+        }
+
    
         playerHandler.onIsPlayingChanged { isPlaying in
            //handle play pause buttons

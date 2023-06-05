@@ -131,7 +131,6 @@ class DownloadManager : NSObject, URLSessionDelegate, URLSessionDownloadDelegate
     
     func addDownload(url: URL ,
                      destinationURL: URL,
-                     
                      onProgress: @escaping (Float, Int64, Int64)->(),
                      onCompletion: @escaping (Error?, URL, URL)->()){
         task = activate().downloadTask(with: url)
