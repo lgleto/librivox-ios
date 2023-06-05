@@ -46,10 +46,6 @@ class BookDetailsVC: UIViewController {
     }
     
     @objc func miniPlayerDidUpdatePlayState(_ notification: Notification) {
-        
-        
-        
-        
         guard let userInfo = notification.userInfo,
               let isPlaying = userInfo["state"] as? Bool else {return}
         playBtn.isSelected = isPlaying

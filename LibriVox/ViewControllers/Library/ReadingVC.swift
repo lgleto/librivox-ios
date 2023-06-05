@@ -23,6 +23,8 @@ class ReadingVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(miniPlayerDidUpdatePlayState(_:)), name: Notification.Name("miniPlayerState"), object: nil)
+        
         spinner.startAnimating()
         tableView.backgroundView = spinner
         
@@ -33,6 +35,14 @@ class ReadingVC: UITableViewController {
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
         }
+    }
+    
+    @objc func miniPlayerDidUpdatePlayState(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let isPlaying = userInfo["state"] as? Bool else {return}
+        guard let lastBook = lastBook else{return}
+        
+        allButtons[lastBook].isSelected = isPlaying
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,14 +59,10 @@ class ReadingVC: UITableViewController {
         cell.imgBook.image = nil
         getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
             if let img = img{
-                cell.imgBook.loadImage(from: img)
-                
-            }
+                cell.imgBook.loadImage(from: img)}
         }
         
-        if let duration = book.totaltime{
-            cell.durationBook.text = "Duration: \(duration)"
-        }
+        if let duration = book.totaltime{cell.durationBook.text = "Duration: \(duration)"}
         allButtons.append(cell.playBtn)
         
         
