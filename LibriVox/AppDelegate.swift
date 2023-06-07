@@ -11,7 +11,8 @@ import GoogleSignIn
 import SwaggerClient
 import Alamofire
 import FirebaseFirestore
-import Firebase
+import FirebaseStorage
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -53,11 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
-        let settings = Firestore.firestore().settings
+        let settings = FirestoreSettings()
         settings.isPersistenceEnabled = true
-        Firestore.firestore().settings = settings
+
+        let db = Firestore.firestore()
+        db.settings = settings
+
         
         SwaggerClientAPI.requestBuilderFactory = AppRequestBuilderFactory()
         return true

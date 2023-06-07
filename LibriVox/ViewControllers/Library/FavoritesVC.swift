@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
-    var finalList: [Audiobook] = []
+    var finalList: [Book] = []
     let spinner = UIActivityIndicatorView(style: .medium)
     
     override func viewDidLoad() {
@@ -20,8 +20,9 @@ class FavoritesVC: UITableViewController {
         spinner.startAnimating()
         tableView.backgroundView = spinner
         
-        getBooksFromUser(field: BookUser.IS_FAV, value: true) { audiobooks in
-            self.finalList = audiobooks
+        
+        getBooksByParameter("isFav", value: true){ books in
+            self.finalList = books
             self.spinner.stopAnimating()
             
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
@@ -36,7 +37,7 @@ class FavoritesVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesCellTVC", for: indexPath) as! FavoritesCellTVC
         
-        let book = finalList[indexPath.row]
+        let book = finalList[indexPath.row].book
         
         cell.favBtn.isSelected = true
         
@@ -48,12 +49,19 @@ class FavoritesVC: UITableViewController {
             cell.durationBook.text = "Duration: \(duration)"
         }
         cell.imgBook.image = nil
-        getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
-            
-            if let img = img{
-                cell.imgBook.loadImage(from: img)
+        /*if let imgUrl = finalList[indexPath.row].imageUrl,let url = URL(string:imgUrl){
+            DispatchQueue.main.async
+            {
+                cell.imgBook.loadImageURL(from: url)
             }
-        }
+           
+        }*/
+        if let urlImg = book.urlLibrivox{
+            getCoverBook(id: book._id!, url: urlImg){img in
+                if let img = img{
+                    cell.imgBook.loadImage(from: img)
+                }
+            }}
         cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"
         
         cell.favBtn.tag = indexPath.row
@@ -63,32 +71,10 @@ class FavoritesVC: UITableViewController {
     
     @objc func click(_ sender: UIButton) {
         let rowIndex = sender.tag
-        let book = finalList[rowIndex]
+        let book = finalList[rowIndex].book
         
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        
-        let bookCollectionRef = userRef.collection("bookCollection").whereField("id", isEqualTo: book._id)
-        
-        bookCollectionRef.getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error retrieving book collection: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let documents = snapshot?.documents else {
-                print("No matching documents found.")
-                return
-            }
-            
-            for document in documents {
-                let docRef = userRef.collection("bookCollection").document(document.documentID)
-                docRef.updateData([BookUser.IS_FAV: false]) { error in
-                    if let error = error {
-                        print("Error updating document: \(error.localizedDescription)")
-                    }
-                }
-            }
+        updateBookParameter("isFav", value: false, documentID: book._id!){sucess in
+            if sucess{DispatchQueue.main.async { sender.isSelected = !sender.isSelected}}
         }
     }
     
@@ -96,7 +82,7 @@ class FavoritesVC: UITableViewController {
         if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
-            detailVC.book = finalList[indexPath.row]
+            detailVC.book = finalList[indexPath.row].book
         }
     }
 }

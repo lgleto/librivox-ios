@@ -315,7 +315,7 @@ func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
 }
 
 
-func checkAndUpdateEmptyState(list: [Audiobook], alertImage: UIImage, view: UIScrollView, alertText: String) {
+func checkAndUpdateEmptyState<T>(list:[T], alertImage: UIImage, view: UIScrollView, alertText: String) {
     list.isEmpty ? setImageNLabelAlert(view: view, img: alertImage, text: alertText) : removeImageNLabelAlert(view: view)
 }
 

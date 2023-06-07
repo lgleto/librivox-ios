@@ -231,7 +231,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     func checkWifi() {
         networkCheck = NetworkCheck.sharedInstance()
         print("enter check wifi")
-        if networkCheck.currentStatus == .satisfied{
+        //if networkCheck.currentStatus == .satisfied{
                         //Do something
             self.loadTrending {
                 print("sdasda")
@@ -239,7 +239,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.IndicatorView.stopAnimating()
             }
         
-        }else{
+       /* }else{
             //Show no network alert
             let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Retry",style: .default, handler: { action in
@@ -261,7 +261,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }))
             self.IndicatorView.stopAnimating()
             self.present(alert, animated: true, completion: nil)
-        }
+        }*/
     }
 
 }

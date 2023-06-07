@@ -251,20 +251,11 @@
                                     <segue destination="hqL-SB-PuW" kind="show" identifier="showAuthors" id="Zse-9C-rXR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTw-kK-xwX">
-                                <rect key="frame" x="195" y="440.33333333333331" width="75" height="35"/>
-                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eAg-nt-0nu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eAg-nt-0nu" firstAttribute="trailing" secondItem="UTw-kK-xwX" secondAttribute="trailing" constant="123" id="2Rg-7y-hg4"/>
-                            <constraint firstItem="UTw-kK-xwX" firstAttribute="top" secondItem="Rhl-K1-m7p" secondAttribute="bottom" constant="20" id="5lC-Y4-wBu"/>
                             <constraint firstItem="R82-5C-Qi0" firstAttribute="top" secondItem="9Rc-Z1-AxE" secondAttribute="bottom" constant="20" id="6ie-89-2wz"/>
-                            <constraint firstItem="UTw-kK-xwX" firstAttribute="leading" secondItem="eAg-nt-0nu" secondAttribute="leading" constant="195" id="7QV-jY-P30"/>
                             <constraint firstItem="Whm-6G-IpD" firstAttribute="top" secondItem="eAg-nt-0nu" secondAttribute="top" id="Aqn-My-rX4"/>
                             <constraint firstItem="SG6-Lb-ZBp" firstAttribute="centerY" secondItem="Whm-6G-IpD" secondAttribute="centerY" id="CmI-pz-sHT"/>
                             <constraint firstItem="Rhl-K1-m7p" firstAttribute="leading" secondItem="eAg-nt-0nu" secondAttribute="leading" constant="16" id="FkA-67-Gvl"/>
@@ -1084,6 +1075,9 @@
                                                     <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="star"/>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="starOn"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="clickFav:" destination="RBA-gx-2sX" eventType="touchUpInside" id="ax3-jR-Mul"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTn-ov-ywM" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
                                                 <rect key="frame" x="683.33333333333337" y="226.33333333333334" width="50" height="50.000000000000028"/>
@@ -1102,6 +1096,7 @@
                                                     <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="didClick:" destination="RBA-gx-2sX" eventType="touchUpInside" id="wgr-nG-4mh"/>
                                                     <segue destination="cnZ-fR-Mt7" kind="show" id="KsM-L7-Nlm"/>
                                                 </connections>
                                             </button>
@@ -1271,7 +1266,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="XWL-uB-w3Z"/>
         <segue reference="QqL-zu-y1L"/>
-        <segue reference="UtY-K6-b4Z"/>
+        <segue reference="vDx-pZ-vS1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="circle.grid.2x2" catalog="system" width="128" height="111"/>
@@ -1281,12 +1276,12 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="play" width="512" height="512"/>
         <image name="play-button" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <image name="wiki" width="512" height="512"/>
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Green Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

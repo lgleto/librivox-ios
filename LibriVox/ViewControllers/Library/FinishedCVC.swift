@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class FinishedCVC: UICollectionViewController {
     
-    var finalList: [Audiobook] = []
+    var finalList: [Book] = []
     
     let spinner = UIActivityIndicatorView(style: .medium)
     override func viewDidLoad() {
@@ -21,14 +21,17 @@ class FinishedCVC: UICollectionViewController {
         spinner.startAnimating()
         collectionView.backgroundView = spinner
         
-        getBooksFromUser(field: BookUser.IS_READING, value: false) { audiobooks in
-            self.finalList = audiobooks
+        
+        getBooksByParameter("isFinished", value: true){ books in
+            self.finalList = books
             self.spinner.stopAnimating()
             
             self.collectionView.reloadSections(IndexSet(integer: 0))
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "completedBook")!,view: self.collectionView, alertText: "No books finished yet")
         }
+        
     }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return finalList.count
     }
@@ -36,14 +39,15 @@ class FinishedCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListBooksCell", for: indexPath) as! ListBooksCell
         
-        cell.titleBook.text = finalList[indexPath.row].title
+        let book = finalList[indexPath.row].book
+        cell.titleBook.text = book.title
         cell.imageBook.image = nil
-        getCoverBook(id:finalList[indexPath.row]._id! ,url: finalList[indexPath.row].urlLibrivox!){img in
+       /* getCoverBook(id:book._id! ,url: book.urlLibrivox!){img in
             
             if let img = img{
                 cell.imageBook.loadImage(from: img)
             }
-        }
+        }*/
         
         return cell
     }
@@ -52,7 +56,7 @@ class FinishedCVC: UICollectionViewController {
         if segue.identifier == "showDetailsBook", let indexPath = collectionView.indexPathsForSelectedItems?.first,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
-            detailVC.book = finalList[item]
+            detailVC.book = finalList[item].book
         }
     }
 }

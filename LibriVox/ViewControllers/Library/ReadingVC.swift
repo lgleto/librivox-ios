@@ -15,7 +15,7 @@ import SwaggerClient
 class ReadingVC: UITableViewController {
     
     
-    var finalList: [Audiobook] = []
+    var finalList: [Book] = []
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -28,8 +28,8 @@ class ReadingVC: UITableViewController {
         spinner.startAnimating()
         tableView.backgroundView = spinner
         
-        getBooksFromUser(field: BookUser.IS_READING,value: true) { audiobooks in
-            self.finalList = audiobooks
+        getBooksByParameter("isReading", value: true){ books in
+            self.finalList = books
             self.spinner.stopAnimating()
             
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
@@ -52,15 +52,21 @@ class ReadingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingCellTVC", for: indexPath) as! ReadingCellTVC
         
-        let book = finalList[indexPath.row]
+        let book = finalList[indexPath.row].book
         
         cell.titleBook.text = book.title
         cell.authorsBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
         cell.imgBook.image = nil
-        getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
+        
+        if let imgUrl = finalList[indexPath.row].imageUrl,let url = URL(string:imgUrl){
+            cell.imgBook.loadImageURL(from: url)
+        }
+       
+        
+        /*getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
             if let img = img{
                 cell.imgBook.loadImage(from: img)}
-        }
+        }*/
         
         if let duration = book.totaltime{cell.durationBook.text = "Duration: \(duration)"}
         allButtons.append(cell.playBtn)
@@ -79,7 +85,7 @@ class ReadingVC: UITableViewController {
         
         if lastBook != sender.tag{
             if let tabBarController = tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: finalList[sender.tag])
+                tabBarController.addChildView(book: finalList[sender.tag].book)
             }
         }else{sender.isSelected = false}
         
@@ -90,7 +96,7 @@ class ReadingVC: UITableViewController {
         if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
-            detailVC.book = finalList[indexPath.row]
+            detailVC.book = finalList[indexPath.row].book
         }
     }
     

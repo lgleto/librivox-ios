@@ -18,7 +18,7 @@ class AuthorsVC: AdaptedVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+
         authorsCV.dataSource = self
         authorsCV.delegate = self
         

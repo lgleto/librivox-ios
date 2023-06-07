@@ -11,9 +11,10 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
+
+
+
 class BookDetailsVC: UIViewController {
-    
-    
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
     @IBOutlet weak var showMoreBtn: UIButton!
     @IBOutlet weak var languageBook: UILabel!
@@ -29,10 +30,7 @@ class BookDetailsVC: UIViewController {
     @IBOutlet weak var favBtn: UIButton!
     
     var book: Audiobook?
-    var bookUser: BookUser?
     var sections: [Section] = []
-    var key : String?
-    
     private var rowsToBeShow:Int?
     
     private func syncPlayPauseButton() {
@@ -54,6 +52,7 @@ class BookDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let id = book?._id, let currentAudiobookID = MiniPlayerManager.shared.currentAudiobookID,currentAudiobookID == id {
             NotificationCenter.default.addObserver(self, selector: #selector(miniPlayerDidUpdatePlayState(_:)), name: Notification.Name("miniPlayerState"), object: nil)
         }
@@ -63,30 +62,23 @@ class BookDetailsVC: UIViewController {
         
         showMoreBtn.setTitle("Show all", for: .normal)
         showMoreBtn.setTitle("Hide all", for: .selected)
-        
         sectionsTV.alwaysBounceVertical = false
         
         if let book = book {
             self.title = book.title!
-            self.bookUser?.id = book._id!
-            
             setData(book: book)
             
-            isInCollection(id: book._id!) { result in
-                if !result.isEmpty {
-                    self.key = result
-                    self.isFav(key: self.key!) { isFavorite in
-                        DispatchQueue.main.async {
-                            self.favBtn.isSelected = isFavorite
-                        }
-                    }
-                    
+            
+            guard let documentID = book._id else {return}
+            isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
+                DispatchQueue.main.async {
+                    self.favBtn.isSelected = isMarked ? true : false
                 }
             }
-            
         }
-        
     }
+    
+    
     
     @IBAction func clickShowMore(_ sender: Any) {
         showMoreBtn.isSelected = !showMoreBtn.isSelected
@@ -116,115 +108,24 @@ class BookDetailsVC: UIViewController {
         
     }
     
-    //Check if already exists
-    @IBAction func didClick(_ sender: UIButton) {
-        guard let key = key else {
-            let bookData: [String: Any] = [
-                BookUser.ID: book?._id,
-                BookUser.IS_READING: true
-            ]
-            
-            if let bookUser = BookUser(dict: bookData) {
-                addToCollection(bookUser)
-            }
-            return
-        }
-    }
-    
     @IBAction func clickFav(_ sender: Any) {
         let newIsFavValue = !favBtn.isSelected
         
-        if let key = key {
-            updateIsFavValue(key: key, isFav: newIsFavValue)
-        } else {
-            addBookToFavorites()
-        }
-    }
-    
-    func isInCollection(id: String, completion: @escaping (String) -> Void) {
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+        guard let book = book, let documentID = book._id else {return}
         
-        let newDocRef = userRef.collection("bookCollection").whereField("id", isEqualTo: id)
-        
-        newDocRef.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error.localizedDescription)")
-                return
-            }
-            
-            if let document = querySnapshot?.documents.first {
-                completion(document.documentID)
-            } else {
-                completion("")
-            }
-        }
-    }
-    
-    func isFav(key: String, completion: @escaping (Bool) -> Void) {
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        let bookCollectionRef = userRef.collection("bookCollection").document(key)
-        
-        bookCollectionRef.getDocument { (document, error) in
-            if let error = error {
-                print("Error getting document: \(error.localizedDescription)")
-                completion(false)
-                return
-            }
-            
-            if let document = document, let isFav = document.data()?["isFav"] as? Bool {
-                completion(isFav)
-            } else {
-                completion(false)
-            }
-        }
-    }
-    
-    func addToCollection(_ book: BookUser) {
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        let bookCollectionRef = userRef.collection("bookCollection")
-        
-        let newDocRef = bookCollectionRef.document()
-        let documentID = newDocRef.documentID
-        
-        newDocRef.setData(book.dictionary) { error in
-            if let error = error {
-                print("Error adding book to collection: \(error.localizedDescription)")
-            } else {
-                self.key = documentID
-                print("Book added to collection with ID: \(newDocRef.documentID)")
-            }
-        }
-    }
-    
-    func updateIsFavValue(key: String, isFav: Bool) {
-        let db = Firestore.firestore()
-        let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-        let bookCollectionRef = userRef.collection("bookCollection").document(key)
-        
-        bookCollectionRef.updateData(["isFav": isFav]) { error in
-            if let error = error {
-                print("Error updating document: \(error.localizedDescription)")
-            } else {
-                DispatchQueue.main.async {
-                    self.favBtn.isSelected = isFav
+        isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
+            if isMarked {
+                updateBookParameter("isFav", value: newIsFavValue, documentID: documentID) { success in
+                    DispatchQueue.main.async {
+                        self.favBtn.isSelected = success ? newIsFavValue : !newIsFavValue
+                    }
                 }
-            }
-        }
-    }
-    
-    func addBookToFavorites() {
-        let bookData: [String: Any] = [
-            BookUser.ID: book?._id,
-            BookUser.IS_FAV: true
-        ]
-        
-        if let bookUser = BookUser(dict: bookData) {
-            addToCollection(bookUser)
-            DispatchQueue.main.async {
-                self.favBtn.isSelected = true
+            } else {
+                addToCollection(Book(book: book, isFav: newIsFavValue)) { success in
+                    DispatchQueue.main.async {
+                        self.favBtn.isSelected = (success != nil) ? newIsFavValue : !newIsFavValue
+                    }
+                }
             }
         }
     }
