@@ -25,7 +25,6 @@ class PlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let fileManager = FileManager.default
         basefolder = folderPath(id: book._id!)
         self.navigationItem.title = book.title
         labelMaxTime.text = secondsToTime(Int(book.sections![0].playtime!) ?? 1)
