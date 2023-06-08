@@ -14,54 +14,60 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
     var filteredBooks: [Audiobook] = []
     
     private var timer: Timer?
-    private let searchDelay = 0.5
-
+    private let searchDelay = 1.0
+    
     @IBOutlet weak var booksCV: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         booksCV.dataSource = self
         booksCV.delegate = self
     }
     
-    public func didChangeSearchText(_ text: String) {
-        timer?.invalidate()
-        
-        timer = Timer.scheduledTimer(withTimeInterval: searchDelay, repeats: false) { _ in
-            self.applySearchFilter(text)
-            print("didChange executou \(text)")
-            
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        if parent is DiscoverVC {
+            filteredBooks.removeAll()
+            booksCV.reloadData()
         }
     }
     
-    //TODO: FIX (`-´) ele continua mesmo se mudo para o outro controller
+    public func didChangeSearchText(_ text: String) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: searchDelay, repeats: false) { _ in
+            removeImageNLabelAlert(view: self.booksCV)
+            
+            self.applySearchFilter(text)
+            //print("didChange executou \(text)")
+            
+        }
+    }
+
     func applySearchFilter(_ text: String) {
-        filteredBooks = []
-        removeImageNLabelAlert(view: booksCV)
         if !text.isEmpty {
             if let spinner = self.spinner {
                 spinner.startAnimating()
             }
-            
-             DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { data, error in
+            DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { [self] data, error in
                 if let error = error {
-                    print("Error getting root data:", error)
+                   // print("Error getting root data:", error)
                     
                     let alertImage = UIImage(named: "notFound")
                     let alertText = "No data available"
-                    setImageNLabelAlert(view: self.booksCV, img: alertImage!, text: alertText)
-                }
-                
-                print("executou com \(text)")
-                if let data = data {
-                    self.filteredBooks = data.books ?? []
-                }
-                
-                DispatchQueue.main.async {
-                    self.booksCV.reloadData()
                     self.spinner.stopAnimating()
+                    setImageNLabelAlert(view: self.booksCV, img: alertImage!, text: alertText)
+                }else{
+                    
+                    print("executou com \(text)")
+                    if let data = data {
+                        self.filteredBooks = data.books ?? []
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.booksCV.reloadData()
+                        self.spinner.stopAnimating()
+                    }
                 }
             }
         }

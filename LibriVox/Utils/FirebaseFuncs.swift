@@ -138,32 +138,32 @@ func loadCurrentUser( callback: @escaping (User?)->() ) {
 import FirebaseStorage
 
 /*func saveBookCover(image: UIImage, id: String, completion: @escaping (URL?) -> Void) {
-    guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-        completion(nil)
-        return
-    }
-    
-    let filename = id + ".jpg"
-    let storageRef = Storage.storage().reference().child("books")
-    
-    let uploadTask = storageRef.putData(imageData, metadata: nil) { metadata, error in
-        if let error = error {
-            print("Error uploading image: \(error.localizedDescription)")
-            completion(nil)
-            return
-        }
-        
-        storageRef.downloadURL { url, error in
-            if let error = error {
-                print("Error getting download URL: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
-            completion(url)
-        }
-    }
-}
-*/
+ guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+ completion(nil)
+ return
+ }
+ 
+ let filename = id + ".jpg"
+ let storageRef = Storage.storage().reference().child("books")
+ 
+ let uploadTask = storageRef.putData(imageData, metadata: nil) { metadata, error in
+ if let error = error {
+ print("Error uploading image: \(error.localizedDescription)")
+ completion(nil)
+ return
+ }
+ 
+ storageRef.downloadURL { url, error in
+ if let error = error {
+ print("Error getting download URL: \(error.localizedDescription)")
+ completion(nil)
+ return
+ }
+ completion(url)
+ }
+ }
+ }
+ */
 
 
 func addToCollection(_ book: Book, isFavorite: Bool? = nil, isReading: Bool? = nil, completion: @escaping (String?) -> Void) {
@@ -177,21 +177,21 @@ func addToCollection(_ book: Book, isFavorite: Bool? = nil, isReading: Bool? = n
         img in
         if let img = img{
             /*saveBookCover(image: img, id: book.book._id!){
-                url in bookToAdd.imageUrl = url?.absoluteString*/
-                
-                let documentRef = bookCollectionRef.document(book.book._id!)
-                documentRef.setData(bookToAdd.getBookDictionary()!) { error in
-                    if let error = error {
-                        print("Error adding book to collection: \(error.localizedDescription)")
-                        completion(nil)
-                    } else {
-                        completion(documentRef.documentID)
-                    }
+             url in bookToAdd.imageUrl = url?.absoluteString*/
+            
+            let documentRef = bookCollectionRef.document(book.book._id!)
+            documentRef.setData(bookToAdd.getBookDictionary()!) { error in
+                if let error = error {
+                    print("Error adding book to collection: \(error.localizedDescription)")
+                    completion(nil)
+                } else {
+                    completion(documentRef.documentID)
                 }
-                
+            }
+            
             //}
             
-           
+            
         }
     }
     
@@ -241,7 +241,6 @@ func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping
         completion(books)
     }
 }
-
 
 func isBookMarkedAs(_ parameter: String, value: Bool, documentID: String, completion: @escaping (Bool) -> Void) {
     let db = Firestore.firestore()

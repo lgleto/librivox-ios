@@ -161,8 +161,10 @@ func getBookCoverFromURL(url: String?, _ callback: @escaping (UIImage?) -> Void)
         
         if let data = data, let contents = String(data: data, encoding: .ascii) {
             if let range = contents.range(of: #"<img\s+src="([^"]+)".+?alt="book-cover-large".+?>"#, options: .regularExpression) {
-                let imageURL = String(contents[range].split(separator: "\"")[1])
-                if let imageData = try? Data(contentsOf: URL(string: imageURL)!) {
+                guard let imageURL =  URL(string: String(contents[range].split(separator: "\"")[1])) else{callback(nil)
+                    return
+                }
+                if let imageData = try? Data(contentsOf: imageURL) {
                     let image = UIImage(data: imageData)
                     callback(image)
                 } else {

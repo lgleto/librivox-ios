@@ -21,8 +21,8 @@ class DiscoverVC: UIViewController {
     @IBAction func searchHandler(_ sender: UITextField) {
         if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
             
-                self.resultsVC?.didChangeSearchText(searchText)
-        
+            self.resultsVC?.didChangeSearchText(searchText)
+            
             
             addViewController(resultsVC!, container, emptyStateVC)
             
@@ -36,7 +36,7 @@ class DiscoverVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -56,15 +56,23 @@ class DiscoverVC: UIViewController {
     
     func addViewController(_ childViewController: UIViewController, _ container: UIView, _ stateViewController: UIViewController?) {
         
+        guard let currentViewController = children.first else {
+            addChild(childViewController)
+            container.addSubview(childViewController.view)
+            childViewController.view.frame = container.bounds
+            childViewController.didMove(toParent: self)
+            return
+        }
+        
+        currentViewController.willMove(toParent: nil)
+        currentViewController.view.removeFromSuperview()
+        currentViewController.removeFromParent()
+        
+        
         addChild(childViewController)
         container.addSubview(childViewController.view)
         childViewController.view.frame = container.bounds
         childViewController.didMove(toParent: self)
         
-        if let stateVC = stateViewController, stateVC.parent != nil {
-            stateVC.willMove(toParent: nil)
-            stateVC.view.removeFromSuperview()
-            stateVC.removeFromParent()
-        }
     }
 }
