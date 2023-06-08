@@ -228,7 +228,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="default"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="1WG-ih-yxn" kind="show" id="ZHH-If-XfX"/>
+                                                            <segue destination="1WG-ih-yxn" kind="show" id="kEP-NY-kAp"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MU6-6K-bHJ" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
@@ -456,7 +456,7 @@
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Lighter Blue Tone">
-            <color red="0.43529411764705883" green="0.67843137254901964" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.43500000238418579" green="0.67799997329711914" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

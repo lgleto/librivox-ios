@@ -14,7 +14,7 @@ import FirebaseFirestore
 
 
 
-class BookDetailsVC: UIViewController {
+class BookDetailsVC: AdaptedVC {
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
     @IBOutlet weak var showMoreBtn: UIButton!
     @IBOutlet weak var languageBook: UILabel!

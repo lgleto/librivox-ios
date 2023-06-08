@@ -97,10 +97,8 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
                 present(imagePicker, animated: true, completion: nil)
             }
             photoDarkened = false
-            
         } else {
-            userPhoto.alpha = 0.5
-            setLabelChangePhoto()
+            darkenPhoto()
             photoDarkened = true
         }
     }
@@ -112,14 +110,38 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
             userPhoto.alpha = 1
             userPhoto.image = image
             updateProfileImage(image)
+           
+            for subview in userPhoto.subviews {
+                 if subview is UIView {
+                     subview.removeFromSuperview()
+                 }
+             }
         }
     }
+    
+    func darkenPhoto() {
+        let shadowView = UIView(frame: userPhoto.bounds)
+        shadowView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        shadowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        let shadowLayer = CALayer()
+        shadowLayer.frame = shadowView.bounds
+        shadowLayer.shadowColor = UIColor.black.cgColor
+        shadowLayer.shadowOpacity = 1.0
+        shadowLayer.shadowOffset = CGSize.zero
+        shadowLayer.shadowRadius = 10.0
+        
+        shadowView.layer.addSublayer(shadowLayer)
+        userPhoto.addSubview(shadowView)
+        setLabelChangePhoto()
+    }
+
     
     func setLabelChangePhoto(){
         label.text = "Change Photo"
         label.font = UIFont(name:"Nunito", size: 14.0)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.black
+        label.textColor = UIColor.white
         
         userPhoto.addSubview(label)
         
