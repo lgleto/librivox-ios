@@ -195,9 +195,12 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
         if let p = player {
             if isPlaying {
                 p.pause()
+                MPNowPlayingInfoCenter.default().playbackState = MPNowPlayingPlaybackState.stopped
                 isPlaying = false
+                updateNowPlayingInfoProgress(Float(progress / 1000))
             }else {
                 p.play()
+                MPNowPlayingInfoCenter.default().playbackState = MPNowPlayingPlaybackState.playing
                 isPlaying = true
             }
         }else{
@@ -312,8 +315,8 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = totalDuration
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1
-        
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        
     }
     
     func updateNowPlayingInfoProgress(_ progress: Float) {
