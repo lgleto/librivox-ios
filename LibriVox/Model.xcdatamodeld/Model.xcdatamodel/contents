@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AudiobookCD" representedClassName="AudiobookCD" syncable="YES">
+        <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="numSections" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="totaltime" optional="YES" attributeType="String"/>
+        <attribute name="totaltimesecs" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="urlLibrivox" optional="YES" attributeType="String"/>
+        <attribute name="urlProject" optional="YES" attributeType="String"/>
+        <attribute name="urlRss" optional="YES" attributeType="String"/>
+        <attribute name="urlZipFile" optional="YES" attributeType="String"/>
+        <relationship name="authors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AuthorCD" inverseName="audiobook" inverseEntity="AuthorCD"/>
+        <relationship name="bookCD" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BookCD" inverseName="audiobook" inverseEntity="BookCD"/>
+        <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreCD" inverseName="audiobook" inverseEntity="GenreCD"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SectionCD" inverseName="audiobook" inverseEntity="SectionCD"/>
+    </entity>
+    <entity name="AuthorCD" representedClassName="AuthorCD" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <relationship name="audiobook" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AudiobookCD" inverseName="authors" inverseEntity="AudiobookCD"/>
+    </entity>
+    <entity name="BookCD" representedClassName="BookCD" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isFav" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isFinished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isReading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sectionStopped" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timeStopped" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="audiobook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AudiobookCD" inverseName="bookCD" inverseEntity="AudiobookCD"/>
+    </entity>
+    <entity name="GenreCD" representedClassName="GenreCD" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="audiobook" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AudiobookCD" inverseName="genres" inverseEntity="AudiobookCD"/>
+    </entity>
+    <entity name="ReaderCD" representedClassName="ReaderCD" parentEntity="SectionCD" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String"/>
+        <attribute name="readerId" optional="YES" attributeType="String"/>
+        <relationship name="section" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SectionCD" inverseName="reader" inverseEntity="SectionCD"/>
+    </entity>
+    <entity name="SectionCD" representedClassName="SectionCD" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="listenUrl" optional="YES" attributeType="String"/>
+        <attribute name="playtime" optional="YES" attributeType="String"/>
+        <attribute name="sectionNumber" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="audiobook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AudiobookCD" inverseName="sections" inverseEntity="AudiobookCD"/>
+        <relationship name="reader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReaderCD" inverseName="section" inverseEntity="ReaderCD"/>
+    </entity>
+</model>

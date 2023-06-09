@@ -17,8 +17,6 @@ import FirebaseFirestore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
-    
     class AppRequestBuilderFactory: RequestBuilderFactory {
         func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {
             return AppRequestBuilder<T>.self

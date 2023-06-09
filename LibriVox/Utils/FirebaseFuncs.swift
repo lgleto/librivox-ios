@@ -10,6 +10,70 @@ import SwaggerClient
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
+import CoreData
+
+/*class CoreDataManager {
+    static let shared = CoreDataManager()
+    
+    private init() {}
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "YourDataModelName")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    // MARK: - Core Data Context
+    
+    var managedObjectContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
+    // MARK: - Book Operations
+    
+    func bookExists(withId id: String) -> Bool {
+        let fetchRequest: NSFetchRequest<BookCD> = BookCD.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        
+        do {
+            let count = try managedObjectContext.count(for: fetchRequest)
+            return count > 0
+        } catch {
+            print("Error checking book existence: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    func createBookCD(from book: Book) {
+        let bookCD = BookCD(context: managedObjectContext)
+        bookCD.id = book.book._id
+        bookCD.audiobook = book.book
+        
+        bookCD.isFav = book.isFav ?? false
+        bookCD.isReading = book.isReading ?? false
+        bookCD.isFinished = book.isFinished ?? false
+        bookCD.sectionStopped = Int64(book.sectionStopped ?? 0)
+        bookCD.timeStopped = Int64(book.timeStopped ?? 0)
+        
+        saveContext()
+    }
+
+    // MARK: - Core Data Saving
+    
+    func saveContext() {
+        if managedObjectContext.hasChanges {
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("Error saving Core Data context: \(error.localizedDescription)")
+            }
+        }
+    }
+}*/
 
 let USER_COLLECTION = "users"
 let TRENDING_COLLECTION = "books"
@@ -231,6 +295,16 @@ func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping
                 let timeStopped = document.get("timeStopped") as? Int
                 
                 let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped)
+                
+                
+                // Check if the book already exists in Core Data
+              /*  if !CoreDataManager.shared.bookExists(withId: bookData.book._id!) {
+                                    // Create a new BookCD instance and save it to Core Data
+                                    CoreDataManager.shared.createBookCD(from: bookData)
+                                }*/
+                
+                
+                
                 books.append(bookData)
                 
             } catch {
