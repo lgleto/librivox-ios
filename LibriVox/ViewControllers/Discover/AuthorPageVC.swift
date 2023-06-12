@@ -14,6 +14,7 @@ class AuthorPageVC: AdaptedVC {
     var isLoaded = false
     var author: Author?
     
+    @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var descrAuthor: UILabel!
     @IBOutlet weak var booksTV: UITableView!
     @IBOutlet weak var authorPhoto: CircularImageView!
@@ -32,14 +33,14 @@ class AuthorPageVC: AdaptedVC {
             if let id = author._id{
                 getPhotoAuthor(authorId: id){img in
                     
-                    if let img = img{
+                   if let img = img{
                         self.authorPhoto.loadImage(from: img)
-                        //self.backgroundAuthor.loadImage(from: img)
-                    }
-                    else{
+                        self.backgroundAuthor.loadImage(from: img)
+                   }
+                    /*else{
                         self.authorPhoto.loadImage(from: imageWith(name: author.firstName)!)
                         self.backgroundAuthor.image = imageWith(name: "\(author.firstName) \(author.lastName)")
-                    }
+                    }*/
                 }
                 
                 getDescriptionAuthor(id: id) { description in
@@ -48,7 +49,7 @@ class AuthorPageVC: AdaptedVC {
                     }
                 }
             }
-         
+            
             
             if let lastName = author.lastName, let firstName = author.firstName{
                 nameAuthor.text = "\(firstName) \(lastName)"
@@ -62,6 +63,7 @@ class AuthorPageVC: AdaptedVC {
                     if let data = data {
                         self.books = data.books
                         DispatchQueue.main.async {
+                            self.height.constant = CGFloat(self.books!.count * 145)
                             self.isLoaded = true
                             self.booksTV.reloadData()
                         }
@@ -102,18 +104,26 @@ extension AuthorPageVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if !isLoaded{ print("nada")
-            return UITableViewCell()  }
-        else{
-            let cell = booksTV.dequeueReusableCell(withIdentifier: "AuthorPageTVC", for: indexPath) as! AuthorPageTVC
-            
-            let book = books?[indexPath.row]
-            
-            cell.title.text = book?.title
-            
-            return cell
-            
+        let cell = booksTV.dequeueReusableCell(withIdentifier: "AuthorPageTVC", for: indexPath) as! AuthorPageTVC
+        
+        let book = books?[indexPath.row]
+        
+        cell.title.text = book?.title
+        cell.authors.text = "Author: \(displayAuthors(authors: book?.authors ?? []))"
+        cell.imgBook.image = nil
+        
+        /*if let imgUrl = finalList[indexPath.row].imageUrl,let url = URL(string:imgUrl){
+            cell.imgBook.loadImageURL(from: url)
+        }*/
+       
+        getCoverBook(id: (book?._id!)!, url: (book?.urlLibrivox!)!){img in
+            if let img = img{
+                cell.imgBook.loadImage(from: img)}
         }
+        
+        if let duration = book?.totaltime{cell.duration.text = "Duration: \(duration)"}
+        
+        return cell
     }
     
     
@@ -131,6 +141,10 @@ extension AuthorPageVC: UITableViewDataSource, UITableViewDelegate {
 class AuthorPageTVC: UITableViewCell
 {
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var genres: UILabel!
+    @IBOutlet weak var authors: UILabel!
+    @IBOutlet weak var duration: UILabel!
+    @IBOutlet weak var imgBook: RoundedBookImageView!
 }
 
 

@@ -51,11 +51,16 @@ class LoadingImage: UIImageView {
     /// Load image into ImageView
     /// - Parameter image: Image to be put in imageView
     func loadImage(from image: UIImage) {
-        DispatchQueue.main.async {
-            self.image = image
-            self.spinner.stopAnimating()
+        if image.size.width == 0{
+            DispatchQueue.main.async {
+                UIImage(systemName: "person.crop.square")
+            }
+        }else{
+            DispatchQueue.main.async {
+                self.image = image
+                self.spinner.stopAnimating()
+            }
         }
+        
     }
 }
-
-

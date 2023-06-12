@@ -18,7 +18,7 @@ class AuthorsVC: AdaptedVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         authorsCV.dataSource = self
         authorsCV.delegate = self
         
@@ -65,9 +65,6 @@ extension AuthorsVC: UICollectionViewDataSource, UICollectionViewDelegate{
             getPhotoAuthor(authorId: id){img in
                 if let img = img{
                     cell.authorPhoto.loadImage(from: img)
-                }
-                else{
-                    cell.authorPhoto.loadImage(from: imageWith(name: name)!)
                 }
             }
         }

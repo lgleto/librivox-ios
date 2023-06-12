@@ -198,7 +198,7 @@ func loadImageFromDocumentDirectory(id: String) -> UIImage? {
 }
 
 
-func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void){
+/*func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage) -> Void){
     guard let authorId = authorId else {
         DispatchQueue.main.async {
             callback(nil)
@@ -223,23 +223,64 @@ func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void)
         }
     }
     
+}*/
+
+
+func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void) {
+    
+    let defaultAuthorPhoto = UIImage(systemName: "person.crop.square")?.withTintColor(.systemGray4, renderingMode: .alwaysOriginal)
+    guard let authorId = authorId else {
+        DispatchQueue.main.async {
+            callback(defaultAuthorPhoto)}
+            return
+        }
+    
+    if let cachedImage = ImageCache.shared.authorPhoto(for: authorId) {
+        DispatchQueue.main.async {
+            callback(cachedImage)
+        }
+    } else {
+        getWikipediaLink(authorId: authorId) { title in
+            guard let title = title else {
+                ImageCache.shared.insertAuthorPhoto(defaultAuthorPhoto, for: authorId)
+                    callback(defaultAuthorPhoto)
+                return
+            }
+            
+            let name = title.lastPathComponent
+            getMainImageFromWikipedia(name: name) { imgC in
+                if let imgC = imgC {
+                    DispatchQueue.main.async {
+                        callback(imgC)
+                    }
+                    ImageCache.shared.insertAuthorPhoto(imgC, for: authorId)
+                } else {
+                    DispatchQueue.main.async {
+                        callback(defaultAuthorPhoto)
+                    }
+                }
+            }
+            
+        }
+    }
 }
 
-func getWikipediaLink(authorId: String, _ callback: @escaping (URL) -> Void){
+func getWikipediaLink(authorId: String, _ callback: @escaping (URL?) -> Void) {
     var request = URLRequest(url: URL(string: "https://librivox.org/author/\(authorId)")!)
     request.httpMethod = "GET"
     
     let session = URLSession.init(configuration: URLSessionConfiguration.default)
     session.dataTask(with: request) { data, response, error in
-        if let data = data, let contents = String(data: data, encoding: .ascii) {
+        if let data = data, let contents = String(data: data, encoding: .utf8) {
             if let range = contents.range(of: #"<a\s+href="([^"]+)">Wiki - [^<]+</a>"#, options: .regularExpression) {
                 let wikiURL = String(contents[range].split(separator: "\"")[1])
-                if let url = URL(string: wikiURL) {
-                    callback(url)
-                }
+                callback(URL(string: wikiURL))
+            } else {
+                callback(nil)
             }
         } else {
             print("Error: \(error?.localizedDescription ?? "unknown error")")
+            callback(nil)
         }
     }.resume()
 }
