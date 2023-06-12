@@ -33,14 +33,14 @@ class AuthorPageVC: AdaptedVC {
             if let id = author._id{
                 getPhotoAuthor(authorId: id){img in
                     
-                    if let img = img{
+                   if let img = img{
                         self.authorPhoto.loadImage(from: img)
                         self.backgroundAuthor.loadImage(from: img)
-                    }
-                    else{
+                   }
+                    /*else{
                         self.authorPhoto.loadImage(from: imageWith(name: author.firstName)!)
                         self.backgroundAuthor.image = imageWith(name: "\(author.firstName) \(author.lastName)")
-                    }
+                    }*/
                 }
                 
                 getDescriptionAuthor(id: id) { description in
