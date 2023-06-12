@@ -73,9 +73,8 @@ class FavoritesVC: UITableViewController {
         let rowIndex = sender.tag
         let book = finalList[rowIndex].book
         
-        updateBookParameter("isFav", value: false, documentID: book._id!){sucess in
-            if sucess{DispatchQueue.main.async { sender.isSelected = !sender.isSelected}}
-        }
+        updateBookParameter("isFav", value: false, documentID: book._id!) { success in}
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
