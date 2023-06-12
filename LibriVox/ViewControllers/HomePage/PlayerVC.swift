@@ -10,44 +10,95 @@ import SwaggerClient
 import SSZipArchive
 import AVFoundation
 
-class PlayerVC: UIViewController {
+protocol DataDelegate: AnyObject {
+    func didDismissWithData(currentSection: Int, book: Audiobook)
+}
+
+
+class PlayerVC: UIViewController, DataDelegate {
+    
+    func didDismissWithData(currentSection: Int, book:Audiobook) {
+        // Handle the passed data here
+        self.currentSection = currentSection
+        self.book = book
+    }
+    
+    static func show(parentVC   : UIViewController,
+                     book: Audiobook
+    )
+      {
+        let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
+        let vc : PlayerVC = storyBoard.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
+          vc.book = book
+          
+          vc.modalTransitionStyle = .coverVertical
+          vc.modalPresentationStyle = .overFullScreen
+          
+          parentVC.present(vc, animated: true)
+      }
+
+    
     @IBOutlet weak var slider: UISlider!
-    var playerHandler : PlayerHandler = PlayerHandler()
+    var playerHandler : PlayerHandler = PlayerHandler.sharedInstance
     @IBOutlet weak var playBtn: ToggleBtn!
     @IBOutlet weak var labelRemainingTime: UILabel!
     @IBOutlet weak var labelMaxTime: UILabel!
     var coverbook : UIImage?
-    var currentSection : Int?
+    var currentSection : Int? {
+        didSet{
+            currentSection = currentSection! - 1
+            playMP3(newSection: true)
+        }
+    }
     var book = Audiobook()
     var basefolder = ""
     var isChangingSlidePosition = false
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        basefolder = folderPath(id: book._id!)
+        
         self.navigationItem.title = book.title
-        labelMaxTime.text = secondsToTime(Int(book.sections![0].playtime!) ?? 1)
-        slider.maximumValue = secondsToMillis(Int(book.sections![0].playtime!) ?? 1)
-        if let fileNames = getFilesInFolder(folderPath: basefolder) {
-            playMP3(url: "\(basefolder)/\(fileNames[0])")
-        }
         
         
         
+        playMP3(newSection: false)
+        
+        
+        
+        
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
+                     gesture.direction = .down
+                     view.isUserInteractionEnabled = true // For UIImageView
+                     view.addGestureRecognizer(gesture)
     }
-    func playMP3(url: String ){
-        let urlString = URL(fileURLWithPath:  url )
+    func playMP3(newSection: Bool){
         
-        getCoverBook(id: book._id!, url: book.urlLibrivox!) {  image in
-            self.playerHandler.prepareSongAndSession(
-                urlString: urlString.absoluteString,
-                image: image!,
-                title: self.book.title ?? "Title Not found",
-                artist: displayAuthors(authors: self.book.authors!),
-                albumTitle: self.book.title!,
-                duration: Int(self.book.sections![0].playtime!)!)
+        
+        if (!playerHandler.isPlaying || newSection){
+            basefolder = folderPath(id: book._id!)
+            let fileNames = getFilesInFolder(folderPath: basefolder)
+            let url = "\(basefolder)/\(fileNames![currentSection ?? 0])"
+            let urlString = URL(fileURLWithPath:  url )
+            getCoverBook(id: book._id!, url: book.urlLibrivox!) {  image in
+                self.playerHandler.prepareSongAndSession(
+                    urlString: urlString.absoluteString,
+                    image: image!,
+                    title: self.book.title ?? "Title Not found",
+                    artist: displayAuthors(authors: self.book.authors!),
+                    albumTitle: self.book.title!,
+                    duration: Int(self.book.sections![self.currentSection ?? 1  - 1].playtime!)!)
+            }
+            playerHandler.book = book
+            playerHandler.currentSection = currentSection ?? 0
         }
+        
+        labelMaxTime.text = secondsToTime(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].playtime!)!)!)
+        slider.maximumValue = secondsToMillis(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1-1].playtime!)!)!)
+        titleLabel.text = titlePlayer(bookTitle: (playerHandler.book?.title!)!, sectionTitle: (playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].title!)!)
+
 
    
         playerHandler.onIsPlayingChanged { isPlaying in
@@ -83,9 +134,35 @@ class PlayerVC: UIViewController {
         isChangingSlidePosition=true
     }
     
+    @objc
+    private func dismissVC() {
+        dismiss(animated: true){
+            if (!self.playerHandler.isPlaying) {
+                var topController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+                
+                while (topController.presentedViewController != nil) {
+                    topController = topController.presentedViewController!
+                    
+                }
+            }
+        }
+    }
+    
     
     @IBAction func sectionsBTN(_ sender: Any) {
-        performSegue(withIdentifier: "PlayerToSections", sender: book)
+        SectionsTVC.showSections(parentVC: self,title: "titulo", book: book) { yes , book, currentSection in
+            if (yes) {
+                self.book = book
+                self.currentSection = currentSection
+                self.resetValues()
+            }
+            
+        }
+    }
+    
+    func resetValues() {
+        self.slider.value = 0
+        self.labelRemainingTime.text = millisToTime(0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,6 +174,8 @@ class PlayerVC: UIViewController {
         }
         
     }
+    
+
     
 
 }

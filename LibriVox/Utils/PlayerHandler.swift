@@ -26,13 +26,20 @@
 import Foundation
 import AVFoundation
 import MediaPlayer
+import SwaggerClient
 
 class PlayerHandler : NSObject, AVAudioPlayerDelegate {
+    
+    static let sharedInstance = PlayerHandler()
+       
+    private override init(){}
 
     private var player : AVPlayer?
     private var playerItem : AVPlayerItem?
     private var progressUpdateTimer: Timer?
     
+    var book: Audiobook?
+    var currentSection: Int?
     var urlString   : String?
     var image    : UIImage?
     var title       : String?

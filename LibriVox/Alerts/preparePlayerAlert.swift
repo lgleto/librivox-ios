@@ -44,6 +44,7 @@ class PreparePlayerAlert: UIViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var expectedBytes: UILabel!
     @IBOutlet weak var currentBytes: UILabel!
     
@@ -61,50 +62,13 @@ class PreparePlayerAlert: UIViewController {
     // Do any additional setup after loading the view.
       
       progressBar.setProgress(0.3, animated: true)
-      let fileManager = FileManager.default
-      let basefolder = folderPath(id: book?._id ?? "52")
-      print(basefolder)
-      
-      if(fileManager.fileExists(atPath: basefolder)) {
-          do {
-              
-              let attributes = try fileManager.attributesOfItem(atPath: basefolder)
-                  if let type = attributes[FileAttributeKey.type] as? FileAttributeType,
-                     type == FileAttributeType.typeDirectory {
-                      // The specific folder exists
-                      changeStatus(label: "Found audiobook, changing to Player", roundIndicatior: true, progressIndicator: 4.0)
-                      DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                          self.dismiss(animated: true) {
-                          if let c = self.callback {
-                              c(false, self.book!)
-                          }
-                        }
-
-                      }
-                      //
-                      print("The specific folder exists.")
-                  } else {
-                      // A file with the same name exists, but it's not a folder
-                      print("A file with the same name exists, but it's not a folder.")
-                  }
-              } catch {
-                  // Error occurred while retrieving attributes
-                  print("Error: \(error)")
-              }
-      } else {
-          changeStatus(label: "No audiobook found, starting download", roundIndicatior: true, progressIndicator: 2.0)
-          DownloadMP3()
-          
-          // The specific folder does not exist
-          print("The specific folder does not exist.")
-          
-          
-      }
+      DownloadMP3()
   }
     func changeStatus(label:String, roundIndicatior:Bool, progressIndicator:Float) {
         //
         //self.labelTitle.text = label
         self.progressBar.setProgress(progressIndicator/4, animated: true)
+        self.infoLabel.text = label
     }
 
 

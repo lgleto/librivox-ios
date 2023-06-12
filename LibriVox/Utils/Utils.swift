@@ -573,3 +573,44 @@ func getFilesInFolder(folderPath: String) -> [String]? {
     }
 }
 
+func checkIfFileExists(book:Audiobook) -> Bool {
+    let fileManager = FileManager.default
+    let basefolder = folderPath(id: book._id!)
+    print(basefolder)
+    
+    if(fileManager.fileExists(atPath: basefolder)) {
+        do {
+            
+            let attributes = try fileManager.attributesOfItem(atPath: basefolder)
+                if let type = attributes[FileAttributeKey.type] as? FileAttributeType,
+                   type == FileAttributeType.typeDirectory {
+                    // The specific folder exists
+                    print("The specific folder exists.")
+                    return true
+                    //
+                    
+                } else {
+                    // A file with the same name exists, but it's not a folder
+                    print("A file with the same name exists, but it's not a folder.")
+                    return false
+                    
+                }
+            } catch {
+                print("Error: \(error)")
+                return false
+                // Error occurred while retrieving attributes
+                
+            }
+    } else {
+        // The specific folder does not exist
+        print("The specific folder does not exist.")
+        return false
+        
+        
+    }
+}
+
+func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
+    let finalTitle = ("\(bookTitle) - \(sectionTitle)")
+    return finalTitle
+}

@@ -71,14 +71,18 @@ class TrendingBooksVC: AdaptedVC, UITableViewDelegate, UITableViewDataSource {
         trendingBooksTable.delegate = self
         trendingBooksTable.dataSource = self
         // Do any additional setup after loading the view.
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
         loadTrending {
             print("sdasda")
             self.trendingBooksTable.reloadData()
-            
+            self.activityIndicator.stopAnimating()
         }
         
     }
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var trending = [Trending]()
     var localBooks = [Audiobook]()
     func addForTrending(  onCompelition : (()->())? = nil ) {

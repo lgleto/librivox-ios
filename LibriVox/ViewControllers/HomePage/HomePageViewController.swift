@@ -69,10 +69,15 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func playButton(_ sender: Any) {
-        PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1]) { _ , book in
-            self.performSegue(withIdentifier: "homepageToPlayer", sender: book)
-            
+        if (!checkIfFileExists(book: localBooks[1])) {
+            PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1]) { _ , book in
+                PlayerVC.show(parentVC: self, book: book)
+                
+            }
+        } else {
+            PlayerVC.show(parentVC: self, book: localBooks[1])
         }
+        
     }
     
     @IBAction func allTrending(_ sender: Any) {
