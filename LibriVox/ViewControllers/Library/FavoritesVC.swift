@@ -25,7 +25,7 @@ class FavoritesVC: UITableViewController {
             self.finalList = books
             self.spinner.stopAnimating()
             
-            self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+            self.tableView.reloadSections([0], with: UITableView.RowAnimation.fade)
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
         }
     }
@@ -73,7 +73,7 @@ class FavoritesVC: UITableViewController {
         let rowIndex = sender.tag
         let book = finalList[rowIndex].book
         
-        updateBookParameter("isFav", value: false, documentID: book._id!) { success in}
+        updateBookParameter("isFav", value: false, documentID: book._id!)
     
     }
     

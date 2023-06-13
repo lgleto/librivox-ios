@@ -72,7 +72,8 @@ class BookDetailsVC: AdaptedVC {
             guard let documentID = book._id else {return}
             isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
                 DispatchQueue.main.async {
-                    self.favBtn.isSelected = isMarked ? true : false
+                    
+                    self.favBtn.isSelected = isMarked ?? false ? true : false
                 }
             }
         }
@@ -108,26 +109,21 @@ class BookDetailsVC: AdaptedVC {
         
     }
     
-    @IBAction func clickFav(_ sender: Any) {
+    @IBAction func clickFav(_ sender: Any) {        
         let newIsFavValue = !favBtn.isSelected
-        
         guard let book = book, let documentID = book._id else {return}
         
+        
         isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
-            if isMarked {
-                updateBookParameter("isFav", value: newIsFavValue, documentID: documentID) { success in
-                    DispatchQueue.main.async {
-                        self.favBtn.isSelected = success ? newIsFavValue : !newIsFavValue
-                    }
-                }
-            } else {
-                addToCollection(Book(book: book, isFav: newIsFavValue)) { success in
-                    DispatchQueue.main.async {
-                        self.favBtn.isSelected = (success != nil) ? newIsFavValue : !newIsFavValue
-                    }
-                }
+            guard isMarked != nil else{
+                addToCollection(Book(book: book, isFav: newIsFavValue)) { success in}
+                return
             }
+            
+            updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
+            
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

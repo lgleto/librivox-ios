@@ -13,67 +13,67 @@ import FirebaseAuth
 import CoreData
 
 /*class CoreDataManager {
-    static let shared = CoreDataManager()
-    
-    private init() {}
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "YourDataModelName")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    // MARK: - Core Data Context
-    
-    var managedObjectContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-    
-    // MARK: - Book Operations
-    
-    func bookExists(withId id: String) -> Bool {
-        let fetchRequest: NSFetchRequest<BookCD> = BookCD.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        
-        do {
-            let count = try managedObjectContext.count(for: fetchRequest)
-            return count > 0
-        } catch {
-            print("Error checking book existence: \(error.localizedDescription)")
-            return false
-        }
-    }
-    
-    func createBookCD(from book: Book) {
-        let bookCD = BookCD(context: managedObjectContext)
-        bookCD.id = book.book._id
-        bookCD.audiobook = book.book
-        
-        bookCD.isFav = book.isFav ?? false
-        bookCD.isReading = book.isReading ?? false
-        bookCD.isFinished = book.isFinished ?? false
-        bookCD.sectionStopped = Int64(book.sectionStopped ?? 0)
-        bookCD.timeStopped = Int64(book.timeStopped ?? 0)
-        
-        saveContext()
-    }
-
-    // MARK: - Core Data Saving
-    
-    func saveContext() {
-        if managedObjectContext.hasChanges {
-            do {
-                try managedObjectContext.save()
-            } catch {
-                print("Error saving Core Data context: \(error.localizedDescription)")
-            }
-        }
-    }
-}*/
+ static let shared = CoreDataManager()
+ 
+ private init() {}
+ 
+ lazy var persistentContainer: NSPersistentContainer = {
+ let container = NSPersistentContainer(name: "YourDataModelName")
+ container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+ if let error = error as NSError? {
+ fatalError("Unresolved error \(error), \(error.userInfo)")
+ }
+ })
+ return container
+ }()
+ 
+ // MARK: - Core Data Context
+ 
+ var managedObjectContext: NSManagedObjectContext {
+ return persistentContainer.viewContext
+ }
+ 
+ // MARK: - Book Operations
+ 
+ func bookExists(withId id: String) -> Bool {
+ let fetchRequest: NSFetchRequest<BookCD> = BookCD.fetchRequest()
+ fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+ 
+ do {
+ let count = try managedObjectContext.count(for: fetchRequest)
+ return count > 0
+ } catch {
+ print("Error checking book existence: \(error.localizedDescription)")
+ return false
+ }
+ }
+ 
+ func createBookCD(from book: Book) {
+ let bookCD = BookCD(context: managedObjectContext)
+ bookCD.id = book.book._id
+ bookCD.audiobook = book.book
+ 
+ bookCD.isFav = book.isFav ?? false
+ bookCD.isReading = book.isReading ?? false
+ bookCD.isFinished = book.isFinished ?? false
+ bookCD.sectionStopped = Int64(book.sectionStopped ?? 0)
+ bookCD.timeStopped = Int64(book.timeStopped ?? 0)
+ 
+ saveContext()
+ }
+ 
+ // MARK: - Core Data Saving
+ 
+ func saveContext() {
+ if managedObjectContext.hasChanges {
+ do {
+ try managedObjectContext.save()
+ } catch {
+ print("Error saving Core Data context: \(error.localizedDescription)")
+ }
+ }
+ }
+ }*/
 
 let USER_COLLECTION = "users"
 let TRENDING_COLLECTION = "books"
@@ -199,68 +199,24 @@ func loadCurrentUser( callback: @escaping (User?)->() ) {
         })
 }
 
-import FirebaseStorage
-
-/*func saveBookCover(image: UIImage, id: String, completion: @escaping (URL?) -> Void) {
- guard let imageData = image.jpegData(compressionQuality: 0.8) else {
- completion(nil)
- return
- }
- 
- let filename = id + ".jpg"
- let storageRef = Storage.storage().reference().child("books")
- 
- let uploadTask = storageRef.putData(imageData, metadata: nil) { metadata, error in
- if let error = error {
- print("Error uploading image: \(error.localizedDescription)")
- completion(nil)
- return
- }
- 
- storageRef.downloadURL { url, error in
- if let error = error {
- print("Error getting download URL: \(error.localizedDescription)")
- completion(nil)
- return
- }
- completion(url)
- }
- }
- }
- */
-
-
-func addToCollection(_ book: Book, isFavorite: Bool? = nil, isReading: Bool? = nil, completion: @escaping (String?) -> Void) {
+func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookCollectionRef = userRef.collection("library")
     
-    var bookToAdd = book
-    
-    getBookCoverFromURL(url: book.book.urlLibrivox){
-        img in
-        if let img = img{
-            /*saveBookCover(image: img, id: book.book._id!){
-             url in bookToAdd.imageUrl = url?.absoluteString*/
-            
-            let documentRef = bookCollectionRef.document(book.book._id!)
-            documentRef.setData(bookToAdd.getBookDictionary()!) { error in
-                if let error = error {
-                    print("Error adding book to collection: \(error.localizedDescription)")
-                    completion(nil)
-                } else {
-                    completion(documentRef.documentID)
-                }
-            }
-            
-            //}
-            
-            
+    let documentRef = bookCollectionRef.document(book.book._id!)
+    documentRef.setData(book.getBookDictionary()!) { error in
+        if let error = error {
+            print("Error adding book to collection: \(error.localizedDescription)")
+            completion(nil)
+        } else {
+            print("foi")
+            completion(documentRef.documentID)
         }
+        
     }
-    
-    
 }
+
 
 func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping ([Book]) -> Void) {
     let db = Firestore.firestore()
@@ -298,10 +254,10 @@ func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping
                 
                 
                 // Check if the book already exists in Core Data
-              /*  if !CoreDataManager.shared.bookExists(withId: bookData.book._id!) {
-                                    // Create a new BookCD instance and save it to Core Data
-                                    CoreDataManager.shared.createBookCD(from: bookData)
-                                }*/
+                /*  if !CoreDataManager.shared.bookExists(withId: bookData.book._id!) {
+                 // Create a new BookCD instance and save it to Core Data
+                 CoreDataManager.shared.createBookCD(from: bookData)
+                 }*/
                 
                 
                 
@@ -316,31 +272,31 @@ func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping
     }
 }
 
-func isBookMarkedAs(_ parameter: String, value: Bool, documentID: String, completion: @escaping (Bool) -> Void) {
+func isBookMarkedAs(_ parameter: String, value: Bool, documentID: String, completion: @escaping (Bool?) -> Void) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookDocumentRef = userRef.collection("library").document(documentID)
     
-    bookDocumentRef.addSnapshotListener { snapshot, error in
+    bookDocumentRef.getDocument { snapshot, error in
         if let error = error {
             print("Error observing book document: \(error.localizedDescription)")
-            completion(false)
+            completion(nil)
             return
         }
         
         guard let document = snapshot, document.exists else {
-            completion(false)
+            completion(nil)
             return
         }
         
-        let isMarked = document.get(parameter) as? Bool ?? false
+        let isMarked = document.get(parameter) as? Bool ?? nil
         completion(isMarked)
     }
 }
 
 
 
-func updateBookParameter(_ parameter: String, value: Bool, documentID: String, completion: @escaping (Bool) -> Void) {
+func updateBookParameter(_ parameter: String, value: Bool?, documentID: String) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookCollectionRef = userRef.collection("library")
@@ -351,10 +307,7 @@ func updateBookParameter(_ parameter: String, value: Bool, documentID: String, c
     documentRef.updateData(updateData) { error in
         if let error = error {
             print("Error updating book parameter: \(error.localizedDescription)")
-            completion(false)
-        } else {
-            completion(true)
         }
     }
-    
 }
+
