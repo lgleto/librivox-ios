@@ -2,36 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/GenreCD+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/GenreCD+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/SectionCD+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/SectionCD+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/AuthorCD+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/AuthorCD+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/ReaderCD+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/ReaderCD+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/AudiobookCD+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/acessogloriamp/Estagio/App/librivox-ios/LibriVox/CoreData/AudiobookCD+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:LibriVox.xcodeproj">
    </FileRef>
    <FileRef
