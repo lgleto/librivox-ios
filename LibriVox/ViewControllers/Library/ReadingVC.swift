@@ -63,10 +63,10 @@ class ReadingVC: UITableViewController {
         }
        
         
-        /*getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
+        getCoverBook(id: book._id!, url: book.urlLibrivox!){img in
             if let img = img{
                 cell.imgBook.loadImage(from: img)}
-        }*/
+        }
         
         if let duration = book.totaltime{cell.durationBook.text = "Duration: \(duration)"}
         allButtons.append(cell.playBtn)
