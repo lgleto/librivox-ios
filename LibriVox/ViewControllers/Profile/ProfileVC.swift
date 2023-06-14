@@ -65,6 +65,8 @@ class ProfileVC: UIViewController {
         do { try Auth.auth().signOut() }
         catch { print("Already logged out") }
         
+        UserDefaults.standard.removeObject(forKey: "currentUserID")
+
         let storyBoard : UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "LoginId") as! LoginVC
         self.present(vc, animated: true, completion: nil)

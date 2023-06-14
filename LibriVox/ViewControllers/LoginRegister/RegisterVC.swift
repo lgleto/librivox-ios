@@ -107,8 +107,10 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                                 print("Document successfully written!")
                             }
                         }
+                        UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
                         
                         //TODO: Change to the MAINSCREEN
+                        
                         self.self.present(home, animated: true, completion: nil)
                         print("user Register")
                         

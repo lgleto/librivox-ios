@@ -68,6 +68,7 @@ class LoginVC: UIViewController {
                 
                 print(error)
                 if (authResult != nil) {
+                    UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
                     self.self!.present(home, animated: true, completion: nil)
                 } else {
                     let autError  = AuthErrorCode.init(_nsError: error! as NSError)
