@@ -244,7 +244,6 @@
 		319FA01529C36445006895CB /* LibriVox */ = {
 			isa = PBXGroup;
 			children = (
-				6F8E55F52A3A4B9900AEA52F /* CoreData */,
 				315F0D852A1CEB8900B4B0CB /* Alerts */,
 				319FA02F29C381E8006895CB /* LibriVox.entitlements */,
 				6F43C7D529D1F01F0013232C /* StoryBoard */,
@@ -394,6 +393,7 @@
 		6F50A7982A0AFC2700C6EDEC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6F8E55F52A3A4B9900AEA52F /* CoreData */,
 				6F8E55D72A39B6B900AEA52F /* CoreData.swift */,
 				31FC0F1D2A126875008FD189 /* PlayerHandler.swift */,
 				6F679C072A275D7600820800 /* MiniPlayerVC.swift */,
