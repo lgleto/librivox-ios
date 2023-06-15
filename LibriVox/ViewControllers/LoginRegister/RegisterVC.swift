@@ -93,9 +93,6 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             } else {
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { [self] authResult, error in
                     if (authResult != nil) {
-                        //TODO: Store First/ Last name and username in Firestore
-                        
-                        // Add a new document in collection "cities"
                         db.collection("users").document(Auth.auth().currentUser!.uid).setData([
                             "name": firstLastText.text,
                             "username": usernameText.text,
@@ -107,10 +104,9 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                                 print("Document successfully written!")
                             }
                         }
-                        //UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
                         
-                        //TODO: Change to the MAINSCREEN
-                        
+                        UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
+                        saveCurrentUser(name: firstLastText.text!, email: emailText.text!)
                         self.self.present(home, animated: true, completion: nil)
                         print("user Register")
                         
@@ -149,7 +145,8 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                                                          accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { result, error in
-
+                
+                UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
               // At this point, our user is signed in
                 self.self.self.present(home, animated: true, completion: nil)
             }

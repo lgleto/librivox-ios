@@ -68,7 +68,7 @@ class LoginVC: UIViewController {
                 
                 print(error)
                 if (authResult != nil) {
-                    //UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
+                    UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
                     self.self!.present(home, animated: true, completion: nil)
                 } else {
                     let autError  = AuthErrorCode.init(_nsError: error! as NSError)
@@ -174,8 +174,8 @@ class LoginVC: UIViewController {
                                                          accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { result, error in
-
-              // At this point, our user is signed in
+                UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
+                saveCurrentUser(name: (result?.user.displayName!)!, email: (result?.user.email!)!)
                 self.self.present(home, animated: true, completion: nil)
             }
                 

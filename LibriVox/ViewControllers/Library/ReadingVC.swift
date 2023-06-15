@@ -13,8 +13,6 @@ import FirebaseFirestore
 import SwaggerClient
 
 class ReadingVC: UITableViewController {
-    
-    
     var finalList: [Book] = []
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
@@ -32,6 +30,10 @@ class ReadingVC: UITableViewController {
             self.finalList = books
             self.spinner.stopAnimating()
             
+            if !books.isEmpty{
+                for book in books{addBookCD(book: book)}
+            }
+ 
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
         }
