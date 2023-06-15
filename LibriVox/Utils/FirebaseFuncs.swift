@@ -252,15 +252,6 @@ func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping
                 
                 let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped)
                 
-                
-                // Check if the book already exists in Core Data
-                /*  if !CoreDataManager.shared.bookExists(withId: bookData.book._id!) {
-                 // Create a new BookCD instance and save it to Core Data
-                 CoreDataManager.shared.createBookCD(from: bookData)
-                 }*/
-                
-                
-                
                 books.append(bookData)
                 
             } catch {

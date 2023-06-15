@@ -2,7 +2,7 @@
 //  User_CD+CoreDataProperties.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 14/06/2023.
+//  Created by Acesso Gloria MP on 15/06/2023.
 //
 //
 
@@ -16,10 +16,10 @@ extension User_CD {
         return NSFetchRequest<User_CD>(entityName: "User_CD")
     }
 
-    @NSManaged public var id: String?
-    @NSManaged public var name: String?
     @NSManaged public var email: String?
+    @NSManaged public var id: String?
     @NSManaged public var lastBook: String?
+    @NSManaged public var name: String?
     @NSManaged public var books_Info: NSSet?
 
 }

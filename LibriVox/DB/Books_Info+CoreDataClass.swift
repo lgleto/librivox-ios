@@ -2,7 +2,7 @@
 //  Books_Info+CoreDataClass.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 14/06/2023.
+//  Created by Acesso Gloria MP on 15/06/2023.
 //
 //
 

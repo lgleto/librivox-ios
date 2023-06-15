@@ -9,8 +9,8 @@
         <attribute name="numSections" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="totalTime" optional="YES" attributeType="String"/>
-        <attribute name="totalTimeSecs" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="books_Info" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Books_Info" inverseName="audioBook_Data" inverseEntity="Books_Info"/>
+        <attribute name="totalTimeSecs" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="books_Info" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Books_Info" inverseName="audioBook_Data" inverseEntity="Books_Info"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sections" inverseName="audioBook_Data" inverseEntity="Sections"/>
     </entity>
     <entity name="Books_Info" representedClassName="Books_Info" syncable="YES">
@@ -19,13 +19,12 @@
         <attribute name="isFinished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isReading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="sectionStopped" optional="YES" attributeType="String"/>
-        <attribute name="timeStopped" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timeStopped" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="audioBook_Data" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AudioBooks_Data" inverseName="books_Info" inverseEntity="AudioBooks_Data"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User_CD" inverseName="books_Info" inverseEntity="User_CD"/>
     </entity>
     <entity name="Sections" representedClassName="Sections" syncable="YES">
         <attribute name="fileName" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="playTime" optional="YES" attributeType="String"/>
         <attribute name="sectionNumber" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
