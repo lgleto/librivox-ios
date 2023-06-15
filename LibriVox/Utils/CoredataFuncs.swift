@@ -33,6 +33,13 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
             newBookData.totalTime = audioBook.totaltime
             newBookData.totalTimeSecs = Int32(audioBook.totaltimesecs ?? 0)
             
+            if let url = audioBook.urlLibrivox{
+                getBookCoverFromURL(url: url){img
+                    in
+                    newBookData.image = img?.jpegData(compressionQuality: 1.0)
+                }
+            }
+            
             var sections = Set<Sections>()
             
             if let sectionsData = audioBook.sections {
@@ -49,7 +56,7 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
             }
             
             try context.save()
-            //print("Saved the book.")
+            print("Saved the book.")
             return newBookData
         }
     } catch {
@@ -60,9 +67,11 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
 
 
 func addBookCD(book: Book) {
+    if let currentUser = Auth.auth().currentUser {
+        let currentUserID = currentUser.uid
+        UserDefaults.standard.set(currentUserID, forKey: "currentUserID")
+    }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let currentUserID = Auth.auth().currentUser?.uid
-    
     if let authUID = UserDefaults.standard.string(forKey: "currentUserID"){
         let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
         userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)

@@ -31,7 +31,9 @@ class ReadingVC: UITableViewController {
             self.spinner.stopAnimating()
             
             if !books.isEmpty{
-                for book in books{addBookCD(book: book)}
+                for book in books{
+                    addBookCD(book: book)
+                }
             }
  
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)

@@ -5,6 +5,7 @@
         <attribute name="descr" optional="YES" attributeType="String"/>
         <attribute name="genres" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="language" optional="YES" attributeType="String"/>
         <attribute name="numSections" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>

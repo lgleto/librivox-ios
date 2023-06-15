@@ -25,6 +25,7 @@ extension AudioBooks_Data {
     @NSManaged public var title: String?
     @NSManaged public var totalTime: String?
     @NSManaged public var totalTimeSecs: Int32
+    @NSManaged public var image: Data?
     @NSManaged public var books_Info: NSSet?
     @NSManaged public var sections: NSSet?
 
