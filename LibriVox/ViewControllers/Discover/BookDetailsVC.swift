@@ -10,6 +10,7 @@ import SwaggerClient
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
+import CoreData
 
 
 
@@ -32,6 +33,8 @@ class BookDetailsVC: AdaptedVC {
     var book: Audiobook?
     var sections: [Section] = []
     private var rowsToBeShow:Int?
+    
+    var img: UIImage? = nil
     
     private func syncPlayPauseButton() {
         guard let id = book?._id else {
@@ -70,12 +73,15 @@ class BookDetailsVC: AdaptedVC {
             
             
             guard let documentID = book._id else {return}
-            isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
+            
+            favBtn.isSelected = isBookMarkedAsFavorite(bookID: documentID)
+            
+            /*isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
                 DispatchQueue.main.async {
                     
                     self.favBtn.isSelected = isMarked ?? false ? true : false
                 }
-            }
+            }*/
         }
     }
     
@@ -88,11 +94,16 @@ class BookDetailsVC: AdaptedVC {
     }
     
     func setData(book : Audiobook){
-        getCoverBook(id: book._id!,url: book.urlLibrivox!){
-            img in
-            if let img = img{
-                self.bookImg.loadImage(from: img)
-                self.backgroundImage.loadImage(from: img)
+        if let img = img{
+            bookImg.loadImage(from: img)
+            backgroundImage.loadImage(from: img)
+        }else{
+            getCoverBook(id: book._id!,url: book.urlLibrivox!){
+                img in
+                if let img = img{
+                    self.bookImg.loadImage(from: img)
+                    self.backgroundImage.loadImage(from: img)
+                }
             }
         }
         
@@ -109,7 +120,7 @@ class BookDetailsVC: AdaptedVC {
         
     }
     
-    @IBAction func clickFav(_ sender: Any) {        
+    @IBAction func clickFav(_ sender: Any) {
         let newIsFavValue = !favBtn.isSelected
         guard let book = book, let documentID = book._id else {return}
         
@@ -121,7 +132,6 @@ class BookDetailsVC: AdaptedVC {
             }
             
             updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
-            
         }
         
     }
@@ -171,4 +181,30 @@ extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
         cell.durationSection.text! = "Duration: \(secondsToMinutes(seconds: seconds))min "
         return cell
     }
+}
+func isBookMarkedAsFavorite(bookID: String) -> Bool {
+    guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
+        return false
+    }
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
+    userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
+    
+    do {
+        let users = try context.fetch(userFetchRequest)
+        guard let currentUser = users.first else {
+            return false
+        }
+        
+        if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == bookID }) as? Books_Info {
+            return existingBookInfo.isFav
+        }
+        
+    } catch {
+        print("Error: \(error)")
+    }
+    
+    return false
 }

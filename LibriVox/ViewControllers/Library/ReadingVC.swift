@@ -12,8 +12,42 @@ import FirebaseCore
 import FirebaseFirestore
 import SwaggerClient
 
+
+
+/*class Repository {
+     class func getArticles ( category :String,
+                   context : NSManagedObjectContext,
+              callback : @escaping ([Article], Error?)->() )
+    {
+        var chachedArtilces : [Article] = getCachedArticles(category: category, context: context)
+        callback(chachedArtilces, nil )
+ 
+        NewsAPI.topHeadlinesGet(apiKey: NEWS_API_KEY,
+                                country: COUNTRY,
+                                category: category) { (articles, error) in
+            if (error == nil){
+                if let arts = articles?.articles {
+                    for article in arts{
+                        _ = ArticleCache.addItem(url: article.url ?? "",
+                                             jsonString: article.toJsonString(),
+                                             category: category,
+                                             inManagedObjectContext: context)
+                    }
+                }
+                (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+                chachedArtilces = getCachedArticles(category: category, context: context)
+                callback(chachedArtilces, nil )
+            }else {
+                callback(chachedArtilces, error )
+                print(error.debugDescription)
+            }
+        }
+    }
+}*/
+
 class ReadingVC: UITableViewController {
-    var finalList: [Book] = []
+    //var finalList: [Book] = []
+    var finalList = [Books_Info]()
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -26,7 +60,15 @@ class ReadingVC: UITableViewController {
         spinner.startAnimating()
         tableView.backgroundView = spinner
         
-        getBooksByParameter("isReading", value: true){ books in
+        finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
+        /*for book in finalList{
+            addAudiobookCD(audioBook: convertToAudiobook(audioBookData: book.audioBook_Data!))}*/
+        spinner.stopAnimating()
+        
+        tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+        checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "readingBook")!,view: tableView, alertText: "No books being read")
+        
+        /*getBooksByParameter("isReading", value: true){ books in
             self.finalList = books
             self.spinner.stopAnimating()
             
@@ -38,7 +80,7 @@ class ReadingVC: UITableViewController {
  
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
             checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
-        }
+        }*/
     }
     
     @objc func miniPlayerDidUpdatePlayState(_ notification: Notification) {
@@ -56,7 +98,17 @@ class ReadingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingCellTVC", for: indexPath) as! ReadingCellTVC
         
-        let book = finalList[indexPath.row].book
+        let book = finalList[indexPath.row].audioBook_Data
+        cell.titleBook.text = book?.title
+        cell.authorsBook.text = "Author: \(book?.authors)"
+        cell.imgBook.image = nil
+        
+        if let imgData = book?.image, let img = UIImage(data: imgData) {
+                cell.imgBook.loadImage(from: img)
+        }
+
+        cell.durationBook.text = "Duration: \(book?.totalTime)"
+       /* let book = finalList[indexPath.row].book
         
         cell.titleBook.text = book.title
         cell.authorsBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
@@ -72,7 +124,7 @@ class ReadingVC: UITableViewController {
                 cell.imgBook.loadImage(from: img)}
         }
         
-        if let duration = book.totaltime{cell.durationBook.text = "Duration: \(duration)"}
+        if let duration = book.totaltime{cell.durationBook.text = "Duration: \(duration)"}*/
         allButtons.append(cell.playBtn)
         
         
@@ -89,7 +141,7 @@ class ReadingVC: UITableViewController {
         
         if lastBook != sender.tag{
             if let tabBarController = tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: finalList[sender.tag].book)
+                tabBarController.addChildView(book: finalList[sender.tag].audioBook_Data!)
             }
         }else{sender.isSelected = false}
         
@@ -100,9 +152,22 @@ class ReadingVC: UITableViewController {
         if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
-            detailVC.book = finalList[indexPath.row].book
+            detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row].audioBook_Data!)
+            if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
+                detailVC.img = img
+            }
         }
     }
+}
+
+func updateBookInfoParameter(bookInfo: Books_Info, parameter: String, value: Any) {
+    let context = bookInfo.managedObjectContext
+    bookInfo.setValue(value, forKey: parameter)
     
-    
+    do {
+        try context?.save()
+        print("Updated the book_info parameter.")
+    } catch {
+        print("Error: \(error)")
+    }
 }

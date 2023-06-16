@@ -148,6 +148,7 @@ func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
             completion(nil)
         } else {
             print("foi")
+            addBookCD(book: book)
             completion(documentRef.documentID)
         }
         

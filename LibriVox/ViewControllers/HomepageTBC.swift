@@ -19,7 +19,7 @@ class HomepageTBC: UITabBarController {
            super.viewDidLoad()
        }
     
-    func addChildView(book: Audiobook) {
+    func addChildView(book: AudioBooks_Data) {
         let newContainerView = UIView()
         newContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(newContainerView)

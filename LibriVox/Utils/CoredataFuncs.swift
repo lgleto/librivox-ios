@@ -33,13 +33,6 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
             newBookData.totalTime = audioBook.totaltime
             newBookData.totalTimeSecs = Int32(audioBook.totaltimesecs ?? 0)
             
-            if let url = audioBook.urlLibrivox{
-                getBookCoverFromURL(url: url){img
-                    in
-                    newBookData.image = img?.jpegData(compressionQuality: 1.0)
-                }
-            }
-            
             var sections = Set<Sections>()
             
             if let sectionsData = audioBook.sections {
@@ -52,12 +45,32 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
                     
                     sections.insert(section)
                 }
+                
                 newBookData.sections = sections as NSSet
             }
+
             
-            try context.save()
-            print("Saved the book.")
-            return newBookData
+            //TODO: IT IS THE BEST APPROACH? I DONT THINK SO
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
+            
+            if let url = audioBook.urlLibrivox {
+                getBookCoverFromURL(url: url) { img in
+                    newBookData.image = img?.jpegData(compressionQuality: 1.0)
+                    dispatchGroup.leave()
+                }
+            } else {dispatchGroup.leave()}
+            
+            dispatchGroup.wait()
+            
+            do {
+                try context.save()
+                //print("Saved the book.")
+                return newBookData
+            } catch {
+                print("Error: \(error)")
+                return nil
+            }
         }
     } catch {
         print("Error: \(error)")
@@ -71,8 +84,10 @@ func addBookCD(book: Book) {
         let currentUserID = currentUser.uid
         UserDefaults.standard.set(currentUserID, forKey: "currentUserID")
     }
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    if let authUID = UserDefaults.standard.string(forKey: "currentUserID"){
+    
+    if let authUID = UserDefaults.standard.string(forKey: "currentUserID") {
         let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
         userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
         
@@ -85,6 +100,13 @@ func addBookCD(book: Book) {
             let audiobook = addAudiobookCD(audioBook: book.book)
             
             if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == audiobook?.id! }) as? Books_Info {
+                existingBookInfo.isFav = book.isFav ?? existingBookInfo.isFav
+                existingBookInfo.isReading = book.isReading ?? existingBookInfo.isReading
+                existingBookInfo.isFinished = book.isFinished ?? existingBookInfo.isFinished
+                
+                try context.save()
+                print("Updated the book.")
+                
                 return
             }
             
@@ -97,7 +119,7 @@ func addBookCD(book: Book) {
             currentUser.addToBooks_Info(bookUser)
             
             try context.save()
-            print("Saved the book.")
+            print("Saved the book_info.")
         } catch {
             print("Error: \(error)")
         }
@@ -105,8 +127,9 @@ func addBookCD(book: Book) {
 }
 
 
+
 /* CORE DATA*/
-func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data] {
+func fetchBooksByParameterCD(parameter: String, value: Bool) -> [Books_Info] {
     /*SELECT *
      FROM ZUSER_CD AS user
      JOIN ZBOOKS_INFO AS books ON books.ZUSER = user.Z_PK
@@ -114,7 +137,7 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
      WHERE user.ZID = "kioLmq1BWWRFM2wJHCRJnONveLG2"  AND books.ZISFAV = true*/
      
     if let authUID = UserDefaults.standard.string(forKey: "currentUserID") {
-           var matchingBooks: [AudioBooks_Data] = []
+           var matchingBooks: [Books_Info] = []
            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
            
            let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
@@ -129,13 +152,8 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
                        bookInfoFetchRequest.predicate = NSPredicate(format: "user == %@ AND \(parameter) == %@", currentUser, NSNumber(value: value))
                        bookInfoFetchRequest.relationshipKeyPathsForPrefetching = ["audioBook_Data"]
                        
-                       let matchingBookInfos = try context.fetch(bookInfoFetchRequest)
+                       matchingBooks = try context.fetch(bookInfoFetchRequest)
                        
-                       for bookInfo in matchingBookInfos {
-                           if let audioBookData = bookInfo.audioBook_Data {
-                               matchingBooks.append(audioBookData)
-                           }
-                       }
                    }
                } else {
                    print("User not found.")
@@ -143,12 +161,13 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
            } catch {
                print("Error: \(error)")
            }
-           
            return matchingBooks
        }
     
        return []
 }
+
+
 
 func saveCurrentUser(name: String, email: String){
     if let authUID = UserDefaults.standard.string(forKey: "currentUserID"){
@@ -173,5 +192,79 @@ func saveCurrentUser(name: String, email: String){
         } catch {
             print("Error: \(error)")
         }
+    }
+}
+
+
+func convertToAudiobook(audioBookData: AudioBooks_Data) -> Audiobook {
+    var audiobook = Audiobook()
+    audiobook._id = audioBookData.id
+    audiobook.title = audioBookData.title
+    audiobook._description = audioBookData.descr
+    //audiobook.genres = decodeGenres(audioBookData.genres)
+    //audiobook.authors = decodeAuthors(audioBookData.authors)
+    audiobook.numSections = audioBookData.numSections
+    audiobook.sections = decodeSections(audioBookData.sections)
+    audiobook.language = audioBookData.language
+    audiobook.totaltime = audioBookData.totalTime
+    audiobook.totaltimesecs = Int(audioBookData.totalTimeSecs)
+    return audiobook
+}
+
+func decodeSections(_ sections: NSSet?) -> [Section]? {
+    guard let sectionSet = sections as? Set<Sections> else { return nil }
+    
+    let sortedSections = sectionSet.sorted { $0.sectionNumber! < $1.sectionNumber! }
+    
+    var decodedSections: [Section] = []
+    
+    for sectionData in sortedSections {
+        var section = Section()
+        section.title = sectionData.title
+        section.sectionNumber = sectionData.sectionNumber
+        section.playtime = sectionData.playTime
+        section.fileName = sectionData.fileName
+        
+        decodedSections.append(section)
+    }
+    
+    return decodedSections
+}
+
+
+
+func updateBookInfoParameter(book: Book, parameter: String, value: Any) {
+    guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
+        return
+    }
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
+    userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
+    
+    do {
+        let users = try context.fetch(userFetchRequest)
+        guard let currentUser = users.first else {
+            return
+        }
+        
+        if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == book.book._id }) as? Books_Info {
+            existingBookInfo.setValue(value, forKey: parameter)
+            
+            do {
+                try context.save()
+                print("Updated the book_info parameter.")
+            } catch {
+                print("Error: \(error)")
+            }
+            
+            return
+        }
+        
+        // If the Books_Info object doesn't exist, I can create it here
+        
+    } catch {
+        print("Error: \(error)")
     }
 }
