@@ -16,6 +16,7 @@ class LaunchScreenVC: UIViewController {
         super.viewDidLoad()
         
         isLoggedIn = (Auth.auth().currentUser != nil)
+        getAllBooks()
     }
     
     override func viewDidAppear(_ animated: Bool){

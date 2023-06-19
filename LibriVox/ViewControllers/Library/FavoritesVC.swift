@@ -14,11 +14,9 @@ class FavoritesVC: UITableViewController {
     //var finalList: [Book] = []
     var finalList = [Books_Info]()
     let spinner = UIActivityIndicatorView(style: .medium)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        spinner.startAnimating()
         tableView.backgroundView = spinner
         finalList = fetchBooksByParameterCD(parameter: "isFav", value: true)
         spinner.stopAnimating()

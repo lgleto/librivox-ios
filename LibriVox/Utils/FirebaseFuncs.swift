@@ -156,26 +156,21 @@ func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
 }
 
 
-func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping ([Book]) -> Void) {
+func getAllBooks() {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookCollectionRef = userRef.collection("library")
     
-    let query = bookCollectionRef.whereField(parameter, isEqualTo: value)
-    
-    query.addSnapshotListener { snapshot, error in
+    bookCollectionRef.addSnapshotListener { snapshot, error in
         if let error = error {
             print("Error fetching books: \(error.localizedDescription)")
-            completion([])
             return
         }
         
         guard let documents = snapshot?.documents else {
-            completion([])
             return
         }
         
-        var books: [Book] = []
         for document in documents {
             do {
                 let audiobookData = document.data()["audiobook"] as? [String: Any]
@@ -190,14 +185,12 @@ func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping
                 
                 let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped)
                 
-                books.append(bookData)
-                
+                addBookCD(book: bookData)
             } catch {
                 print("Error decoding audiobook: \(error)")
             }
         }
         
-        completion(books)
     }
 }
 
