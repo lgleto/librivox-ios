@@ -177,6 +177,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }else {
             print("trending is empty")
             //print(self.localBooks)
+            }
             if let c = onCompelition{
                 c()
             }
@@ -240,6 +241,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                         //Do something
             self.loadTrending {
                 print("sdasda")
+                
                 self.trendingBooks.reloadData()
                 self.IndicatorView.stopAnimating()
             }
