@@ -21,20 +21,11 @@ class FavoritesVC: UITableViewController {
         spinner.startAnimating()
         tableView.backgroundView = spinner
         finalList = fetchBooksByParameterCD(parameter: "isFav", value: true)
-        /*for book in finalList{
-            addAudiobookCD(audioBook: convertToAudiobook(audioBookData: book.audioBook_Data!))}*/
         spinner.stopAnimating()
         
         self.tableView.reloadSections([0], with: UITableView.RowAnimation.fade)
         checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
-        
-        /*getBooksByParameter("isFav", value: true){ books in
-            self.finalList = books
-            self.spinner.stopAnimating()
-            
-            self.tableView.reloadSections([0], with: UITableView.RowAnimation.fade)
-            checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
-        }*/
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
