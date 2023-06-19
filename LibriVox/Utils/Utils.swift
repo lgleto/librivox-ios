@@ -359,7 +359,7 @@ func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
 
 
 func checkAndUpdateEmptyState<T>(list:[T], alertImage: UIImage, view: UIScrollView, alertText: String) {
-    list.isEmpty ? setImageNLabelAlert(view: view, img: alertImage, text: alertText) : removeImageNLabelAlert(view: view)
+    list.count > 0 ? removeImageNLabelAlert(view: view) : setImageNLabelAlert(view: view, img: alertImage, text: alertText)
 }
 
 func removeImageNLabelAlert(view: UIScrollView) {

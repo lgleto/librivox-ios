@@ -43,8 +43,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("Diretoria: \(NSHomeDirectory())")
         
-        IndicatorView.startAnimating()
-        IndicatorView.hidesWhenStopped = true
+//        IndicatorView.startAnimating()
+  //      IndicatorView.hidesWhenStopped = true
         let  selectedImage  = UIImage(named: "pause.svg")
         let normalImage = UIImage(named: "play.svg")
         
@@ -243,7 +243,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             print("sdasda")
             
             self.trendingBooks.reloadData()
-            self.IndicatorView.stopAnimating()
+//            self.IndicatorView.stopAnimating()
         }
         
         /* }else{

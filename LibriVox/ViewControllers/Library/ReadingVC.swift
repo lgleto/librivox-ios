@@ -18,21 +18,32 @@ class ReadingVC: UITableViewController {
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        spinner.startAnimating()
-        tableView.backgroundView = spinner
-        
+    @objc func contextDidChange(_ notification: Notification) {
         finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
-      
-        spinner.stopAnimating()
+        
+        self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+        checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        NotificationCenter.default.addObserver(self, selector: #selector(miniPlayerDidUpdatePlayState(_:)), name: Notification.Name("miniPlayerState"), object: nil)
+        spinner.startAnimating()
+        tableView.backgroundView = spinner
         
+        finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
+        spinner.stopAnimating()
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let persistentContainer = appDelegate.persistentContainer
+            NotificationCenter.default.addObserver(self, selector: #selector(contextDidChange(_:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: persistentContainer.viewContext)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(miniPlayerDidUpdatePlayState(_:)), name: Notification.Name("miniPlayerState"), object: nil)
     }
     
     @objc func miniPlayerDidUpdatePlayState(_ notification: Notification) {
@@ -56,9 +67,9 @@ class ReadingVC: UITableViewController {
         cell.imgBook.image = nil
         
         if let imgData = book?.image, let img = UIImage(data: imgData) {
-                cell.imgBook.loadImage(from: img)
+            cell.imgBook.loadImage(from: img)
         }
-
+        
         cell.durationBook.text = "Duration: \(book?.totalTime)"
         
         allButtons.append(cell.playBtn)
