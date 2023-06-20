@@ -195,97 +195,105 @@
         <scene sceneID="tHg-Gg-hDc">
             <objects>
                 <viewController id="eGQ-s1-AZo" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="edh-jf-nlL">
+                    <view key="view" contentMode="scaleToFill" id="IQ1-51-DPr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xob-Tu-19A">
-                                <rect key="frame" x="16" y="91" width="361" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="4Tn-qV-J6J"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Why was this app done?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-Tg-UGm">
-                                <rect key="frame" x="16" y="132" width="361" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="abF-ml-s0X"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvf-Zi-HmP">
-                                <rect key="frame" x="16" y="181" width="361" height="172"/>
-                                <string key="text">This app was decided to be created because of two things. First of all we wanted to know more on how to create mobile applications for the IOS ecossystem, secondly we wanted to create a more up to date app for all people that wanted to listen to librivox audiobooks </string>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Leandro Silva" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDv-rQ-QFB">
-                                <rect key="frame" x="99" y="727" width="133" height="25"/>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IOS Developer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zb-mi-YoW">
-                                <rect key="frame" x="99" y="752" width="133" height="25"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="eYj-Go-N69">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pzb-wa-HBR" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="16" y="727" width="75" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="MDC-ey-oL7"/>
-                                    <constraint firstAttribute="width" constant="75" id="YRN-V2-zi3"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So.. who created this app?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1S-4D-wLp">
-                                <rect key="frame" x="16" y="369" width="361" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="8jU-xh-cMK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5f-lV-u80">
-                                <rect key="frame" x="16" y="418" width="361" height="147.33333333333337"/>
-                                <string key="text">This project was done by two people, Leandro Silva and Glória Martins, both are Mobile Applications majors doing this for an intership at Mindprober. To know more about Mindprober go to this website https://www.mindproberlabs.com</string>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="mfu-i5-TTC">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1047"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urn-aW-ngR">
+                                                <rect key="frame" x="16" y="91" width="361" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="rK1-bb-jE6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="43"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Why was this app done?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi7-TE-e4m">
+                                                <rect key="frame" x="16" y="140" width="361" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="VyG-RA-cxw"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2a-rv-3Qw">
+                                                <rect key="frame" x="16" y="189" width="227" height="286"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">This app was decided to be created because of two things. First of all we wanted to know more on how to create mobile applications for the IOS ecossystem, secondly we wanted to create a more up to date app for all people that wanted to listen to librivox audiobooks </string>
+                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="So.. who created this app?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzg-GR-xes">
+                                                <rect key="frame" x="16" y="483" width="361" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="33" id="FGL-N7-pGy"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wiki" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-cj-5HF">
+                                                <rect key="frame" x="251" y="189" width="126" height="323"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdy-UT-CVB">
+                                                <rect key="frame" x="150" y="520" width="222" height="249"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <string key="text">This project was done by two people, Leandro Silva and Glória Martins, both are Mobile Applications majors doing this for an intership at Mindprober. To know more about Mindprober go to this website https://www.mindproberlabs.com</string>
+                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="wiki" translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-tR-SMI">
+                                                <rect key="frame" x="16" y="520" width="126" height="249"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nmv-K5-T6S">
+                                                <rect key="frame" x="16" y="802" width="126" height="126"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="YH4-EP-mTe"/>
+                                                    <constraint firstAttribute="height" constant="100" id="pxj-81-VwX"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riA-yg-Plv">
+                                                <rect key="frame" x="149" y="823" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="1A8-lf-cTo"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="ddX-Uo-4Uc"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ern-LE-8E1"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="7H4-ib-k1e"/>
+                            </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="ryd-da-gd4"/>
+                        <viewLayoutGuide key="safeArea" id="gsD-F9-bxZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="zgS-Tg-UGm" firstAttribute="top" secondItem="xob-Tu-19A" secondAttribute="bottom" constant="8" symbolic="YES" id="9Du-wg-pwT"/>
-                            <constraint firstItem="xob-Tu-19A" firstAttribute="leading" secondItem="ryd-da-gd4" secondAttribute="leading" constant="16" id="ACp-IH-Dkl"/>
-                            <constraint firstItem="ryd-da-gd4" firstAttribute="trailing" secondItem="xob-Tu-19A" secondAttribute="trailing" constant="16" id="B4o-Xm-UaO"/>
-                            <constraint firstItem="v5f-lV-u80" firstAttribute="top" secondItem="I1S-4D-wLp" secondAttribute="bottom" constant="16" id="Bf9-Rr-lFG"/>
-                            <constraint firstItem="ryd-da-gd4" firstAttribute="trailing" secondItem="ZDv-rQ-QFB" secondAttribute="trailing" constant="16" id="Css-pN-Y6F"/>
-                            <constraint firstItem="v5f-lV-u80" firstAttribute="top" secondItem="I1S-4D-wLp" secondAttribute="bottom" constant="16" id="Gng-Vp-HrY"/>
-                            <constraint firstItem="Pzb-wa-HBR" firstAttribute="leading" secondItem="ryd-da-gd4" secondAttribute="leading" constant="16" id="KmE-gC-qDJ"/>
-                            <constraint firstItem="dvf-Zi-HmP" firstAttribute="top" secondItem="zgS-Tg-UGm" secondAttribute="bottom" constant="16" id="Mul-9a-Uxg"/>
-                            <constraint firstItem="ryd-da-gd4" firstAttribute="trailing" secondItem="v5f-lV-u80" secondAttribute="trailing" constant="16" id="O6U-5d-2hb"/>
-                            <constraint firstItem="ryd-da-gd4" firstAttribute="trailing" secondItem="dvf-Zi-HmP" secondAttribute="trailing" constant="16" id="bZ7-1G-9Xf"/>
-                            <constraint firstItem="v5f-lV-u80" firstAttribute="leading" secondItem="ryd-da-gd4" secondAttribute="leading" constant="16" id="cpC-gV-iwV"/>
-                            <constraint firstItem="ZDv-rQ-QFB" firstAttribute="leading" secondItem="Pzb-wa-HBR" secondAttribute="trailing" constant="16" id="jIN-B9-MWF"/>
-                            <constraint firstItem="I1S-4D-wLp" firstAttribute="top" secondItem="dvf-Zi-HmP" secondAttribute="bottom" constant="16" id="lG7-yn-9gS"/>
-                            <constraint firstItem="ryd-da-gd4" firstAttribute="bottom" secondItem="Pzb-wa-HBR" secondAttribute="bottom" constant="16" id="mEp-79-DJs"/>
-                            <constraint firstItem="I1S-4D-wLp" firstAttribute="leading" secondItem="ryd-da-gd4" secondAttribute="leading" constant="16" id="mSg-75-haq"/>
-                            <constraint firstItem="dvf-Zi-HmP" firstAttribute="leading" secondItem="ryd-da-gd4" secondAttribute="leading" constant="16" id="nzC-uY-K5y"/>
-                            <constraint firstItem="ryd-da-gd4" firstAttribute="trailing" secondItem="I1S-4D-wLp" secondAttribute="trailing" constant="16" id="sTz-uN-OUP"/>
-                            <constraint firstItem="xob-Tu-19A" firstAttribute="top" secondItem="ryd-da-gd4" secondAttribute="top" constant="32" id="zkH-Dw-mJ1"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZ5-oZ-dvh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="KN4-YK-d0w">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="KYH-qn-zxo"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="TMg-wr-gae"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="mG4-iR-sam"/>
+                </scrollView>
             </objects>
             <point key="canvasLocation" x="1293.8931297709923" y="577.46478873239437"/>
         </scene>
@@ -547,6 +555,7 @@
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="power.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="wiki" width="512" height="512"/>
         <namedColor name="Green Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

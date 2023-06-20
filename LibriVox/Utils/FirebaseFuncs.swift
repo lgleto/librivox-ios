@@ -155,6 +155,54 @@ func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
     }
 }
 
+<<<<<<< Updated upstream
+=======
+func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) {
+    let db = Firestore.firestore()
+    let bookRef = db.collection(TRENDING_COLLECTION)
+    var levelTrending = 0
+    
+    let query = bookRef.whereField("id", isEqualTo: idBook)
+    
+    query.addSnapshotListener { snapshot, err in
+        if let err = err {
+            print("Error fetching books: \(err.localizedDescription)")
+            completion(false)
+            return
+        }
+        
+        guard let documents = snapshot?.documents else {
+            completion(false)
+            return
+        }
+        if let trending = documents.first,
+           let trendingStr = trending.get("trending") as? String {
+            levelTrending = Int(trendingStr)!
+            levelTrending += 5
+            
+            let newData: [String: Any] = [
+                "id": idBook,
+                "trending": "\(levelTrending)"
+            ]
+            
+            print(newData)
+            
+            trending.reference.updateData(newData) { err in
+                if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                completion(true)
+                            }
+            }
+        }
+        
+        
+
+        
+        }
+    }
+
+>>>>>>> Stashed changes
 
 func getBooksByParameter(_ parameter: String, value: Bool, completion: @escaping ([Book]) -> Void) {
     let db = Firestore.firestore()
