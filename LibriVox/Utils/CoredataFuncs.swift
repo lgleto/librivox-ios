@@ -80,11 +80,6 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
 
 
 func addBookCD(book: Book) {
-    if let currentUser = Auth.auth().currentUser {
-        let currentUserID = currentUser.uid
-        UserDefaults.standard.set(currentUserID, forKey: "currentUserID")
-    }
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     if let authUID = UserDefaults.standard.string(forKey: "currentUserID") {

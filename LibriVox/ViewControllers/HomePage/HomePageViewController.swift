@@ -32,7 +32,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -43,8 +43,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("Diretoria: \(NSHomeDirectory())")
         
-        IndicatorView.startAnimating()
-        IndicatorView.hidesWhenStopped = true
+//        IndicatorView.startAnimating()
+  //      IndicatorView.hidesWhenStopped = true
         let  selectedImage  = UIImage(named: "pause.svg")
         let normalImage = UIImage(named: "play.svg")
         
@@ -61,10 +61,10 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         view.clipsToBounds = true
         
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
-
+        
         trendingBooks.delegate = self
         trendingBooks.dataSource = self
-
+        
     }
     
     
@@ -83,7 +83,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func allTrending(_ sender: Any) {
         performSegue(withIdentifier: "allTrending", sender: nil)
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "homepageToPlayer") {
@@ -96,8 +96,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         
     }
-
-
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (localBooks.count > 3) {
@@ -130,7 +130,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
             cell.author.text = authorsString
         }
-
+        
         
         cell.duration.text = "Duration: \(self.localBooks[indexPath.row].totaltime!)"
         
@@ -147,7 +147,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.bookCover.loadImage(from: img)
             }
         }
-    
+        
         
         return cell
     }
@@ -159,7 +159,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "homeToBookDetail", sender: localBooks[indexPath.row])
     }
-
+    
     
     
     
@@ -177,13 +177,13 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }else {
             print("trending is empty")
             //print(self.localBooks)
-            }
-            if let c = onCompelition{
-                c()
-            }
-            
         }
+        if let c = onCompelition{
+            c()
+        }
+        
     }
+    
     
     func loadTrending(callback: @escaping ()->() ) {
         
@@ -199,15 +199,15 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 let alert = UIAlertController(title: "Error getting Trending", message: "Error getting the trending books, probably due to slow internet connection", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { action in
                     switch action.style{
-                        case .default:
+                    case .default:
                         self.IndicatorView.startAnimating()
                         self.checkWifi()
                         
                         
-                        case .cancel:
+                    case .cancel:
                         print("cancel")
                         
-                        case .destructive:
+                    case .destructive:
                         print("destructive")
                         
                     @unknown default:
@@ -217,7 +217,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.IndicatorView.stopAnimating()
                 self.present(alert, animated: true, completion: nil)
                 
-
+                
             } else {
                 for document in querySnapshot!.documents {
                     let s = document.data()
@@ -233,46 +233,43 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
+    
     func checkWifi() {
         networkCheck = NetworkCheck.sharedInstance()
         print("enter check wifi")
         //if networkCheck.currentStatus == .satisfied{
-                        //Do something
-            self.loadTrending {
-                print("sdasda")
-                
-                self.trendingBooks.reloadData()
-                self.IndicatorView.stopAnimating()
-            }
+        //Do something
+        self.loadTrending {
+            print("sdasda")
+            
+            self.trendingBooks.reloadData()
+//            self.IndicatorView.stopAnimating()
+        }
         
-       /* }else{
-            //Show no network alert
-            let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Retry",style: .default, handler: { action in
-                switch action.style{
-                case .default:
-                    self.IndicatorView.startAnimating()
-                    self.checkWifi()
-                    
-                    
-                case .cancel:
-                    print("cancel")
-                    
-                case .destructive:
-                    print("destructive")
-                    
-                @unknown default:
-                    print("this wasnt suposed to happen")
-                }
-            }))
-            self.IndicatorView.stopAnimating()
-            self.present(alert, animated: true, completion: nil)
-        }*/
+        /* }else{
+         //Show no network alert
+         let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
+         alert.addAction(UIAlertAction(title: "Retry",style: .default, handler: { action in
+         switch action.style{
+         case .default:
+         self.IndicatorView.startAnimating()
+         self.checkWifi()
+         
+         
+         case .cancel:
+         print("cancel")
+         
+         case .destructive:
+         print("destructive")
+         
+         @unknown default:
+         print("this wasnt suposed to happen")
+         }
+         }))
+         self.IndicatorView.stopAnimating()
+         self.present(alert, animated: true, completion: nil)
+         }*/
     }
-
+    
 }
-
-
-
 

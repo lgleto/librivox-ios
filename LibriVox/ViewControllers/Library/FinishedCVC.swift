@@ -22,18 +22,6 @@ class FinishedCVC: UICollectionViewController {
         spinner.startAnimating()
         collectionView.backgroundView = spinner
         
-        getBooksByParameter("isFinished", value: true){ books in
-            self.finalList = books
-            self.spinner.stopAnimating()
-            
-            //var book = books[0]
-            
-            //addBookCD(book: book)
-    
-            self.collectionView.reloadSections(IndexSet(integer: 0))
-            checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "completedBook")!,view: self.collectionView, alertText: "No books finished yet")
-        }
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

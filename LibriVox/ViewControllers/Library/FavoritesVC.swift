@@ -12,29 +12,35 @@ import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
     //var finalList: [Book] = []
-    var finalList = [Books_Info]()
+    var finalList = [Books_Info](){
+        didSet {
+            self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+            
+            checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
+        }
+    }
     let spinner = UIActivityIndicatorView(style: .medium)
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func contextDidChange(_ notification: Notification) {
+        finalList = fetchBooksByParameterCD(parameter: "isFav", value: true)
+        print("size of \(finalList.count)")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        spinner.startAnimating()
+
         tableView.backgroundView = spinner
         finalList = fetchBooksByParameterCD(parameter: "isFav", value: true)
-        /*for book in finalList{
-            addAudiobookCD(audioBook: convertToAudiobook(audioBookData: book.audioBook_Data!))}*/
-        spinner.stopAnimating()
         
-        self.tableView.reloadSections([0], with: UITableView.RowAnimation.fade)
-        checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
-        
-        /*getBooksByParameter("isFav", value: true){ books in
-            self.finalList = books
-            self.spinner.stopAnimating()
-            
-            self.tableView.reloadSections([0], with: UITableView.RowAnimation.fade)
-            checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "favoritesBook")!,view: self.tableView, alertText: "No books to display")
-        }*/
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let persistentContainer = appDelegate.persistentContainer
+            NotificationCenter.default.addObserver(self, selector: #selector(contextDidChange(_:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: persistentContainer.viewContext)
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,30 +63,7 @@ class FavoritesVC: UITableViewController {
                 cell.imgBook.loadImage(from: img)
         }
         cell.durationBook.text = "Duration: \(book?.totalTime)"
-        
-        /*cell.titleBook.text = book.title
-        cell.authorBook.text = "Author: \(displayAuthors(authors: book.authors ?? []))"
-        
-        
-        if let duration = book.totaltime{
-            cell.durationBook.text = "Duration: \(duration)"
-        }
-        cell.imgBook.image = nil
-        /*if let imgUrl = finalList[indexPath.row].imageUrl,let url = URL(string:imgUrl){
-            DispatchQueue.main.async
-            {
-                cell.imgBook.loadImageURL(from: url)
-            }
-           
-        }*/
-        if let urlImg = book.urlLibrivox{
-            getCoverBook(id: book._id!, url: urlImg){img in
-                if let img = img{
-                    cell.imgBook.loadImage(from: img)
-                }
-            }}
-        cell.genreBook.text = "Genres: \(displayGenres(strings: book.genres ?? []))"*/
-        
+    
         cell.favBtn.tag = indexPath.row
         cell.favBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
         return cell
@@ -90,13 +73,8 @@ class FavoritesVC: UITableViewController {
         let rowIndex = sender.tag
         let book = finalList[rowIndex].audioBook_Data
         
-        
         updateBookParameter("isFav", value: false, documentID: (book?.id!)!)
         updateBookInfoParameter(bookInfo: finalList[rowIndex], parameter: "isFav", value: false)
-        finalList.remove(at: rowIndex)
-        
-        tableView.deleteRows(at: [IndexPath(row: rowIndex, section: 0)], with: .fade)
-        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,7 +86,6 @@ class FavoritesVC: UITableViewController {
             if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
                 detailVC.img = img
             }
-           // detailVC.book = finalList[indexPath.row].book
         }
     }
 }

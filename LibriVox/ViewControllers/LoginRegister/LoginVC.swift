@@ -174,7 +174,8 @@ class LoginVC: UIViewController {
                                                          accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { result, error in
-                UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
+                print(Auth.auth().currentUser?.uid)
+                UserDefaults.standard.set(Auth.auth().currentUser?.uid, forKey: "currentUserID")
                 saveCurrentUser(name: (result?.user.displayName!)!, email: (result?.user.email!)!)
                 self.self.present(home, animated: true, completion: nil)
             }
