@@ -81,7 +81,12 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func allTrending(_ sender: Any) {
-        performSegue(withIdentifier: "allTrending", sender: nil)
+        //performSegue(withIdentifier: "allTrending", sender: nil)
+        addTrendingtoBookSave(idBook: localBooks[1]._id!) { yes in
+            if yes {
+                print("sucessefully updated trending")
+            }
+        }
     }
     
     

@@ -155,16 +155,20 @@ func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
     }
 }
 
-<<<<<<< Updated upstream
-=======
+
 func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) {
     let db = Firestore.firestore()
     let bookRef = db.collection(TRENDING_COLLECTION)
     var levelTrending = 0
+    //print(bookRef.collectionID)
+    //print(bookRef.description)
+    
     
     let query = bookRef.whereField("id", isEqualTo: idBook)
+    print(query.description)
     
     query.addSnapshotListener { snapshot, err in
+    
         if let err = err {
             print("Error fetching books: \(err.localizedDescription)")
             completion(false)
@@ -177,32 +181,41 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
         }
         if let trending = documents.first,
            let trendingStr = trending.get("trending") as? String {
+            print(trending.documentID)
+            print(trendingStr)
             levelTrending = Int(trendingStr)!
             levelTrending += 5
             
-            let newData: [String: Any] = [
+            let newData: [String: String] = [
                 "id": idBook,
-                "trending": "\(levelTrending)"
+                "trending": String(levelTrending)
             ]
             
             print(newData)
             
-            trending.reference.updateData(newData) { err in
+            bookRef.document(trending.documentID).updateData(newData){ err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }
+            
+            /*trending.reference.updateData(newData) { err in
                 if let err = err {
                                 print("Error updating document: \(err)")
+                                completion(false)
                             } else {
                                 completion(true)
                             }
-            }
+            }*/
+            
         }
-        
-        
-
         
         }
     }
 
->>>>>>> Stashed changes
 
 func getAllBooks() {
     let db = Firestore.firestore()
