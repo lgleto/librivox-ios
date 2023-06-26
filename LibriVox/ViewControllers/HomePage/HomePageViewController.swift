@@ -43,8 +43,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         print("Diretoria: \(NSHomeDirectory())")
         
-//        IndicatorView.startAnimating()
-  //      IndicatorView.hidesWhenStopped = true
+        //        IndicatorView.startAnimating()
+        //      IndicatorView.hidesWhenStopped = true
         let  selectedImage  = UIImage(named: "pause.svg")
         let normalImage = UIImage(named: "play.svg")
         
@@ -56,6 +56,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             guard let name = Auth.auth().currentUser?.displayName else { return }
             self.nameText.text = "Hello \(user?.username ?? name )"
         }
+        
         
         imgBook.layer.cornerRadius = 5
         view.clipsToBounds = true
@@ -248,7 +249,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             print("sdasda")
             
             self.trendingBooks.reloadData()
-//            self.IndicatorView.stopAnimating()
+            //            self.IndicatorView.stopAnimating()
         }
         
         /* }else{
