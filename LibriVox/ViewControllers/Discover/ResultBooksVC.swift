@@ -43,7 +43,7 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
             
         }
     }
-
+    
     func applySearchFilter(_ text: String) {
         if !text.isEmpty {
             if let spinner = self.spinner {
@@ -51,15 +51,13 @@ class ResultBooksVC: UIViewController, DiscoverRealDelegate {
             }
             DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { [self] data, error in
                 if let error = error {
-                   // print("Error getting root data:", error)
+                    // print("Error getting root data:", error)
                     
                     let alertImage = UIImage(named: "notFound")
                     let alertText = "No data available"
                     self.spinner.stopAnimating()
                     setImageNLabelAlert(view: self.booksCV, img: alertImage!, text: alertText)
                 }else{
-                    
-                    print("executou com \(text)")
                     if let data = data {
                         self.filteredBooks = data.books ?? []
                     }

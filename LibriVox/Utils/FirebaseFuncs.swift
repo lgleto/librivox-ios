@@ -354,10 +354,9 @@ func addBookToTrending(book:Book, completion: @escaping (Bool?) -> Void) {
         }
     }
 }
-func updateUserParameter(_ parameter: String, value: Bool?) {
-    
+
+func updateUserParameter(_ parameter: String, value: String) {
     let db = Firestore.firestore()
-    //let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     var dataToUpdate = [String: Any]()
     
     dataToUpdate = [parameter: value]

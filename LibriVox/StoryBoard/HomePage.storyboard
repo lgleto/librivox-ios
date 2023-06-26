@@ -47,7 +47,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-i5-3P4" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="43" width="343" height="218"/>
+                                            <rect key="frame" x="0.0" y="43" width="343" height="228"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Hello IceQueen," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoj-7l-jfp">
                                                     <rect key="frame" x="15" y="20" width="123" height="23.333333333333329"/>
@@ -56,38 +56,38 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What about continue reading:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL0-cR-Uld">
-                                                    <rect key="frame" x="15" y="45.333333333333329" width="223" height="22.666666666666671"/>
+                                                    <rect key="frame" x="15" y="45.333333333333329" width="223" height="32.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6p-35-u7d">
-                                                    <rect key="frame" x="102" y="83" width="226" height="20.666666666666671"/>
+                                                    <rect key="frame" x="102" y="93" width="226" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-Q2-Q9t">
-                                                    <rect key="frame" x="102" y="122.33333333333334" width="180" height="18"/>
+                                                    <rect key="frame" x="102" y="132.33333333333334" width="180" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbv-UM-8Zy">
-                                                    <rect key="frame" x="102" y="142.33333333333334" width="180" height="18"/>
+                                                    <rect key="frame" x="102" y="152.33333333333334" width="180" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="XY5-te-GTR">
-                                                    <rect key="frame" x="102" y="193" width="226" height="10"/>
+                                                    <rect key="frame" x="102" y="203" width="226" height="10"/>
                                                     <color key="tintColor" name="Gren Tone"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="WPw-pS-Lh6"/>
                                                     </constraints>
                                                 </progressView>
                                                 <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV4-CM-HWg" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="292" y="142" width="35" height="35"/>
+                                                    <rect key="frame" x="292" y="152" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="JGB-1n-msf"/>
                                                         <constraint firstAttribute="width" constant="35" id="cNz-mf-acL"/>
@@ -106,7 +106,7 @@
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="83" width="77" height="120"/>
+                                                    <rect key="frame" x="15" y="93" width="77" height="120"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="77" id="Nwk-sA-tmv"/>
@@ -121,7 +121,7 @@
                                                 <constraint firstItem="aoj-7l-jfp" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="64h-y8-e5f"/>
                                                 <constraint firstItem="hV4-CM-HWg" firstAttribute="leading" secondItem="Jbv-UM-8Zy" secondAttribute="trailing" constant="10" id="8Ti-qE-Stg"/>
                                                 <constraint firstItem="Pht-Q2-Q9t" firstAttribute="top" secondItem="U6p-35-u7d" secondAttribute="bottom" constant="18.666666666666657" id="96a-8w-5Cp"/>
-                                                <constraint firstAttribute="height" constant="218" id="A1Z-vg-EDa"/>
+                                                <constraint firstAttribute="height" constant="228" id="A1Z-vg-EDa"/>
                                                 <constraint firstItem="XY5-te-GTR" firstAttribute="top" secondItem="hV4-CM-HWg" secondAttribute="bottom" constant="16" id="BSB-VH-Xmq"/>
                                                 <constraint firstItem="U6p-35-u7d" firstAttribute="top" secondItem="geb-Va-GlX" secondAttribute="top" id="EAu-dB-yPm"/>
                                                 <constraint firstItem="XY5-te-GTR" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="FXl-Bq-sqL"/>
@@ -141,13 +141,13 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xps-1z-4ew">
-                                            <rect key="frame" x="0.0" y="281" width="293" height="23.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="291" width="293" height="23.333333333333314"/>
                                             <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keB-bU-OFe">
-                                            <rect key="frame" x="317.33333333333331" y="280" width="25.666666666666686" height="25.666666666666686"/>
+                                            <rect key="frame" x="317.33333333333331" y="290" width="25.666666666666686" height="25.666666666666686"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal">

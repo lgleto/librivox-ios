@@ -136,19 +136,9 @@ class BookDetailsVC: AdaptedVC {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "detailsToPlayer") {
-            let destVC = segue.destination as! PlayerVC
-            destVC.book = sender as! PlayableItemProtocol
-        } else if (segue.identifier == "homeToBookDetail"){
-            
-        }
-        
-    }
-    
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
-        performSegue(withIdentifier: "detailsToPlayer", sender: book)
+        updateUserParameter("lastBook", value: (book?._id)!)
     }
     
 }
