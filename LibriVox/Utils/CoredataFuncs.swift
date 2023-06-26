@@ -11,6 +11,19 @@ import UIKit
 import SwaggerClient
 import FirebaseAuth
 
+func calculateSectionWeight(sectionTime: Int, totalBookTime: Int) -> Double {
+    let sectionTimeInSeconds = Double(sectionTime) / 1000.0
+    let totalBookTimeInSeconds = Double(totalBookTime) / 1000.0
+    
+    guard totalBookTimeInSeconds > 0 else {
+        return 0.0 // Return 0 if the total book time is zero or negative to avoid division by zero
+    }
+    
+    let weight = (sectionTimeInSeconds / totalBookTimeInSeconds) * 100.0
+    return weight
+}
+
+
 func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -42,7 +55,7 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
                     section.sectionNumber = sectionData.sectionNumber
                     section.playTime = sectionData.playtime
                     section.fileName = sectionData.fileName
-                    
+                    /*section.weight = calculateSectionWeight(sectionTime: Int(from: section.playTime ?? 0), totalBookTime: Int(newBookData.totalTimeSecs))*/
                     sections.insert(section)
                 }
                 

@@ -139,7 +139,7 @@ class BookDetailsVC: AdaptedVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailsToPlayer") {
             let destVC = segue.destination as! PlayerVC
-            destVC.book = sender as! Audiobook
+            destVC.book = sender as! PlayableItemProtocol
         } else if (segue.identifier == "homeToBookDetail"){
             
         }

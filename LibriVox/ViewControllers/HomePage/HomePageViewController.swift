@@ -84,12 +84,12 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     @IBAction func playButton(_ sender: Any) {
         if (!checkIfFileExists(book: localBooks[1])) {
-            PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1]) { _ , book in
+            PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1] as! PlayableItemProtocol) { _ , book in
                 PlayerVC.show(parentVC: self, book: book)
                 
             }
         } else {
-            PlayerVC.show(parentVC: self, book: localBooks[1])
+            PlayerVC.show(parentVC: self, book: localBooks[1] as! PlayableItemProtocol)
         }
         
     }
@@ -107,7 +107,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "homepageToPlayer") {
             let destVC = segue.destination as! PlayerVC
-            destVC.book = sender as! Audiobook
+            destVC.book = sender as! PlayableItemProtocol
         } else if (segue.identifier == "homeToBookDetail"){
             let destVC = segue.destination as! BookDetailsVC
             destVC.book = sender as? Audiobook
