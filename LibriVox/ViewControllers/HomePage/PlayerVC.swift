@@ -11,20 +11,20 @@ import SSZipArchive
 import AVFoundation
 
 protocol DataDelegate: AnyObject {
-    func didDismissWithData(currentSection: Int, book: Audiobook)
+    func didDismissWithData(currentSection: Int, book: PlayableItemProtocol)
 }
 
 
 class PlayerVC: UIViewController, DataDelegate {
     
-    func didDismissWithData(currentSection: Int, book:Audiobook) {
+    func didDismissWithData(currentSection: Int, book:PlayableItemProtocol) {
         // Handle the passed data here
         self.currentSection = currentSection
         self.book = book
     }
     
     static func show(parentVC   : UIViewController,
-                     book: Audiobook
+                     book: PlayableItemProtocol
     )
       {
         let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
@@ -50,7 +50,7 @@ class PlayerVC: UIViewController, DataDelegate {
             playMP3(newSection: true)
         }
     }
-    var book = Audiobook()
+    var book : PlayableItemProtocol?
     var basefolder = ""
     var isChangingSlidePosition = false
     
@@ -60,7 +60,7 @@ class PlayerVC: UIViewController, DataDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.navigationItem.title = book.title
+        self.navigationItem.title = book?.title
         
         
         
@@ -78,26 +78,28 @@ class PlayerVC: UIViewController, DataDelegate {
         
         
         if (!playerHandler.isPlaying || newSection){
-            basefolder = folderPath(id: book._id!)
-            let fileNames = getFilesInFolder(folderPath: basefolder)
-            let url = "\(basefolder)/\(fileNames![currentSection ?? 0])"
-            let urlString = URL(fileURLWithPath:  url )
-            getCoverBook(id: book._id!, url: book.urlLibrivox!) {  image in
-                self.playerHandler.prepareSongAndSession(
-                    urlString: urlString.absoluteString,
-                    image: image!,
-                    title: self.book.title ?? "Title Not found",
-                    artist: displayAuthors(authors: self.book.authors!),
-                    albumTitle: self.book.title!,
-                    duration: Int(self.book.sections![self.currentSection ?? 1  - 1].playtime!)!)
+            if let book = book{
+                basefolder = folderPath(id: book._id!)
+                let fileNames = getFilesInFolder(folderPath: basefolder)
+                let url = "\(basefolder)/\(fileNames![currentSection ?? 0])"
+                let urlString = URL(fileURLWithPath:  url )
+                    self.playerHandler.prepareSongAndSession(
+                        urlString: urlString.absoluteString,
+                        image:  UIImage(systemName: "person.crop.square")!,
+                        title: book.title ?? "Title Not found",
+                        artist: "",
+                        albumTitle: book.title!,
+                        duration: Int(book.sections![currentSection ?? 1  - 1].playtime!)!)
+           
+                playerHandler.book = book
+                playerHandler.currentSection = currentSection ?? 0
             }
-            playerHandler.book = book
-            playerHandler.currentSection = currentSection ?? 0
+            
         }
         
-        labelMaxTime.text = secondsToTime(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].playtime!)!)!)
-        slider.maximumValue = secondsToMillis(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1-1].playtime!)!)!)
-        titleLabel.text = titlePlayer(bookTitle: (playerHandler.book?.title!)!, sectionTitle: (playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].title!)!)
+        labelMaxTime.text = secondsToTime(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].playtime)!)!)
+        slider.maximumValue = secondsToMillis(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1-1].playtime)!)!)
+        titleLabel.text = titlePlayer(bookTitle: (playerHandler.book?.title)!, sectionTitle: (playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].title)!)
 
 
    
@@ -150,7 +152,7 @@ class PlayerVC: UIViewController, DataDelegate {
     
     
     @IBAction func sectionsBTN(_ sender: Any) {
-        SectionsTVC.showSections(parentVC: self,title: "titulo", book: book) { yes , book, currentSection in
+        SectionsTVC.showSections(parentVC: self,title: "titulo", book: book!) { yes , book, currentSection in
             if (yes) {
                 self.book = book
                 self.currentSection = currentSection
@@ -170,7 +172,7 @@ class PlayerVC: UIViewController, DataDelegate {
             
         } else if (segue.identifier == "PlayerToSections"){
             let destVC = segue.destination as! SectionsTVC
-            destVC.book = sender as? Audiobook
+            destVC.book = sender as? PlayableItemProtocol
         }
         
     }

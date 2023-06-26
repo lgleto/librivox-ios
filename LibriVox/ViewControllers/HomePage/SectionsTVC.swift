@@ -18,16 +18,16 @@ class SectionsTVC: UITableViewController {
     
     static func showSections(parentVC: UIViewController,
                              title: String,
-                             book: Audiobook,
-                             onCallback: ((Bool, Audiobook, Int) -> Void)?)
+                             book: PlayableItemProtocol,
+                             onCallback: ((Bool, PlayableItemProtocol, Int) -> Void)?)
     {
         SectionsTVC.showSections(parentVC: parentVC, content: .error(title: title), book: book, onCallback: onCallback)
     }
     
     static func showSections(parentVC: UIViewController,
                              content: Content,
-                             book: Audiobook,
-                             onCallback: ((Bool,Audiobook, Int) -> Void)?)
+                             book: PlayableItemProtocol,
+                             onCallback: ((Bool,PlayableItemProtocol, Int) -> Void)?)
     {
         let storyBoard = UIStoryboard(name: "HomePage", bundle: nil)
         let vc: SectionsTVC = storyBoard.instantiateViewController(withIdentifier: "SectionsTVC") as! SectionsTVC
@@ -47,9 +47,9 @@ class SectionsTVC: UITableViewController {
     
     
     @IBOutlet var SectionsTV: UITableView!
-    var book : Audiobook?
+    var book : PlayableItemProtocol?
     weak var delegado: DataDelegate?
-    var callback: ((Bool , Audiobook, Int) -> Void)?
+    var callback: ((Bool , PlayableItemProtocol, Int) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ class SectionsTVC: UITableViewController {
         let cell = SectionsTV.dequeueReusableCell(withIdentifier: "SectionsCell", for: indexPath) as! SectionsCell
         let section = book?.sections?[indexPath.row]
         
-        let seconds = Int(section?.playtime ?? "Not found") ?? 0
+        let seconds = Int(section?.playtime ?? "0") ?? 0
         
         cell.titleSection.text = section?.title
         cell.durationSection.text! = "Duration: \(secondsToMinutes(seconds: seconds))min "

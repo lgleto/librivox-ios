@@ -38,7 +38,7 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     private var playerItem : AVPlayerItem?
     private var progressUpdateTimer: Timer?
     
-    var book: Audiobook?
+    var book: PlayableItemProtocol?
     var currentSection: Int?
     var urlString   : String?
     var image    : UIImage?

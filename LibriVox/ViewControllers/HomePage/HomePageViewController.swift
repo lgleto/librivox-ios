@@ -16,11 +16,14 @@ import Alamofire
 class HomePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBOutlet weak var authorBook: UILabel!
     
+    @IBOutlet weak var durationBook: UILabel!
+    @IBOutlet weak var titleBook: UILabel!
     @IBOutlet weak var playBTN: UIButton!
     @IBOutlet weak var IndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var nameText: UILabel!
-    @IBOutlet weak var imgBook: UIImageView!
+    @IBOutlet weak var imgBook: LoadingImage!
     @IBOutlet weak var backgroundContinueReading: UIView!
     @IBOutlet weak var progress: UIProgressView!
     let db = Firestore.firestore()
@@ -55,12 +58,12 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         loadCurrentUser { user in
             guard let name = Auth.auth().currentUser?.displayName else { return }
             self.nameText.text = "Hello \(user?.username ?? name )"
+            
+            if let bookId = user?.lastBook, let audioBook = getBookByIdCD(id: bookId){
+                self.setLastBook(audioBook: audioBook)
+            }
         }
-        
-        
-        imgBook.layer.cornerRadius = 5
-        view.clipsToBounds = true
-        
+
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
         
         trendingBooks.delegate = self
@@ -68,15 +71,25 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    
+    func setLastBook(audioBook: AudioBooks_Data){
+        if let imgData = audioBook.image, let img = UIImage(data: imgData) {
+                self.imgBook.loadImage(from: img)
+            }
+        titleBook.text = audioBook.title
+        durationBook.text = "Duratin: \(audioBook.totalTime)"
+        authorBook.text = "Author(s): \(audioBook.authors)"
+        
+        progress.setProgress(45, animated: true)
+        
+    }
     @IBAction func playButton(_ sender: Any) {
         if (!checkIfFileExists(book: localBooks[1])) {
-            PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1]) { _ , book in
+            PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1] as! PlayableItemProtocol) { _ , book in
                 PlayerVC.show(parentVC: self, book: book)
                 
             }
         } else {
-            PlayerVC.show(parentVC: self, book: localBooks[1])
+            PlayerVC.show(parentVC: self, book: localBooks[1] as! PlayableItemProtocol)
         }
         
     }
@@ -94,13 +107,11 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "homepageToPlayer") {
             let destVC = segue.destination as! PlayerVC
-            destVC.book = sender as! Audiobook
+            destVC.book = sender as! PlayableItemProtocol
         } else if (segue.identifier == "homeToBookDetail"){
             let destVC = segue.destination as! BookDetailsVC
             destVC.book = sender as? Audiobook
         }
-        
-        
     }
     
     
@@ -112,7 +123,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             print("Local Books count->" , localBooks.count)
             return localBooks.count
         }
-        
     }
     
     

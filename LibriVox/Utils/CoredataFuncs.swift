@@ -11,6 +11,19 @@ import UIKit
 import SwaggerClient
 import FirebaseAuth
 
+func calculateSectionWeight(sectionTime: Int, totalBookTime: Int) -> Double {
+    let sectionTimeInSeconds = Double(sectionTime) / 1000.0
+    let totalBookTimeInSeconds = Double(totalBookTime) / 1000.0
+    
+    guard totalBookTimeInSeconds > 0 else {
+        return 0.0 // Return 0 if the total book time is zero or negative to avoid division by zero
+    }
+    
+    let weight = (sectionTimeInSeconds / totalBookTimeInSeconds) * 100.0
+    return weight
+}
+
+
 func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -42,7 +55,7 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
                     section.sectionNumber = sectionData.sectionNumber
                     section.playTime = sectionData.playtime
                     section.fileName = sectionData.fileName
-                    
+                    /*section.weight = calculateSectionWeight(sectionTime: Int(from: section.playTime ?? 0), totalBookTime: Int(newBookData.totalTimeSecs))*/
                     sections.insert(section)
                 }
                 
@@ -98,6 +111,8 @@ func addBookCD(book: Book) {
                 existingBookInfo.isFav = book.isFav ?? existingBookInfo.isFav
                 existingBookInfo.isReading = book.isReading ?? existingBookInfo.isReading
                 existingBookInfo.isFinished = book.isFinished ?? existingBookInfo.isFinished
+                existingBookInfo.sectionStopped = book.sectionStopped ?? existingBookInfo.sectionStopped
+                existingBookInfo.timeStopped = Int32(book.timeStopped ?? 0)
                 
                 try context.save()
                 print("Updated the book.")
@@ -109,6 +124,8 @@ func addBookCD(book: Book) {
             bookUser.isFav = book.isFav ?? false
             bookUser.isReading = book.isReading ?? false
             bookUser.isFinished = book.isFinished ?? false
+            bookUser.sectionStopped = book.sectionStopped ?? nil
+            bookUser.timeStopped = Int32(book.timeStopped ?? 0)
             bookUser.audioBook_Data = audiobook
             
             currentUser.addToBooks_Info(bookUser)
@@ -121,7 +138,23 @@ func addBookCD(book: Book) {
     }
 }
 
-
+func getBookByIdCD(id: String) -> AudioBooks_Data? {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let bookRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookRequest.predicate = NSPredicate(format: "id == %@", id)
+    
+    do {
+        let audiobooks = try context.fetch(bookRequest)
+        
+        if let audiobook = audiobooks.first {
+            return audiobook
+        }
+    } catch {
+        print("Error: \(error)")
+    }
+    return nil
+}
 
 /* CORE DATA*/
 func fetchBooksByParameterCD(parameter: String, value: Bool) -> [Books_Info] {

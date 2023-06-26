@@ -12,11 +12,11 @@ struct Book {
     var isReading: Bool?
     var isFav: Bool?
     var isFinished: Bool?
-    var sectionStopped: Int?
+    var sectionStopped: String?
     var timeStopped: Int?
     var imageUrl: String?
     
-    init(book: Audiobook, isReading: Bool? = nil, isFav: Bool? = nil, isFinished: Bool? = nil, sectionStopped: Int? = nil, timeStopped: Int? = nil, imageUrl: String? = nil) {
+    init(book: Audiobook, isReading: Bool? = nil, isFav: Bool? = nil, isFinished: Bool? = nil, sectionStopped: String? = nil, timeStopped: Int? = nil, imageUrl: String? = nil) {
         self.book = book
         self.isReading = isReading
         self.isFav = isFav

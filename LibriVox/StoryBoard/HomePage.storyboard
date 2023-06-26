@@ -105,7 +105,7 @@
                                                         <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="P9b-e9-NJt"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="28187" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="83" width="77" height="120"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -295,11 +295,14 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" style="editor" id="76W-U2-02L"/>
                     <connections>
+                        <outlet property="authorBook" destination="Pht-Q2-Q9t" id="V3i-y9-nZu"/>
                         <outlet property="backgroundContinueReading" destination="cPd-i5-3P4" id="ibQ-3m-Mxa"/>
+                        <outlet property="durationBook" destination="Jbv-UM-8Zy" id="dcT-20-BZn"/>
                         <outlet property="imgBook" destination="geb-Va-GlX" id="bm2-Gh-CzO"/>
                         <outlet property="nameText" destination="aoj-7l-jfp" id="HiY-gl-li3"/>
                         <outlet property="playBTN" destination="hV4-CM-HWg" id="am3-qW-pQc"/>
                         <outlet property="progress" destination="XY5-te-GTR" id="hjF-WZ-u9D"/>
+                        <outlet property="titleBook" destination="U6p-35-u7d" id="LFL-9q-fui"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
                         <segue destination="y1Z-nm-UYf" kind="show" identifier="homeToBookDetail" id="Sw7-E8-QYW"/>
                         <segue destination="MjL-5a-e21" kind="show" identifier="allTrending" id="7XY-Ah-lvC"/>
@@ -339,13 +342,13 @@
                                             <rect key="frame" x="10" y="10" width="349" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capter 1: Qualquer coisa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7y-Iv-nH1">
-                                                    <rect key="frame" x="20" y="10.000000000000002" width="269" height="17.666666666666671"/>
+                                                    <rect key="frame" x="20" y="10.000000000000002" width="269" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yda-MP-1Tg">
-                                                    <rect key="frame" x="20" y="36.666666666666664" width="269" height="15.333333333333336"/>
+                                                    <rect key="frame" x="20" y="34" width="269" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -802,7 +805,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmT-W7-36I">
-                                <rect key="frame" x="16" y="111.66666666666669" width="343" height="560.33333333333326"/>
+                                <rect key="frame" x="16" y="115.66666666666669" width="343" height="556.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -885,7 +888,7 @@
                                 <state key="normal" image="forward.end.alt.fill" catalog="system"/>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ui4-VC-J8Z">
-                                <rect key="frame" x="52.333333333333343" y="680" width="274.33333333333326" height="31"/>
+                                <rect key="frame" x="53.666666666666657" y="680" width="271.66666666666674" height="31"/>
                                 <connections>
                                     <action selector="sliderPositionBeginChanged:" destination="eKj-cy-cEV" eventType="valueChanged" id="4s0-9p-quk"/>
                                     <action selector="sliderPositionChanged:" destination="eKj-cy-cEV" eventType="valueChanged" id="x0V-vz-g3M"/>
@@ -893,13 +896,13 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYk-4V-S6I">
-                                <rect key="frame" x="15.999999999999998" y="680" width="30.333333333333329" height="30"/>
+                                <rect key="frame" x="16" y="680" width="31.666666666666671" height="30"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imr-BI-zqB">
-                                <rect key="frame" x="328.66666666666669" y="680" width="30.333333333333314" height="30"/>
+                                <rect key="frame" x="327.33333333333331" y="680" width="31.666666666666686" height="30"/>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -919,7 +922,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twb-aA-SaS">
-                                <rect key="frame" x="0.0" y="79" width="375" height="24.666666666666671"/>
+                                <rect key="frame" x="0.0" y="79" width="375" height="28.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -973,16 +976,10 @@
             <point key="canvasLocation" x="2936.8000000000002" y="1424.6305418719212"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="geb-Va-GlX">
-            <size key="intrinsicContentSize" width="305" height="475"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="g3y-Fd-V1A"/>
+        <segue reference="Sw7-E8-QYW"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="28187" width="305" height="475"/>
         <image name="backward.end.alt.fill" catalog="system" width="128" height="64"/>
         <image name="download" width="476" height="512"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="123"/>

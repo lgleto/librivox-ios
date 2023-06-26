@@ -199,31 +199,31 @@ func loadImageFromDocumentDirectory(id: String) -> UIImage? {
 
 
 /*func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage) -> Void){
-    guard let authorId = authorId else {
-        DispatchQueue.main.async {
-            callback(nil)
-        }
-        return
-    }
-    
-    if let cachedImage = ImageCache.shared.authorPhoto(for: authorId) {
-        DispatchQueue.main.async {
-            callback(cachedImage)
-        }
-    }else{
-        getWikipediaLink(authorId: authorId){ title in
-            
-            let name = title.lastPathComponent
-            getMainImageFromWikipedia(name: name){imgC in
-                if let imgC = imgC{
-                    callback(imgC)
-                    ImageCache.shared.insertAuthorPhoto(imgC, for: (authorId as NSString) as String)
-                }else{callback(nil)}
-            }
-        }
-    }
-    
-}*/
+ guard let authorId = authorId else {
+ DispatchQueue.main.async {
+ callback(nil)
+ }
+ return
+ }
+ 
+ if let cachedImage = ImageCache.shared.authorPhoto(for: authorId) {
+ DispatchQueue.main.async {
+ callback(cachedImage)
+ }
+ }else{
+ getWikipediaLink(authorId: authorId){ title in
+ 
+ let name = title.lastPathComponent
+ getMainImageFromWikipedia(name: name){imgC in
+ if let imgC = imgC{
+ callback(imgC)
+ ImageCache.shared.insertAuthorPhoto(imgC, for: (authorId as NSString) as String)
+ }else{callback(nil)}
+ }
+ }
+ }
+ 
+ }*/
 
 
 func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void) {
@@ -232,8 +232,8 @@ func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void)
     guard let authorId = authorId else {
         DispatchQueue.main.async {
             callback(defaultAuthorPhoto)}
-            return
-        }
+        return
+    }
     
     if let cachedImage = ImageCache.shared.authorPhoto(for: authorId) {
         DispatchQueue.main.async {
@@ -243,7 +243,7 @@ func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void)
         getWikipediaLink(authorId: authorId) { title in
             guard let title = title else {
                 ImageCache.shared.insertAuthorPhoto(defaultAuthorPhoto, for: authorId)
-                    callback(defaultAuthorPhoto)
+                callback(defaultAuthorPhoto)
                 return
             }
             
@@ -623,25 +623,25 @@ func checkIfFileExists(book:Audiobook) -> Bool {
         do {
             
             let attributes = try fileManager.attributesOfItem(atPath: basefolder)
-                if let type = attributes[FileAttributeKey.type] as? FileAttributeType,
-                   type == FileAttributeType.typeDirectory {
-                    // The specific folder exists
-                    print("The specific folder exists.")
-                    return true
-                    //
-                    
-                } else {
-                    // A file with the same name exists, but it's not a folder
-                    print("A file with the same name exists, but it's not a folder.")
-                    return false
-                    
-                }
-            } catch {
-                print("Error: \(error)")
+            if let type = attributes[FileAttributeKey.type] as? FileAttributeType,
+               type == FileAttributeType.typeDirectory {
+                // The specific folder exists
+                print("The specific folder exists.")
+                return true
+                //
+                
+            } else {
+                // A file with the same name exists, but it's not a folder
+                print("A file with the same name exists, but it's not a folder.")
                 return false
-                // Error occurred while retrieving attributes
                 
             }
+        } catch {
+            print("Error: \(error)")
+            return false
+            // Error occurred while retrieving attributes
+            
+        }
     } else {
         // The specific folder does not exist
         print("The specific folder does not exist.")
@@ -655,3 +655,30 @@ func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
     let finalTitle = ("\(bookTitle) - \(sectionTitle)")
     return finalTitle
 }
+
+
+protocol PlayableItemProtocol {
+    var _id      : String?    { get set }
+    var title    : String?   { get set }
+    var imageUrl : String?   { get set }
+    var urlZipFile  : String?   { get set }
+    var timeStopped : Int?      { get set }
+    var sectionStopped : String?     { get set }
+    var isFav : Bool?     { get set }
+    var sections : [Section]? { get set }
+    
+    
+}
+
+extension Audiobook : PlayableItemProtocol {
+}
+
+
+
+/*extension AudioBooks_Data : PlayableItemProtocol {
+    
+}*/
+
+
+
+

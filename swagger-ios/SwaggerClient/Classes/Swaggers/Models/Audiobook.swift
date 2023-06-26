@@ -25,6 +25,11 @@ public struct Audiobook: Codable {
     public var urlRss: String?
     public var totaltime: String?
     public var totaltimesecs: Int?
+    
+    public var imageUrl : String?
+    public var timeStopped : Int?
+    public var sectionStopped : String?
+    public var isFav : Bool?
 
     public init(_id: String? = nil, title: String? = nil, _description: String? = nil, genres: [Genre]? = nil, authors: [Author]? = nil, numSections: String? = nil, sections: [Section]? = nil, language: String? = nil, urlZipFile: String? = nil, urlLibrivox: String? = nil, urlProject: String? = nil, urlRss: String? = nil, totaltime: String? = nil, totaltimesecs: Int? = nil) {
         self._id = _id

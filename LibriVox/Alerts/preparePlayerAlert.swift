@@ -13,16 +13,16 @@ class PreparePlayerAlert: UIViewController {
 
   static func show(parentVC: UIViewController,
            title: String,
-                   book: Audiobook,
-           onCallback: ((Bool, Audiobook) -> Void)?)
+                   book: PlayableItemProtocol,
+           onCallback: ((Bool, PlayableItemProtocol) -> Void)?)
   {
       PreparePlayerAlert.show(parentVC: parentVC, content: .error(title: title), book: book, onCallback: onCallback)
   }
 
   static func show(parentVC: UIViewController,
            content: Content,
-                   book: Audiobook,
-           onCallback: ((Bool,Audiobook) -> Void)?)
+                   book: PlayableItemProtocol,
+           onCallback: ((Bool,PlayableItemProtocol) -> Void)?)
   {
     let storyBoard = UIStoryboard(name: "HomePage", bundle: nil)
     let vc: PreparePlayerAlert = storyBoard.instantiateViewController(withIdentifier: "PreparePlayerAlert") as! PreparePlayerAlert
@@ -49,8 +49,8 @@ class PreparePlayerAlert: UIViewController {
     @IBOutlet weak var currentBytes: UILabel!
     
     
-  var callback: ((Bool , Audiobook) -> Void)?
-    var book: Audiobook?
+  var callback: ((Bool , PlayableItemProtocol) -> Void)?
+    var book: PlayableItemProtocol?
     
   var content: Content = .empty
 
