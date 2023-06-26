@@ -98,6 +98,8 @@ func addBookCD(book: Book) {
                 existingBookInfo.isFav = book.isFav ?? existingBookInfo.isFav
                 existingBookInfo.isReading = book.isReading ?? existingBookInfo.isReading
                 existingBookInfo.isFinished = book.isFinished ?? existingBookInfo.isFinished
+                existingBookInfo.sectionStopped = book.sectionStopped ?? existingBookInfo.sectionStopped
+                existingBookInfo.timeStopped = Int32(book.timeStopped ?? 0)
                 
                 try context.save()
                 print("Updated the book.")
@@ -109,6 +111,8 @@ func addBookCD(book: Book) {
             bookUser.isFav = book.isFav ?? false
             bookUser.isReading = book.isReading ?? false
             bookUser.isFinished = book.isFinished ?? false
+            bookUser.sectionStopped = book.sectionStopped ?? nil
+            bookUser.timeStopped = Int32(book.timeStopped ?? 0)
             bookUser.audioBook_Data = audiobook
             
             currentUser.addToBooks_Info(bookUser)
@@ -121,7 +125,23 @@ func addBookCD(book: Book) {
     }
 }
 
-
+func getBookByIdCD(id: String) -> AudioBooks_Data? {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let bookRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookRequest.predicate = NSPredicate(format: "id == %@", id)
+    
+    do {
+        let audiobooks = try context.fetch(bookRequest)
+        
+        if let audiobook = audiobooks.first {
+            return audiobook
+        }
+    } catch {
+        print("Error: \(error)")
+    }
+    return nil
+}
 
 /* CORE DATA*/
 func fetchBooksByParameterCD(parameter: String, value: Bool) -> [Books_Info] {

@@ -218,8 +218,13 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
 
 
 func getAllBooks() {
+    guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
+        return
+        
+    }
     let db = Firestore.firestore()
-    let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+    
+    let userRef = db.collection("users").document(authUID)
     let bookCollectionRef = userRef.collection("library")
     
     bookCollectionRef.addSnapshotListener { snapshot, error in
@@ -241,7 +246,7 @@ func getAllBooks() {
                 let isReading = document.get("isReading") as? Bool ?? false
                 let isFav = document.get("isFav") as? Bool
                 let isFinished = document.get("isFinished") as? Bool
-                let sectionStopped = document.get("sectionStopped") as? Int
+                let sectionStopped = document.get("sectionStopped") as? String
                 let timeStopped = document.get("timeStopped") as? Int
                 
                 let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped)
@@ -290,6 +295,21 @@ func updateBookParameter(_ parameter: String, value: Bool?, documentID: String) 
     documentRef.updateData(updateData) { error in
         if let error = error {
             print("Error updating book parameter: \(error.localizedDescription)")
+        }
+    }
+}
+
+func updateUserParameter(_ parameter: String, value: Bool?) {
+    
+    let db = Firestore.firestore()
+    //let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+    var dataToUpdate = [String: Any]()
+    
+    dataToUpdate = [parameter: value]
+    
+    firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid).updateData(dataToUpdate) { err in
+        if let err = err {
+            print("Error writing document: \(err.localizedDescription)")
         }
     }
 }
