@@ -13,7 +13,13 @@ import FirebaseFirestore
 import SwaggerClient
 
 class ReadingVC: UITableViewController {
-    var finalList = [AudioBooks_Data]()
+    var finalList = [AudioBooks_Data](){
+        didSet {
+            self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+            checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
+        }
+    }
+    
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -24,9 +30,6 @@ class ReadingVC: UITableViewController {
     
     @objc func contextDidChange(_ notification: Notification) {
         finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
-        
-        self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
-        checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
     }
     
     override func viewDidLoad() {

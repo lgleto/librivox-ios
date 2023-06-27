@@ -15,7 +15,7 @@ import CoreData
 
 
 
-class BookDetailsVC: AdaptedVC {
+class BookDetailsVC: UIViewController {
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
     @IBOutlet weak var showMoreBtn: UIButton!
     @IBOutlet weak var languageBook: UILabel!
@@ -74,16 +74,9 @@ class BookDetailsVC: AdaptedVC {
             
             guard let documentID = book._id else {return}
             
-            
             let audiobook = getBookByIdCD(id: documentID)
             favBtn.isSelected = audiobook?.isFav ?? false
             
-            /*isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
-                DispatchQueue.main.async {
-                    
-                    self.favBtn.isSelected = isMarked ?? false ? true : false
-                }
-            }*/
         }
     }
     
@@ -100,13 +93,15 @@ class BookDetailsVC: AdaptedVC {
             bookImg.loadImage(from: img)
             backgroundImage.loadImage(from: img)
         }else{
-            getCoverBook(id: book._id!,url: book.urlLibrivox!){
-                img in
-                if let img = img{
-                    self.bookImg.loadImage(from: img)
-                    self.backgroundImage.loadImage(from: img)
-                }
-            }
+            self.getCoverBook(id: book._id!,url: book.urlLibrivox!){
+                        img in
+                        if let img = img{
+                            self.bookImg.loadImage(from: img)
+                            self.backgroundImage.loadImage(from: img)
+                            
+                            self.img = img
+                        }
+                    }
         }
         
         let authors = displayAuthors(authors: book.authors ?? [])
@@ -129,7 +124,7 @@ class BookDetailsVC: AdaptedVC {
         
         isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
             guard isMarked != nil else{
-                addToCollection(Book(book: book, isFav: newIsFavValue)) { success in}
+                addToCollection(Book(book: book, isFav: newIsFavValue), self.img!) { success in}
                 return
             }
             
@@ -141,6 +136,15 @@ class BookDetailsVC: AdaptedVC {
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
         updateUserParameter("lastBook", value: (book?._id)!)
+        
+        if (!checkIfFileExists(book: book!)) {
+                   PreparePlayerAlert.show(parentVC: self, title: "teste", book: book!) { _ , book in
+                       self.performSegue(withIdentifier: "homepageToPlayer", sender: book)
+                       
+                   }
+               } else {
+                   self.performSegue(withIdentifier: "homepageToPlayer", sender: book!)
+               }
     }
     
 }
@@ -173,31 +177,19 @@ extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
         cell.durationSection.text! = "Duration: \(secondsToMinutes(seconds: seconds))min "
         return cell
     }
+    
+    private func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
+            if let image = loadImageFromDocumentDirectory(id: id){
+                callback(image)
+            }else{
+                getBookCoverFromURL(url: url){image in
+                    guard let image = image else{return}
+                    saveImageToDocumentDirectory(id: id, image: image)
+                    callback(image)
+                }
+            }
+        }
+
 }
 
-/*func isBookMarkedAsFavorite(bookID: String) -> Bool {
-    guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
-        return false
-    }
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
-    userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
-    
-    do {
-        let users = try context.fetch(userFetchRequest)
-        guard let currentUser = users.first else {
-            return false
-        }
-        
-        if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == bookID }) as? Books_Info {
-            return existingBookInfo.isFav
-        }
-        
-    } catch {
-        print("Error: \(error)")
-    }
-    
-    return false
-}*/
+

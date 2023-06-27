@@ -136,22 +136,88 @@ func loadCurrentUser( callback: @escaping (User?)->() ) {
         })
 }
 
-func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
+
+import FirebaseStorage
+
+func saveBookImgFBStorage(bookID: String, image: UIImage, completion: @escaping (URL?) -> Void) {
+    guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+        completion(nil)
+        return
+    }
+    let storage = Storage.storage()
+    let storageRef = storage.reference()
+    
+    let bookCoversRef = storageRef.child("BookCover")
+    
+    let imageRef = bookCoversRef.child("\(bookID).jpg")
+    imageRef.downloadURL { (url, error) in
+        if let error = error {
+            // Image doesn't exist, upload the new image
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            let uploadTask = imageRef.putData(imageData, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    completion(nil)
+                    return
+                }
+                
+                imageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        completion(nil)
+                        return
+                    }
+                    
+                    if let downloadURL = url {
+                        completion((downloadURL))
+                    } else {
+                        completion(nil)
+                    }
+                }
+            }
+            
+            uploadTask.observe(.failure) { errorSnapshot in
+                // Handle upload failure
+                if let error = errorSnapshot.error {
+                    completion(nil)
+                }
+            }
+        } else {
+            // Image already exists, return the URL
+            if let downloadURL = url {
+                completion((downloadURL))
+            } else {
+                completion(nil)
+            }
+        }
+    }
+}
+
+
+func addToCollection(_ book: Book, _ image:UIImage,  completion: @escaping (String?) -> Void) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookCollectionRef = userRef.collection("library")
     
     let documentRef = bookCollectionRef.document(book.book._id!)
-    documentRef.setData(book.getBookDictionary()!) { error in
-        if let error = error {
-            print("Error adding book to collection: \(error.localizedDescription)")
-            completion(nil)
-        } else {
-            print("foi")
-            //addBookCD(book: book)
-            completion(documentRef.documentID)
+    
+    saveBookImgFBStorage(bookID: book.book._id!, image: image){url in
+        if let url = url{
+            
+            var book = book
+            book.imageUrl = url.absoluteString
+            
+            documentRef.setData(book.getBookDictionary()!) { error in
+                if let error = error {
+                    print("Error adding book to collection: \(error.localizedDescription)")
+                    completion(nil)
+                } else {
+                    print("foi")
+                    completion(documentRef.documentID)
+                }
+                
+            }
         }
-        
     }
 }
 
@@ -168,7 +234,7 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
     print(query.description)
     
     query.addSnapshotListener { snapshot, err in
-    
+        
         if let err = err {
             print("Error fetching books: \(err.localizedDescription)")
             completion(false)
@@ -206,8 +272,8 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
             
         }
         
-        }
     }
+}
 
 
 func getAllBooks() {
@@ -250,6 +316,21 @@ func getAllBooks() {
             }
         }
         
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        var existingBookIDs: [String] = []
+        do {
+            let existingBooks = try context.fetch(AudioBooks_Data.fetchRequest()) as! [AudioBooks_Data]
+            existingBookIDs = existingBooks.map { $0.id ?? "" }
+        } catch {
+            print("Error fetching existing books from Core Data: \(error)")
+        }
+        
+        for existingBookID in existingBookIDs {
+            if !documents.contains(where: { $0.documentID == existingBookID }) {
+                deleteAudiobookCD(bookId: existingBookID)
+            }
+        }
     }
 }
 

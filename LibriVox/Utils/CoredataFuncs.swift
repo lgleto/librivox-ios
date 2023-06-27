@@ -23,6 +23,35 @@ func calculateSectionWeight(sectionTime: Int, totalBookTime: Int) -> Double {
     return weight
 }
 
+func deleteAudiobookCD(bookId: String) {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookFetchRequest.predicate = NSPredicate(format: "id == %@", bookId)
+    
+    do {
+        let matchingBooks = try context.fetch(bookFetchRequest)
+        if let existingBook = matchingBooks.first {
+            // Delete related objects first
+            
+            // Delete sections related to the book
+            if let sections = existingBook.sections {
+                for section in sections {
+                    context.delete(section as! NSManagedObject)
+                }
+            }
+            
+            // Delete the book itself
+            context.delete(existingBook)
+            
+            try context.save()
+            print("Deleted the book.")
+        }
+    } catch {
+        print("Error deleting the book: \(error)")
+    }
+}
+
 
 func addAudiobookCD(book: Book) {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -40,6 +69,7 @@ func addAudiobookCD(book: Book) {
             existingBook.isFinished = book.isFinished ?? false
             existingBook.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
             existingBook.timeStopped = Int32(book.timeStopped ?? 0)
+            existingBook.imageUrl = book.imageUrl
             try context.save()
             print("Updated the book.")
         } else {
@@ -55,6 +85,8 @@ func addAudiobookCD(book: Book) {
             newBookData.numSections = audioBook.numSections
             newBookData.totalTime = audioBook.totaltime
             newBookData.totalTimeSecs = Int32(audioBook.totaltimesecs ?? 0)
+            newBookData.imageUrl = audioBook.imageUrl
+            newBookData.urlZipFile = audioBook.urlZipFile
             
             var sections = Set<Sections>()
             
@@ -103,6 +135,35 @@ func addAudiobookCD(book: Book) {
         print("Error: \(error)")
     }
 }
+
+
+/*func addBookCD(book: Book) {
+ let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+ do {
+ 
+ let audiobook = addAudiobookCD(audioBook: book.book)
+ 
+ if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == audiobook?.id! }) as? Books_Info {
+ existingBookInfo.isFav = book.isFav ?? existingBookInfo.isFav
+ existingBookInfo.isReading = book.isReading ?? existingBookInfo.isReading
+ existingBookInfo.isFinished = book.isFinished ?? existingBookInfo.isFinished
+ existingBookInfo.sectionStopped = book.sectionStopped ?? existingBookInfo.sectionStopped
+ existingBookInfo.timeStopped = Int32(book.timeStopped ?? 0)
+ 
+ try context.save()
+ print("Updated the book.")
+ 
+ return
+ }
+ 
+ 
+ try context.save()
+ print("Saved the book_info.")
+ } catch {
+ print("Error: \(error)")
+ }
+ 
+ }*/
 
 func getBookByIdCD(id: String) -> AudioBooks_Data? {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
