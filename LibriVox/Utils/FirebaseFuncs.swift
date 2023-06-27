@@ -292,20 +292,18 @@ func updateBookParameter(_ parameter: String, value: Bool?, documentID: String) 
     }
 }
 
-func addTrendingToBook(book:Book, completion: @escaping (Bool?) -> Void) {
+func addTrendingToBook(book:Audiobook, completion: @escaping (Bool?) -> Void) {
     let db = Firestore.firestore()
     let bookRef = db.collection(TRENDING_COLLECTION)
-    let query = bookRef.whereField("audiobook.id", isEqualTo: book.book._id!)
+    let query = bookRef.whereField("id", isEqualTo: book._id!)
     var levelTrending = 0
-    query.getDocuments { (querySnapshot, error) in
+    query.getDocuments { querySnapshot, error in
         if let error = error {
             print("Error getting documents: \(error)")
             return
         }
         
-        guard let documents = querySnapshot?.documents else {
-            print("No documents found")
-            //TODO: add full book in trending
+        if ((querySnapshot?.documents.count)! <= 0) {
             addBookToTrending(book: book) { yes in
                 if yes! {
                     print("livro guardado")
@@ -314,15 +312,22 @@ func addTrendingToBook(book:Book, completion: @escaping (Bool?) -> Void) {
                     print("erro na gravação")
                 }
             }
+        }
+        
+        guard let documents = querySnapshot?.documents else {
+            print("No documents found")
+            //TODO: add full book in trending
             return
         }
+        
         if let trending = documents.first,
            let trendingStr = trending.get("trending") as? String {
+            print(trending.documentID)
             levelTrending = Int(trendingStr)!
             levelTrending += 5
             
             let newData: [String: String] = [
-                "id": book.book._id!,
+                "id": book._id!,
                 "trending": String(levelTrending)
             ]
             bookRef.document(trending.documentID).updateData(newData){ err in
@@ -341,17 +346,17 @@ func addTrendingToBook(book:Book, completion: @escaping (Bool?) -> Void) {
     }
 }
 
-func addBookToTrending(book:Book, completion: @escaping (Bool?) -> Void) {
+func addBookToTrending(book:Audiobook, completion: @escaping (Bool?) -> Void) {
     let db = Firestore.firestore()
     let bookRef = db.collection(TRENDING_COLLECTION)
-    bookRef.addDocument(data: book.getBookDictionary()!) { err in
+    bookRef.addDocument(data: book.getBookDictionaryWithTrending()!) { err in
         if let err = err {
             print("Error adding book to collection: \(err.localizedDescription)")
             completion(false)
-        } else {
-            completion(true)
-            //addBookCD(book: book)
         }
+            completion(true)
+            return
+            //addBookCD(book: book)
     }
 }
 
