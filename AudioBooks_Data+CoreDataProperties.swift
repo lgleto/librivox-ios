@@ -2,7 +2,7 @@
 //  AudioBooks_Data+CoreDataProperties.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 15/06/2023.
+//  Created by Acesso Gloria MP on 27/06/2023.
 //
 //
 
@@ -20,31 +20,19 @@ extension AudioBooks_Data {
     @NSManaged public var descr: String?
     @NSManaged public var genres: String?
     @NSManaged public var id: String?
+    @NSManaged public var imageUrl: String?
+    @NSManaged public var isFav: Bool
+    @NSManaged public var isFinished: Bool
+    @NSManaged public var isReading: Bool
     @NSManaged public var language: String?
     @NSManaged public var numSections: String?
+    @NSManaged public var sectionStopped: Int32
+    @NSManaged public var timeStopped: Int32
     @NSManaged public var title: String?
     @NSManaged public var totalTime: String?
     @NSManaged public var totalTimeSecs: Int32
-    @NSManaged public var image: Data?
-    @NSManaged public var books_Info: NSSet?
+    @NSManaged public var urlZipFile: String?
     @NSManaged public var sections: NSSet?
-
-}
-
-// MARK: Generated accessors for books_Info
-extension AudioBooks_Data {
-
-    @objc(addBooks_InfoObject:)
-    @NSManaged public func addToBooks_Info(_ value: Books_Info)
-
-    @objc(removeBooks_InfoObject:)
-    @NSManaged public func removeFromBooks_Info(_ value: Books_Info)
-
-    @objc(addBooks_Info:)
-    @NSManaged public func addToBooks_Info(_ values: NSSet)
-
-    @objc(removeBooks_Info:)
-    @NSManaged public func removeFromBooks_Info(_ values: NSSet)
 
 }
 

@@ -13,7 +13,7 @@ import FirebaseFirestore
 import SwaggerClient
 
 class ReadingVC: UITableViewController {
-    var finalList = [Books_Info]()
+    var finalList = [AudioBooks_Data]()
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -61,16 +61,16 @@ class ReadingVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReadingCellTVC", for: indexPath) as! ReadingCellTVC
         
-        let book = finalList[indexPath.row].audioBook_Data
-        cell.titleBook.text = book?.title
-        cell.authorsBook.text = "Author: \(book?.authors)"
+        let book = finalList[indexPath.row]
+        cell.titleBook.text = book.title
+        cell.authorsBook.text = "Author: \(book.authors)"
         cell.imgBook.image = nil
         
-        if let imgData = book?.image, let img = UIImage(data: imgData) {
+       /* if let imgData = book?.image, let img = UIImage(data: imgData) {
             cell.imgBook.loadImage(from: img)
-        }
+        }*/
         
-        cell.durationBook.text = "Duration: \(book?.totalTime)"
+        cell.durationBook.text = "Duration: \(book.totalTime)"
         
         allButtons.append(cell.playBtn)
         
@@ -88,7 +88,7 @@ class ReadingVC: UITableViewController {
         
         if lastBook != sender.tag{
             if let tabBarController = tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: finalList[sender.tag].audioBook_Data!)
+                tabBarController.addChildView(book: finalList[sender.tag])
             }
         }else{sender.isSelected = false}
         
@@ -99,22 +99,10 @@ class ReadingVC: UITableViewController {
         if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
-            detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row].audioBook_Data!)
-            if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
+            detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
+            /*if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
                 detailVC.img = img
-            }
+            }*/
         }
-    }
-}
-
-func updateBookInfoParameter(bookInfo: Books_Info, parameter: String, value: Any) {
-    let context = bookInfo.managedObjectContext
-    bookInfo.setValue(value, forKey: parameter)
-    
-    do {
-        try context?.save()
-        print("Updated the book_info parameter.")
-    } catch {
-        print("Error: \(error)")
     }
 }

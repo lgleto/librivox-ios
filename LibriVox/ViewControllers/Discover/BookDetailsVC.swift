@@ -74,7 +74,9 @@ class BookDetailsVC: AdaptedVC {
             
             guard let documentID = book._id else {return}
             
-            favBtn.isSelected = isBookMarkedAsFavorite(bookID: documentID)
+            
+            let audiobook = getBookByIdCD(id: documentID)
+            favBtn.isSelected = audiobook?.isFav ?? false
             
             /*isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
                 DispatchQueue.main.async {
@@ -172,7 +174,8 @@ extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
-func isBookMarkedAsFavorite(bookID: String) -> Bool {
+
+/*func isBookMarkedAsFavorite(bookID: String) -> Bool {
     guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
         return false
     }
@@ -197,4 +200,4 @@ func isBookMarkedAsFavorite(bookID: String) -> Bool {
     }
     
     return false
-}
+}*/

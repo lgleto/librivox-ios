@@ -658,7 +658,7 @@ func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
 
 
 protocol PlayableItemProtocol {
-    var _id      : String?    { get set }
+   var _id      : String?    { get set }
     var title    : String?   { get set }
     var imageUrl : String?   { get set }
     var urlZipFile  : String?   { get set }
@@ -672,8 +672,6 @@ protocol PlayableItemProtocol {
 
 extension Audiobook : PlayableItemProtocol {
 }
-
-
 
 /*extension AudioBooks_Data : PlayableItemProtocol {
     

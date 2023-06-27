@@ -106,7 +106,7 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                         }
                         
                         UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
-                        saveCurrentUser(name: firstLastText.text!, email: emailText.text!)
+                        //saveCurrentUser(name: firstLastText.text!, email: emailText.text!)
                         self.self.present(home, animated: true, completion: nil)
                         print("user Register")
                         

@@ -148,7 +148,7 @@ func addToCollection(_ book: Book, completion: @escaping (String?) -> Void) {
             completion(nil)
         } else {
             print("foi")
-            addBookCD(book: book)
+            //addBookCD(book: book)
             completion(documentRef.documentID)
         }
         
@@ -244,7 +244,7 @@ func getAllBooks() {
                 
                 let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped)
                 
-                addBookCD(book: bookData)
+                addAudiobookCD(book: bookData)
             } catch {
                 print("Error decoding audiobook: \(error)")
             }

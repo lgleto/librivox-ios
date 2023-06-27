@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class FavoritesVC: UITableViewController {
     //var finalList: [Book] = []
-    var finalList = [Books_Info](){
+    var finalList = [AudioBooks_Data](){
         didSet {
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
             
@@ -50,19 +50,19 @@ class FavoritesVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesCellTVC", for: indexPath) as! FavoritesCellTVC
         
-        let book = finalList[indexPath.row].audioBook_Data
+        let book = finalList[indexPath.row]
         
         cell.favBtn.isSelected = true
         
-        cell.titleBook.text = book?.title
-        cell.authorBook.text = "Author: \(book?.authors)"
+        cell.titleBook.text = book.title
+        cell.authorBook.text = "Author: \(book.authors)"
         cell.genreBook.text = "Genre: "
         cell.imgBook.image = nil
         
-        if let imgData = book?.image, let img = UIImage(data: imgData) {
+        /*if let imgData = book.image, let img = UIImage(data: imgData) {
                 cell.imgBook.loadImage(from: img)
-        }
-        cell.durationBook.text = "Duration: \(book?.totalTime)"
+        }*/
+        cell.durationBook.text = "Duration: \(book.totalTime)"
     
         cell.favBtn.tag = indexPath.row
         cell.favBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
@@ -71,10 +71,10 @@ class FavoritesVC: UITableViewController {
     
     @objc func click(_ sender: UIButton) {
         let rowIndex = sender.tag
-        let book = finalList[rowIndex].audioBook_Data
+        let book = finalList[rowIndex]
         
-        updateBookParameter("isFav", value: false, documentID: (book?.id!)!)
-        updateBookInfoParameter(bookInfo: finalList[rowIndex], parameter: "isFav", value: false)
+        updateBookParameter("isFav", value: false, documentID: (book.id!))
+        updateBookInfoParameter(book: finalList[rowIndex], parameter: "isFav", value: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,10 +82,10 @@ class FavoritesVC: UITableViewController {
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
             
-            detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row].audioBook_Data!)
-            if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
+            detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
+            /*if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
                 detailVC.img = img
-            }
+            }*/
         }
     }
 }

@@ -72,9 +72,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setLastBook(audioBook: AudioBooks_Data){
-        if let imgData = audioBook.image, let img = UIImage(data: imgData) {
+      /*  if let imgData = audioBook.image, let img = UIImage(data: imgData) {
                 self.imgBook.loadImage(from: img)
-            }
+            }*/
         titleBook.text = audioBook.title
         durationBook.text = "Duratin: \(audioBook.totalTime)"
         authorBook.text = "Author(s): \(audioBook.authors)"

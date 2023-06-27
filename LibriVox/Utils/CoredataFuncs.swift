@@ -24,8 +24,10 @@ func calculateSectionWeight(sectionTime: Int, totalBookTime: Int) -> Double {
 }
 
 
-func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
+func addAudiobookCD(book: Book) {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let audioBook = book.book
     
     let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
     bookFetchRequest.predicate = NSPredicate(format: "id == %@", audioBook._id ?? "")
@@ -33,8 +35,16 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
     do {
         let matchingBooks = try context.fetch(bookFetchRequest)
         if let existingBook = matchingBooks.first {
-            return existingBook
+            existingBook.isFav = book.isFav ?? false
+            existingBook.isReading = book.isReading ?? false
+            existingBook.isFinished = book.isFinished ?? false
+            existingBook.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
+            existingBook.timeStopped = Int32(book.timeStopped ?? 0)
+            try context.save()
+            print("Updated the book.")
         } else {
+            
+            
             let newBookData = AudioBooks_Data(context: context)
             newBookData.id = audioBook._id
             newBookData.title = audioBook.title
@@ -61,80 +71,36 @@ func addAudiobookCD(audioBook: Audiobook) -> AudioBooks_Data? {
                 
                 newBookData.sections = sections as NSSet
             }
-
+            
+            
+            newBookData.isFav = book.isFav ?? false
+            newBookData.isReading = book.isReading ?? false
+            newBookData.isFinished = book.isFinished ?? false
+            newBookData.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
+            newBookData.timeStopped = Int32(book.timeStopped ?? 0)
             
             //TODO: IT IS THE BEST APPROACH? I DONT THINK SO
-            let dispatchGroup = DispatchGroup()
-            dispatchGroup.enter()
-            
-            if let url = audioBook.urlLibrivox {
-                getBookCoverFromURL(url: url) { img in
-                    newBookData.image = img?.jpegData(compressionQuality: 1.0)
-                    dispatchGroup.leave()
-                }
-            } else {dispatchGroup.leave()}
-            
-            dispatchGroup.wait()
+            /*let dispatchGroup = DispatchGroup()
+             dispatchGroup.enter()
+             
+             if let url = audioBook.urlLibrivox {
+             getBookCoverFromURL(url: url) { img in
+             newBookData.image = img?.jpegData(compressionQuality: 1.0)
+             dispatchGroup.leave()
+             }
+             } else {dispatchGroup.leave()}
+             
+             dispatchGroup.wait()*/
             
             do {
                 try context.save()
                 //print("Saved the book.")
-                return newBookData
             } catch {
                 print("Error: \(error)")
-                return nil
             }
         }
     } catch {
         print("Error: \(error)")
-        return nil
-    }
-}
-
-
-func addBookCD(book: Book) {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    if let authUID = UserDefaults.standard.string(forKey: "currentUserID") {
-        let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
-        userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
-        
-        do {
-            let users = try context.fetch(userFetchRequest)
-            guard let currentUser = users.first else {
-                return
-            }
-            
-            let audiobook = addAudiobookCD(audioBook: book.book)
-            
-            if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == audiobook?.id! }) as? Books_Info {
-                existingBookInfo.isFav = book.isFav ?? existingBookInfo.isFav
-                existingBookInfo.isReading = book.isReading ?? existingBookInfo.isReading
-                existingBookInfo.isFinished = book.isFinished ?? existingBookInfo.isFinished
-                existingBookInfo.sectionStopped = book.sectionStopped ?? existingBookInfo.sectionStopped
-                existingBookInfo.timeStopped = Int32(book.timeStopped ?? 0)
-                
-                try context.save()
-                print("Updated the book.")
-                
-                return
-            }
-            
-            let bookUser = Books_Info(context: context)
-            bookUser.isFav = book.isFav ?? false
-            bookUser.isReading = book.isReading ?? false
-            bookUser.isFinished = book.isFinished ?? false
-            bookUser.sectionStopped = book.sectionStopped ?? nil
-            bookUser.timeStopped = Int32(book.timeStopped ?? 0)
-            bookUser.audioBook_Data = audiobook
-            
-            currentUser.addToBooks_Info(bookUser)
-            
-            try context.save()
-            print("Saved the book_info.")
-        } catch {
-            print("Error: \(error)")
-        }
     }
 }
 
@@ -156,72 +122,23 @@ func getBookByIdCD(id: String) -> AudioBooks_Data? {
     return nil
 }
 
-/* CORE DATA*/
-func fetchBooksByParameterCD(parameter: String, value: Bool) -> [Books_Info] {
-    /*SELECT *
-     FROM ZUSER_CD AS user
-     JOIN ZBOOKS_INFO AS books ON books.ZUSER = user.Z_PK
-     JOIN ZAUDIOBOOKS_DATA AS audiobooks ON audiobooks.Z_PK = books.ZAUDIOBOOK_DATA
-     WHERE user.ZID = "kioLmq1BWWRFM2wJHCRJnONveLG2"  AND books.ZISFAV = true*/
-     
-    if let authUID = UserDefaults.standard.string(forKey: "currentUserID") {
-           var matchingBooks: [Books_Info] = []
-           let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-           
-           let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
-           userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
-           
-           do {
-               let fetchedUsers = try context.fetch(userFetchRequest)
-               
-               if let currentUser = fetchedUsers.first {
-                   if let booksInfo = currentUser.books_Info {
-                       let bookInfoFetchRequest: NSFetchRequest<Books_Info> = Books_Info.fetchRequest()
-                       bookInfoFetchRequest.predicate = NSPredicate(format: "user == %@ AND \(parameter) == %@", currentUser, NSNumber(value: value))
-                       bookInfoFetchRequest.relationshipKeyPathsForPrefetching = ["audioBook_Data"]
-                       
-                       matchingBooks = try context.fetch(bookInfoFetchRequest)
-                       
-                   }
-               } else {
-                   print("User not found.")
-               }
-           } catch {
-               print("Error: \(error)")
-           }
-           return matchingBooks
-       }
+
+func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data] {
+    var matchingBooks: [AudioBooks_Data] = []
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-       return []
-}
-
-
-
-func saveCurrentUser(name: String, email: String){
-    if let authUID = UserDefaults.standard.string(forKey: "currentUserID"){
-        let fetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        do {
-            let existingUsers = try context.fetch(fetchRequest)
-            
-            if existingUsers.isEmpty {
-                let newUser = User_CD(context: context)
-                newUser.id = authUID
-                newUser.name = name
-                newUser.email = email
-                
-                try context.save()
-                print("User added successfully.")
-            } else {
-                print("User already exists.")
-            }
-        } catch {
-            print("Error: \(error)")
-        }
+    let bookRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookRequest.predicate = NSPredicate(format: "\(parameter) == %@", NSNumber(value: value))
+    
+    do {
+        matchingBooks = try context.fetch(bookRequest)
+    } catch {
+        print("Error: \(error)")
     }
+    
+    return matchingBooks
 }
+
 
 
 func convertToAudiobook(audioBookData: AudioBooks_Data) -> Audiobook {
@@ -261,38 +178,29 @@ func decodeSections(_ sections: NSSet?) -> [Section]? {
 
 
 
-func updateBookInfoParameter(book: Book, parameter: String, value: Any) {
-    guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
-        return
-    }
-    
+func updateBookInfoParameter(book: AudioBooks_Data, parameter: String, value: Any) {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    let userFetchRequest: NSFetchRequest<User_CD> = User_CD.fetchRequest()
-    userFetchRequest.predicate = NSPredicate(format: "id == %@", authUID)
-    
+
+    let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookFetchRequest.predicate = NSPredicate(format: "id == %@", book.id!)
+
     do {
-        let users = try context.fetch(userFetchRequest)
-        guard let currentUser = users.first else {
+        let books = try context.fetch(bookFetchRequest)
+        guard let existingBook = books.first else {
             return
         }
-        
-        if let existingBookInfo = currentUser.books_Info?.first(where: { ($0 as! Books_Info).audioBook_Data?.id == book.book._id }) as? Books_Info {
-            existingBookInfo.setValue(value, forKey: parameter)
-            
-            do {
-                try context.save()
-                print("Updated the book_info parameter.")
-            } catch {
-                print("Error: \(error)")
-            }
-            
-            return
+
+        existingBook.setValue(value, forKey: parameter)
+
+        do {
+            try context.save()
+            print("Updated the book_info parameter.")
+        } catch {
+            print("Error: \(error)")
         }
-        
-        // If the Books_Info object doesn't exist, I can create it here
-        
+
     } catch {
         print("Error: \(error)")
     }
 }
+
