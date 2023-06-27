@@ -9,7 +9,7 @@ import Foundation
 
 
 
-public struct Audiobook: Codable {
+public struct Audiobook : Encodable, Decodable {
 
     public var _id: String?
     public var title: String?
@@ -30,6 +30,43 @@ public struct Audiobook: Codable {
     public var timeStopped : Int?
     public var sectionStopped : String?
     public var isFav : Bool?
+    
+    public func getBookDictionaryWithTrending() -> [String: Any]? {
+        do {
+            var resultDictionary: [String: Any] = [
+                "id": _id,
+                "title": title,
+                "description": _description,
+                "genres": try encodeArray(genres!),
+                "authors": try encodeArray(authors!),
+                "numSections": numSections,
+                "sections": try encodeArray(sections!),
+                "language": language,
+                "urlZipFile": urlZipFile,
+                "urlLibrivox": urlLibrivox,
+                "urlProject": urlProject,
+                "urlRss": urlRss,
+                "totaltime": totaltime,
+                "totaltimesecs": totaltimesecs,
+                "trending": "0"
+            ]
+            
+            print(resultDictionary)
+            return resultDictionary
+        } catch {
+            print("Error converting book to dictionary: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    private func encodeArray<T: Encodable>(_ array: [T]) throws -> Any {
+        let jsonData = try JSONEncoder().encode(array)
+        let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+        return jsonObject
+    }
+
+    
+    
 
     public init(_id: String? = nil, title: String? = nil, _description: String? = nil, genres: [Genre]? = nil, authors: [Author]? = nil, numSections: String? = nil, sections: [Section]? = nil, language: String? = nil, urlZipFile: String? = nil, urlLibrivox: String? = nil, urlProject: String? = nil, urlRss: String? = nil, totaltime: String? = nil, totaltimesecs: Int? = nil) {
         self._id = _id
@@ -47,6 +84,8 @@ public struct Audiobook: Codable {
         self.totaltime = totaltime
         self.totaltimesecs = totaltimesecs
     }
+    
+
 
     public enum CodingKeys: String, CodingKey { 
         case _id = "id"
@@ -65,5 +104,5 @@ public struct Audiobook: Codable {
         case totaltimesecs
     }
     
-    
 }
+

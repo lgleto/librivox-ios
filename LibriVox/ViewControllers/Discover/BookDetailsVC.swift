@@ -136,15 +136,9 @@ class BookDetailsVC: UIViewController {
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
         updateUserParameter("lastBook", value: (book?._id)!)
-        
-        if (!checkIfFileExists(book: book!)) {
-                   PreparePlayerAlert.show(parentVC: self, title: "teste", book: book!) { _ , book in
-                       self.performSegue(withIdentifier: "homepageToPlayer", sender: book)
-                       
-                   }
-               } else {
-                   self.performSegue(withIdentifier: "homepageToPlayer", sender: book!)
-               }
+        addTrendingToBook(book: book!) { yes in
+            print("sucess")
+        }
     }
     
 }

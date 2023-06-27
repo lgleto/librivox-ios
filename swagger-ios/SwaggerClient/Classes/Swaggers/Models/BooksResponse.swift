@@ -9,7 +9,7 @@ import Foundation
 
 
 
-public struct BooksResponse: Codable {
+public struct BooksResponse : Encodable, Decodable {
 
     public var books: [Audiobook]?
 
