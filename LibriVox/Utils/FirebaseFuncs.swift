@@ -276,6 +276,8 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
 
 
 func getAllBooks() {
+    
+    print("oiii \(UserDefaults.standard.string(forKey: "currentUserID"))")
     guard let authUID = UserDefaults.standard.string(forKey: "currentUserID") else {
         return
         

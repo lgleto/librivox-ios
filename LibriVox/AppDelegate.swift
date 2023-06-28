@@ -59,7 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = Firestore.firestore()
         db.settings = settings
 
-        
+        resetCoreDataSchema()
+        //clearUserDefaults()
         SwaggerClientAPI.requestBuilderFactory = AppRequestBuilderFactory()
         return true
     }

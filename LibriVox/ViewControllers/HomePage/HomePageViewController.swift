@@ -83,7 +83,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         durationBook.text = "Duratin: \(audioBook.totalTime)"
         authorBook.text = "Author(s): \(audioBook.authors)"
         
-        progress.setProgress(45, animated: true)
+        print("progresso de \(getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped)))")
+        
+        progress.setProgress(10, animated: true)
         
         
     }

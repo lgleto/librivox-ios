@@ -110,12 +110,14 @@ class BookDetailsVC: UIViewController {
     }
     
     @IBAction func clickFav(_ sender: Any) {
-        guard let newIsFavValue = book?.isFav, let documentID = book?._id else { return }
+        let newIsFavValue = !favBtn.isSelected
+               guard let book = book, let documentID = book._id else {return}
                
-               isBookMarkedAs("isFav", value: true, documentID: documentID) { [weak self] isMarked in
-                   guard isMarked == nil else {
-                       if let image = self?.img {
-                           addToCollection(Book(book: (self?.book)!, isFav: newIsFavValue), image) { _ in }
+               
+               isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
+                   guard isMarked != nil else {
+                       if let image = self.img {
+                           addToCollection(Book(book: book, isFav: newIsFavValue), image) { _ in }
                        }
                        return
                    }

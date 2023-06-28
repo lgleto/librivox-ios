@@ -12,14 +12,11 @@ import SwaggerClient
 import FirebaseAuth
 
 func calculateSectionWeight(sectionTime: Int, totalBookTime: Int) -> Double {
-    let sectionTimeInSeconds = Double(sectionTime) / 1000.0
-    let totalBookTimeInSeconds = Double(totalBookTime) / 1000.0
-    
-    guard totalBookTimeInSeconds > 0 else {
-        return 0.0 // Return 0 if the total book time is zero or negative to avoid division by zero
+    guard totalBookTime > 0 else {
+        return 0.0
     }
     
-    let weight = (sectionTimeInSeconds / totalBookTimeInSeconds) * 100.0
+    let weight = Double(sectionTime) / Double(totalBookTime) * 100
     return weight
 }
 
@@ -32,8 +29,6 @@ func deleteAudiobookCD(bookId: String) {
     do {
         let matchingBooks = try context.fetch(bookFetchRequest)
         if let existingBook = matchingBooks.first {
-            // Delete related objects first
-            
             // Delete sections related to the book
             if let sections = existingBook.sections {
                 for section in sections {
@@ -41,7 +36,6 @@ func deleteAudiobookCD(bookId: String) {
                 }
             }
             
-            // Delete the book itself
             context.delete(existingBook)
             
             try context.save()
@@ -94,7 +88,9 @@ func addAudiobookCD(book: Book) {
                     section.sectionNumber = sectionData.sectionNumber
                     section.playTime = sectionData.playtime
                     section.fileName = sectionData.fileName
-                    /*section.weight = calculateSectionWeight(sectionTime: Int(from: section.playTime ?? 0), totalBookTime: Int(newBookData.totalTimeSecs))*/
+                    if let playTime = Int(section.playTime ?? "0") {
+                        section.weight = calculateSectionWeight(sectionTime: playTime, totalBookTime: audioBook.totaltimesecs ?? 0)
+                    }
                     sections.insert(section)
                 }
 
@@ -108,7 +104,7 @@ func addAudiobookCD(book: Book) {
             newBookData.timeStopped = Int32(book.timeStopped ?? 0)
 
             // Check if the image is already saved in the document directory
-            if isImageSavedInDocumentDirectory(id: audioBook._id!){
+            if !isImageSavedInDocumentDirectory(id: audioBook._id!){
                 downloadAndSaveImage(id: audioBook._id!){result in}
             }
 
@@ -122,6 +118,24 @@ func addAudiobookCD(book: Book) {
         print("Error: \(error)")
     }
 }
+
+func getPercentageOfBook(id: String, sectionNumber: Int) -> Double {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let fetchRequest: NSFetchRequest<Sections> = Sections.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "audioBook_Data.id == %@", id)
+    
+    do {
+        let sections = try context.fetch(fetchRequest)
+        let filteredSections = sections.filter { Int($0.sectionNumber ?? "0") ?? 0 < sectionNumber }
+        let totalWeight = filteredSections.reduce(0.0) { $0 + $1.weight }
+        return totalWeight
+    } catch {
+        print("Error fetching sections: \(error)")
+        return 0.0
+    }
+}
+
 
 
 func getBookByIdCD(id: String) -> AudioBooks_Data? {
