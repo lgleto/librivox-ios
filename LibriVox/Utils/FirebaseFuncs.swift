@@ -177,7 +177,6 @@ func saveBookImgFBStorage(bookID: String, image: UIImage, completion: @escaping 
             }
             
             uploadTask.observe(.failure) { errorSnapshot in
-                // Handle upload failure
                 if let error = errorSnapshot.error {
                     completion(nil)
                 }
@@ -307,8 +306,9 @@ func getAllBooks() {
                 let isFinished = document.get("isFinished") as? Bool
                 let sectionStopped = document.get("sectionStopped") as? String
                 let timeStopped = document.get("timeStopped") as? Int
+                let imageUrl = document.get("imageUrl") as? String
                 
-                let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped)
+                let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped, imageUrl: imageUrl)
                 
                 addAudiobookCD(book: bookData)
             } catch {
@@ -450,6 +450,21 @@ func updateUserParameter(_ parameter: String, value: String) {
     firestore.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid).updateData(dataToUpdate) { err in
         if let err = err {
             print("Error writing document: \(err.localizedDescription)")
+        }
+    }
+}
+
+func getBookCoverFB(id: String, completion: @escaping (UIImage?) -> Void) {
+    let imageRef = storage.child("BookCover/\(id)")
+    
+    imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+        if let error = error {
+            print("Error downloading image: \(error.localizedDescription)")
+            completion(nil)
+        } else if let imageData = data, let image = UIImage(data: imageData) {
+            completion(image)
+        } else {
+            completion(nil) 
         }
     }
 }

@@ -69,9 +69,9 @@ class ReadingVC: UITableViewController {
         cell.authorsBook.text = "Author: \(book.authors)"
         cell.imgBook.image = nil
         
-       /* if let imgData = book?.image, let img = UIImage(data: imgData) {
+        if let img = loadImageFromDocumentDirectory(id: book.id!){
             cell.imgBook.loadImage(from: img)
-        }*/
+        }
         
         cell.durationBook.text = "Duration: \(book.totalTime)"
         
@@ -103,9 +103,9 @@ class ReadingVC: UITableViewController {
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
             detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
-            /*if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
-                detailVC.img = img
-            }*/
+            if let img = loadImageFromDocumentDirectory(id: finalList[indexPath.row].id!) {
+                      detailVC.img = img
+            }
         }
     }
 }

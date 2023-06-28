@@ -53,15 +53,16 @@ class FavoritesVC: UITableViewController {
         let book = finalList[indexPath.row]
         
         cell.favBtn.isSelected = true
-        
-        cell.titleBook.text = book.title
-        cell.authorBook.text = "Author: \(book.authors)"
-        cell.genreBook.text = "Genre: "
-        cell.imgBook.image = nil
-        
-        /*if let imgData = book.image, let img = UIImage(data: imgData) {
-                cell.imgBook.loadImage(from: img)
-        }*/
+        if let title = book.authors{
+            cell.titleBook.text = book.title
+            cell.authorBook.text = title /*"Author: \(book.authors)" ?? ""*/
+            cell.genreBook.text = "Genre: "
+            cell.imgBook.image = nil
+            
+        }
+        if let img = loadImageFromDocumentDirectory(id: book.id!){
+            cell.imgBook.loadImage(from: img)
+        }
         cell.durationBook.text = "Duration: \(book.totalTime)"
     
         cell.favBtn.tag = indexPath.row
@@ -83,9 +84,10 @@ class FavoritesVC: UITableViewController {
             let item = indexPath.item
             
             detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
-            /*if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
-                detailVC.img = img
-            }*/
+            
+            if let img = loadImageFromDocumentDirectory(id: finalList[indexPath.row].id!) {
+                      detailVC.img = img
+            }
         }
     }
 }

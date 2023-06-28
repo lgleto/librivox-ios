@@ -71,15 +71,11 @@ class BookDetailsVC: UIViewController {
             self.title = book.title!
             setData(book: book)
             
-            
             guard let documentID = book._id else {return}
-            
             let audiobook = getBookByIdCD(id: documentID)
             favBtn.isSelected = audiobook?.isFav ?? false
-            
         }
     }
-    
     
     
     @IBAction func clickShowMore(_ sender: Any) {
@@ -89,19 +85,15 @@ class BookDetailsVC: UIViewController {
     }
     
     func setData(book : Audiobook){
-        if let img = img{
-            bookImg.loadImage(from: img)
-            backgroundImage.loadImage(from: img)
-        }else{
-            self.getCoverBook(id: book._id!,url: book.urlLibrivox!){
-                        img in
-                        if let img = img{
-                            self.bookImg.loadImage(from: img)
-                            self.backgroundImage.loadImage(from: img)
-                            
-                            self.img = img
-                        }
-                    }
+        if let img = img {
+            loadBookImages(img)
+        } else if let url = book.urlLibrivox {
+            getCoverBook(id: book._id ?? "", url: url) { [weak self] image in
+                if let image = image {
+                    self?.img = image
+                    self?.loadBookImages(image)
+                }
+            }
         }
         
         let authors = displayAuthors(authors: book.authors ?? [])
@@ -118,18 +110,18 @@ class BookDetailsVC: UIViewController {
     }
     
     @IBAction func clickFav(_ sender: Any) {
-        let newIsFavValue = !favBtn.isSelected
-        guard let book = book, let documentID = book._id else {return}
-        
-        
-        isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
-            guard isMarked != nil else{
-                addToCollection(Book(book: book, isFav: newIsFavValue), self.img!) { success in}
-                return
-            }
-            
-            updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
-        }
+        guard let newIsFavValue = book?.isFav, let documentID = book?._id else { return }
+               
+               isBookMarkedAs("isFav", value: true, documentID: documentID) { [weak self] isMarked in
+                   guard isMarked == nil else {
+                       if let image = self?.img {
+                           addToCollection(Book(book: (self?.book)!, isFav: newIsFavValue), image) { _ in }
+                       }
+                       return
+                   }
+                   
+                   updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
+               }
         
     }
     
@@ -172,18 +164,27 @@ extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    private func loadBookImages(_ image: UIImage) {
+        bookImg.loadImage(from: image)
+        backgroundImage.loadImage(from: image)
+    }
+    
+    
     private func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
-            if let image = loadImageFromDocumentDirectory(id: id){
+        if let image = loadImageFromDocumentDirectory(id: id){
+            callback(image)
+        } else if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String){
+            callback(cachedImage)
+        }else{
+            getBookCoverFromURL(url: url){image in
+                guard let image = image else{return}
+                saveImageToDocumentDirectory(id: id, image: image)
                 callback(image)
-            }else{
-                getBookCoverFromURL(url: url){image in
-                    guard let image = image else{return}
-                    saveImageToDocumentDirectory(id: id, image: image)
-                    callback(image)
-                }
+                
             }
         }
-
+    }
+    
 }
 
 

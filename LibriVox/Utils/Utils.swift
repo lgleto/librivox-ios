@@ -125,17 +125,16 @@ class ImageCache {
     }
 }
 
-func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
-    guard let imageURL = URL(string: url) else {
-        callback(nil)
-        return
-    }
-    
+func getCoverBook(id: String, url: String? = nil, _ callback: @escaping (UIImage?) -> Void) {
     if let cachedImage = loadImageFromDocumentDirectory(id: id) {
         callback(cachedImage)
     } else if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String){
         callback(cachedImage)
     }else{
+        guard let imageURL = URL(string: url ?? "") else {
+            callback(nil)
+            return
+        }
         getBookCoverFromURL(url: url) { fetchedImageURL in
             guard let fetchedImageURL = fetchedImageURL else {
                 callback(nil)
@@ -177,11 +176,43 @@ func getBookCoverFromURL(url: String?, _ callback: @escaping (UIImage?) -> Void)
     }.resume()
 }
 
+func isImageSavedInDocumentDirectory(id: String) -> Bool {
+    let fileManager = FileManager.default
+    let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
+    let fileURL = imgBooksDirectory.appendingPathComponent(id)
+    
+    return fileManager.fileExists(atPath: fileURL.path)
+}
+
+func downloadAndSaveImage(id: String, completion: @escaping (Bool) -> Void) {
+    let imageRef = storage.child("BookCover/\(id).jpg")
+
+    imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+        if let error = error {
+            print("Error downloading image: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                completion(false)
+            }
+        } else if let imageData = data, let image = UIImage(data: imageData) {
+            saveImageToDocumentDirectory(id: id, image: image)
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        } else {
+            DispatchQueue.main.async {
+                completion(false)
+            }
+        }
+    }
+}
+
+
 func saveImageToDocumentDirectory(id: String, image: UIImage) {
     let fileManager = FileManager.default
     let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
     let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
-    
+
     if !fileManager.fileExists(atPath: imgBooksDirectory.path) {
         do {
             try fileManager.createDirectory(at: imgBooksDirectory, withIntermediateDirectories: true, attributes: nil)
@@ -190,14 +221,15 @@ func saveImageToDocumentDirectory(id: String, image: UIImage) {
             return
         }
     }
-    
+
     let fileURL = imgBooksDirectory.appendingPathComponent(id)
-    
+
     if !fileManager.fileExists(atPath: fileURL.path) {
         if let data = image.jpegData(compressionQuality: 1.0) {
             do {
                 try data.write(to: fileURL)
             } catch {
+                print("Error saving image:", error)
             }
         }
     }
@@ -215,9 +247,9 @@ func loadImageFromDocumentDirectory(id: String) -> UIImage? {
     if let image = UIImage(contentsOfFile: imageURL.path) {
         return image
     }
-    
     return nil
 }
+
 
 
 func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void) {
