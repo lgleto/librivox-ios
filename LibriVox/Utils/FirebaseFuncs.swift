@@ -168,7 +168,7 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
     print(query.description)
     
     query.addSnapshotListener { snapshot, err in
-    
+        
         if let err = err {
             print("Error fetching books: \(err.localizedDescription)")
             completion(false)
@@ -206,8 +206,8 @@ func addTrendingtoBookSave(idBook: String,completion: @escaping (Bool) -> Void) 
             
         }
         
-        }
     }
+}
 
 
 func getAllBooks() {
@@ -292,7 +292,7 @@ func updateBookParameter(_ parameter: String, value: Bool?, documentID: String) 
     }
 }
 
-func addTrendingToBook(book:Audiobook, completion: @escaping (Bool?) -> Void) {
+func addTrendingToBook(book:Audiobook, lvlTrending:Int, completion: @escaping (Bool?) -> Void) {
     let db = Firestore.firestore()
     let bookRef = db.collection(TRENDING_COLLECTION)
     let query = bookRef.whereField("id", isEqualTo: book._id!)
@@ -307,7 +307,7 @@ func addTrendingToBook(book:Audiobook, completion: @escaping (Bool?) -> Void) {
             addBookToTrending(book: book) { yes in
                 if yes! {
                     print("livro guardado")
-                    addTrendingToBook(book: book, completion: completion)
+                    addTrendingToBook(book: book,lvlTrending: lvlTrending, completion: completion)
                 } else {
                     print("erro na gravação")
                 }
@@ -316,7 +316,6 @@ func addTrendingToBook(book:Audiobook, completion: @escaping (Bool?) -> Void) {
         
         guard let documents = querySnapshot?.documents else {
             print("No documents found")
-            //TODO: add full book in trending
             return
         }
         
@@ -324,7 +323,7 @@ func addTrendingToBook(book:Audiobook, completion: @escaping (Bool?) -> Void) {
            let trendingStr = trending.get("trending") as? String {
             print(trending.documentID)
             levelTrending = Int(trendingStr)!
-            levelTrending += 5
+            levelTrending += lvlTrending
             
             let newData: [String: String] = [
                 "id": book._id!,
@@ -354,9 +353,9 @@ func addBookToTrending(book:Audiobook, completion: @escaping (Bool?) -> Void) {
             print("Error adding book to collection: \(err.localizedDescription)")
             completion(false)
         }
-            completion(true)
-            return
-            //addBookCD(book: book)
+        completion(true)
+        return
+        //addBookCD(book: book)
     }
 }
 

@@ -141,7 +141,7 @@ class BookDetailsVC: AdaptedVC {
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
         updateUserParameter("lastBook", value: (book?._id)!)
-        addTrendingToBook(book: book!) { yes in
+        addTrendingToBook(book: book!, lvlTrending: 5) { yes in
             print("sucess")
         }
     }
