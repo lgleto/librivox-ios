@@ -12,26 +12,48 @@ import SwaggerClient
 import FirebaseAuth
 
 func calculateSectionWeight(sectionTime: Int, totalBookTime: Int) -> Double {
-    let sectionTimeInSeconds = Double(sectionTime) / 1000.0
-    let totalBookTimeInSeconds = Double(totalBookTime) / 1000.0
-    
-    guard totalBookTimeInSeconds > 0 else {
-        return 0.0 // Return 0 if the total book time is zero or negative to avoid division by zero
+    guard totalBookTime > 0 else {
+        return 0.0
     }
     
-    let weight = (sectionTimeInSeconds / totalBookTimeInSeconds) * 100.0
+    let weight = Double(sectionTime) / Double(totalBookTime) * 100
     return weight
 }
 
+func deleteAudiobookCD(bookId: String) {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookFetchRequest.predicate = NSPredicate(format: "id == %@", bookId)
+    
+    do {
+        let matchingBooks = try context.fetch(bookFetchRequest)
+        if let existingBook = matchingBooks.first {
+            // Delete sections related to the book
+            if let sections = existingBook.sections {
+                for section in sections {
+                    context.delete(section as! NSManagedObject)
+                }
+            }
+            
+            context.delete(existingBook)
+            
+            try context.save()
+            print("Deleted the book.")
+        }
+    } catch {
+        print("Error deleting the book: \(error)")
+    }
+}
 
 func addAudiobookCD(book: Book) {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+
     let audioBook = book.book
-    
+
     let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
     bookFetchRequest.predicate = NSPredicate(format: "id == %@", audioBook._id ?? "")
-    
+
     do {
         let matchingBooks = try context.fetch(bookFetchRequest)
         if let existingBook = matchingBooks.first {
@@ -40,11 +62,10 @@ func addAudiobookCD(book: Book) {
             existingBook.isFinished = book.isFinished ?? false
             existingBook.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
             existingBook.timeStopped = Int32(book.timeStopped ?? 0)
+
             try context.save()
-            print("Updated the book.")
         } else {
-            
-            
+            // Create a new book entry
             let newBookData = AudioBooks_Data(context: context)
             newBookData.id = audioBook._id
             newBookData.title = audioBook.title
@@ -55,9 +76,11 @@ func addAudiobookCD(book: Book) {
             newBookData.numSections = audioBook.numSections
             newBookData.totalTime = audioBook.totaltime
             newBookData.totalTimeSecs = Int32(audioBook.totaltimesecs ?? 0)
-            
+            newBookData.imageUrl = audioBook.imageUrl
+            newBookData.urlZipFile = audioBook.urlZipFile
+
             var sections = Set<Sections>()
-            
+
             if let sectionsData = audioBook.sections {
                 for sectionData in sectionsData {
                     let section = Sections(context: context)
@@ -65,36 +88,28 @@ func addAudiobookCD(book: Book) {
                     section.sectionNumber = sectionData.sectionNumber
                     section.playTime = sectionData.playtime
                     section.fileName = sectionData.fileName
-                    /*section.weight = calculateSectionWeight(sectionTime: Int(from: section.playTime ?? 0), totalBookTime: Int(newBookData.totalTimeSecs))*/
+                    if let playTime = Int(section.playTime ?? "0") {
+                        section.weight = calculateSectionWeight(sectionTime: playTime, totalBookTime: audioBook.totaltimesecs ?? 0)
+                    }
                     sections.insert(section)
                 }
-                
+
                 newBookData.sections = sections as NSSet
             }
-            
-            
+
             newBookData.isFav = book.isFav ?? false
             newBookData.isReading = book.isReading ?? false
             newBookData.isFinished = book.isFinished ?? false
             newBookData.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
             newBookData.timeStopped = Int32(book.timeStopped ?? 0)
-            
-            //TODO: IT IS THE BEST APPROACH? I DONT THINK SO
-            /*let dispatchGroup = DispatchGroup()
-             dispatchGroup.enter()
-             
-             if let url = audioBook.urlLibrivox {
-             getBookCoverFromURL(url: url) { img in
-             newBookData.image = img?.jpegData(compressionQuality: 1.0)
-             dispatchGroup.leave()
-             }
-             } else {dispatchGroup.leave()}
-             
-             dispatchGroup.wait()*/
-            
+
+            // Check if the image is already saved in the document directory
+            if !isImageSavedInDocumentDirectory(id: audioBook._id!){
+                downloadAndSaveImage(id: audioBook._id!){result in}
+            }
+
             do {
                 try context.save()
-                //print("Saved the book.")
             } catch {
                 print("Error: \(error)")
             }
@@ -103,6 +118,25 @@ func addAudiobookCD(book: Book) {
         print("Error: \(error)")
     }
 }
+
+func getPercentageOfBook(id: String, sectionNumber: Int) -> Double {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let fetchRequest: NSFetchRequest<Sections> = Sections.fetchRequest()
+    fetchRequest.predicate = NSPredicate(format: "audioBook_Data.id == %@", id)
+    
+    do {
+        let sections = try context.fetch(fetchRequest)
+        let filteredSections = sections.filter { Int($0.sectionNumber ?? "0") ?? 0 < sectionNumber }
+        let totalWeight = filteredSections.reduce(0.0) { $0 + $1.weight }
+        return totalWeight
+    } catch {
+        print("Error fetching sections: \(error)")
+        return 0.0
+    }
+}
+
+
 
 func getBookByIdCD(id: String) -> AudioBooks_Data? {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -132,6 +166,7 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
     
     do {
         matchingBooks = try context.fetch(bookRequest)
+       
     } catch {
         print("Error: \(error)")
     }

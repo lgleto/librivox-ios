@@ -86,6 +86,7 @@ func imageWith(name: String?) -> UIImage? {
     return nil
 }
 
+
 class ImageCache {
     static let shared = ImageCache()
     
@@ -124,21 +125,16 @@ class ImageCache {
     }
 }
 
-
-
-func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
-    guard let imageURL = URL(string: url) else {
-        DispatchQueue.main.async {
+func getCoverBook(id: String, url: String? = nil, _ callback: @escaping (UIImage?) -> Void) {
+    if let cachedImage = loadImageFromDocumentDirectory(id: id) {
+        callback(cachedImage)
+    } else if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String){
+        callback(cachedImage)
+    }else{
+        guard let imageURL = URL(string: url ?? "") else {
             callback(nil)
+            return
         }
-        return
-    }
-    
-    if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String) {
-        DispatchQueue.main.async {
-            callback(cachedImage)
-        }
-    } else {
         getBookCoverFromURL(url: url) { fetchedImageURL in
             guard let fetchedImageURL = fetchedImageURL else {
                 callback(nil)
@@ -149,6 +145,8 @@ func getCoverBook(id: String, url: String, _ callback: @escaping (UIImage?) -> V
         }
     }
 }
+
+
 
 func getBookCoverFromURL(url: String?, _ callback: @escaping (UIImage?) -> Void){
     guard let url = URL(string: url ?? "") else{return}
@@ -178,8 +176,64 @@ func getBookCoverFromURL(url: String?, _ callback: @escaping (UIImage?) -> Void)
     }.resume()
 }
 
+func isImageSavedInDocumentDirectory(id: String) -> Bool {
+    let fileManager = FileManager.default
+    let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
+    let fileURL = imgBooksDirectory.appendingPathComponent(id)
+    
+    return fileManager.fileExists(atPath: fileURL.path)
+}
+
+func downloadAndSaveImage(id: String, completion: @escaping (Bool) -> Void) {
+    let imageRef = storage.child("BookCover/\(id).jpg")
+
+    imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+        if let error = error {
+            print("Error downloading image: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                completion(false)
+            }
+        } else if let imageData = data, let image = UIImage(data: imageData) {
+            saveImageToDocumentDirectory(id: id, image: image)
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        } else {
+            DispatchQueue.main.async {
+                completion(false)
+            }
+        }
+    }
+}
 
 
+func saveImageToDocumentDirectory(id: String, image: UIImage) {
+    let fileManager = FileManager.default
+    let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
+
+    if !fileManager.fileExists(atPath: imgBooksDirectory.path) {
+        do {
+            try fileManager.createDirectory(at: imgBooksDirectory, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print("Error creating ImgBooks directory:", error)
+            return
+        }
+    }
+
+    let fileURL = imgBooksDirectory.appendingPathComponent(id)
+
+    if !fileManager.fileExists(atPath: fileURL.path) {
+        if let data = image.jpegData(compressionQuality: 1.0) {
+            do {
+                try data.write(to: fileURL)
+            } catch {
+                print("Error saving image:", error)
+            }
+        }
+    }
+}
 
 func loadImageFromDocumentDirectory(id: String) -> UIImage? {
     let fileManager = FileManager.default
@@ -193,37 +247,9 @@ func loadImageFromDocumentDirectory(id: String) -> UIImage? {
     if let image = UIImage(contentsOfFile: imageURL.path) {
         return image
     }
-    
     return nil
 }
 
-
-/*func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage) -> Void){
- guard let authorId = authorId else {
- DispatchQueue.main.async {
- callback(nil)
- }
- return
- }
- 
- if let cachedImage = ImageCache.shared.authorPhoto(for: authorId) {
- DispatchQueue.main.async {
- callback(cachedImage)
- }
- }else{
- getWikipediaLink(authorId: authorId){ title in
- 
- let name = title.lastPathComponent
- getMainImageFromWikipedia(name: name){imgC in
- if let imgC = imgC{
- callback(imgC)
- ImageCache.shared.insertAuthorPhoto(imgC, for: (authorId as NSString) as String)
- }else{callback(nil)}
- }
- }
- }
- 
- }*/
 
 
 func getPhotoAuthor(authorId: String?, _ callback: @escaping (UIImage?) -> Void) {
@@ -658,7 +684,7 @@ func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
 
 
 protocol PlayableItemProtocol {
-   var _id      : String?    { get set }
+    var _id      : String?    { get set }
     var title    : String?   { get set }
     var imageUrl : String?   { get set }
     var urlZipFile  : String?   { get set }
@@ -666,17 +692,44 @@ protocol PlayableItemProtocol {
     var sectionStopped : String?     { get set }
     var isFav : Bool?     { get set }
     var sections : [Section]? { get set }
-    
-    
 }
 
 extension Audiobook : PlayableItemProtocol {
 }
 
-/*extension AudioBooks_Data : PlayableItemProtocol {
-    
-}*/
+/*extension AudioBooks_Data: PlayableItemProtocol {
+    var _id: String? {
+        get { return id }
+        set { id = newValue }
+    }
 
+    var timeStopped: Int? {
+        get { return Int(timeStopped ?? 0) }
+        set { timeStopped = newValue != nil ? Int(Int32(newValue!)) : 0 }
+        }
+    
+    var isFav: Bool? {
+        get { return isFav }
+        set { isFav = newValue! }
+    }
+    
+    
+   /* var sections: [Section]? {
+            get {
+                if let sectionsSet = sections as? Set<Section> {
+                    return Array(sectionsSet)
+                }
+                return nil
+            }
+            set {
+                if let newValue = newValue {
+                    sections = NSSet(array: newValue)
+                } else {
+                    sections = nil
+                }
+            }
+        }*/
+}*/
 
 
 

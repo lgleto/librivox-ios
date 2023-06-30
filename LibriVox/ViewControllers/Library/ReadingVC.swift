@@ -13,7 +13,13 @@ import FirebaseFirestore
 import SwaggerClient
 
 class ReadingVC: UITableViewController {
-    var finalList = [AudioBooks_Data]()
+    var finalList = [AudioBooks_Data](){
+        didSet {
+            self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+            checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
+        }
+    }
+    
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -24,9 +30,6 @@ class ReadingVC: UITableViewController {
     
     @objc func contextDidChange(_ notification: Notification) {
         finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
-        
-        self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
-        checkAndUpdateEmptyState(list: self.finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
     }
     
     override func viewDidLoad() {
@@ -66,9 +69,9 @@ class ReadingVC: UITableViewController {
         cell.authorsBook.text = "Author: \(book.authors)"
         cell.imgBook.image = nil
         
-       /* if let imgData = book?.image, let img = UIImage(data: imgData) {
+        if let img = loadImageFromDocumentDirectory(id: book.id!){
             cell.imgBook.loadImage(from: img)
-        }*/
+        }
         
         cell.durationBook.text = "Duration: \(book.totalTime)"
         
@@ -100,9 +103,9 @@ class ReadingVC: UITableViewController {
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
             detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
-            /*if let imgData = finalList[indexPath.row].audioBook_Data?.image, let img = UIImage(data: imgData) {
-                detailVC.img = img
-            }*/
+            if let img = loadImageFromDocumentDirectory(id: finalList[indexPath.row].id!) {
+                      detailVC.img = img
+            }
         }
     }
 }

@@ -63,7 +63,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.setLastBook(audioBook: audioBook)
             }
         }
-
+        
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
         
         trendingBooks.delegate = self
@@ -72,14 +72,21 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setLastBook(audioBook: AudioBooks_Data){
-      /*  if let imgData = audioBook.image, let img = UIImage(data: imgData) {
+        
+        getCoverBook(id: audioBook.id!){img in
+            if let img = img{
                 self.imgBook.loadImage(from: img)
-            }*/
-        titleBook.text = audioBook.title
+            }
+        }
+        
+        titleBook.text = audioBook.title ?? ""
         durationBook.text = "Duratin: \(audioBook.totalTime)"
         authorBook.text = "Author(s): \(audioBook.authors)"
         
-        progress.setProgress(45, animated: true)
+        print("progresso de \(getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped)))")
+        
+        progress.setProgress(10, animated: true)
+        
         
     }
     @IBAction func playButton(_ sender: Any) {

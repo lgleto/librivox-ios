@@ -58,22 +58,11 @@ class HomepageTBC: UITabBarController {
         if let containerView = containerView {
             containerView.removeConstraints(containerView.constraints)
             
-            let bottomConstraint: NSLayoutConstraint
-           
-            if isHidden == true {
-                bottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-              //  print("ta")
-            } else {
-                // Tab bar is visible
-                bottomConstraint = containerView.bottomAnchor.constraint(equalTo: tabBar.topAnchor)
-                //print("nao ta")
-            }
-            
             NSLayoutConstraint.activate([
                 containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 containerView.heightAnchor.constraint(equalToConstant: 78),
-                bottomConstraint,
+                containerView.bottomAnchor.constraint(equalTo: tabBar.topAnchor),
                 
                 miniPlayer!.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
                 miniPlayer!.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),

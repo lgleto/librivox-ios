@@ -59,7 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = Firestore.firestore()
         db.settings = settings
 
-        
+        resetCoreDataSchema()
+        //clearUserDefaults()
         SwaggerClientAPI.requestBuilderFactory = AppRequestBuilderFactory()
         return true
     }
@@ -106,5 +107,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func resetCoreDataSchema() {
+        let persistentContainer = self.persistentContainer
+        let persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+
+        for store in persistentStoreCoordinator.persistentStores {
+            do {
+                try persistentStoreCoordinator.remove(store)
+            } catch {
+                print("Error removing persistent store: \(error)")
+            }
+        }
+
+        do {
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentContainer.persistentStoreDescriptions.first!.url, options: nil)
+            print("Schema reset successfully.")
+        } catch {
+            print("Error resetting schema: \(error)")
+        }
+    }
+
 }
 

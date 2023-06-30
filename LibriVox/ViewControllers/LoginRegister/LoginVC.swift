@@ -174,7 +174,7 @@ class LoginVC: UIViewController {
                                                          accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { result, error in
-                print(Auth.auth().currentUser?.uid)
+                //storeUserInfoToUserDefaults()
                 UserDefaults.standard.set(Auth.auth().currentUser?.uid, forKey: "currentUserID")
               //  saveCurrentUser(name: (result?.user.displayName!)!, email: (result?.user.email!)!)
                 self.self.present(home, animated: true, completion: nil)
@@ -187,4 +187,33 @@ class LoginVC: UIViewController {
     @IBAction func RegisterButton(_ sender: UIButton) {
         performSegue(withIdentifier: "loginToRegister", sender: nil)
     }
+}
+
+func storeUserInfoToUserDefaults() {
+    guard let currentUser = Auth.auth().currentUser else {
+        return
+    }
+    
+    if let photoURL = currentUser.photoURL?.absoluteString {
+        UserDefaults.standard.set(photoURL, forKey: "userPhotoURL")
+    }
+    
+    if let displayName = currentUser.displayName {
+        UserDefaults.standard.set(displayName, forKey: "userDisplayName")
+    }
+    
+    if let email = currentUser.email {
+        UserDefaults.standard.set(email, forKey: "userEmail")
+    }
+    
+    UserDefaults.standard.set(currentUser.uid, forKey: "currentUserID")
+    
+    // Synchronize UserDefaults
+    UserDefaults.standard.synchronize()
+}
+
+func clearUserDefaults() {
+    let domain = Bundle.main.bundleIdentifier!
+    UserDefaults.standard.removePersistentDomain(forName: domain)
+    UserDefaults.standard.synchronize()
 }

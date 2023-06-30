@@ -66,7 +66,12 @@ class ProfileVC: UIViewController {
         catch { print("Already logged out") }
         
         UserDefaults.standard.removeObject(forKey: "currentUserID")
-
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+        appDelegate.resetCoreDataSchema()
+        
         let storyBoard : UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "LoginId") as! LoginVC
         self.present(vc, animated: true, completion: nil)
