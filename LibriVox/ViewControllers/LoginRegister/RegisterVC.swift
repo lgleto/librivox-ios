@@ -29,13 +29,6 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 
     }
     @IBAction func registerButton(_ sender: UIButton) {
-        
-        let storyBoard :UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
-        let home = storyBoard.instantiateViewController(withIdentifier: "RegisterDetailVC")
-        home.modalPresentationStyle = .fullScreen
-        
-        
-        
         if (emailText.text == "") || (confirmPasswordText.text == "") || (firstLastText.text == "") || (passwordText.text == "") || (usernameText.text == "") {
             let alert = UIAlertController(title: "Empty field", message: "All fields are mandatory", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
@@ -95,19 +88,15 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     if (authResult != nil) {
                         db.collection("users").document(Auth.auth().currentUser!.uid).setData([
                             "name": firstLastText.text,
-                            "username": usernameText.text,
-                            "description": ""
+                            "username": usernameText.text
                         ]) { err in
                             if let err = err {
                                 print("Error writing document: \(err)")
                             } else {
-                                print("Document successfully written!")
+                                authenticateUser()
                             }
                         }
                         
-                        UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
-                        //saveCurrentUser(name: firstLastText.text!, email: emailText.text!)
-                        self.self.present(home, animated: true, completion: nil)
                         print("user Register")
                         
                     } else{
@@ -121,6 +110,30 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
      
         
+    }
+    
+    func authenticateUser() {
+        let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
+        let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController
+   
+        
+        guard let email = emailText.text, let password = passwordText.text else {
+            print("Invalid email or password")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let user = authResult?.user, error == nil {
+                print("User authenticated successfully: \(user.uid)")
+                UserDefaults.standard.set(authResult!.user.uid, forKey: "currentUserID")
+                   UserDefaults.standard.synchronize()
+                // Handle successful authentication, e.g., present the home screen
+                 self.present(home, animated: true, completion: nil)
+                
+            } else {
+                print("Failed to authenticate user: \(error?.localizedDescription ?? "")")
+            }
+        }
     }
     
     
