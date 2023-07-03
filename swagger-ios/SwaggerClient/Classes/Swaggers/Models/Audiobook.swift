@@ -66,7 +66,30 @@ public struct Audiobook : Encodable, Decodable {
     }
 
     
+    public init(dict: [String:Any]) {
+        self._id            = (dict["id"] as? String)!
+        self.title          = (dict["title"       ] as? String)!
+        self._description   = (dict["description"]  as? String)!
+        self.genres         = try? decodeArray(dict["genres"])
+        self.authors        = try? decodeArray(dict["authors"])
+        self.numSections    = (dict["numSections"  ]as? String)!
+        self.sections       = try? decodeArray(dict["sections"])
+        self.language       = (dict["language"     ]as? String)!
+        self.urlZipFile     = (dict["urlZipFile"]   as? String)!
+        self.urlLibrivox    = (dict["urlLibrivox"  ]as? String)!
+        self.urlProject     = (dict["urlProject"]   as? String)!
+        self.urlRss         = (dict["urlRss"       ]as? String)!
+        self.totaltime      = (dict["totaltime"]    as? String)!
+        self.totaltimesecs  = (dict["totaltimesecs"]as? Int)!
+    }
     
+    private func decodeArray<T: Decodable>(_ jsonObject: Any) throws -> [T] {
+        let jsonData = try JSONSerialization.data(withJSONObject: jsonObject)
+        let array = try JSONDecoder().decode([T].self, from: jsonData)
+        return array
+    }
+
+
 
     public init(_id: String? = nil, title: String? = nil, _description: String? = nil, genres: [Genre]? = nil, authors: [Author]? = nil, numSections: String? = nil, sections: [Section]? = nil, language: String? = nil, urlZipFile: String? = nil, urlLibrivox: String? = nil, urlProject: String? = nil, urlRss: String? = nil, totaltime: String? = nil, totaltimesecs: Int? = nil) {
         self._id = _id

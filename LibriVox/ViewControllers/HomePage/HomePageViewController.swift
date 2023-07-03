@@ -216,7 +216,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         booksRef.order(by: "trending", descending: true).limit(to: 3)
         
         
-        booksRef.getDocuments { querySnapshot, err in
+        booksRef.getDocuments{ querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
                 let alert = UIAlertController(title: "Error getting Trending", message: "Error getting the trending books, probably due to slow internet connection", preferredStyle: .alert)
@@ -244,14 +244,15 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             } else {
                 for document in querySnapshot!.documents {
                     let s = document.data()
-                    let book = Trending(dict: s)
-                    self.trending.append(book!)
+                    let book = Audiobook(dict: s)
+                    self.localBooks.append(book)
                 }
+                /*
                 self.addForTrending() {
                     print("inside loadTrending")
                     callback()
-                }
-                
+                }*/
+                callback()
                 
             }
         }
