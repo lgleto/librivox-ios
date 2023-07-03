@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rHR-0Y-wQg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -19,7 +19,7 @@
         <!--LoginVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="LoginId" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="LoginVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="LoginVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +116,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Register Now"/>
                                         <connections>
-                                            <action selector="RegisterButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5iC-fl-NRS"/>
+                                            <segue destination="2aK-Rf-jgc" kind="show" id="m8B-be-7hG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -169,21 +169,22 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eqW-bH-uUO" secondAttribute="trailing" constant="32" id="zJX-KY-vk9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0cT-dV-wVt"/>
+                    <navigationItem key="navigationItem" id="0cT-dV-wVt">
+                        <barButtonItem key="backBarButtonItem" title="Sign In" id="VVd-W6-tbK"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="email" destination="eqW-bH-uUO" id="Puj-5M-iQ4"/>
                         <outlet property="password" destination="y50-LU-oac" id="haG-Z3-WOW"/>
-                        <segue destination="2aK-Rf-jgc" kind="show" identifier="loginToRegister" id="HLR-IG-Jmk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956.48854961832058" y="-20.422535211267608"/>
+            <point key="canvasLocation" x="1883.206106870229" y="-20.422535211267608"/>
         </scene>
         <!--RegisterVC-->
         <scene sceneID="UMq-vz-WLO">
             <objects>
-                <viewController id="2aK-Rf-jgc" customClass="RegisterVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="2aK-Rf-jgc" customClass="RegisterVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oos-Wl-wRU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -318,7 +319,9 @@
                             <constraint firstItem="o2d-iT-3Gp" firstAttribute="leading" secondItem="fLR-Vq-huQ" secondAttribute="leading" constant="32" id="zol-mV-nxo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" style="editor" id="avc-mF-312"/>
+                    <navigationItem key="navigationItem" style="editor" id="avc-mF-312">
+                        <barButtonItem key="backBarButtonItem" title="WTF" id="RKi-AJ-hzS"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmPasswordText" destination="mLo-0c-bm3" id="MfK-WW-19P"/>
                         <outlet property="emailText" destination="zoI-M5-8kC" id="FAt-6Q-c1x"/>
@@ -330,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZyG-ny-8gz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1805.3435114503816" y="-20.422535211267608"/>
+            <point key="canvasLocation" x="2732.06106870229" y="-20.422535211267608"/>
         </scene>
         <!--Register DetailVC-->
         <scene sceneID="8o4-PH-kXx">
@@ -468,30 +471,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzX-tR-TdJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2616.030534351145" y="-20.422535211267608"/>
+            <point key="canvasLocation" x="3542.7480916030531" y="-20.422535211267608"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="gSz-0h-40X">
+        <scene sceneID="Zf0-ED-Sah">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rHR-0Y-wQg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginId" automaticallyAdjustsScrollViewInsets="NO" id="OMB-bv-H5D" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7N2-RI-gd5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="76T-4o-6Lm">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="Ode-KU-oRP"/>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="jXX-hE-sbP"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g95-jw-2zH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UtO-Fh-h1q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="29.770992366412212" y="-20.422535211267608"/>
+            <point key="canvasLocation" x="1059" y="-20"/>
         </scene>
     </scenes>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
-        <image name="logo" width="400" height="400"/>
+        <image name="logo" width="512" height="512"/>
         <image name="search" width="16" height="16"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

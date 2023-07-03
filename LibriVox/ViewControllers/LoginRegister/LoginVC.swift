@@ -184,9 +184,7 @@ class LoginVC: UIViewController {
           // ...
         }
     }
-    @IBAction func RegisterButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "loginToRegister", sender: nil)
-    }
+  
 }
 
 func storeUserInfoToUserDefaults() {
