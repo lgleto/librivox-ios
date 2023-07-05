@@ -20,7 +20,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var titleBook: UILabel!
-    @IBOutlet weak var playBTN: UIButton!
+    
     @IBOutlet weak var IndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var imgBook: LoadingImage!
@@ -43,13 +43,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        IndicatorView.startAnimating()
-        //      IndicatorView.hidesWhenStopped = true
-        let  selectedImage  = UIImage(named: "pause.svg")
-        let normalImage = UIImage(named: "play.svg")
-        
-        playBTN.setImage(normalImage, for: .normal)
-        playBTN.setImage(selectedImage, for: .selected)
         checkWifi()
         
         loadCurrentUser { user in
@@ -69,7 +62,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setLastBook(audioBook: AudioBooks_Data){
-        
         getCoverBook(id: audioBook.id!){img in
             if let img = img{
                 self.imgBook.loadImage(from: img)

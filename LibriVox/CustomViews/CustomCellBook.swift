@@ -21,4 +21,6 @@ class CustomCellBook : UITableViewCell {
     @IBOutlet weak var genre: UILabel!
     
     @IBOutlet weak var duration: UILabel!
+    
+    @IBOutlet weak var playBtn: ToggleBtn!
 }

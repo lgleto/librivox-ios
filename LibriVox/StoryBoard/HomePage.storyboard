@@ -68,13 +68,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-Q2-Q9t">
-                                                    <rect key="frame" x="102" y="132.33333333333334" width="180" height="18"/>
+                                                    <rect key="frame" x="102" y="132.33333333333334" width="226" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbv-UM-8Zy">
-                                                    <rect key="frame" x="102" y="152.33333333333334" width="180" height="18"/>
+                                                    <rect key="frame" x="102" y="152.33333333333334" width="107" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -86,25 +86,6 @@
                                                         <constraint firstAttribute="height" constant="10" id="WPw-pS-Lh6"/>
                                                     </constraints>
                                                 </progressView>
-                                                <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hV4-CM-HWg" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                                    <rect key="frame" x="292" y="152" width="35" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="JGB-1n-msf"/>
-                                                        <constraint firstAttribute="width" constant="35" id="cNz-mf-acL"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Button">
-                                                        <imageReference key="image" image="play" symbolScale="large"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="P9b-e9-NJt"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="93" width="77" height="120"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -113,28 +94,42 @@
                                                         <constraint firstAttribute="height" constant="120" id="ruZ-Tp-GVB"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYC-tJ-TSa" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                                    <rect key="frame" x="289" y="158" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="L2K-nd-OMy"/>
+                                                        <constraint firstAttribute="width" constant="35" id="xDK-jN-sbA"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="b1m-2Q-hbl"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Main Blue Tone"/>
                                             <constraints>
                                                 <constraint firstItem="aoj-7l-jfp" firstAttribute="top" secondItem="cPd-i5-3P4" secondAttribute="top" constant="20" id="2Es-OQ-Jjz"/>
                                                 <constraint firstItem="geb-Va-GlX" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="2kD-Ic-foH"/>
                                                 <constraint firstItem="aoj-7l-jfp" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="64h-y8-e5f"/>
-                                                <constraint firstItem="hV4-CM-HWg" firstAttribute="leading" secondItem="Jbv-UM-8Zy" secondAttribute="trailing" constant="10" id="8Ti-qE-Stg"/>
                                                 <constraint firstItem="Pht-Q2-Q9t" firstAttribute="top" secondItem="U6p-35-u7d" secondAttribute="bottom" constant="18.666666666666657" id="96a-8w-5Cp"/>
                                                 <constraint firstAttribute="height" constant="228" id="A1Z-vg-EDa"/>
-                                                <constraint firstItem="XY5-te-GTR" firstAttribute="top" secondItem="hV4-CM-HWg" secondAttribute="bottom" constant="16" id="BSB-VH-Xmq"/>
                                                 <constraint firstItem="U6p-35-u7d" firstAttribute="top" secondItem="geb-Va-GlX" secondAttribute="top" id="EAu-dB-yPm"/>
                                                 <constraint firstItem="XY5-te-GTR" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="FXl-Bq-sqL"/>
-                                                <constraint firstItem="hV4-CM-HWg" firstAttribute="leading" secondItem="Pht-Q2-Q9t" secondAttribute="trailing" constant="10" id="L5Q-S8-Oak"/>
                                                 <constraint firstAttribute="bottom" secondItem="geb-Va-GlX" secondAttribute="bottom" constant="15" id="La9-RD-UNf"/>
                                                 <constraint firstAttribute="trailing" secondItem="XY5-te-GTR" secondAttribute="trailing" constant="15" id="R6L-NR-9vb"/>
                                                 <constraint firstItem="CL0-cR-Uld" firstAttribute="top" secondItem="aoj-7l-jfp" secondAttribute="bottom" constant="2" id="RBT-J7-cpn"/>
                                                 <constraint firstAttribute="trailing" secondItem="U6p-35-u7d" secondAttribute="trailing" constant="15" id="WgA-yO-rWY"/>
                                                 <constraint firstItem="U6p-35-u7d" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="YDz-hS-8Pb"/>
+                                                <constraint firstAttribute="trailing" secondItem="qYC-tJ-TSa" secondAttribute="trailing" constant="19" id="ZbA-UA-bnt"/>
                                                 <constraint firstItem="CL0-cR-Uld" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="aeR-XY-RYz"/>
                                                 <constraint firstItem="geb-Va-GlX" firstAttribute="top" secondItem="CL0-cR-Uld" secondAttribute="bottom" constant="15" id="bsh-fd-Txa"/>
-                                                <constraint firstAttribute="trailing" secondItem="hV4-CM-HWg" secondAttribute="trailing" constant="16" id="hD5-p0-FNd"/>
                                                 <constraint firstItem="Jbv-UM-8Zy" firstAttribute="top" secondItem="Pht-Q2-Q9t" secondAttribute="bottom" constant="2" id="hgH-yW-oYL"/>
+                                                <constraint firstItem="XY5-te-GTR" firstAttribute="top" secondItem="qYC-tJ-TSa" secondAttribute="bottom" constant="10" id="hrP-BB-jRI"/>
+                                                <constraint firstAttribute="trailing" secondItem="Pht-Q2-Q9t" secondAttribute="trailing" constant="15" id="mwu-vO-ggL"/>
                                                 <constraint firstItem="XY5-te-GTR" firstAttribute="bottom" secondItem="geb-Va-GlX" secondAttribute="bottom" id="pd7-dB-azc"/>
                                                 <constraint firstItem="Jbv-UM-8Zy" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="rbN-RX-gjc"/>
                                                 <constraint firstItem="Pht-Q2-Q9t" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="vtb-q8-c47"/>
@@ -174,7 +169,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="145" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="145" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="365" width="343" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E03-yn-IXx" id="rkb-Iu-aQd">
@@ -205,19 +200,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8i-j1-jKH">
-                                                    <rect key="frame" x="127" y="77" width="115.33333333333331" height="18"/>
-                                                    <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Drama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-8V-yfx">
-                                                    <rect key="frame" x="127" y="117" width="78.333333333333314" height="18"/>
+                                                    <rect key="frame" x="127" y="52" width="196" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H3-k0-uBX">
-                                                    <rect key="frame" x="127" y="97" width="107" height="18"/>
+                                                    <rect key="frame" x="127" y="92" width="107" height="18"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -230,41 +219,48 @@
                                                         <constraint firstAttribute="width" constant="77" id="h3j-Mm-5tQ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPH-v3-7HY" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nav-KM-QHu" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
                                                     <rect key="frame" x="308" y="100" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="o4g-5A-FI0"/>
-                                                        <constraint firstAttribute="width" constant="35" id="veB-Kf-nJx"/>
+                                                        <constraint firstAttribute="width" constant="35" id="eY4-pF-Ih2"/>
+                                                        <constraint firstAttribute="height" constant="35" id="x7X-oH-Mdm"/>
                                                     </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Button">
-                                                        <imageReference key="image" image="play" symbolScale="large"/>
-                                                    </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BiY-ld-590"/>
+                                                    </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Drama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-8V-yfx">
+                                                    <rect key="frame" x="127" y="72" width="216" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="0PL-8V-yfx" secondAttribute="bottom" constant="10" id="ASU-Mc-cEM"/>
                                                 <constraint firstItem="XDj-Mh-ldn" firstAttribute="top" secondItem="DGH-jY-LHy" secondAttribute="top" id="E3b-qy-vTR"/>
                                                 <constraint firstItem="hJd-5j-a9E" firstAttribute="leading" secondItem="rkb-Iu-aQd" secondAttribute="leading" constant="40" id="J07-Xz-7tz"/>
+                                                <constraint firstItem="6H3-k0-uBX" firstAttribute="top" secondItem="0PL-8V-yfx" secondAttribute="bottom" constant="2" id="Jgp-7t-KCi"/>
                                                 <constraint firstItem="0PL-8V-yfx" firstAttribute="leading" secondItem="hJd-5j-a9E" secondAttribute="trailing" constant="10" id="K1p-pP-JPB"/>
-                                                <constraint firstAttribute="bottom" secondItem="FPH-v3-7HY" secondAttribute="bottom" constant="10" id="Pxh-Tr-L2x"/>
-                                                <constraint firstItem="6H3-k0-uBX" firstAttribute="top" secondItem="U8i-j1-jKH" secondAttribute="bottom" constant="2" id="Tro-MG-CTI"/>
+                                                <constraint firstAttribute="trailing" secondItem="0PL-8V-yfx" secondAttribute="trailing" id="TF7-pN-b4k"/>
                                                 <constraint firstItem="DGH-jY-LHy" firstAttribute="leading" secondItem="rkb-Iu-aQd" secondAttribute="leading" id="Xui-dK-5oW"/>
                                                 <constraint firstAttribute="bottom" secondItem="hJd-5j-a9E" secondAttribute="bottom" constant="10" id="bLG-l7-PI5"/>
                                                 <constraint firstItem="XDj-Mh-ldn" firstAttribute="leading" secondItem="hJd-5j-a9E" secondAttribute="trailing" constant="10" id="buj-q9-ekm"/>
-                                                <constraint firstAttribute="trailing" secondItem="FPH-v3-7HY" secondAttribute="trailing" id="ddL-hY-WsB"/>
+                                                <constraint firstAttribute="trailing" secondItem="nav-KM-QHu" secondAttribute="trailing" id="dke-Zh-k0O"/>
                                                 <constraint firstItem="U8i-j1-jKH" firstAttribute="leading" secondItem="hJd-5j-a9E" secondAttribute="trailing" constant="10" id="dqQ-FT-UIe"/>
+                                                <constraint firstItem="nav-KM-QHu" firstAttribute="bottom" secondItem="hJd-5j-a9E" secondAttribute="bottom" id="eyy-yW-TPB"/>
+                                                <constraint firstItem="0PL-8V-yfx" firstAttribute="top" secondItem="U8i-j1-jKH" secondAttribute="bottom" constant="2" id="ieK-eE-snv"/>
                                                 <constraint firstItem="DGH-jY-LHy" firstAttribute="top" secondItem="rkb-Iu-aQd" secondAttribute="top" constant="10" id="lXw-gZ-acd"/>
                                                 <constraint firstAttribute="trailing" secondItem="XDj-Mh-ldn" secondAttribute="trailing" id="mxc-OM-8pH"/>
                                                 <constraint firstItem="hJd-5j-a9E" firstAttribute="top" secondItem="rkb-Iu-aQd" secondAttribute="top" constant="20" id="nKe-vm-GE7"/>
+                                                <constraint firstItem="6H3-k0-uBX" firstAttribute="bottom" secondItem="hJd-5j-a9E" secondAttribute="bottom" constant="-25" id="oev-84-I9G"/>
                                                 <constraint firstItem="6H3-k0-uBX" firstAttribute="leading" secondItem="hJd-5j-a9E" secondAttribute="trailing" constant="10" id="pp9-hM-Ikd"/>
-                                                <constraint firstItem="0PL-8V-yfx" firstAttribute="top" secondItem="6H3-k0-uBX" secondAttribute="bottom" constant="2" id="spO-nI-MSA"/>
                                                 <constraint firstAttribute="bottom" secondItem="DGH-jY-LHy" secondAttribute="bottom" constant="15" id="x1M-5h-9Ce"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="U8i-j1-jKH" secondAttribute="trailing" id="yK9-X9-ehZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="3000" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -273,6 +269,7 @@
                                             <outlet property="bookCover" destination="hJd-5j-a9E" id="sA7-ye-YP7"/>
                                             <outlet property="duration" destination="6H3-k0-uBX" id="api-MN-hTN"/>
                                             <outlet property="genre" destination="0PL-8V-yfx" id="piK-5o-ThD"/>
+                                            <outlet property="playBtn" destination="nav-KM-QHu" id="YXz-ys-rC6"/>
                                             <outlet property="title" destination="XDj-Mh-ldn" id="r01-uk-sGU"/>
                                             <outlet property="trendingNumber" destination="0UD-Ma-xU9" id="vVl-np-eFH"/>
                                         </connections>
@@ -300,7 +297,6 @@
                         <outlet property="durationBook" destination="Jbv-UM-8Zy" id="dcT-20-BZn"/>
                         <outlet property="imgBook" destination="geb-Va-GlX" id="bm2-Gh-CzO"/>
                         <outlet property="nameText" destination="aoj-7l-jfp" id="HiY-gl-li3"/>
-                        <outlet property="playBTN" destination="hV4-CM-HWg" id="am3-qW-pQc"/>
                         <outlet property="progress" destination="XY5-te-GTR" id="hjF-WZ-u9D"/>
                         <outlet property="titleBook" destination="U6p-35-u7d" id="LFL-9q-fui"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
