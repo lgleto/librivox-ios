@@ -53,17 +53,17 @@ class FavoritesVC: UITableViewController {
         let book = finalList[indexPath.row]
         
         cell.favBtn.isSelected = true
-        if let title = book.authors{
+        if let title = book.title{
             cell.titleBook.text = book.title
-            cell.authorBook.text = title /*"Author: \(book.authors)" ?? ""*/
-            cell.genreBook.text = "Genre: "
+            cell.authorBook.text = "Author: \(book.authors ?? "")"
+            cell.genreBook.text = "Genre: \(book.genres ?? "")"
             cell.imgBook.image = nil
             
         }
         if let img = loadImageFromDocumentDirectory(id: book.id!){
             cell.imgBook.loadImage(from: img)
         }
-        cell.durationBook.text = "Duration: \(book.totalTime)"
+        cell.durationBook.text = "Duration: \(book.totalTime ?? "")"
     
         cell.favBtn.tag = indexPath.row
         cell.favBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)

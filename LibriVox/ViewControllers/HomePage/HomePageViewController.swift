@@ -69,8 +69,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         titleBook.text = audioBook.title ?? ""
-        durationBook.text = "Duratin: \(audioBook.totalTime)"
-        authorBook.text = "Author(s): \(audioBook.authors)"
+        durationBook.text = "Duration: \(audioBook.totalTime ?? "")"
+        authorBook.text = "Author(s): \(audioBook.authors ?? "")"
         print("oupa \(audioBook.id) \(Int(audioBook.sectionStopped))")
  
         let progressDB = getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped))

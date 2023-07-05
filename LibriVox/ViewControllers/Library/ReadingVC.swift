@@ -66,14 +66,14 @@ class ReadingVC: UITableViewController {
         
         let book = finalList[indexPath.row]
         cell.titleBook.text = book.title
-        cell.authorsBook.text = "Author: \(book.authors)"
+        cell.authorsBook.text = "Author(s): \(book.authors ?? "")"
         cell.imgBook.image = nil
         
         if let img = loadImageFromDocumentDirectory(id: book.id!){
             cell.imgBook.loadImage(from: img)
         }
         
-        cell.durationBook.text = "Duration: \(book.totalTime)"
+        cell.durationBook.text = "Duration: \(book.totalTime ?? "")"
         
         allButtons.append(cell.playBtn)
         

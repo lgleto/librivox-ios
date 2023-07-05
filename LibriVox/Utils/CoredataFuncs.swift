@@ -48,12 +48,12 @@ func deleteAudiobookCD(bookId: String) {
 
 func addAudiobookCD(book: Book) {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    
     let audioBook = book.book
-
+    
     let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
     bookFetchRequest.predicate = NSPredicate(format: "id == %@", audioBook._id ?? "")
-
+    
     do {
         let matchingBooks = try context.fetch(bookFetchRequest)
         if let existingBook = matchingBooks.first {
@@ -62,7 +62,7 @@ func addAudiobookCD(book: Book) {
             existingBook.isFinished = book.isFinished ?? false
             existingBook.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
             existingBook.timeStopped = Int32(book.timeStopped ?? 0)
-
+            
             try context.save()
         } else {
             // Create a new book entry
@@ -78,9 +78,9 @@ func addAudiobookCD(book: Book) {
             newBookData.totalTimeSecs = Int32(audioBook.totaltimesecs ?? 0)
             newBookData.imageUrl = audioBook.imageUrl
             newBookData.urlZipFile = audioBook.urlZipFile
-
+            
             var sections = Set<Sections>()
-
+            
             if let sectionsData = audioBook.sections {
                 for sectionData in sectionsData {
                     let section = Sections(context: context)
@@ -93,21 +93,21 @@ func addAudiobookCD(book: Book) {
                     }
                     sections.insert(section)
                 }
-
+                
                 newBookData.sections = sections as NSSet
             }
-
+            
             newBookData.isFav = book.isFav ?? false
             newBookData.isReading = book.isReading ?? false
             newBookData.isFinished = book.isFinished ?? false
             newBookData.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
             newBookData.timeStopped = Int32(book.timeStopped ?? 0)
-
+            
             // Check if the image is already saved in the document directory
             if !isImageSavedInDocumentDirectory(id: audioBook._id!){
                 downloadAndSaveImage(id: audioBook._id!){result in}
             }
-
+            
             do {
                 try context.save()
             } catch {
@@ -172,7 +172,7 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
     
     do {
         matchingBooks = try context.fetch(bookRequest)
-       
+        
     } catch {
         print("Error: \(error)")
     }
@@ -187,8 +187,8 @@ func convertToAudiobook(audioBookData: AudioBooks_Data) -> Audiobook {
     audiobook._id = audioBookData.id
     audiobook.title = audioBookData.title
     audiobook._description = audioBookData.descr
-    //audiobook.genres = decodeGenres(audioBookData.genres)
-    //audiobook.authors = decodeAuthors(audioBookData.authors)
+    audiobook.genres = createGenresArray(from: audioBookData.genres ?? "")
+    audiobook.authors = createAuthorsArray(from: audioBookData.authors ?? "")
     audiobook.numSections = audioBookData.numSections
     audiobook.sections = decodeSections(audioBookData.sections)
     audiobook.language = audioBookData.language
@@ -213,7 +213,6 @@ func decodeSections(_ sections: NSSet?) -> [Section]? {
         
         decodedSections.append(section)
     }
-    
     return decodedSections
 }
 
@@ -221,25 +220,25 @@ func decodeSections(_ sections: NSSet?) -> [Section]? {
 
 func updateBookInfoParameter(book: AudioBooks_Data, parameter: String, value: Any) {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    
     let bookFetchRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
     bookFetchRequest.predicate = NSPredicate(format: "id == %@", book.id!)
-
+    
     do {
         let books = try context.fetch(bookFetchRequest)
         guard let existingBook = books.first else {
             return
         }
-
+        
         existingBook.setValue(value, forKey: parameter)
-
+        
         do {
             try context.save()
             print("Updated the book_info parameter.")
         } catch {
             print("Error: \(error)")
         }
-
+        
     } catch {
         print("Error: \(error)")
     }

@@ -154,13 +154,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JA-iJ-UCe">
-                                            <rect key="frame" x="87.000000000000014" y="20" width="231.33333333333337" height="20.666666666666671"/>
+                                            <rect key="frame" x="87.000000000000014" y="15.000000000000002" width="231.33333333333337" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwH-ag-zxo">
-                                            <rect key="frame" x="87" y="87.666666666666671" width="107" height="18"/>
+                                            <rect key="frame" x="87" y="71.666666666666671" width="107" height="18"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -173,7 +173,7 @@
                                             </constraints>
                                         </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-xX-ljE">
-                                            <rect key="frame" x="87" y="67.666666666666671" width="115.33333333333331" height="18"/>
+                                            <rect key="frame" x="87" y="51.666666666666664" width="115.33333333333331" height="17.999999999999993"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -194,9 +194,9 @@
                                     <constraints>
                                         <constraint firstItem="o31-Ix-j3I" firstAttribute="bottom" secondItem="vsD-d5-zyM" secondAttribute="bottom" id="5Re-6g-GN4"/>
                                         <constraint firstItem="pwH-ag-zxo" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="5p8-rI-SLk"/>
-                                        <constraint firstItem="O8g-xX-ljE" firstAttribute="top" secondItem="9JA-iJ-UCe" secondAttribute="bottom" constant="27" id="60o-tb-97X"/>
+                                        <constraint firstItem="O8g-xX-ljE" firstAttribute="top" secondItem="9JA-iJ-UCe" secondAttribute="bottom" constant="16" id="60o-tb-97X"/>
                                         <constraint firstItem="pwH-ag-zxo" firstAttribute="top" secondItem="O8g-xX-ljE" secondAttribute="bottom" constant="2" id="7bO-vd-BW6"/>
-                                        <constraint firstItem="9JA-iJ-UCe" firstAttribute="top" secondItem="vsD-d5-zyM" secondAttribute="top" constant="10" id="DbZ-3Q-vCf"/>
+                                        <constraint firstItem="9JA-iJ-UCe" firstAttribute="top" secondItem="vsD-d5-zyM" secondAttribute="top" constant="5" id="DbZ-3Q-vCf"/>
                                         <constraint firstItem="vsD-d5-zyM" firstAttribute="leading" secondItem="e4p-3h-hDN" secondAttribute="leading" id="Dg8-YX-7hg"/>
                                         <constraint firstItem="vsD-d5-zyM" firstAttribute="top" secondItem="e4p-3h-hDN" secondAttribute="top" constant="10" id="JM0-vm-pbc"/>
                                         <constraint firstAttribute="trailing" secondItem="o31-Ix-j3I" secondAttribute="trailing" id="RWj-j8-sF9"/>
@@ -284,7 +284,7 @@
                                                 <constraint firstAttribute="width" constant="77" id="bfx-C4-03f"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHD-S1-uK2">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHD-S1-uK2">
                                             <rect key="frame" x="87" y="15.000000000000002" width="256" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                             <nil key="textColor"/>
@@ -296,27 +296,14 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iib-PH-hrF">
-                                            <rect key="frame" x="87" y="112" width="251" height="18"/>
-                                            <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-Ln-QkG">
-                                            <rect key="frame" x="358" y="100" width="35" height="35"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="TTq-kY-7cQ"/>
-                                                <constraint firstAttribute="width" constant="35" id="o3j-uj-EZZ"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvR-S9-KMM">
-                                            <rect key="frame" x="87" y="72" width="115.33333333333331" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iib-PH-hrF">
+                                            <rect key="frame" x="87" y="72" width="256" height="18"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeG-1D-zCM" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
-                                            <rect key="frame" x="363" y="13" width="25" height="25"/>
+                                            <rect key="frame" x="358" y="13" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="g8U-6Q-O4i"/>
                                                 <constraint firstAttribute="width" constant="25" id="hfn-R9-sw7"/>
@@ -331,25 +318,43 @@
                                                 <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="starOn"/>
                                             </userDefinedRuntimeAttributes>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4X3-pi-dMT" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                            <rect key="frame" x="353" y="100" width="35" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="VTg-kc-uFX"/>
+                                                <constraint firstAttribute="width" constant="35" id="fsT-yV-QkA"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvR-S9-KMM">
+                                            <rect key="frame" x="87" y="52" width="115.33333333333331" height="18"/>
+                                            <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="O1I-E8-xzJ" firstAttribute="leading" secondItem="soE-xL-Jjf" secondAttribute="leading" id="3h5-OE-2uR"/>
-                                        <constraint firstItem="eeG-1D-zCM" firstAttribute="centerX" secondItem="5Lf-Ln-QkG" secondAttribute="centerX" id="9ye-C4-me2"/>
                                         <constraint firstItem="oHD-S1-uK2" firstAttribute="leading" secondItem="O1I-E8-xzJ" secondAttribute="trailing" constant="10" id="Fa3-jJ-Rc5"/>
                                         <constraint firstItem="iib-PH-hrF" firstAttribute="leading" secondItem="O1I-E8-xzJ" secondAttribute="trailing" constant="10" id="Fr0-7B-1CO"/>
-                                        <constraint firstAttribute="trailing" secondItem="5Lf-Ln-QkG" secondAttribute="trailing" id="IkL-vm-9sG"/>
-                                        <constraint firstItem="iib-PH-hrF" firstAttribute="top" secondItem="0Uz-sa-4Mv" secondAttribute="bottom" constant="2" id="Oar-Ti-l9z"/>
+                                        <constraint firstItem="0Uz-sa-4Mv" firstAttribute="bottom" secondItem="O1I-E8-xzJ" secondAttribute="bottom" constant="-25" id="La0-Yg-mWb"/>
                                         <constraint firstItem="xvR-S9-KMM" firstAttribute="leading" secondItem="O1I-E8-xzJ" secondAttribute="trailing" constant="10" id="RTS-b4-eYv"/>
-                                        <constraint firstItem="0Uz-sa-4Mv" firstAttribute="top" secondItem="xvR-S9-KMM" secondAttribute="bottom" constant="2" id="TGH-8h-dam"/>
                                         <constraint firstAttribute="bottom" secondItem="O1I-E8-xzJ" secondAttribute="bottom" constant="10" id="ViK-rM-Akr"/>
-                                        <constraint firstItem="5Lf-Ln-QkG" firstAttribute="leading" secondItem="iib-PH-hrF" secondAttribute="trailing" constant="20" id="dDg-Ms-o72"/>
+                                        <constraint firstAttribute="trailing" secondItem="4X3-pi-dMT" secondAttribute="trailing" constant="5" id="hJn-jj-yHt"/>
                                         <constraint firstItem="0Uz-sa-4Mv" firstAttribute="leading" secondItem="O1I-E8-xzJ" secondAttribute="trailing" constant="10" id="i1j-TU-mmu"/>
                                         <constraint firstAttribute="trailing" secondItem="oHD-S1-uK2" secondAttribute="trailing" constant="50" id="if5-Ur-Kam"/>
+                                        <constraint firstItem="eeG-1D-zCM" firstAttribute="centerX" secondItem="4X3-pi-dMT" secondAttribute="centerX" id="m87-7J-YZc"/>
+                                        <constraint firstItem="4X3-pi-dMT" firstAttribute="bottom" secondItem="O1I-E8-xzJ" secondAttribute="bottom" id="nJj-ZZ-rTg"/>
+                                        <constraint firstItem="4X3-pi-dMT" firstAttribute="leading" secondItem="iib-PH-hrF" secondAttribute="trailing" constant="10" id="rgk-lx-1DD"/>
+                                        <constraint firstItem="iib-PH-hrF" firstAttribute="top" secondItem="xvR-S9-KMM" secondAttribute="bottom" constant="2" id="sIg-9U-GFj"/>
                                         <constraint firstItem="eeG-1D-zCM" firstAttribute="centerY" secondItem="oHD-S1-uK2" secondAttribute="centerY" id="sLs-7s-0Gd"/>
                                         <constraint firstItem="O1I-E8-xzJ" firstAttribute="top" secondItem="soE-xL-Jjf" secondAttribute="top" constant="10" id="v4Y-ZI-i4a"/>
-                                        <constraint firstAttribute="bottom" secondItem="iib-PH-hrF" secondAttribute="bottom" constant="15" id="vC7-9k-shM"/>
                                         <constraint firstItem="oHD-S1-uK2" firstAttribute="top" secondItem="O1I-E8-xzJ" secondAttribute="top" constant="5" id="wVH-dO-hHL"/>
-                                        <constraint firstAttribute="bottom" secondItem="5Lf-Ln-QkG" secondAttribute="bottom" constant="10" id="zjP-cc-0NI"/>
+                                        <constraint firstItem="0Uz-sa-4Mv" firstAttribute="top" secondItem="iib-PH-hrF" secondAttribute="bottom" constant="2" id="yoL-w9-VNc"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -442,7 +447,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6q9-2R-TJS"/>
+        <segue reference="HzN-ii-n4s"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="books.vertical" catalog="system" width="128" height="107"/>

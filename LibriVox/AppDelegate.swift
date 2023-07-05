@@ -58,9 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Database path", URL.documentsDirectory)
         let db = Firestore.firestore()
         db.settings = settings
-
-        resetCoreDataSchema()
-        //clearUserDefaults()
+        
         SwaggerClientAPI.requestBuilderFactory = AppRequestBuilderFactory()
         return true
     }

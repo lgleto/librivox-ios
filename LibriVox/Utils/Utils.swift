@@ -38,6 +38,24 @@ func displayGenres(strings: [Genre]) -> String {
     return result
 }
 
+func createGenresArray(from string: String) -> [Genre] {
+    let genreNames = string.components(separatedBy: ", ")
+    let genres = genreNames.map { Genre(name: $0) }
+    return genres
+}
+
+
+func createAuthorsArray(from string: String) -> [Author] {
+    let authorNames = string.components(separatedBy: ", ")
+    let authors = authorNames.map { fullName -> Author in
+        let nameComponents = fullName.components(separatedBy: " ")
+        let firstName = nameComponents.first ?? ""
+        let lastName = nameComponents.dropFirst().joined(separator: " ")
+        return Author(firstName: firstName, lastName: lastName)
+    }
+    return authors
+}
+
 func displayAuthors(authors: [Author]) -> String {
     var stringNames = ""
     
@@ -187,7 +205,7 @@ func isImageSavedInDocumentDirectory(id: String) -> Bool {
 
 func downloadAndSaveImage(id: String, completion: @escaping (Bool) -> Void) {
     let imageRef = storage.child("BookCover/\(id).jpg")
-
+    
     imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
         if let error = error {
             print("Error downloading image: \(error.localizedDescription)")
@@ -212,7 +230,7 @@ func saveImageToDocumentDirectory(id: String, image: UIImage) {
     let fileManager = FileManager.default
     let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
     let imgBooksDirectory = documentsDirectory.appendingPathComponent("ImgBooks")
-
+    
     if !fileManager.fileExists(atPath: imgBooksDirectory.path) {
         do {
             try fileManager.createDirectory(at: imgBooksDirectory, withIntermediateDirectories: true, attributes: nil)
@@ -221,9 +239,9 @@ func saveImageToDocumentDirectory(id: String, image: UIImage) {
             return
         }
     }
-
+    
     let fileURL = imgBooksDirectory.appendingPathComponent(id)
-
+    
     if !fileManager.fileExists(atPath: fileURL.path) {
         if let data = image.jpegData(compressionQuality: 1.0) {
             do {
@@ -698,38 +716,38 @@ extension Audiobook : PlayableItemProtocol {
 }
 
 /*extension AudioBooks_Data: PlayableItemProtocol {
-    var _id: String? {
-        get { return id }
-        set { id = newValue }
-    }
-
-    var timeStopped: Int? {
-        get { return Int(timeStopped ?? 0) }
-        set { timeStopped = newValue != nil ? Int(Int32(newValue!)) : 0 }
-        }
-    
-    var isFav: Bool? {
-        get { return isFav }
-        set { isFav = newValue! }
-    }
-    
-    
-   /* var sections: [Section]? {
-            get {
-                if let sectionsSet = sections as? Set<Section> {
-                    return Array(sectionsSet)
-                }
-                return nil
-            }
-            set {
-                if let newValue = newValue {
-                    sections = NSSet(array: newValue)
-                } else {
-                    sections = nil
-                }
-            }
-        }*/
-}*/
+ var _id: String? {
+ get { return id }
+ set { id = newValue }
+ }
+ 
+ var timeStopped: Int? {
+ get { return Int(timeStopped ?? 0) }
+ set { timeStopped = newValue != nil ? Int(Int32(newValue!)) : 0 }
+ }
+ 
+ var isFav: Bool? {
+ get { return isFav }
+ set { isFav = newValue! }
+ }
+ 
+ 
+ /* var sections: [Section]? {
+  get {
+  if let sectionsSet = sections as? Set<Section> {
+  return Array(sectionsSet)
+  }
+  return nil
+  }
+  set {
+  if let newValue = newValue {
+  sections = NSSet(array: newValue)
+  } else {
+  sections = nil
+  }
+  }
+  }*/
+ }*/
 
 
 
