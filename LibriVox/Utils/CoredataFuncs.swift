@@ -85,7 +85,7 @@ func addAudiobookCD(book: Book) {
                 for sectionData in sectionsData {
                     let section = Sections(context: context)
                     section.title = sectionData.title
-                    section.sectionNumber = sectionData.sectionNumber
+                    section.sectionNumber = Int32(sectionData.sectionNumber ?? "0") ?? 0
                     section.playTime = sectionData.playtime
                     section.fileName = sectionData.fileName
                     if let playTime = Int(section.playTime ?? "0") {
@@ -119,22 +119,28 @@ func addAudiobookCD(book: Book) {
     }
 }
 
-func getPercentageOfBook(id: String, sectionNumber: Int) -> Double {
+func getPercentageOfBook(id: String, sectionNumber: Int) -> Float {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let fetchRequest: NSFetchRequest<Sections> = Sections.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "audioBook_Data.id == %@", id)
+    fetchRequest.predicate = NSPredicate(format: "audioBook_Data.id == %@ AND sectionNumber < %d", id, sectionNumber)
     
     do {
         let sections = try context.fetch(fetchRequest)
-        let filteredSections = sections.filter { Int($0.sectionNumber ?? "0") ?? 0 < sectionNumber }
-        let totalWeight = filteredSections.reduce(0.0) { $0 + $1.weight }
-        return totalWeight
+        var sum = 0.0
+        for section in sections {
+            if section.sectionNumber != sectionNumber{
+                sum += section.weight
+            }
+        }
+        print("o resultado é \(sum) \(Float(sum/100))")
+        return Float(sum/100)
     } catch {
         print("Error fetching sections: \(error)")
         return 0.0
     }
 }
+
 
 
 
@@ -194,14 +200,14 @@ func convertToAudiobook(audioBookData: AudioBooks_Data) -> Audiobook {
 func decodeSections(_ sections: NSSet?) -> [Section]? {
     guard let sectionSet = sections as? Set<Sections> else { return nil }
     
-    let sortedSections = sectionSet.sorted { $0.sectionNumber! < $1.sectionNumber! }
+    let sortedSections = sectionSet.sorted { $0.sectionNumber < $1.sectionNumber }
     
     var decodedSections: [Section] = []
     
     for sectionData in sortedSections {
         var section = Section()
         section.title = sectionData.title
-        section.sectionNumber = sectionData.sectionNumber
+        section.sectionNumber = String(sectionData.sectionNumber)
         section.playtime = sectionData.playTime
         section.fileName = sectionData.fileName
         

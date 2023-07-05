@@ -2,7 +2,7 @@
 //  Sections+CoreDataProperties.swift
 //  LibriVox
 //
-//  Created by Acesso Gloria MP on 27/06/2023.
+//  Created by Acesso Gloria MP on 05/07/2023.
 //
 //
 
@@ -18,7 +18,7 @@ extension Sections {
 
     @NSManaged public var fileName: String?
     @NSManaged public var playTime: String?
-    @NSManaged public var sectionNumber: String?
+    @NSManaged public var sectionNumber: Int32
     @NSManaged public var title: String?
     @NSManaged public var weight: Double
     @NSManaged public var audioBook_Data: AudioBooks_Data?

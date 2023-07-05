@@ -43,9 +43,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Diretoria: \(NSHomeDirectory())")
-        
         //        IndicatorView.startAnimating()
         //      IndicatorView.hidesWhenStopped = true
         let  selectedImage  = UIImage(named: "pause.svg")
@@ -82,13 +79,13 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         titleBook.text = audioBook.title ?? ""
         durationBook.text = "Duratin: \(audioBook.totalTime)"
         authorBook.text = "Author(s): \(audioBook.authors)"
-        
-        print("progresso de \(getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped)))")
-        
-        progress.setProgress(10, animated: true)
-        
-        
+        print("oupa \(audioBook.id) \(Int(audioBook.sectionStopped))")
+ 
+        let progressDB = getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped))
+        progress.setProgress(progressDB, animated: true)
     }
+    
+    
     @IBAction func playButton(_ sender: Any) {
         if (!checkIfFileExists(book: localBooks[1])) {
             PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1] as! PlayableItemProtocol) { _ , book in
@@ -124,45 +121,17 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (localBooks.count > 3) {
-            return 3
-        } else {
-            print("Local Books count->" , localBooks.count)
             return localBooks.count
-        }
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellBook
-        cell.selectionStyle = .none
-        var authorsString = "Authors: "
-        var genreString = "Genre: "
+
         cell.title.text = self.localBooks[indexPath.row].title
-        if (self.localBooks.count > 1) {
-            cell.author.text = "Author: \(self.localBooks[indexPath.row].authors![0].firstName!) \(self.localBooks[indexPath.row].authors![0].lastName!)"
-        } else {
-            for author_ in self.localBooks[indexPath.row].authors! {
-                if (authorsString == "Authors: ") {
-                    authorsString += "\(author_.firstName!) \(author_.lastName!)"
-                } else {
-                    authorsString += ", \(author_.firstName!) \(author_.lastName!) "
-                }
-                
-            }
-            cell.author.text = authorsString
-        }
-        
-        
+        cell.author.text = "Author: \(displayAuthors(authors: self.localBooks[indexPath.row].authors ?? []))"
         cell.duration.text = "Duration: \(self.localBooks[indexPath.row].totaltime!)"
-        
-        for genre_ in self.localBooks[indexPath.row].genres! {
-            genreString += "\(genre_.name!), "
-        }
-        
-        cell.genre.text = "Genre: \(self.localBooks[indexPath.row].genres![0].name!)"
-        cell.trendingNumber.text = "\(indexPath.row+1)."
+        cell.genre.text = "Genre: \(displayGenres(strings: self.localBooks[indexPath.row].genres ?? []))"
+        cell.trendingNumber.text = "\(indexPath.row + 1)."
         
         cell.bookCover.image = nil
         getCoverBook(id: localBooks[indexPath.row]._id!, url: localBooks[indexPath.row].urlLibrivox!){img in
@@ -184,37 +153,12 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    
-    
-    var trending = [Trending]()
+
     var localBooks = [Audiobook]()
-    func addForTrending(  onCompelition : (()->())? = nil ) {
-        if let trend = trending.first {
-            DefaultAPI.audiobooksIdBookIdGet(bookId: Int64(trend.id)!, format: "json", extended: 1) { data, error in
-                guard let data = data else {return}
-                print(data.books![0].title!)
-                self.localBooks.append(data.books![0])
-                self.trending.removeFirst()
-                self.addForTrending(onCompelition: onCompelition)
-            }
-        }else {
-            print("trending is empty")
-            //print(self.localBooks)
-        }
-        if let c = onCompelition{
-            c()
-        }
-        
-    }
-    
-    
     func loadTrending(callback: @escaping ()->() ) {
-        
-        
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
         booksRef.order(by: "trending", descending: true).limit(to: 3)
-        
         
         booksRef.getDocuments{ querySnapshot, err in
             if let err = err {
@@ -225,14 +169,10 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                     case .default:
                         self.IndicatorView.startAnimating()
                         self.checkWifi()
-                        
-                        
                     case .cancel:
                         print("cancel")
-                        
                     case .destructive:
                         print("destructive")
-                        
                     @unknown default:
                         print("this wasnt suposed to happen")
                     }
@@ -240,20 +180,13 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.IndicatorView.stopAnimating()
                 self.present(alert, animated: true, completion: nil)
                 
-                
             } else {
                 for document in querySnapshot!.documents {
                     let s = document.data()
                     let book = Audiobook(dict: s)
                     self.localBooks.append(book)
                 }
-                /*
-                self.addForTrending() {
-                    print("inside loadTrending")
-                    callback()
-                }*/
                 callback()
-                
             }
         }
     }
