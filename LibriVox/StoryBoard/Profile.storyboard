@@ -196,7 +196,7 @@
             <objects>
                 <viewController id="eGQ-s1-AZo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IQ1-51-DPr">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="eYj-Go-N69">
@@ -285,6 +285,7 @@
                         <viewLayoutGuide key="safeArea" id="gsD-F9-bxZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8Ev-lk-g9e"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZ5-oZ-dvh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="KN4-YK-d0w">
@@ -523,11 +524,13 @@
                         <color key="badgeColor" name="Lighter Blue Tone"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="AboutBtn" destination="ncc-o8-HuP" id="Fm2-81-SBG"/>
                         <outlet property="logoutBtn" destination="ct1-3k-AVA" id="4CK-eH-7kH"/>
                         <outlet property="nameUser" destination="kmT-Qo-4gw" id="QGr-Mg-TtQ"/>
                         <outlet property="nicknameUser" destination="6f5-36-Wnc" id="LfT-EQ-gDB"/>
                         <outlet property="profilePhoto" destination="MU6-6K-bHJ" id="lhx-Zy-fYK"/>
                         <outlet property="switchMode" destination="L64-fm-XO0" id="9w9-D1-5L4"/>
+                        <segue destination="eGQ-s1-AZo" kind="show" identifier="profileToAbout" id="eJR-iN-LAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6c-3g-VVE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
