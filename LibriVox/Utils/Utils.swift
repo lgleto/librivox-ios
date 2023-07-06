@@ -373,10 +373,10 @@ func getMainImageFromWikipedia(name: String,_ callback: @escaping (UIImage?) -> 
 
 
 
-func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
+func setImageNLabelAlert(view: UIScrollView, img: UIImage, text: String) {
     let templateImage = img.withRenderingMode(.alwaysTemplate)
     let imageView = UIImageView(image: templateImage)
-    imageView.contentMode = .scaleAspectFill
+    imageView.contentMode = .scaleAspectFit
     imageView.tintColor = UIColor.lightGray
     imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -397,9 +397,43 @@ func setImageNLabelAlert(view : UIScrollView, img : UIImage, text: String){
     
     NSLayoutConstraint.activate([
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
     ])
 }
+
+
+func setImageNLabelAlertVC(viewController: UIViewController, img: UIImage, text: String) {
+    let templateImage = img.withRenderingMode(.alwaysTemplate)
+    let imageView = UIImageView(image: templateImage)
+    imageView.contentMode = .scaleAspectFit
+    imageView.tintColor = UIColor.lightGray
+    imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    
+    let label = UILabel()
+    label.text = text
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    label.textColor = UIColor.lightGray
+    label.font = UIFont(name: "Nunito", size: 17)
+    
+    let stackView = UIStackView(arrangedSubviews: [imageView, label])
+    stackView.axis = .vertical
+    stackView.spacing = 15
+    
+    viewController.view.addSubview(stackView)
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+        stackView.centerXAnchor.constraint(equalTo: viewController.view.centerXAnchor),
+        stackView.centerYAnchor.constraint(equalTo: viewController.view.centerYAnchor),
+        label.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 20)
+    ])
+}
+
 
 
 func checkAndUpdateEmptyState<T>(list:[T], alertImage: UIImage, view: UIScrollView, alertText: String) {

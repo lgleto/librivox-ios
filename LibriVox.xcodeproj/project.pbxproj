@@ -108,7 +108,7 @@
 		317CDC8F2A0CE43100C63456 /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerVC.swift; path = LibriVox/ViewControllers/HomePage/PlayerVC.swift; sourceTree = SOURCE_ROOT; };
 		317FC6A329CE0A3E00E5922A /* HomepageTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageTBC.swift; sourceTree = "<group>"; };
 		3183B78A29DF315C00F1AE0A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		319FA01329C36445006895CB /* LibriVox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibriVox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		319FA01329C36445006895CB /* Narrativia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Narrativia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		319FA01629C36445006895CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		319FA01829C36445006895CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		319FA01A29C36445006895CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 		319FA01429C36445006895CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				319FA01329C36445006895CB /* LibriVox.app */,
+				319FA01329C36445006895CB /* Narrativia.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -469,7 +469,7 @@
 				312809872A08F3B400B6BAE7 /* Reachability */,
 			);
 			productName = LibriVox;
-			productReference = 319FA01329C36445006895CB /* LibriVox.app */;
+			productReference = 319FA01329C36445006895CB /* Narrativia.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -796,7 +796,7 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = mindprober.LibriVox;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Narrativia;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -826,7 +826,7 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = mindprober.LibriVox;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Narrativia;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

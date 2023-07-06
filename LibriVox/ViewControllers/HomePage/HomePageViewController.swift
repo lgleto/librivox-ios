@@ -54,6 +54,12 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
+        /*self.loadTrending {
+            print("sdasda")
+            
+            self.trendingBooks.reloadData()
+        }*/
+        
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
         
         trendingBooks.delegate = self
@@ -72,7 +78,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         durationBook.text = "Duration: \(audioBook.totalTime ?? "")"
         authorBook.text = "Author(s): \(audioBook.authors ?? "")"
         print("oupa \(audioBook.id) \(Int(audioBook.sectionStopped))")
- 
+        
         let progressDB = getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped))
         progress.setProgress(progressDB, animated: true)
     }
@@ -113,12 +119,16 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return localBooks.count
+        if localBooks.count == 0{
+            setImageNLabelAlert(view: trendingBooks, img: UIImage(named: "no-wifi")!, text: "Unable to connect to the internet. Please check your network connection and try again later.")
+
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellBook
-
+        
         cell.title.text = self.localBooks[indexPath.row].title
         cell.author.text = "Author: \(displayAuthors(authors: self.localBooks[indexPath.row].authors ?? []))"
         cell.duration.text = "Duration: \(self.localBooks[indexPath.row].totaltime!)"
@@ -145,9 +155,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-
+    
     var localBooks = [Audiobook]()
-    func loadTrending(callback: @escaping ()->() ) {
+    /*func loadTrending(callback: @escaping ()->() ) {
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
         booksRef.order(by: "trending", descending: true).limit(to: 3)
@@ -158,9 +168,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 let alert = UIAlertController(title: "Error getting Trending", message: "Error getting the trending books, probably due to slow internet connection", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { action in
                     switch action.style{
-                    case .default:
-                        self.IndicatorView.startAnimating()
-                        self.checkWifi()
+                    case .default: break
+                        //self.IndicatorView.startAnimating()
+                        //self.checkWifi()
                     case .cancel:
                         print("cancel")
                     case .destructive:
@@ -169,7 +179,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                         print("this wasnt suposed to happen")
                     }
                 }))
-                self.IndicatorView.stopAnimating()
+                //self.IndicatorView.stopAnimating()
                 self.present(alert, animated: true, completion: nil)
                 
             } else {
@@ -181,44 +191,41 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 callback()
             }
         }
-    }
+    }*/
     
     func checkWifi() {
         networkCheck = NetworkCheck.sharedInstance()
         print("enter check wifi")
-        //if networkCheck.currentStatus == .satisfied{
-        //Do something
-        self.loadTrending {
-            print("sdasda")
+        if networkCheck.currentStatus == .satisfied{
+            print("ao menos isso")
+        }else{
             
-            self.trendingBooks.reloadData()
-            //            self.IndicatorView.stopAnimating()
+            setImageNLabelAlert(view: trendingBooks, img: UIImage(named: "no-wifi")!, text: "Unable to connect to the internet. Please check your network connection and try again later.")
+
+            /* //Show no network alert
+             let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
+             alert.addAction(UIAlertAction(title: "Retry",style: .default, handler: { action in
+             switch action.style{
+             case .default:
+             self.IndicatorView.startAnimating()
+             self.checkWifi()*
+             
+             
+             case .cancel:
+             print("cancel")
+             
+             case .destructive:
+             print("destructive")
+             
+             @unknown default:
+             print("this wasnt suposed to happen")
+             }
+             }))
+             self.IndicatorView.stopAnimating()
+             self.present(alert, animated: true, completion: nil)
+             }*/
         }
         
-        /* }else{
-         //Show no network alert
-         let alert = UIAlertController(title: "No Internet", message: "You dont have internet connection", preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: "Retry",style: .default, handler: { action in
-         switch action.style{
-         case .default:
-         self.IndicatorView.startAnimating()
-         self.checkWifi()
-         
-         
-         case .cancel:
-         print("cancel")
-         
-         case .destructive:
-         print("destructive")
-         
-         @unknown default:
-         print("this wasnt suposed to happen")
-         }
-         }))
-         self.IndicatorView.stopAnimating()
-         self.present(alert, animated: true, completion: nil)
-         }*/
     }
     
 }
-

@@ -17,24 +17,24 @@ class DiscoverVC: UIViewController {
     
     private var emptyStateVC: DiscoverOptionsVC?
     private var resultsVC: ResultBooksVC?
+    var connection = true
     
     @IBAction func searchHandler(_ sender: UITextField) {
-        if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
-            
-            self.resultsVC?.didChangeSearchText(searchText)
-            
-            
-            addViewController(resultsVC!, container, emptyStateVC)
-            
-        } else {
-            addViewController(emptyStateVC!,container,resultsVC)
-            print("executou inicio")
+        if connection{
+            if let searchText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty {
+                self.resultsVC?.didChangeSearchText(searchText)
+                addViewController(resultsVC!, container, emptyStateVC)
+            } else {
+                addViewController(emptyStateVC!,container,resultsVC)
+            }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        checkWifi()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,17 +45,13 @@ class DiscoverVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         emptyStateVC = storyboard?.instantiateViewController(withIdentifier: "EmptyStateViewController") as? DiscoverOptionsVC
         resultsVC = storyboard?.instantiateViewController(withIdentifier: "ResultsViewController") as? ResultBooksVC
-        
-        addChild(emptyStateVC!)
-        container.addSubview(emptyStateVC!.view)
-        emptyStateVC!.view.frame = container.bounds
-        emptyStateVC!.didMove(toParent: self)
+
     }
     
     func addViewController(_ childViewController: UIViewController, _ container: UIView, _ stateViewController: UIViewController?) {
-        
         guard let currentViewController = children.first else {
             addChild(childViewController)
             container.addSubview(childViewController.view)
@@ -74,5 +70,33 @@ class DiscoverVC: UIViewController {
         childViewController.view.frame = container.bounds
         childViewController.didMove(toParent: self)
         
+    }
+    
+    func checkWifi() {
+        let networkCheck = NetworkCheck.sharedInstance()
+        print("enter check wifi")
+        if networkCheck.currentStatus == .satisfied {
+            print("Connected to the internet")
+            connection = true
+            
+            addChild(emptyStateVC!)
+            container.addSubview(emptyStateVC!.view)
+            emptyStateVC!.view.frame = container.bounds
+            emptyStateVC!.didMove(toParent: self)
+        } else {
+            connection = false
+            removeChildViewControllers()
+            setImageNLabelAlertVC(viewController: self, img: UIImage(named: "no-wifi")!, text: "Unable to connect to the internet. Please check your network connection and try again later.")
+        }
+    }
+
+    func removeChildViewControllers() {
+        emptyStateVC?.willMove(toParent: nil)
+        emptyStateVC?.view.removeFromSuperview()
+        emptyStateVC?.removeFromParent()
+        
+        resultsVC?.willMove(toParent: nil)
+        resultsVC?.view.removeFromSuperview()
+        resultsVC?.removeFromParent()
     }
 }

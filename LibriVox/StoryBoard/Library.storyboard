@@ -8,7 +8,6 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -379,71 +378,101 @@
             <point key="canvasLocation" x="3292.3664122137402" y="-2.1126760563380285"/>
         </scene>
         <!--FinishedCVC-->
-        <scene sceneID="B85-OH-DR4">
+        <scene sceneID="Be7-lN-ORj">
             <objects>
-                <collectionViewController storyboardIdentifier="FinishedVC" id="cOL-DZ-uvv" customClass="FinishedCVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Np4-FT-F0Y">
+                <tableViewController storyboardIdentifier="FinishedVC" id="1zV-Le-5Oh" customClass="FinishedCVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="VAq-gq-NqA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="14" minimumInteritemSpacing="20" id="AGu-rb-YiC">
-                            <size key="itemSize" width="156" height="236"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListBooksCell" id="yxS-ob-AFY" customClass="ListBooksCell" customModule="LibriVox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="156" height="236"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="F3g-po-Wkq">
-                                    <rect key="frame" x="0.0" y="0.0" width="156" height="236"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCellTVC" rowHeight="145" id="LPL-fe-KdT" customClass="FavoritesCellTVC" customModule="LibriVox" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="145"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LPL-fe-KdT" id="ewd-Ei-PZy">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="145"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="96F-Gt-DxQ" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
-                                            <rect key="frame" x="23" y="10" width="110" height="172"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wKZ-Ev-CA8" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="10" width="77" height="125"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="172" id="iSL-ik-KAi"/>
-                                                <constraint firstAttribute="width" constant="110" id="uz6-mc-9Vh"/>
+                                                <constraint firstAttribute="width" constant="77" id="SfS-o2-Kwx"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: Visitou Morpheus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBd-US-yq9">
-                                            <rect key="frame" x="0.0" y="193" width="156" height="43"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-UP-oJP">
+                                            <rect key="frame" x="87" y="15.000000000000002" width="256" height="20.666666666666671"/>
+                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jo8-LF-k0V">
+                                            <rect key="frame" x="87" y="92" width="107" height="18"/>
+                                            <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aO9-a8-DG7">
+                                            <rect key="frame" x="87" y="72" width="256" height="18"/>
+                                            <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0R3-Fo-c9W" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                            <rect key="frame" x="353" y="100" width="35" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="156" id="dsN-fR-Gk5"/>
+                                                <constraint firstAttribute="width" constant="35" id="3gr-Ff-8mz"/>
+                                                <constraint firstAttribute="height" constant="35" id="Lev-r9-QUu"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="15"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
+                                                <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOG-Fa-dig">
+                                            <rect key="frame" x="87" y="52" width="115.33333333333331" height="18"/>
+                                            <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="96F-Gt-DxQ" firstAttribute="centerX" secondItem="DBd-US-yq9" secondAttribute="centerX" id="13A-Vi-vio"/>
-                                        <constraint firstAttribute="bottom" secondItem="DBd-US-yq9" secondAttribute="bottom" id="6QW-gz-CoZ"/>
-                                        <constraint firstItem="DBd-US-yq9" firstAttribute="top" secondItem="96F-Gt-DxQ" secondAttribute="bottom" constant="11" id="Cdj-cg-3w4"/>
-                                        <constraint firstAttribute="trailing" secondItem="DBd-US-yq9" secondAttribute="trailing" id="fHt-xb-nPc"/>
-                                        <constraint firstItem="96F-Gt-DxQ" firstAttribute="top" secondItem="F3g-po-Wkq" secondAttribute="top" constant="10" id="hIa-CC-7pg"/>
-                                        <constraint firstItem="DBd-US-yq9" firstAttribute="leading" secondItem="F3g-po-Wkq" secondAttribute="leading" id="qHR-dT-jpd"/>
+                                        <constraint firstAttribute="trailing" secondItem="0R3-Fo-c9W" secondAttribute="trailing" constant="5" id="0Fe-T9-s8c"/>
+                                        <constraint firstItem="GOG-Fa-dig" firstAttribute="leading" secondItem="wKZ-Ev-CA8" secondAttribute="trailing" constant="10" id="3Ms-9I-NHe"/>
+                                        <constraint firstItem="wKZ-Ev-CA8" firstAttribute="top" secondItem="ewd-Ei-PZy" secondAttribute="top" constant="10" id="3rO-ap-FSO"/>
+                                        <constraint firstItem="jo8-LF-k0V" firstAttribute="leading" secondItem="wKZ-Ev-CA8" secondAttribute="trailing" constant="10" id="CMn-P2-ZnY"/>
+                                        <constraint firstItem="jo8-LF-k0V" firstAttribute="bottom" secondItem="wKZ-Ev-CA8" secondAttribute="bottom" constant="-25" id="Cpm-yz-BFu"/>
+                                        <constraint firstItem="aO9-a8-DG7" firstAttribute="leading" secondItem="wKZ-Ev-CA8" secondAttribute="trailing" constant="10" id="LRz-aw-8HY"/>
+                                        <constraint firstItem="wKZ-Ev-CA8" firstAttribute="leading" secondItem="ewd-Ei-PZy" secondAttribute="leading" id="LcY-9S-sln"/>
+                                        <constraint firstAttribute="trailing" secondItem="Yhi-UP-oJP" secondAttribute="trailing" constant="50" id="OyJ-hj-x4W"/>
+                                        <constraint firstItem="Yhi-UP-oJP" firstAttribute="leading" secondItem="wKZ-Ev-CA8" secondAttribute="trailing" constant="10" id="RgO-QT-cmN"/>
+                                        <constraint firstAttribute="bottom" secondItem="wKZ-Ev-CA8" secondAttribute="bottom" constant="10" id="W9s-92-gG3"/>
+                                        <constraint firstItem="jo8-LF-k0V" firstAttribute="top" secondItem="aO9-a8-DG7" secondAttribute="bottom" constant="2" id="aE0-Oq-EoO"/>
+                                        <constraint firstItem="0R3-Fo-c9W" firstAttribute="leading" secondItem="aO9-a8-DG7" secondAttribute="trailing" constant="10" id="cR2-SC-YgT"/>
+                                        <constraint firstItem="Yhi-UP-oJP" firstAttribute="top" secondItem="wKZ-Ev-CA8" secondAttribute="top" constant="5" id="fAw-GN-teI"/>
+                                        <constraint firstItem="0R3-Fo-c9W" firstAttribute="bottom" secondItem="wKZ-Ev-CA8" secondAttribute="bottom" id="oQS-sh-uWB"/>
+                                        <constraint firstItem="aO9-a8-DG7" firstAttribute="top" secondItem="GOG-Fa-dig" secondAttribute="bottom" constant="2" id="zOY-qN-Cuh"/>
                                     </constraints>
-                                </collectionViewCellContentView>
-                                <size key="customSize" width="156" height="236"/>
+                                </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="imageBook" destination="96F-Gt-DxQ" id="t9W-xg-8zI"/>
-                                    <outlet property="titleBook" destination="DBd-US-yq9" id="bVn-t8-JYp"/>
-                                    <segue destination="c0e-yd-uVQ" kind="show" identifier="showDetailsBook" id="cWc-Cy-ca3"/>
+                                    <outlet property="authorBook" destination="GOG-Fa-dig" id="oc5-Tu-kV2"/>
+                                    <outlet property="durationBook" destination="jo8-LF-k0V" id="98d-xm-RwW"/>
+                                    <outlet property="genreBook" destination="aO9-a8-DG7" id="UsH-AB-7f7"/>
+                                    <outlet property="imgBook" destination="wKZ-Ev-CA8" id="rVC-Z8-oUD"/>
+                                    <outlet property="titleBook" destination="Yhi-UP-oJP" id="GGM-tA-hXZ"/>
                                 </connections>
-                            </collectionViewCell>
-                        </cells>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="cOL-DZ-uvv" id="XJZ-An-Cda"/>
-                            <outlet property="delegate" destination="cOL-DZ-uvv" id="OSG-lC-gqH"/>
+                            <outlet property="dataSource" destination="1zV-Le-5Oh" id="IqG-ZL-cd3"/>
+                            <outlet property="delegate" destination="1zV-Le-5Oh" id="4zp-uV-q0Y"/>
                         </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PQ5-xH-o9G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5UP-EG-7BQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3964.1221374045799" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="3999" y="-2"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -454,8 +483,8 @@
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

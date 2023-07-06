@@ -179,7 +179,7 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
                 if let password = alertController.textFields?.first?.text {
                     let credential = EmailAuthProvider.credential(withEmail: self.originalEmail!, password: password)
                     
-                    LibriVox.updateEmail(credential, email, view: self)
+                    //LibriVox.updateEmail(credential, email, view: self)
                 }
             }
 
