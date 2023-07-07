@@ -15,6 +15,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var nicknameUser: UILabel!
     @IBOutlet weak var nameUser: UILabel!
     
+    
     @IBOutlet weak var AboutBtn: UILabel!
     @IBOutlet weak var switchMode: UISwitch!
     @IBOutlet weak var logoutBtn: UILabel!
@@ -34,10 +35,14 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(tapFunctionAbout))
+        AboutBtn.addGestureRecognizer(tap1)
+        
+        
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
-        tap = UITapGestureRecognizer(target: self, action: #selector(tapFunctionAbout))
-        AboutBtn.addGestureRecognizer(tap)
+        
         
         getUserInfo(User.NAME) { name in
             if let name = name ?? Auth.auth().currentUser?.displayName {
@@ -55,7 +60,15 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func tapFunctionAbout(sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "profileToAbout", sender: nil)    }
+        aboutPage()
+    }
+    func aboutPage() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "aboutPage") as! UIViewController
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @IBAction func switchTheme(_ sender: UISwitch) {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

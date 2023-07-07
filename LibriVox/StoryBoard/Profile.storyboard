@@ -23,7 +23,7 @@
         <!--Edit ProfileVC-->
         <scene sceneID="veg-gu-U0j">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="1WG-ih-yxn" customClass="EditProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="1WG-ih-yxn" customClass="EditProfileVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OhU-8w-aHn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g6-j3-sNK">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="678"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THR-Iu-897" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THR-Iu-897" customClass="CircularImageView" customModule="Narrativia" customModuleProvider="target">
                                                 <rect key="frame" x="121.66666666666669" y="63" width="150" height="150"/>
                                                 <color key="backgroundColor" name="Gren Tone"/>
                                                 <constraints>
@@ -42,7 +42,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="SOb-36-zwh"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First / Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08E-nr-Jf1" customClass="BlueShadowUITextField" customModule="LibriVox" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First / Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08E-nr-Jf1" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="243" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="mck-8v-eEA"/>
@@ -50,7 +50,7 @@
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-LN-DiS" customClass="BlueShadowUITextField" customModule="LibriVox" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-LN-DiS" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="345" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="axm-sI-4Ol"/>
@@ -58,7 +58,7 @@
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-xy-Cm0" customClass="BlueShadowUITextField" customModule="LibriVox" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-xy-Cm0" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="294" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="sOC-nQ-Di5"/>
@@ -194,7 +194,7 @@
         <!--View Controller-->
         <scene sceneID="tHg-Gg-hDc">
             <objects>
-                <viewController id="eGQ-s1-AZo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="aboutPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eGQ-s1-AZo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IQ1-51-DPr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -301,7 +301,7 @@
         <!--ProfileVC-->
         <scene sceneID="gRA-9B-58Q">
             <objects>
-                <viewController storyboardIdentifier="ProfileId" id="2Jp-DH-0ZD" customClass="ProfileVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileId" id="2Jp-DH-0ZD" customClass="ProfileVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8aG-EC-vEb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -318,7 +318,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54v-mS-hUU" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54v-mS-hUU" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="42.999999999999986" width="361" height="247.66666666666663"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCl-8G-5cb">
@@ -338,7 +338,7 @@
                                                             <segue destination="1WG-ih-yxn" kind="show" id="kEP-NY-kAp"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MU6-6K-bHJ" customClass="CircularImageView" customModule="LibriVox" customModuleProvider="target">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MU6-6K-bHJ" customClass="CircularImageView" customModule="Narrativia" customModuleProvider="target">
                                                         <rect key="frame" x="105.66666666666669" y="19" width="150" height="150"/>
                                                         <color key="backgroundColor" name="Gren Tone"/>
                                                         <constraints>
@@ -381,7 +381,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="SJW-zy-iG6"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncc-o8-HuP">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncc-o8-HuP">
                                                 <rect key="frame" x="69" y="770" width="45.333333333333343" height="22"/>
                                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -524,7 +524,7 @@
                         <color key="badgeColor" name="Lighter Blue Tone"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="AboutBtn" destination="ncc-o8-HuP" id="Fm2-81-SBG"/>
+                        <outlet property="AboutBtn" destination="ncc-o8-HuP" id="cDu-8F-Wz3"/>
                         <outlet property="logoutBtn" destination="ct1-3k-AVA" id="4CK-eH-7kH"/>
                         <outlet property="nameUser" destination="kmT-Qo-4gw" id="QGr-Mg-TtQ"/>
                         <outlet property="nicknameUser" destination="6f5-36-Wnc" id="LfT-EQ-gDB"/>
