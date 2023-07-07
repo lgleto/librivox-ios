@@ -187,6 +187,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                     let s = document.data()
                     let book = Audiobook(dict: s)
                     self.localBooks.append(book)
+                    removeImageNLabelAlert(view: self.trendingBooks)
                 }
                 callback()
             }
