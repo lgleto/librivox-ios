@@ -79,7 +79,7 @@ class ProfileVC: UIViewController {
         appDelegate.resetCoreDataSchema()
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "LoginId") as! LoginVC
+        let vc = storyBoard.instantiateViewController(withIdentifier: "LoginId") as! UIViewController
         self.present(vc, animated: true, completion: nil)
         
     }

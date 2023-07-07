@@ -43,7 +43,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkWifi()
+        //checkWifi()
         
         loadCurrentUser { user in
             guard let name = Auth.auth().currentUser?.displayName else { return }
@@ -53,12 +53,10 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.setLastBook(audioBook: audioBook)
             }
         }
-        
-        /*self.loadTrending {
-            print("sdasda")
-            
+        //removeImageNLabelAlert(view: trendingBooks)
+        loadTrending(){
             self.trendingBooks.reloadData()
-        }*/
+        }
         
         progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
         
@@ -123,7 +121,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             setImageNLabelAlert(view: trendingBooks, img: UIImage(named: "no-wifi")!, text: "Unable to connect to the internet. Please check your network connection and try again later.")
 
         }
-        return 0
+        return localBooks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -157,7 +155,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     var localBooks = [Audiobook]()
-    /*func loadTrending(callback: @escaping ()->() ) {
+    func loadTrending(callback: @escaping ()->() ) {
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
         let trendingLvl = booksRef.order(by: "trending", descending: false)
@@ -193,15 +191,17 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 callback()
             }
         }
-    }*/
+    }
     
-    func checkWifi() {
+   /* func checkWifi() {
         networkCheck = NetworkCheck.sharedInstance()
         print("enter check wifi")
         if networkCheck.currentStatus == .satisfied{
-            print("ao menos isso")
-        }else{
-            
+            removeImageNLabelAlert(view: trendingBooks)
+            loadTrending(){
+                self.trendingBooks.reloadData()
+            }
+        } else{
             setImageNLabelAlert(view: trendingBooks, img: UIImage(named: "no-wifi")!, text: "Unable to connect to the internet. Please check your network connection and try again later.")
 
             /* //Show no network alert
@@ -228,6 +228,6 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
              }*/
         }
         
-    }
+    }*/
     
 }

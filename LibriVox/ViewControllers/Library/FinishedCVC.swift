@@ -16,18 +16,33 @@ class FinishedCVC: UITableViewController {
     var finalList = [AudioBooks_Data](){
         didSet {
             self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
-            
             checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "completedBook")!,view: self.tableView, alertText: "Any books finished yet")
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func contextDidChange(_ notification: Notification) {
+        finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
+    }
+    
     let spinner = UIActivityIndicatorView(style: .medium)
     override func viewDidLoad() {
         super.viewDidLoad()
         
         spinner.startAnimating()
         tableView.backgroundView = spinner
-        
         finalList = fetchBooksByParameterCD(parameter: "isFinished", value: true)
+        
+        spinner.stopAnimating()
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let persistentContainer = appDelegate.persistentContainer
+            NotificationCenter.default.addObserver(self, selector: #selector(contextDidChange(_:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: persistentContainer.viewContext)
+        }
+        
 
         
     }

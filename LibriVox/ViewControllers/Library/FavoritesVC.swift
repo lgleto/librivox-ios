@@ -103,8 +103,5 @@ class FavoritesCellTVC: UITableViewCell {
     @IBOutlet weak var favBtn: ToggleBtn!
     @IBOutlet weak var titleBook: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        favBtn.isSelected = true
-    }
+    
 }
