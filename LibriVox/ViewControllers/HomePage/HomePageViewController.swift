@@ -160,9 +160,11 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     /*func loadTrending(callback: @escaping ()->() ) {
         let db = Firestore.firestore()
         let booksRef = db.collection("books")
-        booksRef.order(by: "trending", descending: true).limit(to: 3)
+        let trendingLvl = booksRef.order(by: "trending", descending: false)
+        let query = trendingLvl.limit(to: 3)
         
-        booksRef.getDocuments{ querySnapshot, err in
+
+        query.getDocuments{ querySnapshot, err in
             if let err = err {
                 print("Error getting documents: \(err)")
                 let alert = UIAlertController(title: "Error getting Trending", message: "Error getting the trending books, probably due to slow internet connection", preferredStyle: .alert)
