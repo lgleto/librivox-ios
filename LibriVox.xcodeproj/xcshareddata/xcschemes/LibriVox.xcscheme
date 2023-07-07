@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "319FA01229C36445006895CB"
-               BuildableName = "LibriVox.app"
+               BuildableName = "Narrativia.app"
                BlueprintName = "LibriVox"
                ReferencedContainer = "container:LibriVox.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "319FA01229C36445006895CB"
-            BuildableName = "LibriVox.app"
+            BuildableName = "Narrativia.app"
             BlueprintName = "LibriVox"
             ReferencedContainer = "container:LibriVox.xcodeproj">
          </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "319FA01229C36445006895CB"
-            BuildableName = "LibriVox.app"
+            BuildableName = "Narrativia.app"
             BlueprintName = "LibriVox"
             ReferencedContainer = "container:LibriVox.xcodeproj">
          </BuildableReference>
