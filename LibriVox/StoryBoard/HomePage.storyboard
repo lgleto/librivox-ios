@@ -26,7 +26,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="HomePageViewController" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="HomePageViewController" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-i5-3P4" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-i5-3P4" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="43" width="343" height="228"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Hello IceQueen," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoj-7l-jfp">
@@ -86,7 +86,7 @@
                                                         <constraint firstAttribute="height" constant="10" id="WPw-pS-Lh6"/>
                                                     </constraints>
                                                 </progressView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="93" width="77" height="120"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -94,7 +94,7 @@
                                                         <constraint firstAttribute="height" constant="120" id="ruZ-Tp-GVB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYC-tJ-TSa" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYC-tJ-TSa" customClass="ToggleBtn" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="289" y="158" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="L2K-nd-OMy"/>
@@ -169,14 +169,14 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="145" id="E03-yn-IXx" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="145" id="E03-yn-IXx" customClass="CustomCellBook" customModule="Narrativia" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="365" width="343" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E03-yn-IXx" id="rkb-Iu-aQd">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="145"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-jY-LHy" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGH-jY-LHy" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="10" width="80" height="120"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-Ma-xU9">
@@ -211,7 +211,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJd-5j-a9E" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJd-5j-a9E" customClass="RoundedBookImageView" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="40" y="20" width="77" height="115"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -219,7 +219,7 @@
                                                         <constraint firstAttribute="width" constant="77" id="h3j-Mm-5tQ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nav-KM-QHu" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nav-KM-QHu" customClass="ToggleBtn" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="308" y="100" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="eY4-pF-Ih2"/>
@@ -321,20 +321,20 @@
         <!--SectionsTVC-->
         <scene sceneID="Fi8-Ke-xwG">
             <objects>
-                <tableViewController storyboardIdentifier="SectionsTVC" id="fWw-Xy-m8Q" customClass="SectionsTVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SectionsTVC" id="fWw-Xy-m8Q" customClass="SectionsTVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lHB-Qq-pfc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionsCell" rowHeight="82" id="Qv5-Rg-cI1" customClass="SectionsCell" customModule="LibriVox" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionsCell" rowHeight="82" id="Qv5-Rg-cI1" customClass="SectionsCell" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qv5-Rg-cI1" id="8FV-9P-vHc">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoT-t9-chb" customClass="BlueShadowView" customModule="LibriVox" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoT-t9-chb" customClass="BlueShadowView" customModule="Narrativia" customModuleProvider="target">
                                             <rect key="frame" x="10" y="10" width="349" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capter 1: Qualquer coisa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7y-Iv-nH1">
@@ -402,7 +402,7 @@
         <!--Trending Books-->
         <scene sceneID="JvO-ZD-RFB">
             <objects>
-                <viewController title="Trending Books" id="MjL-5a-e21" customClass="TrendingBooksVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Trending Books" id="MjL-5a-e21" customClass="TrendingBooksVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uGI-je-Ehw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,14 +423,14 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="1jF-tm-9z9" customClass="CustomCellBook" customModule="LibriVox" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="1jF-tm-9z9" customClass="CustomCellBook" customModule="Narrativia" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="343" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1jF-tm-9z9" id="dBD-Sf-Jdx">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="115"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQR-Fc-pNb" customClass="RoundView" customModule="LibriVox" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQR-Fc-pNb" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="8" width="100" height="107"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-2i-ibs">
@@ -454,7 +454,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Zm-3b-Ntz" customClass="RoundedBookImageView" customModule="LibriVox" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Zm-3b-Ntz" customClass="RoundedBookImageView" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="39" y="4" width="67" height="104"/>
                                                     <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -544,7 +544,7 @@
         <!--Prepare Player Alert-->
         <scene sceneID="7fH-8q-4PI">
             <objects>
-                <viewController storyboardIdentifier="PreparePlayerAlert" id="GNs-df-U94" customClass="PreparePlayerAlert" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreparePlayerAlert" id="GNs-df-U94" customClass="PreparePlayerAlert" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Ar-Kt-6dA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -663,7 +663,7 @@
         <!--HomepageTBC-->
         <scene sceneID="bAN-FB-Ewr">
             <objects>
-                <tabBarController storyboardIdentifier="HomepageTBC" automaticallyAdjustsScrollViewInsets="NO" id="Pkn-Ml-aoC" customClass="HomepageTBC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomepageTBC" automaticallyAdjustsScrollViewInsets="NO" id="Pkn-Ml-aoC" customClass="HomepageTBC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="O1C-Mo-Ign">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -685,7 +685,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cK6-JB-TZJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m8j-It-3zh" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="m8j-It-3zh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="HhG-4t-G5a">
                         <imageReference key="image" image="house" catalog="system" symbolScale="large" renderingMode="template"/>
                         <imageReference key="landscapeImage" image="house" catalog="system" symbolScale="large" renderingMode="template"/>
@@ -795,7 +795,7 @@
         <!--Title Of BOOK-->
         <scene sceneID="yEA-Qu-Q48">
             <objects>
-                <viewController storyboardIdentifier="PlayerVC" id="eKj-cy-cEV" customClass="PlayerVC" customModule="LibriVox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerVC" id="eKj-cy-cEV" customClass="PlayerVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aN7-zR-W4y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -817,7 +817,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="backward.end.alt.fill" catalog="system"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLt-WO-k0g" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLt-WO-k0g" customClass="ToggleBtn" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="162.66666666666666" y="718" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -837,7 +837,7 @@
                                     <action selector="playBTN:" destination="eKj-cy-cEV" eventType="touchUpInside" id="9B8-t7-3Wf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIu-R2-6UO" customClass="ToggleBtn" customModule="LibriVox" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIu-R2-6UO" customClass="ToggleBtn" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="329" y="728" width="30" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

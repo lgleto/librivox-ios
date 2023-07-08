@@ -43,6 +43,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllBooks()
         //checkWifi()
         
         loadCurrentUser { user in

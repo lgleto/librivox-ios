@@ -62,13 +62,9 @@ class LoginVC: UIViewController {
         } else {
             Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, error in
               guard let strongSelf = self else { return }
-                
-                
-               
-                
                 print(error)
                 if (authResult != nil) {
-                    UserDefaults.standard.set(Auth.auth().currentUser, forKey: "currentUserID")
+                    storeUserInfoToUserDefaults()
                     self.self!.present(home, animated: true, completion: nil)
                 } else {
                     let autError  = AuthErrorCode.init(_nsError: error! as NSError)
@@ -135,7 +131,6 @@ class LoginVC: UIViewController {
                             }
                         }))
                         self!.present(alert, animated: true, completion: nil)
-                        //TODO: Alert this bitch
                         print("user not found")
                         break
                     default:
@@ -174,14 +169,9 @@ class LoginVC: UIViewController {
                                                          accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { result, error in
-                //storeUserInfoToUserDefaults()
-                UserDefaults.standard.set(Auth.auth().currentUser?.uid, forKey: "currentUserID")
-              //  saveCurrentUser(name: (result?.user.displayName!)!, email: (result?.user.email!)!)
+                storeUserInfoToUserDefaults()
                 self.self.present(home, animated: true, completion: nil)
             }
-                
-
-          // ...
         }
     }
   
@@ -192,9 +182,9 @@ func storeUserInfoToUserDefaults() {
         return
     }
     
-    if let photoURL = currentUser.photoURL?.absoluteString {
+    /*if let photoURL = currentUser.photoURL?.absoluteString {
         UserDefaults.standard.set(photoURL, forKey: "userPhotoURL")
-    }
+    }*/
     
     if let displayName = currentUser.displayName {
         UserDefaults.standard.set(displayName, forKey: "userDisplayName")
@@ -210,8 +200,3 @@ func storeUserInfoToUserDefaults() {
     UserDefaults.standard.synchronize()
 }
 
-func clearUserDefaults() {
-    let domain = Bundle.main.bundleIdentifier!
-    UserDefaults.standard.removePersistentDomain(forName: domain)
-    UserDefaults.standard.synchronize()
-}

@@ -10,6 +10,9 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
+import FirebaseStorage
+import MobileCoreServices
+
 
 class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -18,16 +21,20 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var firstLastText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var usernameText: UITextField!
-    
-    
-    
+    var imagePicker = UIImagePickerController()
     let db = Firestore.firestore()
-    
+    let storage = Storage.storage()
+    var localImage = UIImage()
+    @IBOutlet weak var userPhoto: CircularImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
+        userPhoto.addGestureRecognizer(tapGestureRecognizer)
     }
+    
     @IBAction func registerButton(_ sender: UIButton) {
         if (emailText.text == "") || (confirmPasswordText.text == "") || (firstLastText.text == "") || (passwordText.text == "") || (usernameText.text == "") {
             let alert = UIAlertController(title: "Empty field", message: "All fields are mandatory", preferredStyle: .alert)
@@ -93,30 +100,27 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                             if let err = err {
                                 print("Error writing document: \(err)")
                             } else {
+                                
+                                if let img = userPhoto.image{
+                                    updateProfileImage(img)
+                                }
                                 authenticateUser()
                             }
+                            
+                            print("user Register")
                         }
-                        
-                        print("user Register")
-                        
                     } else{
                         print("User not register")
-                        
                     }
                 }
             }
-            
         }
-        
-     
-        
     }
     
     func authenticateUser() {
         let storyBoard :UIStoryboard = UIStoryboard(name: "HomePage", bundle: nil)
         let home = storyBoard.instantiateViewController(withIdentifier: "HomepageTBC") as! UITabBarController
    
-        
         guard let email = emailText.text, let password = passwordText.text else {
             print("Invalid email or password")
             return
@@ -125,8 +129,9 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let user = authResult?.user, error == nil {
                 print("User authenticated successfully: \(user.uid)")
-                UserDefaults.standard.set(authResult!.user.uid, forKey: "currentUserID")
-                   UserDefaults.standard.synchronize()
+                storeUserInfoToUserDefaults()
+                /*UserDefaults.standard.set(authResult!.user.uid, forKey: "currentUserID")
+                   UserDefaults.standard.synchronize()*/
                 // Handle successful authentication, e.g., present the home screen
                  self.present(home, animated: true, completion: nil)
                 
@@ -169,13 +174,38 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
     }
     
-    
-    @IBAction func testing(_ sender: Any) {
-        let storyBoard :UIStoryboard = UIStoryboard(name: "LoginRegister", bundle: nil)
-        let home = storyBoard.instantiateViewController(withIdentifier: "RegisterDetailVC")
-        home.modalTransitionStyle = .crossDissolve
-        home.modalPresentationStyle = .fullScreen
-        self.present(home, animated: true, completion: nil)
+    @objc func photoTapped(_ sender: UITapGestureRecognizer) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
     }
     
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            userPhoto.image = image
+        }
+    }
+    
+    
+    func updateProfileImage(_ img: UIImage) {
+        guard let imageData = img.jpegData(compressionQuality: 0.8) else { return }
+        let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, "jpg" as CFString, nil)?.takeRetainedValue() as String?
+        let filePath = "images/\(Auth.auth().currentUser!.uid)/\("userPhoto")"
+        let storageRef = Storage.storage().reference()
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = contentType
+        storageRef.child(filePath).putData(imageData, metadata: metaData) { (_, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+        }
+    }
 }

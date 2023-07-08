@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -107,24 +107,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func resetCoreDataSchema() {
-        let persistentContainer = self.persistentContainer
-        let persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
-
-        for store in persistentStoreCoordinator.persistentStores {
+        if let persistentStore = persistentContainer.persistentStoreCoordinator.persistentStores.last {
+            let storeURL = persistentContainer.persistentStoreCoordinator.url(for: persistentStore)
+            
             do {
-                try persistentStoreCoordinator.remove(store)
+                try persistentContainer.persistentStoreCoordinator.destroyPersistentStore(at: storeURL, ofType: NSSQLiteStoreType, options: nil)
             } catch {
-                print("Error removing persistent store: \(error)")
+                print("failed to destroy persistent store:", error.localizedDescription)
+            }
+            
+            do {
+                try persistentContainer.persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+            } catch {
+                print("failed to re-add persistent store:", error.localizedDescription)
             }
         }
-
-        do {
-            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentContainer.persistentStoreDescriptions.first!.url, options: nil)
-            print("Schema reset successfully.")
-        } catch {
-            print("Error resetting schema: \(error)")
-        }
-    }
-
-}
+        
+    }}
 
