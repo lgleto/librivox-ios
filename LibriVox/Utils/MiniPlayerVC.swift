@@ -162,17 +162,12 @@ class MiniPlayerVC: UIViewController {
         
         titleBook.text = book.title
         author.text = book.authors
-        /*if let imgData = book.image, let img = UIImage(data: imgData) {
-            backgroundImg.loadImage(from: img)
-            booksImg.image = img
-        }*/
-
-        /*getCoverBook(id: book._id!, url: book.urlLibrivox!) { img in
+        getCoverBook(id: book.id!) { img in
             if let img = img {
                 self.booksImg.image = img
                 self.backgroundImg.loadImage(from: img)
             }
-        }*/
+        }
     }
     
     @objc func playBtnClicked() {
