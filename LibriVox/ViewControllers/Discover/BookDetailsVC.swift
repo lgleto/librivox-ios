@@ -33,18 +33,8 @@ class BookDetailsVC: UIViewController {
     var book: Audiobook?
     var sections: [Section] = []
     private var rowsToBeShow:Int?
-    
+    var playerHandler : PlayerHandler = PlayerHandler.sharedInstance
     var img: UIImage? = nil
-    
-    private func syncPlayPauseButton() {
-        guard let id = book?._id else {
-            return
-        }
-        
-        /*if let currentAudiobookID = MiniPlayerManager.shared.currentAudiobookID,currentAudiobookID == id {
-         playBtn.isSelected = MiniPlayerManager.shared.isPlaying
-         }*/
-    }
     
     @objc func miniPlayerDidUpdatePlayState(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
@@ -52,6 +42,9 @@ class BookDetailsVC: UIViewController {
         playBtn.isSelected = isPlaying
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        playBtn.isSelected = playerHandler.isPlaying
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,8 +105,7 @@ class BookDetailsVC: UIViewController {
     @IBAction func clickFav(_ sender: Any) {
         let newIsFavValue = !favBtn.isSelected
                guard let book = book, let documentID = book._id else {return}
-               
-               
+            
                isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
                    guard isMarked != nil else {
                        if let image = self.img {
@@ -122,17 +114,22 @@ class BookDetailsVC: UIViewController {
                        return
                    }
                    
-                   updateBookParameter("isFav", value: String(newIsFavValue), documentID: documentID)
+                   updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
                }
         
     }
     
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
+        updateBookParameter("isReading", value: true, documentID: (book?._id)!)
         updateUserParameter("lastBook", value: (book?._id)!)
         addTrendingToBook(book: book!, lvlTrending: 5) { yes in
             print("sucess")
         }
+        
+        if playerHandler.isPlaying{
+            playerHandler.playPause()
+        }else{goToPlayer(book: book!, parentVC: self)}
     }
     
 }

@@ -17,6 +17,7 @@ protocol DataDelegate: AnyObject {
 
 class PlayerVC: UIViewController, DataDelegate {
     
+    @IBOutlet weak var favBtn: ToggleBtn!
     func didDismissWithData(currentSection: Int, book:PlayableItemProtocol) {
         // Handle the passed data here
         self.currentSection = currentSection
@@ -37,8 +38,15 @@ class PlayerVC: UIViewController, DataDelegate {
           parentVC.present(vc, animated: true)
       }
 
+    @IBAction func fav(_ sender: Any) {
+        let newIsFavValue = !favBtn.isSelected
+        updateBookParameter("isFav", value: newIsFavValue, documentID: (book?._id)!)
+    }
     
+    @IBOutlet weak var sectionNumber: UILabel!
+    @IBOutlet weak var imgBook: LoadingImage!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var background: BlurredImageView!
     var playerHandler : PlayerHandler = PlayerHandler.sharedInstance
     @IBOutlet weak var playBtn: ToggleBtn!
     @IBOutlet weak var labelRemainingTime: UILabel!
@@ -63,13 +71,16 @@ class PlayerVC: UIViewController, DataDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        favBtn.isSelected = book?.isfav ?? false
         self.navigationItem.title = book?.title
-        
-        
-        
+        getCoverBook(id: (book?._id)!){img in
+            if let img = img{
+                self.imgBook.contentMode = .scaleAspectFill
+                self.imgBook.loadImage(from: img)
+                self.background.loadImage(from: img)}
+        }
+        sectionNumber.text = "Section Nº \(String(currentSection ?? 0))"
         playMP3(newSection: false)
-        
-        
         
         
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))

@@ -57,11 +57,11 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         //removeImageNLabelAlert(view: trendingBooks)
-        loadTrending(){
+        /*loadTrending(){
             self.trendingBooks.reloadData()
-        }
+        }*/
         
-        progress.transform = progress.transform.scaledBy(x: 1, y:0.5)
+        progress.transform = progress.transform.scaledBy(x: 1, y:0.6)
         
         trendingBooks.delegate = self
         trendingBooks.dataSource = self

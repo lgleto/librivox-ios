@@ -60,8 +60,8 @@ func addAudiobookCD(book: Book) {
             existingBook.isFav = book.isFav ?? false
             existingBook.isReading = book.isReading ?? false
             existingBook.isFinished = book.isFinished ?? false
-            existingBook.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
-            existingBook.timeStopped = Int32(book.timeStopped ?? 0)
+            existingBook.sectionStopped = book.sectionStopped ?? 0
+            existingBook.timeStopped = book.timeStopped ?? 0
             
             try context.save()
         } else {
@@ -100,8 +100,8 @@ func addAudiobookCD(book: Book) {
             newBookData.isFav = book.isFav ?? false
             newBookData.isReading = book.isReading ?? false
             newBookData.isFinished = book.isFinished ?? false
-            newBookData.sectionStopped = Int32(book.sectionStopped ?? "0") ?? 0
-            newBookData.timeStopped = Int32(book.timeStopped ?? 0)
+            newBookData.sectionStopped = book.sectionStopped ?? 0
+            newBookData.timeStopped = book.timeStopped ?? 0
             
             // Check if the image is already saved in the document directory
             if !isImageSavedInDocumentDirectory(id: audioBook._id!){
@@ -178,6 +178,22 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
     }
     
     return matchingBooks
+}
+
+func totalFinishedBooksCD() -> Int{
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var totalFinishedBooks = 0
+    let bookRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
+    bookRequest.predicate = NSPredicate(format: "isFinished == true")
+    
+    do {
+        totalFinishedBooks = try context.fetch(bookRequest).count
+        
+    } catch {
+        print("Error: \(error)")
+    }
+    
+    return totalFinishedBooks
 }
 
 

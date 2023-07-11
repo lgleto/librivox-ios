@@ -22,6 +22,7 @@ class MiniPlayerManager {
     private init() {}
 }
 
+var playerHandler : PlayerHandler = PlayerHandler.sharedInstance
 
 class MiniPlayerVC: UIViewController {
     
@@ -172,6 +173,7 @@ class MiniPlayerVC: UIViewController {
     
     @objc func playBtnClicked() {
         playBtn.isSelected = !playBtn.isSelected
+        playerHandler.playPause()
         NotificationCenter.default.post(name: Notification.Name("miniPlayerState"), object: nil, userInfo: ["state": playBtn.isSelected])
 
     }
@@ -185,6 +187,7 @@ class MiniPlayerVC: UIViewController {
     @objc func closeTap() {
         guard let delegate = delegate else { return }
         NotificationCenter.default.post(name: Notification.Name("miniPlayerState"), object: nil, userInfo: ["state": playBtn.isSelected])
+        playerHandler.closePlayer()
         delegate.closeMiniPlayer()
     }
 }

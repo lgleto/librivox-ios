@@ -124,6 +124,7 @@
                     <navigationItem key="navigationItem" id="BjT-40-eDO"/>
                     <connections>
                         <outlet property="segmentedControl" destination="HCo-hA-CH5" id="ban-qv-5ti"/>
+                        <outlet property="totalFinishedBooksLabel" destination="czb-xl-GbJ" id="pE2-7F-K0n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -172,7 +173,7 @@
                                             </constraints>
                                         </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-xX-ljE">
-                                            <rect key="frame" x="87" y="51.666666666666664" width="115.33333333333331" height="17.999999999999993"/>
+                                            <rect key="frame" x="87" y="51.666666666666664" width="271" height="17.999999999999993"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -204,6 +205,7 @@
                                         <constraint firstAttribute="bottom" secondItem="vsD-d5-zyM" secondAttribute="bottom" constant="10" id="cLx-cm-bkM"/>
                                         <constraint firstItem="o31-Ix-j3I" firstAttribute="top" secondItem="plY-nV-axC" secondAttribute="bottom" constant="10" id="dNB-EH-q7E"/>
                                         <constraint firstItem="o31-Ix-j3I" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="e1a-yv-Xme"/>
+                                        <constraint firstItem="plY-nV-axC" firstAttribute="leading" secondItem="O8g-xX-ljE" secondAttribute="trailing" id="rV9-k9-gnk"/>
                                         <constraint firstItem="9JA-iJ-UCe" firstAttribute="leading" secondItem="vsD-d5-zyM" secondAttribute="trailing" constant="10" id="ran-dn-2MM"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -212,6 +214,7 @@
                                     <outlet property="durationBook" destination="pwH-ag-zxo" id="C6g-Xs-58p"/>
                                     <outlet property="imgBook" destination="vsD-d5-zyM" id="aFd-FW-Fzw"/>
                                     <outlet property="playBtn" destination="plY-nV-axC" id="Oee-uT-1hj"/>
+                                    <outlet property="progress" destination="o31-Ix-j3I" id="XYc-00-5y8"/>
                                     <outlet property="titleBook" destination="9JA-iJ-UCe" id="yPJ-DT-cIK"/>
                                     <segue destination="c0e-yd-uVQ" kind="show" identifier="showDetailsBook" id="HzN-ii-n4s"/>
                                 </connections>
@@ -431,7 +434,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOG-Fa-dig">
-                                            <rect key="frame" x="87" y="52" width="115.33333333333331" height="18"/>
+                                            <rect key="frame" x="87" y="52" width="306" height="18"/>
                                             <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -440,6 +443,7 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="0R3-Fo-c9W" secondAttribute="trailing" constant="5" id="0Fe-T9-s8c"/>
                                         <constraint firstItem="GOG-Fa-dig" firstAttribute="leading" secondItem="wKZ-Ev-CA8" secondAttribute="trailing" constant="10" id="3Ms-9I-NHe"/>
+                                        <constraint firstAttribute="trailing" secondItem="GOG-Fa-dig" secondAttribute="trailing" id="3Wc-rO-jxT"/>
                                         <constraint firstItem="wKZ-Ev-CA8" firstAttribute="top" secondItem="ewd-Ei-PZy" secondAttribute="top" constant="10" id="3rO-ap-FSO"/>
                                         <constraint firstItem="jo8-LF-k0V" firstAttribute="leading" secondItem="wKZ-Ev-CA8" secondAttribute="trailing" constant="10" id="CMn-P2-ZnY"/>
                                         <constraint firstItem="jo8-LF-k0V" firstAttribute="bottom" secondItem="wKZ-Ev-CA8" secondAttribute="bottom" constant="-25" id="Cpm-yz-BFu"/>
@@ -483,11 +487,11 @@
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="512" height="512"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

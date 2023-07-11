@@ -350,6 +350,22 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-
-
+    func closePlayer() {
+          player?.pause()
+          player = nil
+          playerItem = nil
+          progressUpdateTimer?.invalidate()
+          progressUpdateTimer = nil
+          
+          isPlaying = false
+          progress = 0
+          updateNowPlayingInfoProgress(0.0)
+          
+          if let p = player {
+              p.removeObserver(self, forKeyPath: "status")
+          }
+          NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
+          NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+      }
+      
 }

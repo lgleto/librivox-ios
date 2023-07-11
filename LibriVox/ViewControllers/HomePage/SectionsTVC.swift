@@ -76,13 +76,16 @@ class SectionsTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = SectionsTV.dequeueReusableCell(withIdentifier: "SectionsCell", for: indexPath) as! SectionsCell
-        let section = book?.sections?[indexPath.row]
-        
-        let seconds = Int(section?.playtime ?? "0") ?? 0
-        
-        cell.titleSection.text = section?.title
-        cell.durationSection.text! = "Duration: \(secondsToMinutes(seconds: seconds))min "
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SectionsCell", for: indexPath) as! SectionsCell
+        if let sortedSections = book?.sections?.sorted(by: { Int($0.sectionNumber ?? "0") ?? 0 < Int($1.sectionNumber ?? "0") ?? 0 }) {
+ 
+            let section = sortedSections[indexPath.row]
+            
+            let seconds = Int(section.playtime ?? "0") ?? 0
+            
+            cell.titleSection.text = section.title
+            cell.durationSection.text = "Duration: \(secondsToMinutes(seconds: seconds)) min"
+        }
         return cell
     }
     

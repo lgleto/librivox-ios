@@ -15,7 +15,7 @@ import SwaggerClient
 class ReadingVC: UITableViewController {
     var finalList = [AudioBooks_Data](){
         didSet {
-            self.tableView.reloadSections([0], with: UITableView.RowAnimation.left)
+            self.tableView.reloadSections([0], with: UITableView.RowAnimation.none)
             checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
         }
     }
@@ -77,6 +77,8 @@ class ReadingVC: UITableViewController {
         
         allButtons.append(cell.playBtn)
         
+        let progressDB = getPercentageOfBook(id: finalList[indexPath.row].id!, sectionNumber: Int(finalList[indexPath.row].sectionStopped))
+        cell.progress.setProgress(progressDB, animated: true)
         
         cell.playBtn.tag = indexPath.row
         
@@ -94,7 +96,7 @@ class ReadingVC: UITableViewController {
          if let tabBarController = tabBarController as? HomepageTBC {
          tabBarController.addChildView(book: finalList[sender.tag])
          }
-         }else{sender.isSelected = false}
+         }else{sender.isSelected = !sender.isSelected}
         
         self.lastBook = sender.tag
     }
@@ -109,5 +111,25 @@ class ReadingVC: UITableViewController {
             }
         }
     }
+
+    
+    /*func playMP3(book : PlayableItemProtocol){
+        if (!playerHandler.isPlaying){
+                let basefolder = folderPath(id: book._id!)
+                let fileNames = getFilesInFolder(folderPath: basefolder)
+                let url = "\(basefolder)/\(fileNames![currentSection ?? 0])"
+                let urlString = URL(fileURLWithPath:  url )
+                    self.playerHandler.prepareSongAndSession(
+                        urlString: urlString.absoluteString,
+                        image:  UIImage(systemName: "person.crop.square")!,
+                        title: book.title ?? "Title Not found",
+                        artist: "",
+                        albumTitle: book.title!,
+                        duration: Int(book.sections![currentSection ?? 1  - 1].playtime!)!)
+           
+                playerHandler.book = book
+                playerHandler.currentSection = currentSection ?? 0
+        }
+    }*/
 }
 

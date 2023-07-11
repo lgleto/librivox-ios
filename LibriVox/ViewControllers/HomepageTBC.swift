@@ -14,10 +14,10 @@ class HomepageTBC: UITabBarController {
     var containerView: UIView?
     private var tabBarHiddenContext = 0
     var isHidden = false
-
+    
     override func viewDidLoad() {
-           super.viewDidLoad()
-       }
+        super.viewDidLoad()
+    }
     
     func addChildView(book: AudioBooks_Data) {
         let newContainerView = UIView()
@@ -38,19 +38,22 @@ class HomepageTBC: UITabBarController {
         newContainerView.addSubview(miniPlayer!.view)
         miniPlayer?.didMove(toParent: self)
         
+        
         if let childIndex = viewControllers?.firstIndex(of: miniPlayer!) {
             viewControllers?.remove(at: childIndex)
         }
         
         containerView = newContainerView
         setConstraints()
-    
-         newContainerView.alpha = 0.0
-         newContainerView.transform = CGAffineTransform(translationX: -view.bounds.width, y: 0.0)
-         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
-         newContainerView.alpha = 1.0
-         newContainerView.transform = CGAffineTransform.identity
-         }, completion: nil)
+        playerHandler.book = book
+        playerHandler.playPause()
+        newContainerView.alpha = 0.0
+        newContainerView.transform = CGAffineTransform(translationX: -view.bounds.width, y: 0.0)
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+            newContainerView.alpha = 1.0
+            newContainerView.transform = CGAffineTransform.identity
+        }, completion: nil)
+        
         
     }
     
@@ -71,7 +74,7 @@ class HomepageTBC: UITabBarController {
             ])
         }
     }
-
+    
 }
 
 extension HomepageTBC: MiniPlayerDelegate {
@@ -80,7 +83,7 @@ extension HomepageTBC: MiniPlayerDelegate {
         containerView!.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
         
         let translationX = view.bounds.width + containerView!.frame.size.width
-
+        
         UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
             self.containerView!.transform = CGAffineTransform(translationX: translationX, y: 0.0)
             self.containerView!.alpha = 0.0
@@ -88,10 +91,10 @@ extension HomepageTBC: MiniPlayerDelegate {
             self.containerView!.removeFromSuperview()
             self.containerView = nil
         })
-                       
+        
     }
     func presentPlayerView(audiobook: PlayableItemProtocol) {
         goToPlayer(book: audiobook, parentVC: self)
-        }
     }
+}
 

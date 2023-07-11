@@ -15,7 +15,7 @@ import CoreData
 let USER_COLLECTION = "users"
 let TRENDING_COLLECTION = "books"
 let GENRES_COLLECTION = "genres"
-let USERBOOK_COLLECTION = "bookCollection"
+let USERBOOK_COLLECTION = "library"
 
 let firestore = Firestore.firestore()
 let storage = Storage.storage().reference()
@@ -307,10 +307,10 @@ func getAllBooks() {
                 let isFav = document.get("isFav") as? Bool
                 let isFinished = document.get("isFinished") as? Bool
                 let sectionStopped = document.get("sectionStopped") as? String
-                let timeStopped = document.get("timeStopped") as? Int
+                let timeStopped = document.get("timeStopped") as? String
                 let imageUrl = document.get("imageUrl") as? String
                 
-                let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: sectionStopped, timeStopped: timeStopped, imageUrl: imageUrl)
+                let bookData = Book(book: audiobook, isReading: isReading, isFav: isFav, isFinished: isFinished, sectionStopped: Int32(sectionStopped ?? "0"), timeStopped: Int32(timeStopped ?? "0"), imageUrl: imageUrl)
                 
                 addAudiobookCD(book: bookData)
             } catch {
@@ -358,7 +358,20 @@ func isBookMarkedAs(_ parameter: String, value: Bool, documentID: String, comple
     }
 }
 
-
+func updateBookParameter(_ parameter: String, value: Bool, documentID: String) {
+    let db = Firestore.firestore()
+    let userRef = db.collection(USER_COLLECTION).document(Auth.auth().currentUser!.uid)
+    let bookCollectionRef = userRef.collection(USERBOOK_COLLECTION)
+    let documentRef = bookCollectionRef.document(documentID)
+    
+    let updateData = [parameter: value]
+    
+    documentRef.updateData(updateData) { error in
+        if let error = error {
+            print("Error updating book parameter: \(error.localizedDescription)")
+        }
+    }
+}
 
 func updateBookParameter(_ parameter: String, value: String?, documentID: String) {
     let db = Firestore.firestore()

@@ -9,6 +9,7 @@ import UIKit
 
 class LibraryVC: UIViewController {
     
+    @IBOutlet weak var totalFinishedBooksLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var container : ContainerPagesVC?
@@ -25,6 +26,7 @@ class LibraryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        totalFinishedBooksLabel.text = String(totalFinishedBooksCD()) 
         
         setSegmetedControl(segmentedControl)
         

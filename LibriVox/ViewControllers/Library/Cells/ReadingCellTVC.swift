@@ -13,13 +13,15 @@ class ReadingCellTVC: UITableViewCell {
     
     @IBOutlet weak var titleBook: UILabel!
     
+    @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var playBtn: ToggleBtn!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var authorsBook: UILabel!
-    /*override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }*/
+        
+        progress.transform = progress.transform.scaledBy(x: 1, y:0.6)
+    }
 
     /*override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

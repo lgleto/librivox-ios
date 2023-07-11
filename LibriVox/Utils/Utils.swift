@@ -740,12 +740,12 @@ func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
                                  }
         }
     } else {
-        if let tabBarController = parentVC.tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: book as! AudioBooks_Data)
+        /*if let tabBarController = parentVC.tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: book as! AudioBooks_Data)*/
                                  }
         PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
    
-    }
+    //}
 }
 
 func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
