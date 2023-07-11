@@ -360,7 +360,7 @@ func isBookMarkedAs(_ parameter: String, value: Bool, documentID: String, comple
 
 
 
-func updateBookParameter(_ parameter: String, value: Bool?, documentID: String) {
+func updateBookParameter(_ parameter: String, value: String?, documentID: String) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookCollectionRef = userRef.collection("library")
@@ -470,3 +470,37 @@ func getBookCoverFB(id: String, completion: @escaping (UIImage?) -> Void) {
     }
 }
 
+func storeSectionTime(currentBookId:String) {
+    var 🎧 = PlayerHandler.sharedInstance
+    
+    updateBookParameter("sectionStopped", value: String(🎧.currentSection ?? 1), documentID: currentBookId)
+    updateBookParameter("timeStopped", value: String(🎧.progress), documentID: currentBookId)
+}
+/* //TODO: Function Under Construction... Please do not break it ;(
+func getSectionTime(documentID: String) {
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+    let bookCollectionRef = userRef.collection("library")
+    let documentRef = bookCollectionRef.document(documentID)
+    
+    documentRef.getDocument { snapshot, err in
+        if let err = err {
+            print("Error observing book document: \(err.localizedDescription)")
+            return
+        }
+        
+        guard let document = snapshot, document.exists else {
+            return
+        }
+        
+        let isMarked = document.get(parameter) as? Bool ?? nil
+        completion(isMarked)
+    }
+    
+    documentRef.updateData(updateData) { error in
+        if let error = error {
+            print("Error updating book parameter: \(error.localizedDescription)")
+        }
+    }
+}
+*/

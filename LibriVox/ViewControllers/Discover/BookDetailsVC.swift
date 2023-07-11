@@ -122,7 +122,7 @@ class BookDetailsVC: UIViewController {
                        return
                    }
                    
-                   updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
+                   updateBookParameter("isFav", value: String(newIsFavValue), documentID: documentID)
                }
         
     }
