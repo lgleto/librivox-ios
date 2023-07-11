@@ -47,6 +47,9 @@ class PlayerVC: UIViewController, DataDelegate {
     var currentSection : Int? {
         didSet{
             currentSection = currentSection! - 1
+            if let bookId = book?._id {
+                storeSectionTime(currentBookId: bookId)
+            }
             playMP3(newSection: true)
         }
     }
@@ -105,7 +108,9 @@ class PlayerVC: UIViewController, DataDelegate {
    
         playerHandler.onIsPlayingChanged { isPlaying in
            //handle play pause buttons
+            
             self.playBtn.setImage(isPlaying ? UIImage(named: "pause") : UIImage(named: "play") , for: .normal)
+            
         }
    
         playerHandler.onProgressChanged { progress in
@@ -121,6 +126,9 @@ class PlayerVC: UIViewController, DataDelegate {
     
     @IBAction func playBTN(_ sender: Any) {
         playerHandler.playPause()
+        if let bookId = book?._id {
+            storeSectionTime(currentBookId: bookId)
+        }
     }
     
     @IBAction func sliderPositionEndChanged(_ sender: UISlider) {
@@ -138,6 +146,9 @@ class PlayerVC: UIViewController, DataDelegate {
     
     @objc
     private func dismissVC() {
+        if let bookId = book?._id {
+            storeSectionTime(currentBookId: bookId)
+        }
         dismiss(animated: true){
             if (!self.playerHandler.isPlaying) {
                 var topController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!

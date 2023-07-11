@@ -74,7 +74,7 @@ class FavoritesVC: UITableViewController {
         let rowIndex = sender.tag
         let book = finalList[rowIndex]
         
-        updateBookParameter("isFav", value: false, documentID: (book.id!))
+        updateBookParameter("isFav", value: "false", documentID: (book.id!))
         updateBookInfoParameter(book: finalList[rowIndex], parameter: "isFav", value: false)
     }
     
