@@ -735,9 +735,16 @@ func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
     if !checkIfFileExists(book_id: id) {
         PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
             PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
+            if let tabBarController = parentVC.tabBarController as? HomepageTBC {
+                tabBarController.addChildView(book: book as! AudioBooks_Data)
+                                 }
         }
     } else {
+        if let tabBarController = parentVC.tabBarController as? HomepageTBC {
+                tabBarController.addChildView(book: book as! AudioBooks_Data)
+                                 }
         PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
+   
     }
 }
 

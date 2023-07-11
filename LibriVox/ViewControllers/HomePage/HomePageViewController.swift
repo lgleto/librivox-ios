@@ -40,6 +40,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    var lastAudioBook = AudioBooks_Data()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +51,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             guard let name = Auth.auth().currentUser?.displayName else { return }
             self.nameText.text = "Hello \(user?.username ?? name )"
             
-            if let bookId = user?.lastBook, let audioBook = getBookByIdCD(id: bookId){
+            if let bookId = user?.lastBook,let audioBook = getBookByIdCD(id: bookId){
                 self.setLastBook(audioBook: audioBook)
+                self.lastAudioBook = audioBook
             }
         }
         //removeImageNLabelAlert(view: trendingBooks)
@@ -84,14 +86,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func playButton(_ sender: Any) {
-        if (!checkIfFileExists(book_id: localBooks[1]._id!)) {
-            PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1] as! PlayableItemProtocol) { _ , book in
-                PlayerVC.show(parentVC: self, book: book)
-            }
-        } else {
-            PlayerVC.show(parentVC: self, book: localBooks[1] as! PlayableItemProtocol)
-        }
-        
+        goToPlayer(book: lastAudioBook, parentVC: self)
     }
     
     @IBAction func allTrending(_ sender: Any) {

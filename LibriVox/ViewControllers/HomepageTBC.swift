@@ -90,10 +90,8 @@ extension HomepageTBC: MiniPlayerDelegate {
         })
                        
     }
-        func presentPlayerView() {
-            /*let vc = PlayerVC2()
-             vc.modalPresentationStyle = .fullScreen
-             present(vc, animated: true)*/
+    func presentPlayerView(audiobook: PlayableItemProtocol) {
+        goToPlayer(book: audiobook, parentVC: self)
         }
     }
 

@@ -88,13 +88,13 @@ class ReadingVC: UITableViewController {
         allButtons.forEach { $0.isSelected = false}
         
         sender.isSelected = true
-        goToPlayer(book: finalList[sender.tag], parentVC: self)
+       // goToPlayer(book: finalList[sender.tag], parentVC: self)
         
-        /*if lastBook != sender.tag{
+        if lastBook != sender.tag{
          if let tabBarController = tabBarController as? HomepageTBC {
          tabBarController.addChildView(book: finalList[sender.tag])
          }
-         }else{sender.isSelected = false}*/
+         }else{sender.isSelected = false}
         
         self.lastBook = sender.tag
     }

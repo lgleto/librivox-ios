@@ -9,7 +9,7 @@ import UIKit
 import SwaggerClient
 
 protocol MiniPlayerDelegate {
-    func presentPlayerView()
+    func presentPlayerView(audiobook: PlayableItemProtocol)
     func closeMiniPlayer()
 }
 
@@ -145,9 +145,9 @@ class MiniPlayerVC: UIViewController {
             closeBtn.trailingAnchor.constraint(equalTo: backgroundImg.trailingAnchor, constant: -12)
         ])
         
-        /* let tap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
+         let tap = UITapGestureRecognizer(target: self, action: #selector(tapDetected))
          view.addGestureRecognizer(tap)
-         view.isUserInteractionEnabled = true*/
+         view.isUserInteractionEnabled = true
         let closeTap = UITapGestureRecognizer(target: self, action: #selector(closeTap))
         closeBtn.addGestureRecognizer(closeTap)
         closeBtn.isUserInteractionEnabled = true
@@ -179,7 +179,7 @@ class MiniPlayerVC: UIViewController {
     
     @objc func tapDetected() {
         guard let delegate = delegate else { return }
-        delegate.presentPlayerView()
+        delegate.presentPlayerView(audiobook: book!)
     }
     
     @objc func closeTap() {
