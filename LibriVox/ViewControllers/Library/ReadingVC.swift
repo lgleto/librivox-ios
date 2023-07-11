@@ -34,7 +34,7 @@ class ReadingVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         spinner.startAnimating()
         tableView.backgroundView = spinner
         
@@ -88,12 +88,13 @@ class ReadingVC: UITableViewController {
         allButtons.forEach { $0.isSelected = false}
         
         sender.isSelected = true
+        goToPlayer(book: finalList[sender.tag], parentVC: self)
         
-        if lastBook != sender.tag{
-            if let tabBarController = tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: finalList[sender.tag])
-            }
-        }else{sender.isSelected = false}
+        /*if lastBook != sender.tag{
+         if let tabBarController = tabBarController as? HomepageTBC {
+         tabBarController.addChildView(book: finalList[sender.tag])
+         }
+         }else{sender.isSelected = false}*/
         
         self.lastBook = sender.tag
     }
@@ -104,8 +105,9 @@ class ReadingVC: UITableViewController {
             let item = indexPath.item
             detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
             if let img = loadImageFromDocumentDirectory(id: finalList[indexPath.row].id!) {
-                      detailVC.img = img
+                detailVC.img = img
             }
         }
     }
 }
+
