@@ -94,7 +94,7 @@ func addAudiobookCD(book: Book) {
                     sections.insert(section)
                 }
                 
-                newBookData.sections = sections as NSSet
+                newBookData.sections_book = sections as NSSet
             }
             
             newBookData.isFav = book.isFav ?? false
@@ -190,7 +190,7 @@ func convertToAudiobook(audioBookData: AudioBooks_Data) -> Audiobook {
     audiobook.genres = createGenresArray(from: audioBookData.genres ?? "")
     audiobook.authors = createAuthorsArray(from: audioBookData.authors ?? "")
     audiobook.numSections = audioBookData.numSections
-    audiobook.sections = decodeSections(audioBookData.sections)
+    audiobook.sections = decodeSections(audioBookData.sections_book)
     audiobook.language = audioBookData.language
     audiobook.totaltime = audioBookData.totalTime
     audiobook.totaltimesecs = Int(audioBookData.totalTimeSecs)

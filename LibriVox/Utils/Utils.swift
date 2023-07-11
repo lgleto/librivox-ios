@@ -692,9 +692,9 @@ func getFilesInFolder(folderPath: String) -> [String]? {
     }
 }
 
-func checkIfFileExists(book:Audiobook) -> Bool {
+func checkIfFileExists(book_id: String) -> Bool {
     let fileManager = FileManager.default
-    let basefolder = folderPath(id: book._id!)
+    let basefolder = folderPath(id: book_id)
     print(basefolder)
     
     if(fileManager.fileExists(atPath: basefolder)) {
@@ -729,59 +729,27 @@ func checkIfFileExists(book:Audiobook) -> Bool {
     }
 }
 
+func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
+    guard let id = book._id else{return}
+    
+    if !checkIfFileExists(book_id: id) {
+        PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
+            PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
+        }
+    } else {
+        PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
+    }
+}
+
 func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
     let finalTitle = ("\(bookTitle) - \(sectionTitle)")
     return finalTitle
 }
 
 
-protocol PlayableItemProtocol {
-    var _id      : String?    { get set }
-    var title    : String?   { get set }
-    var imageUrl : String?   { get set }
-    var urlZipFile  : String?   { get set }
-    var timeStopped : Int?      { get set }
-    var sectionStopped : String?     { get set }
-    var isFav : Bool?     { get set }
-    var sections : [Section]? { get set }
-}
 
-extension Audiobook : PlayableItemProtocol {
-}
 
-/*extension AudioBooks_Data: PlayableItemProtocol {
- var _id: String? {
- get { return id }
- set { id = newValue }
- }
- 
- var timeStopped: Int? {
- get { return Int(timeStopped ?? 0) }
- set { timeStopped = newValue != nil ? Int(Int32(newValue!)) : 0 }
- }
- 
- var isFav: Bool? {
- get { return isFav }
- set { isFav = newValue! }
- }
- 
- 
- /* var sections: [Section]? {
-  get {
-  if let sectionsSet = sections as? Set<Section> {
-  return Array(sectionsSet)
-  }
-  return nil
-  }
-  set {
-  if let newValue = newValue {
-  sections = NSSet(array: newValue)
-  } else {
-  sections = nil
-  }
-  }
-  }*/
- }*/
+
 
 
 

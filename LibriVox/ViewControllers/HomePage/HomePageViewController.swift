@@ -84,10 +84,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBAction func playButton(_ sender: Any) {
-        if (!checkIfFileExists(book: localBooks[1])) {
+        if (!checkIfFileExists(book_id: localBooks[1]._id!)) {
             PreparePlayerAlert.show(parentVC: self, title: "teste", book: localBooks[1] as! PlayableItemProtocol) { _ , book in
                 PlayerVC.show(parentVC: self, book: book)
-                
             }
         } else {
             PlayerVC.show(parentVC: self, book: localBooks[1] as! PlayableItemProtocol)
