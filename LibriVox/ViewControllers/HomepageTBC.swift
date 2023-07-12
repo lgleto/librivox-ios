@@ -93,7 +93,7 @@ extension HomepageTBC: MiniPlayerDelegate {
         
     }
     func presentPlayerView(audiobook: PlayableItemProtocol) {
-        goToPlayer(book: audiobook, parentVC: self)
-    }
+            goToPlayer(book: audiobook, parentVC: self)
+        }
 }
 

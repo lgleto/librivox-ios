@@ -129,7 +129,7 @@ class PlayerVC: UIViewController, DataDelegate {
             
             if !self.isChangingSlidePosition {
                 self.slider.value = Float(progress)
-                self.labelMaxTime.text = millisToTime(progress)
+                //self.labelMaxTime.text = millisToTime(progress)
                 self.labelRemainingTime.text = millisToTime(progress)
             }
         }

@@ -17,10 +17,8 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     @IBOutlet weak var authorBook: UILabel!
-    
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var titleBook: UILabel!
-    
     @IBOutlet weak var IndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var imgBook: LoadingImage!
@@ -28,9 +26,11 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var progress: UIProgressView!
     let db = Firestore.firestore()
     @IBOutlet weak var trendingBooks: UITableView!
+    
     var booksTrending = [Audiobook]()
     var networkCheck = NetworkCheck.sharedInstance()
-    
+    var allButtons: [ToggleBtn] = []
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -57,9 +57,9 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         //removeImageNLabelAlert(view: trendingBooks)
-        /*loadTrending(){
+        loadTrending(){
             self.trendingBooks.reloadData()
-        }*/
+        }
         
         progress.transform = progress.transform.scaledBy(x: 1, y:0.6)
         
@@ -134,11 +134,26 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.bookCover.loadImage(from: img)
             }
         }
+        cell.playBtn.tag = indexPath.row
+        allButtons.append(cell.playBtn)
         
-        
+        cell.playBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
+
         return cell
     }
     
+    @objc func click(_ sender: UIButton) {
+        allButtons.forEach { $0.isSelected = false}
+        
+        //playerHandler.playPause()
+        //sender.isSelected = playerHandler.isPlaying
+        
+        /*if lastBook != sender.tag{*/
+        print("dude \(localBooks[sender.tag].title)")
+        goToPlayer(book: localBooks[sender.tag], parentVC: self)
+           
+        //self.lastBook = sender.tag
+    }
     @IBAction func BTNTrendingBooks(_ sender: Any) {
         performSegue(withIdentifier: "HomepageToTrendingBooks", sender: nil)
     }

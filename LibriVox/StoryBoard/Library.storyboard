@@ -39,8 +39,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="et3-JV-DZ3" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="16" y="102" width="361" height="88"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total hours listened" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-dW-Yjw">
-                                        <rect key="frame" x="33" y="51.333333333333343" width="131" height="20.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Books being read" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-dW-Yjw">
+                                        <rect key="frame" x="33.000000000000007" y="51.333333333333343" width="114.66666666666669" height="20.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="86h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQp-58-rA9">
-                                        <rect key="frame" x="74.333333333333329" y="16" width="48.333333333333329" height="34"/>
+                                        <rect key="frame" x="66.333333333333329" y="16" width="48.333333333333329" height="34"/>
                                         <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="25"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -139,7 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadingCellTVC" rowHeight="145" id="Qvt-e8-XnS" customClass="ReadingCellTVC" customModule="Narrativia" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReadingCellTVC" rowHeight="145" id="Qvt-e8-XnS" customClass="ReadingCellTVC" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="145"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qvt-e8-XnS" id="e4p-3h-hDN">
@@ -272,7 +272,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCellTVC" rowHeight="145" id="w6k-aj-Hfz" customClass="FavoritesCellTVC" customModule="Narrativia" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FavoritesCellTVC" rowHeight="145" id="w6k-aj-Hfz" customClass="FavoritesCellTVC" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="145"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w6k-aj-Hfz" id="soE-xL-Jjf">
@@ -365,6 +365,7 @@
                                     <outlet property="favBtn" destination="eeG-1D-zCM" id="pLf-dy-Byl"/>
                                     <outlet property="genreBook" destination="iib-PH-hrF" id="joZ-MY-MOg"/>
                                     <outlet property="imgBook" destination="O1I-E8-xzJ" id="Wug-Kd-3IL"/>
+                                    <outlet property="playBtn" destination="4X3-pi-dMT" id="g5d-uT-XTV"/>
                                     <outlet property="titleBook" destination="oHD-S1-uK2" id="ZC2-4c-P2e"/>
                                     <segue destination="c0e-yd-uVQ" kind="show" identifier="showDetailsBook" id="6q9-2R-TJS"/>
                                 </connections>
@@ -384,12 +385,12 @@
         <scene sceneID="Be7-lN-ORj">
             <objects>
                 <tableViewController storyboardIdentifier="FinishedVC" id="1zV-Le-5Oh" customClass="FinishedCVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="VAq-gq-NqA">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="145" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="VAq-gq-NqA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCellTVC" rowHeight="145" id="LPL-fe-KdT" customClass="FavoritesCellTVC" customModule="Narrativia" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FavoritesCellTVC" rowHeight="145" id="LPL-fe-KdT" customClass="FavoritesCellTVC" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="145"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LPL-fe-KdT" id="ewd-Ei-PZy">
@@ -464,7 +465,9 @@
                                     <outlet property="durationBook" destination="jo8-LF-k0V" id="98d-xm-RwW"/>
                                     <outlet property="genreBook" destination="aO9-a8-DG7" id="UsH-AB-7f7"/>
                                     <outlet property="imgBook" destination="wKZ-Ev-CA8" id="rVC-Z8-oUD"/>
+                                    <outlet property="playBtn" destination="0R3-Fo-c9W" id="6eH-Tb-5of"/>
                                     <outlet property="titleBook" destination="Yhi-UP-oJP" id="GGM-tA-hXZ"/>
+                                    <segue destination="c0e-yd-uVQ" kind="show" identifier="showDetails" id="7FK-TH-6yK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -480,18 +483,18 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6q9-2R-TJS"/>
+        <segue reference="7FK-TH-6yK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
-        <image name="star" width="512" height="512"/>
         <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" width="512" height="512"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Gren Tone">
             <color red="0.6119999885559082" green="0.85500001907348633" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -31,11 +31,10 @@ class ProfileVC: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+    let userInfo = retrieveUserInfoFromUserDefaults()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let userInfo = retrieveUserInfoFromUserDefaults()
         
         if let displayName = userInfo.displayName {
             nameUser.text = displayName
@@ -46,9 +45,9 @@ class ProfileVC: UIViewController {
         }
 
         if let userPhoto = userInfo.userPhoto {
-            profilePhoto.image = userPhoto
+            profilePhoto.loadImage(from:userPhoto)
         } else {
-            imageWith(name: userInfo.displayName)
+            profilePhoto.loadImage(from: imageWith(name: userInfo.displayName)!)
         }
 
         
@@ -58,13 +57,16 @@ class ProfileVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         
-        
-        
-        
-        //profilePhoto.loadImage(from: (getProfileImageFromPreferences() ?? imageWith(name: nameUser.text))!)
-        
         switchMode.isOn =  currentTheme == .dark ? true: false
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "showUpdateProfile" {
+                if let destinationVC = segue.destination as? EditProfileVC {
+                    destinationVC.userInfo = userInfo
+                }
+            }
+        }
     
     @IBAction func tapFunction(sender: UITapGestureRecognizer) {
         logoutUser()

@@ -230,9 +230,6 @@
                                                         <userDefinedRuntimeAttribute type="image" keyPath="imgNotSelected" value="play"/>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="imgSelected" value="pause"/>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BiY-ld-590"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre: Drama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PL-8V-yfx">
                                                     <rect key="frame" x="127" y="72" width="216" height="18"/>
@@ -269,7 +266,7 @@
                                             <outlet property="bookCover" destination="hJd-5j-a9E" id="sA7-ye-YP7"/>
                                             <outlet property="duration" destination="6H3-k0-uBX" id="api-MN-hTN"/>
                                             <outlet property="genre" destination="0PL-8V-yfx" id="piK-5o-ThD"/>
-                                            <outlet property="playBtn" destination="nav-KM-QHu" id="YXz-ys-rC6"/>
+                                            <outlet property="playBtn" destination="nav-KM-QHu" id="gOb-CO-rx1"/>
                                             <outlet property="title" destination="XDj-Mh-ldn" id="r01-uk-sGU"/>
                                             <outlet property="trendingNumber" destination="0UD-Ma-xU9" id="vVl-np-eFH"/>
                                         </connections>
@@ -316,7 +313,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62N-uO-3zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3192" y="434"/>
+            <point key="canvasLocation" x="3168" y="447"/>
         </scene>
         <!--SectionsTVC-->
         <scene sceneID="Fi8-Ke-xwG">

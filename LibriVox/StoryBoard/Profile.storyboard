@@ -32,10 +32,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g6-j3-sNK">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="678"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="659"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THR-Iu-897" customClass="CircularImageView" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="121.66666666666669" y="63" width="150" height="150"/>
+                                                <rect key="frame" x="121.66666666666669" y="58" width="150" height="150"/>
                                                 <color key="backgroundColor" name="Gren Tone"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="QUN-s4-QBa"/>
@@ -43,7 +43,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First / Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08E-nr-Jf1" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="243" width="345" height="35"/>
+                                                <rect key="frame" x="24" y="238" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="mck-8v-eEA"/>
                                                 </constraints>
@@ -51,7 +51,7 @@
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-LN-DiS" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="345" width="345" height="35"/>
+                                                <rect key="frame" x="24" y="340" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="axm-sI-4Ol"/>
                                                 </constraints>
@@ -59,7 +59,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-xy-Cm0" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="294" width="345" height="35"/>
+                                                <rect key="frame" x="24" y="289" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="sOC-nQ-Di5"/>
                                                 </constraints>
@@ -67,7 +67,7 @@
                                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJu-X0-V67">
-                                                <rect key="frame" x="24" y="410" width="345" height="32.666666666666686"/>
+                                                <rect key="frame" x="24" y="405" width="345" height="32.666666666666686"/>
                                                 <color key="tintColor" name="Green Tone"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed">
@@ -89,20 +89,20 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grm-Ho-Al3">
-                                                <rect key="frame" x="24" y="482.66666666666669" width="345" height="33.000000000000057"/>
+                                                <rect key="frame" x="24" y="477.66666666666669" width="345" height="28"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcb-AI-qfw">
-                                                <rect key="frame" x="24" y="523.66666666666663" width="345" height="61.666666666666629"/>
+                                                <rect key="frame" x="24" y="513.66666666666663" width="345" height="52.666666666666629"/>
                                                 <string key="text">You will receive an email with a link to update your password.                                                                                                             Don't forget to check the Spam Box!</string>
                                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76W-La-VA7">
-                                                <rect key="frame" x="24" y="615.33333333333337" width="345" height="32.666666666666629"/>
+                                                <rect key="frame" x="24" y="596.33333333333337" width="345" height="32.666666666666629"/>
                                                 <color key="tintColor" name="Green Tone"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed">
@@ -150,7 +150,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d98-fY-iTw">
-                                        <rect key="frame" x="24" y="0.0" width="162" height="33"/>
+                                        <rect key="frame" x="24" y="0.0" width="153.66666666666666" height="28"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -335,7 +335,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="default"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="1WG-ih-yxn" kind="show" id="kEP-NY-kAp"/>
+                                                            <segue destination="1WG-ih-yxn" kind="show" identifier="showUpdateProfile" id="kEP-NY-kAp"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MU6-6K-bHJ" customClass="CircularImageView" customModule="Narrativia" customModuleProvider="target">
@@ -540,13 +540,13 @@
     </scenes>
     <designables>
         <designable name="08E-nr-Jf1">
-            <size key="intrinsicContentSize" width="132" height="34"/>
+            <size key="intrinsicContentSize" width="133.33333333333334" height="34"/>
         </designable>
         <designable name="5MA-xy-Cm0">
             <size key="intrinsicContentSize" width="92.333333333333329" height="34"/>
         </designable>
         <designable name="Nn5-LN-DiS">
-            <size key="intrinsicContentSize" width="63" height="34"/>
+            <size key="intrinsicContentSize" width="62.333333333333336" height="34"/>
         </designable>
     </designables>
     <resources>

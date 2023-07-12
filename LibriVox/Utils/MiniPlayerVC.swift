@@ -86,8 +86,7 @@ class MiniPlayerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
+        updateUI()
         setViews()
     }
     
@@ -158,12 +157,10 @@ class MiniPlayerVC: UIViewController {
         guard let book = book else {
             return
         }
-        
-        MiniPlayerManager.shared.currentAudiobookID = book.id
-        
+                
         titleBook.text = book.title
         author.text = book.authors
-        getCoverBook(id: book.id!) { img in
+        getCoverBook(id: book.id!, url: book.imageUrl) { img in
             if let img = img {
                 self.booksImg.image = img
                 self.backgroundImg.loadImage(from: img)
@@ -181,7 +178,9 @@ class MiniPlayerVC: UIViewController {
     
     @objc func tapDetected() {
         guard let delegate = delegate else { return }
-        delegate.presentPlayerView(audiobook: book!)
+        if let book = book{
+            delegate.presentPlayerView(audiobook: book)
+        }
     }
     
     @objc func closeTap() {

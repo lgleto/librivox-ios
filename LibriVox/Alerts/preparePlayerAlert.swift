@@ -54,16 +54,28 @@ class PreparePlayerAlert: UIViewController {
     
   var content: Content = .empty
 
+    
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     // imageIcon.image = imageIcon.image?.withRenderingMode(.alwaysTemplate)
     // imageIcon.tintColor = UIColor.init(named: colorAccentName)!
 
     // Do any additional setup after loading the view.
+      if let image = loadImageFromDocumentDirectory(id: (book?._id)!){
+          print("oii")
+      } else if let cachedImage = ImageCache.shared.image(for: (book?._id)!){
+          saveImageToDocumentDirectory(id: (book?._id)!, image: cachedImage)
+      }
       
       progressBar.setProgress(0.3, animated: true)
       DownloadMP3()
   }
+    
+    private func getCoverBook2(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
+        
+    }
+    
     func changeStatus(label:String, roundIndicatior:Bool, progressIndicator:Float) {
         //
         //self.labelTitle.text = label
@@ -89,46 +101,54 @@ class PreparePlayerAlert: UIViewController {
       
   }
     func DownloadMP3() {
-        let fileManager = FileManager()
-        
         guard let url = URL(string: self.book!.urlZipFile!) else {
             return
         }
         
-         let baseUrl = filePathFromDownloadUrl2(url: URL(string: self.book!.urlZipFile!)!)
-        
+        let baseUrl = filePathFromDownloadUrl2(url: URL(string: self.book!.urlZipFile!)!)
         let destinationPath = folderPath(id: book!._id!)
         
         DownloadManager.shared.addDownload(url: url, destinationURL: baseUrl) { progress, currentBits, expectedBits in
-            self.progressBar.progress = progress
-            self.currentBytes.text = bitToMegabyteString(currentBits)
-            self.expectedBytes.text = bitToMegabyteString(expectedBits)
-        } onCompletion: { err, url, localURL in
+            DispatchQueue.main.async {
+                self.progressBar.progress = progress
+                self.currentBytes.text = bitToMegabyteString(currentBits)
+                self.expectedBytes.text = bitToMegabyteString(expectedBits)
+            }
+        } onCompletion: { error, _, localURL in
+            if let error = error {
+                print("Error downloading file: \(error.localizedDescription)")
+                return
+            }
+            
+            let fileManager = FileManager.default
             do {
                 if !fileManager.fileExists(atPath: destinationPath) {
                     try fileManager.createDirectory(atPath: destinationPath, withIntermediateDirectories: true, attributes: nil)
                 }
+                
                 do {
                     try SSZipArchive.unzipFile(atPath: localURL.path, toDestination: destinationPath, overwrite: true, password: nil)
                     do {
                         try fileManager.removeItem(at: baseUrl)
-                        self.dismiss(animated: true) {
-                        if let c = self.callback {
-                            c(false, self.book!)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true) {
+                                if let callback = self.callback {
+                                    callback(false, self.book!)
+                                }
+                            }
                         }
-                      }
                     } catch {
-                        print("Error removing rar file")
+                        print("Error removing zip file")
                     }
                 } catch {
                     print("Error extracting zip file: \(error.localizedDescription)")
                 }
             } catch {
-                print("Error moving zip file: \(error.localizedDescription)")
+                print("Error creating destination directory: \(error.localizedDescription)")
             }
         }
-        
     }
+
 
 
 }

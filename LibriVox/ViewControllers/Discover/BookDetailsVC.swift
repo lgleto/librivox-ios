@@ -12,9 +12,6 @@ import FirebaseCore
 import FirebaseFirestore
 import CoreData
 
-
-
-
 class BookDetailsVC: UIViewController {
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
     @IBOutlet weak var showMoreBtn: UIButton!
@@ -45,7 +42,6 @@ class BookDetailsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         playBtn.isSelected = playerHandler.isPlaying
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -121,7 +117,9 @@ class BookDetailsVC: UIViewController {
     
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
-        updateBookParameter("isReading", value: true, documentID: (book?._id)!)
+        
+        
+        addToCollection(Book(book: book!, isReading: true), img!){ _ in }
         //updateUserParameter("lastBook", value: (book?._id)!)
         addTrendingToBook(book: book!, lvlTrending: 5) { yes in
             print("sucess")
@@ -174,6 +172,7 @@ extension BookDetailsVC: UITableViewDataSource, UITableViewDelegate {
             callback(image)
         } else if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String){
             callback(cachedImage)
+            saveImageToDocumentDirectory(id: id, image: cachedImage)
         }else{
             getBookCoverFromURL(url: url){image in
                 guard let image = image else{return}

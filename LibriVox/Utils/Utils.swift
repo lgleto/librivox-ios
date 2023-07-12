@@ -729,9 +729,9 @@ func checkIfFileExists(book_id: String) -> Bool {
     }
 }
 
+// FIX: It's opening a new instance of playerVc each time.
 func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
     guard let id = book._id else{return}
-    
     if !checkIfFileExists(book_id: id) {
         PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
             if let tabBarController = parentVC.tabBarController as? HomepageTBC {
@@ -770,12 +770,6 @@ func saveProfileImageToPreferences(_ image: UIImage) {
     }
 }
 
-func getProfileImageFromPreferences() -> UIImage? {
-    if let imageData = UserDefaults.standard.data(forKey: "userPhoto") {
-        return UIImage(data: imageData)
-    }
-    return nil
-}
 
 
 

@@ -24,6 +24,8 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
     var originalName: String?
     var originalUserName: String?
     
+    var userInfo: (displayName: String?, email: String?, userID: String?, userPhoto: UIImage?)?
+
     @IBAction func updateProfile(_ sender: Any) {
         guard let name = name.text, !name.isEmpty,
               let email = email.text, !email.isEmpty,
@@ -61,31 +63,33 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
         super.viewDidLoad()
         
         userPhoto.contentMode = .scaleToFill
-        
+        if let img = userInfo?.userPhoto{
+            userPhoto.image = img
+        }
+      
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoTapped(_:)))
         userPhoto.addGestureRecognizer(tapGestureRecognizer)
         
-        getUserInfo(User.NAME) { name in
-            if let name = name ?? Auth.auth().currentUser?.displayName {
-                self.name.text = name
-                self.originalName = name
-            }
+        
+        if let displayName = userInfo?.displayName {
+            name.text = displayName
+            originalName = displayName
         }
-        
-        userPhoto.loadImage(from: (getProfileImageFromPreferences() ?? imageWith(name: name.text))!)
 
+        if let email = userInfo?.email {
+            self.email.text = email
+            originalEmail = email
+        }
+      
         
-        getUserInfo(User.USERNAME) { userName in
+        
+        
+       /* getUserInfo(User.USERNAME) { userName in
             if let userName = userName {
                 self.userName.text = userName
                 self.originalUserName = userName
             }
-        }
-        
-        if let email = Auth.auth().currentUser?.email{
-            self.email.text = email
-            self.originalEmail = email
-        }
+        }*/
     }
     
     

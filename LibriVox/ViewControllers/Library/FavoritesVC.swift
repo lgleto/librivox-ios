@@ -20,7 +20,7 @@ class FavoritesVC: UITableViewController {
         }
     }
     let spinner = UIActivityIndicatorView(style: .medium)
-    
+    var allButtons: [ToggleBtn] = []
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -66,7 +66,10 @@ class FavoritesVC: UITableViewController {
         cell.durationBook.text = "Duration: \(book.totalTime ?? "")"
     
         cell.favBtn.tag = indexPath.row
+        allButtons.append(cell.playBtn)
+
         cell.favBtn.addTarget(self, action: #selector(self.click(_:)), for: .touchUpInside)
+        cell.playBtn.addTarget(self, action: #selector(self.play(_:)), for: .touchUpInside)
         return cell
     }
     
@@ -75,7 +78,15 @@ class FavoritesVC: UITableViewController {
         let book = finalList[rowIndex]
         
         updateBookParameter("isFav", value: false, documentID: (book.id!))
-        //updateBookInfoParameter(book: finalList[rowIndex], parameter: "isFav", value: false)
+        
+        
+    }
+    
+    @objc func play(_ sender: UIButton) {
+        allButtons.forEach { $0.isSelected = false}
+        if let tabBarController = tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: finalList[sender.tag])
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -103,5 +114,6 @@ class FavoritesCellTVC: UITableViewCell {
     @IBOutlet weak var favBtn: ToggleBtn!
     @IBOutlet weak var titleBook: UILabel!
     
+    @IBOutlet weak var playBtn: ToggleBtn!
     
 }

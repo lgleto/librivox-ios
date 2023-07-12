@@ -19,7 +19,7 @@ class FinishedCVC: UITableViewController {
             checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "completedBook")!,view: self.tableView, alertText: "Any books finished yet")
         }
     }
-    
+    var allButtons: [ToggleBtn] = []
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -43,7 +43,7 @@ class FinishedCVC: UITableViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(contextDidChange(_:)), name: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: persistentContainer.viewContext)
         }
         
-
+        
         
     }
     
@@ -64,24 +64,37 @@ class FinishedCVC: UITableViewController {
         }
         
         cell.imgBook.image = nil
-
+        
         if let img = loadImageFromDocumentDirectory(id: book.id!){
             cell.imgBook.loadImage(from: img)
         }
+        
+        cell.playBtn.tag = indexPath.row
+        allButtons.append(cell.playBtn)
+
         cell.durationBook.text = "Duration: \(book.totalTime ?? "")"
+        cell.playBtn.addTarget(self, action: #selector(self.play(_:)), for: .touchUpInside)
         
         return cell
     }
     
+    @objc func play(_ sender: UIButton) {
+        allButtons.forEach { $0.isSelected = false}
+        if let tabBarController = tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: finalList[sender.tag])
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailsBook", let indexPath = tableView.indexPathForSelectedRow,
+        if segue.identifier == "showDetails", let indexPath = tableView.indexPathForSelectedRow,
            let detailVC = segue.destination as? BookDetailsVC {
             let item = indexPath.item
             
             detailVC.book = convertToAudiobook(audioBookData: finalList[indexPath.row])
             
             if let img = loadImageFromDocumentDirectory(id: finalList[indexPath.row].id!) {
-                      detailVC.img = img
+                detailVC.img = img
             }
         }
     }

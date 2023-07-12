@@ -54,6 +54,7 @@ func updateUserInfo(name: String, username: String, view: UIViewController) {
             print("Error writing document: \(err.localizedDescription)")
         } else {
             showConfirmationAlert(view, "Profile updated succesfully!")
+            storeUserInfoToUserDefaults()
         }
     }
 }
