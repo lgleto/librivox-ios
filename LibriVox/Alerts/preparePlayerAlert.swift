@@ -6,41 +6,41 @@ class PreparePlayerAlert: UIViewController {
     
     
     enum Content {
-    case empty
-    case error(title: String)
-    case info(title: String)
-  }
-
-  static func show(parentVC: UIViewController,
-           title: String,
-                   book: PlayableItemProtocol,
-           onCallback: ((Bool, PlayableItemProtocol) -> Void)?)
-  {
-      PreparePlayerAlert.show(parentVC: parentVC, content: .error(title: title), book: book, onCallback: onCallback)
-  }
-
-  static func show(parentVC: UIViewController,
-           content: Content,
-                   book: PlayableItemProtocol,
-           onCallback: ((Bool,PlayableItemProtocol) -> Void)?)
-  {
-    let storyBoard = UIStoryboard(name: "HomePage", bundle: nil)
-    let vc: PreparePlayerAlert = storyBoard.instantiateViewController(withIdentifier: "PreparePlayerAlert") as! PreparePlayerAlert
-    vc.content = content
-      vc.book = book
-    vc.callback = { yes, book in
-      if let callback = onCallback {
-        callback(yes, book)
-      }
+        case empty
+        case error(title: String)
+        case info(title: String)
     }
-    vc.modalTransitionStyle = .coverVertical
-    vc.modalPresentationStyle = .overFullScreen
-
-    parentVC.present(vc, animated: true, completion: nil)
-  }
     
-  //@IBOutlet var imageIcon: UIImageView!
-  //@IBOutlet var labelTitle: UILabel!
+    static func show(parentVC: UIViewController,
+                     title: String,
+                     book: PlayableItemProtocol,
+                     onCallback: ((Bool, PlayableItemProtocol) -> Void)?)
+    {
+        PreparePlayerAlert.show(parentVC: parentVC, content: .error(title: title), book: book, onCallback: onCallback)
+    }
+    
+    static func show(parentVC: UIViewController,
+                     content: Content,
+                     book: PlayableItemProtocol,
+                     onCallback: ((Bool,PlayableItemProtocol) -> Void)?)
+    {
+        let storyBoard = UIStoryboard(name: "HomePage", bundle: nil)
+        let vc: PreparePlayerAlert = storyBoard.instantiateViewController(withIdentifier: "PreparePlayerAlert") as! PreparePlayerAlert
+        vc.content = content
+        vc.book = book
+        vc.callback = { yes, book in
+            if let callback = onCallback {
+                callback(yes, book)
+            }
+        }
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .overFullScreen
+        
+        parentVC.present(vc, animated: true, completion: nil)
+    }
+    
+    //@IBOutlet var imageIcon: UIImageView!
+    //@IBOutlet var labelTitle: UILabel!
     
     @IBOutlet weak var progressBar: UIProgressView!
     
@@ -49,32 +49,27 @@ class PreparePlayerAlert: UIViewController {
     @IBOutlet weak var currentBytes: UILabel!
     
     
-  var callback: ((Bool , PlayableItemProtocol) -> Void)?
+    var callback: ((Bool , PlayableItemProtocol) -> Void)?
     var book: PlayableItemProtocol?
     
-  var content: Content = .empty
-
+    var content: Content = .empty
+    
+    @IBOutlet weak var titleDownload: UILabel!
     
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // imageIcon.image = imageIcon.image?.withRenderingMode(.alwaysTemplate)
-    // imageIcon.tintColor = UIColor.init(named: colorAccentName)!
-
-    // Do any additional setup after loading the view.
-      if let image = loadImageFromDocumentDirectory(id: (book?._id)!){
-          print("oii")
-      } else if let cachedImage = ImageCache.shared.image(for: (book?._id)!){
-          saveImageToDocumentDirectory(id: (book?._id)!, image: cachedImage)
-      }
-      
-      progressBar.setProgress(0.3, animated: true)
-      DownloadMP3()
-  }
     
-    private func getCoverBook2(id: String, url: String, _ callback: @escaping (UIImage?) -> Void) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        titleDownload.text = book?.title
+
+        progressBar.transform = progressBar.transform.scaledBy(x: 1, y:1.5)
+        
+        progressBar.setProgress(0.0, animated: true)
+        DownloadMP3()
     }
+    
+    
     
     func changeStatus(label:String, roundIndicatior:Bool, progressIndicator:Float) {
         //
@@ -82,24 +77,20 @@ class PreparePlayerAlert: UIViewController {
         self.progressBar.setProgress(progressIndicator/4, animated: true)
         self.infoLabel.text = label
     }
-
-
-  @IBAction func buttonConfirm(_ sender: Any) {
-      if let c = self.callback {
-          c(true, self.book!)
-      }
-  }
     
-   
-  @IBAction func buttonCancel(_ sender: Any) {
-      DownloadManager.shared.cancelDownload()
-      dismiss(animated: true) {
-      if let c = self.callback {
-          c(false, self.book!)
-      }
+    
+    @IBAction func buttonConfirm(_ sender: Any) {
+        if let c = self.callback {
+            c(true, self.book!)
+        }
     }
-      
-  }
+    
+    
+    @IBAction func buttonCancel(_ sender: Any) {
+        DownloadManager.shared.cancelDownload()
+        dismiss(animated: true) {}
+        
+    }
     func DownloadMP3() {
         guard let url = URL(string: self.book!.urlZipFile!) else {
             return
@@ -148,9 +139,9 @@ class PreparePlayerAlert: UIViewController {
             }
         }
     }
-
-
-
+    
+    
+    
 }
 
 
