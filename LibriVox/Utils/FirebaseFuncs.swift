@@ -524,36 +524,36 @@ func getBookCoverFB(id: String, completion: @escaping (UIImage?) -> Void) {
 }
 
 func storeSectionTime(currentBookId:String) {
-    var 🎧 = PlayerHandler.sharedInstance
+    let 🎧 = PlayerHandler.sharedInstance
     
-    updateBookParameter("sectionStopped", value: String(🎧.currentSection ?? 1), documentID: currentBookId)
+    updateBookParameter("sectionStopped", value: String(🎧.currentSection! + 1), documentID: currentBookId)
     updateBookParameter("timeStopped", value: String(🎧.progress), documentID: currentBookId)
 }
-/* //TODO: Function Under Construction... Please do not break it ;(
-func getSectionTime(documentID: String) {
+///TODO: Function Under Construction... Please do not break it ;(
+func getSectionTime(documentID: String, completion: @escaping (BookStatus?) -> Void) {
     let db = Firestore.firestore()
     let userRef = db.collection("users").document(Auth.auth().currentUser!.uid)
     let bookCollectionRef = userRef.collection("library")
     let documentRef = bookCollectionRef.document(documentID)
     
+    
     documentRef.getDocument { snapshot, err in
         if let err = err {
             print("Error observing book document: \(err.localizedDescription)")
+            completion(nil)
             return
         }
         
         guard let document = snapshot, document.exists else {
+            completion(nil)
             return
         }
+        var bookstatus = BookStatus()
+        bookstatus.timeStopped = document.get("timeStopped") as? String ?? ""
+        bookstatus.sectionStopped = document.get("sectionStopped") as? String ?? ""
+        bookstatus.id = documentID
         
-        let isMarked = document.get(parameter) as? Bool ?? nil
-        completion(isMarked)
-    }
-    
-    documentRef.updateData(updateData) { error in
-        if let error = error {
-            print("Error updating book parameter: \(error.localizedDescription)")
-        }
+        completion(bookstatus)
     }
 }
-*/
+
