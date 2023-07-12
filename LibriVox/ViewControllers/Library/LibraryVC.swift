@@ -31,9 +31,6 @@ class LibraryVC: UIViewController {
         setSegmetedControl(segmentedControl)
         
         container = self.children[0] as? ContainerPagesVC
-        container?.didMove = { page in
-            self.segmentedControl.selectedSegmentIndex = page
-        }
     }
     
     @IBAction func segmentedControl (_ sender: UISegmentedControl){
