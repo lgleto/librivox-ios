@@ -12,6 +12,7 @@ class LibraryVC: UIViewController {
     @IBOutlet weak var totalFinishedBooksLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var totalReadingBooksLabel: UILabel!
     var container : ContainerPagesVC?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,9 +25,37 @@ class LibraryVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+  
+    func animateLabelIncrement(label: UILabel, toValue: Int, duration: TimeInterval) {
+        var currentValue = 0
+        let valueIncrement = 1
+        let totalSteps = abs(toValue)
+        let incrementDuration = duration / TimeInterval(totalSteps)
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: incrementDuration, repeats: true) { timer in
+            currentValue += valueIncrement
+            label.text = "\(currentValue)"
+            
+            if currentValue == toValue {
+                timer.invalidate()
+            }
+        }
+                RunLoop.main.add(timer, forMode: .common)
+    }
+
+
+    var totalFinishedBooks: Int?
+    var totalReadingBooks: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        totalFinishedBooksLabel.text = String(totalFinishedBooksCD()) 
+        totalFinishedBooks = totalBooksByParameter(parameter: "isFinished", value: true)
+        totalReadingBooks = totalBooksByParameter(parameter: "isReading", value: true)
+        
+        
+        animateLabelIncrement(label: totalReadingBooksLabel, toValue: totalReadingBooks!, duration: 1)
+        
+        animateLabelIncrement(label: totalFinishedBooksLabel, toValue: totalFinishedBooks!, duration: 1)
         
         setSegmetedControl(segmentedControl)
         

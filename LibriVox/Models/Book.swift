@@ -9,14 +9,14 @@ import Foundation
 import SwaggerClient
 struct Book {
     var book: Audiobook
-    var isReading: Bool?
-    var isFav: Bool?
-    var isFinished: Bool?
+    var isReading: Bool
+    var isFav: Bool
+    var isFinished: Bool
     var sectionStopped: Int32?
     var timeStopped: Int32?
     var imageUrl: String?
     
-    init(book: Audiobook, isReading: Bool? = nil, isFav: Bool? = nil, isFinished: Bool? = nil, sectionStopped: Int32? = nil, timeStopped: Int32? = nil, imageUrl: String? = nil) {
+    init(book: Audiobook, isReading: Bool = false, isFav: Bool = false, isFinished: Bool = false, sectionStopped: Int32? = nil, timeStopped: Int32? = nil, imageUrl: String? = nil) {
         self.book = book
         self.isReading = isReading
         self.isFav = isFav

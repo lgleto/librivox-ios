@@ -100,34 +100,39 @@ class BookDetailsVC: UIViewController {
     
     @IBAction func clickFav(_ sender: Any) {
         let newIsFavValue = !favBtn.isSelected
-               guard let book = book, let documentID = book._id else {return}
+        guard let book = book, let documentID = book._id else {return}
+        
+        isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
+            guard isMarked != nil else {
+                if let image = self.img {
+                    addToCollection(Book(book: book, isFav: newIsFavValue), image) { _ in }
+                }
+                return
+            }
             
-               isBookMarkedAs("isFav", value: true, documentID: documentID) { isMarked in
-                   guard isMarked != nil else {
-                       if let image = self.img {
-                           addToCollection(Book(book: book, isFav: newIsFavValue), image) { _ in }
-                       }
-                       return
-                   }
-                   
-                   updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
-               }
+            updateBookParameter("isFav", value: newIsFavValue, documentID: documentID)
+        }
         
     }
     
     @IBAction func playBookBtn(_ sender: Any) {
-        playBtn.isSelected = !playBtn.isSelected
+        let newIsFavValue = !favBtn.isSelected
         
+        isBookMarkedAs("isReading", value: true, documentID: (book?._id)!) { isMarked in
+            isMarked == nil ? addToCollection(Book(book: self.book!, isReading: true), self.img!){ _ in } :  updateBookParameter("isReading", value: newIsFavValue, documentID: (self.book?._id)!)
+        }
         
-        addToCollection(Book(book: book!, isReading: true), img!){ _ in }
-        //updateUserParameter("lastBook", value: (book?._id)!)
         addTrendingToBook(book: book!, lvlTrending: 5) { yes in
             print("sucess")
         }
         
         if playerHandler.isPlaying{
             playerHandler.playPause()
-        }else{goToPlayer(book: book!, parentVC: self)}
+        }else{
+            updateUserParameter("lastBook", value: (book?._id)!)
+            goToPlayer(book: book!, parentVC: self)
+            
+        }
     }
     
 }

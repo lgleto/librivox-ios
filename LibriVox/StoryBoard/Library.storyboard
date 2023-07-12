@@ -45,8 +45,8 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czb-xl-GbJ">
-                                        <rect key="frame" x="275.33333333333331" y="16" width="12.666666666666686" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czb-xl-GbJ">
+                                        <rect key="frame" x="273" y="16" width="17.666666666666686" height="34"/>
                                         <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="25"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -57,8 +57,8 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="86h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQp-58-rA9">
-                                        <rect key="frame" x="66.333333333333329" y="16" width="48.333333333333329" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQp-58-rA9">
+                                        <rect key="frame" x="81.666666666666671" y="16" width="17.666666666666671" height="34"/>
                                         <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="25"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -125,6 +125,7 @@
                     <connections>
                         <outlet property="segmentedControl" destination="HCo-hA-CH5" id="ban-qv-5ti"/>
                         <outlet property="totalFinishedBooksLabel" destination="czb-xl-GbJ" id="pE2-7F-K0n"/>
+                        <outlet property="totalReadingBooksLabel" destination="SQp-58-rA9" id="z39-KQ-WVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -483,15 +484,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7FK-TH-6yK"/>
+        <segue reference="6q9-2R-TJS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="books.vertical" catalog="system" width="128" height="107"/>
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
         <image name="pause" width="512" height="512"/>
         <image name="play" width="512" height="512"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="star" width="512" height="512"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="starOn" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

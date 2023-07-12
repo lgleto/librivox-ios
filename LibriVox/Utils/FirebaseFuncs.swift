@@ -327,8 +327,8 @@ func getAllBooks() {
                 let audiobook = try JSONDecoder().decode(Audiobook.self, from: audiobookJSONData)
                 
                 let isReading = document.get("isReading") as? Bool ?? false
-                let isFav = document.get("isFav") as? Bool
-                let isFinished = document.get("isFinished") as? Bool
+                let isFav = document.get("isFav") as? Bool ?? false
+                let isFinished = document.get("isFinished") as? Bool ?? false
                 let sectionStopped = document.get("sectionStopped") as? String
                 let timeStopped = document.get("timeStopped") as? String
                 let imageUrl = document.get("imageUrl") as? String
@@ -393,7 +393,7 @@ func isBookMarkedAs(_ parameter: String, value: Bool, documentID: String, comple
             return
         }
         
-        let isMarked = document.get(parameter) as? Bool ?? nil
+        let isMarked = document.get(parameter) as? Bool ?? false
         completion(isMarked)
     }
 }

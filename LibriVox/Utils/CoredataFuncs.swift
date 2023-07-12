@@ -180,11 +180,11 @@ func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data
     return matchingBooks
 }
 
-func totalFinishedBooksCD() -> Int{
+func totalBooksByParameter(parameter: String, value: Bool) -> Int{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var totalFinishedBooks = 0
     let bookRequest: NSFetchRequest<AudioBooks_Data> = AudioBooks_Data.fetchRequest()
-    bookRequest.predicate = NSPredicate(format: "isFinished == true")
+    bookRequest.predicate = NSPredicate(format: "\(parameter) == %@", NSNumber(value: value))
     
     do {
         totalFinishedBooks = try context.fetch(bookRequest).count
