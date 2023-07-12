@@ -64,6 +64,7 @@ class PlayerVC: UIViewController, DataDelegate {
     var book : PlayableItemProtocol?
     var basefolder = ""
     var isChangingSlidePosition = false
+    var bookstatus = BookStatus()
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -80,6 +81,15 @@ class PlayerVC: UIViewController, DataDelegate {
                 self.background.loadImage(from: img)}
         }
         sectionNumber.text = "Section Nº \(String(currentSection ?? 0))"
+        
+       
+        getSectionTime(documentID: (book?._id)!) { bookstatus in
+            if (bookstatus?.sectionStopped != "" || bookstatus?.timeStopped != "") {
+                self.currentSection = Int(bookstatus!.sectionStopped)
+                self.bookstatus = bookstatus!
+            }
+        }
+        
         playMP3(newSection: false)
         
         
@@ -92,6 +102,7 @@ class PlayerVC: UIViewController, DataDelegate {
         
         
         if (!playerHandler.isPlaying || newSection){
+            
             if let book = book{
                 basefolder = folderPath(id: book._id!)
                 let fileNames = getFilesInFolder(folderPath: basefolder)
@@ -114,6 +125,14 @@ class PlayerVC: UIViewController, DataDelegate {
         labelMaxTime.text = secondsToTime(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].playtime)!)!)
         slider.maximumValue = secondsToMillis(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1-1].playtime)!)!)
         titleLabel.text = titlePlayer(bookTitle: (playerHandler.book?.title)!, sectionTitle: (playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].title)!)
+        
+        if (bookstatus.timeStopped != "") {
+            playerHandler.seekTo(position: Int(bookstatus.timeStopped)!)
+        }
+            
+        
+        
+        
 
 
    
