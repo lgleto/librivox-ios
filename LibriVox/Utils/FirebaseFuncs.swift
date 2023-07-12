@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 import CoreData
+import MobileCoreServices
 
 let USER_COLLECTION = "users"
 let TRENDING_COLLECTION = "books"
@@ -84,7 +85,7 @@ func getGenresFromDb(callback: @escaping ([GenreWithColor]) -> Void){
     }
 }
 
-func downloadProfileImage(_ name: String,_ imageView: LoadingImage) {
+func downloadProfileImage(_ imageView: LoadingImage) {
     let imageRef = storage.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")
     
     imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
@@ -95,10 +96,31 @@ func downloadProfileImage(_ name: String,_ imageView: LoadingImage) {
         } else if let url = Auth.auth().currentUser?.photoURL {
             imageView.loadImageURL(from: url)
         } else {
-            imageView.loadImage(from: imageWith(name: name)!)
+            //imageView.loadImage(from: imageWith(name: name)!)
         }
     }
 }
+
+func downloadProfileImage() {
+    let imageRef = storage.child("images/\(Auth.auth().currentUser!.uid)/userPhoto")
+    
+    imageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+        if let error = error {
+            print("Error downloading image: \(error.localizedDescription)")
+        } else if let imageData = data {
+            if let image = UIImage(data: imageData) {
+                saveProfileImageToPreferences(image)
+            }else if let url = Auth.auth().currentUser?.photoURL {
+                downloadImage(url: url){img in
+                    saveProfileImageToPreferences(img)
+                }
+            }
+        }
+    }
+}
+
+
+
 
 func updateEmail(_ credential: AuthCredential, _ email: String, view : UIViewController){
     if let user = Auth.auth().currentUser{
@@ -332,6 +354,23 @@ func getAllBooks() {
             if !documents.contains(where: { $0.documentID == existingBookID }) {
                 deleteAudiobookCD(bookId: existingBookID)
             }
+        }
+    }
+}
+
+func updateProfileImage(_ img: UIImage) {
+    saveProfileImageToPreferences(img)
+    guard let imageData = img.jpegData(compressionQuality: 0.8) else { return }
+    let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, "jpg" as CFString, nil)?.takeRetainedValue() as String?
+    let filePath = "images/\(Auth.auth().currentUser!.uid)/\("userPhoto")"
+    let storageRef = Storage.storage().reference()
+    
+    let metaData = StorageMetadata()
+    metaData.contentType = contentType
+    storageRef.child(filePath).putData(imageData, metadata: metaData) { (_, error) in
+        if let error = error {
+            print(error.localizedDescription)
+            return
         }
     }
 }

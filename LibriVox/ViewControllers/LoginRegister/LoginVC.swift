@@ -65,6 +65,7 @@ class LoginVC: UIViewController {
                 print(error)
                 if (authResult != nil) {
                     storeUserInfoToUserDefaults()
+                    downloadProfileImage()
                     self.self!.present(home, animated: true, completion: nil)
                 } else {
                     let autError  = AuthErrorCode.init(_nsError: error! as NSError)
@@ -170,6 +171,7 @@ class LoginVC: UIViewController {
             
             Auth.auth().signIn(with: credential) { result, error in
                 storeUserInfoToUserDefaults()
+                downloadProfileImage()
                 self.self.present(home, animated: true, completion: nil)
             }
         }
@@ -181,10 +183,6 @@ func storeUserInfoToUserDefaults() {
     guard let currentUser = Auth.auth().currentUser else {
         return
     }
-    
-    /*if let photoURL = currentUser.photoURL?.absoluteString {
-        UserDefaults.standard.set(photoURL, forKey: "userPhotoURL")
-    }*/
     
     if let displayName = currentUser.displayName {
         UserDefaults.standard.set(displayName, forKey: "userDisplayName")

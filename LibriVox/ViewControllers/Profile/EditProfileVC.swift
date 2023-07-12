@@ -67,11 +67,13 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
         
         getUserInfo(User.NAME) { name in
             if let name = name ?? Auth.auth().currentUser?.displayName {
-                self.userName.text = name
+                self.name.text = name
                 self.originalName = name
-                downloadProfileImage(name, self.userPhoto)
             }
         }
+        
+        userPhoto.loadImage(from: (getProfileImageFromPreferences() ?? imageWith(name: name.text))!)
+
         
         getUserInfo(User.USERNAME) { userName in
             if let userName = userName {
@@ -149,21 +151,7 @@ class EditProfileVC: AdaptedVC,UIImagePickerControllerDelegate, UINavigationCont
         label.centerYAnchor.constraint(equalTo: userPhoto.centerYAnchor).isActive = true
     }
     
-    func updateProfileImage(_ img: UIImage) {
-        guard let imageData = img.jpegData(compressionQuality: 0.8) else { return }
-        let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, "jpg" as CFString, nil)?.takeRetainedValue() as String?
-        let filePath = "images/\(Auth.auth().currentUser!.uid)/\("userPhoto")"
-        let storageRef = Storage.storage().reference()
-        
-        let metaData = StorageMetadata()
-        metaData.contentType = contentType
-        storageRef.child(filePath).putData(imageData, metadata: metaData) { (_, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-        }
-    }
+ 
     
     func updateEmail(_ email: String){
         if isValidEmail(email){

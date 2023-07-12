@@ -734,18 +734,19 @@ func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
     
     if !checkIfFileExists(book_id: id) {
         PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
-            PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
             if let tabBarController = parentVC.tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: book as! AudioBooks_Data)
+                tabBarController.addChildView(book: book as! PlayableItemProtocol)
                                  }
+            PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
+            
         }
     } else {
-        /*if let tabBarController = parentVC.tabBarController as? HomepageTBC {
-            tabBarController.addChildView(book: book as! AudioBooks_Data)*/
+        if let tabBarController = parentVC.tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: book as! PlayableItemProtocol)
                                  }
         PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
    
-    //}
+    }
 }
 
 func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
@@ -753,8 +754,28 @@ func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
     return finalTitle
 }
 
+func retrieveUserInfoFromUserDefaults() -> (displayName: String?, email: String?, userID: String?, userPhoto: UIImage?) {
+    let displayName = UserDefaults.standard.string(forKey: "userDisplayName")
+    let email = UserDefaults.standard.string(forKey: "userEmail")
+    let userID = UserDefaults.standard.string(forKey: "currentUserID")
+    let userPhotoData = UserDefaults.standard.data(forKey: "userPhoto")
+    let userPhoto = userPhotoData.flatMap { UIImage(data: $0) }
+    
+    return (displayName, email, userID, userPhoto)
+}
 
+func saveProfileImageToPreferences(_ image: UIImage) {
+    if let imageData = image.jpegData(compressionQuality: 1.0) {
+        UserDefaults.standard.set(imageData, forKey: "userPhoto")
+    }
+}
 
+func getProfileImageFromPreferences() -> UIImage? {
+    if let imageData = UserDefaults.standard.data(forKey: "userPhoto") {
+        return UIImage(data: imageData)
+    }
+    return nil
+}
 
 
 

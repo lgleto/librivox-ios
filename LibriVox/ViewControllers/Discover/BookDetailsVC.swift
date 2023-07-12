@@ -122,7 +122,7 @@ class BookDetailsVC: UIViewController {
     @IBAction func playBookBtn(_ sender: Any) {
         playBtn.isSelected = !playBtn.isSelected
         updateBookParameter("isReading", value: true, documentID: (book?._id)!)
-        updateUserParameter("lastBook", value: (book?._id)!)
+        //updateUserParameter("lastBook", value: (book?._id)!)
         addTrendingToBook(book: book!, lvlTrending: 5) { yes in
             print("sucess")
         }

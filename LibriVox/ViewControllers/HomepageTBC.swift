@@ -19,7 +19,7 @@ class HomepageTBC: UITabBarController {
         super.viewDidLoad()
     }
     
-    func addChildView(book: AudioBooks_Data) {
+    func addChildView(book: PlayableItemProtocol) {
         let newContainerView = UIView()
         newContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(newContainerView)
@@ -31,13 +31,12 @@ class HomepageTBC: UITabBarController {
         
         miniPlayer = MiniPlayerVC()
         miniPlayer!.delegate = self
-        miniPlayer!.book = book
+        miniPlayer!.book = getBookByIdCD(id: book._id!)
         miniPlayer!.view.translatesAutoresizingMaskIntoConstraints = false
         
         addChild(miniPlayer!)
         newContainerView.addSubview(miniPlayer!.view)
         miniPlayer?.didMove(toParent: self)
-        
         
         if let childIndex = viewControllers?.firstIndex(of: miniPlayer!) {
             viewControllers?.remove(at: childIndex)

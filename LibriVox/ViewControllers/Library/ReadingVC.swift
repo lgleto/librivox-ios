@@ -19,7 +19,7 @@ class ReadingVC: UITableViewController {
             checkAndUpdateEmptyState(list: finalList, alertImage: UIImage(named: "readingBook")!,view: self.tableView, alertText: "No books being read")
         }
     }
-    
+    var playerHandler : PlayerHandler = PlayerHandler.sharedInstance
     var allButtons: [ToggleBtn] = []
     var lastBook: Int?
     let spinner = UIActivityIndicatorView(style: .medium)
@@ -89,15 +89,14 @@ class ReadingVC: UITableViewController {
     @objc func click(_ sender: UIButton) {
         allButtons.forEach { $0.isSelected = false}
         
-        sender.isSelected = true
-       // goToPlayer(book: finalList[sender.tag], parentVC: self)
+        playerHandler.playPause()
+        sender.isSelected = playerHandler.isPlaying
         
         if lastBook != sender.tag{
-         if let tabBarController = tabBarController as? HomepageTBC {
-         tabBarController.addChildView(book: finalList[sender.tag])
-         }
-         }else{sender.isSelected = !sender.isSelected}
-        
+            if let tabBarController = tabBarController as? HomepageTBC {
+                tabBarController.addChildView(book: finalList[sender.tag])
+            }}
+         
         self.lastBook = sender.tag
     }
     

@@ -35,24 +35,35 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let userInfo = retrieveUserInfoFromUserDefaults()
+        
+        if let displayName = userInfo.displayName {
+            nameUser.text = displayName
+        }
+
+        if let email = userInfo.email {
+            nicknameUser.text = userInfo.email
+        }
+
+        if let userPhoto = userInfo.userPhoto {
+            profilePhoto.image = userPhoto
+        } else {
+            imageWith(name: userInfo.displayName)
+        }
+
+        
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(tapFunctionAbout))
         AboutBtn.addGestureRecognizer(tap1)
-        
-        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         
         
-        getUserInfo(User.NAME) { name in
-            if let name = name ?? Auth.auth().currentUser?.displayName {
-                self.nameUser.text = name
-                downloadProfileImage(name, self.profilePhoto)
-            }
-        }
+        
+        
+        //profilePhoto.loadImage(from: (getProfileImageFromPreferences() ?? imageWith(name: nameUser.text))!)
         
         switchMode.isOn =  currentTheme == .dark ? true: false
-        nicknameUser.text = Auth.auth().currentUser?.email
     }
     
     @IBAction func tapFunction(sender: UITapGestureRecognizer) {

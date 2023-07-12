@@ -100,7 +100,6 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                             if let err = err {
                                 print("Error writing document: \(err)")
                             } else {
-                                
                                 if let img = userPhoto.image{
                                     updateProfileImage(img)
                                 }
@@ -128,11 +127,10 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let user = authResult?.user, error == nil {
-                print("User authenticated successfully: \(user.uid)")
-                storeUserInfoToUserDefaults()
-                /*UserDefaults.standard.set(authResult!.user.uid, forKey: "currentUserID")
-                   UserDefaults.standard.synchronize()*/
-                // Handle successful authentication, e.g., present the home screen
+                 storeUserInfoToUserDefaults()
+                
+                
+                
                  self.present(home, animated: true, completion: nil)
                 
             } else {
@@ -189,23 +187,6 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         picker.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             userPhoto.image = image
-        }
-    }
-    
-    
-    func updateProfileImage(_ img: UIImage) {
-        guard let imageData = img.jpegData(compressionQuality: 0.8) else { return }
-        let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, "jpg" as CFString, nil)?.takeRetainedValue() as String?
-        let filePath = "images/\(Auth.auth().currentUser!.uid)/\("userPhoto")"
-        let storageRef = Storage.storage().reference()
-        
-        let metaData = StorageMetadata()
-        metaData.contentType = contentType
-        storageRef.child(filePath).putData(imageData, metadata: metaData) { (_, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
         }
     }
 }
