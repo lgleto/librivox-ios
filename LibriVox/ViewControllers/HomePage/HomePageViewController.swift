@@ -16,6 +16,14 @@ import Alamofire
 class HomePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    
+    @IBOutlet weak var goToGenre: UIButton!
+    @IBAction func goToBooksByGenre(_ sender: Any) {
+    }
+    @IBOutlet weak var noLastBookImg: UIImageView!
+    @IBOutlet weak var noLastBookLabel: UILabel!
+    @IBOutlet weak var msg: UILabel!
+    @IBOutlet weak var play: ToggleBtn!
     @IBOutlet weak var authorBook: UILabel!
     @IBOutlet weak var durationBook: UILabel!
     @IBOutlet weak var titleBook: UILabel!
@@ -24,13 +32,16 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var imgBook: LoadingImage!
     @IBOutlet weak var backgroundContinueReading: UIView!
     @IBOutlet weak var progress: UIProgressView!
-    let db = Firestore.firestore()
     @IBOutlet weak var trendingBooks: UITableView!
     
     var booksTrending = [Audiobook]()
     var networkCheck = NetworkCheck.sharedInstance()
     var allButtons: [ToggleBtn] = []
 
+    let db = Firestore.firestore()
+    var lastAudioBook = AudioBooks_Data()
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -40,20 +51,21 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    var lastAudioBook = AudioBooks_Data()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllBooks()
         //checkWifi()
-        
         loadCurrentUser { user in
-            guard let name = Auth.auth().currentUser?.displayName else { return }
-            self.nameText.text = "Hello \(user?.username ?? name )"
+            //guard let name = Auth.auth().currentUser?.displayName else { return }
+            self.nameText.text = "Hello \(user?.username ?? user?.name )"
             
             if let bookId = user?.lastBook,let audioBook = getBookByIdCD(id: bookId){
+                self.setInvisibilityLastBook(value: false)
                 self.setLastBook(audioBook: audioBook)
                 self.lastAudioBook = audioBook
+            }else if user?.lastBook == nil{
+                self.setInvisibilityLastBook(value: true)
             }
         }
         //removeImageNLabelAlert(view: trendingBooks)
@@ -68,36 +80,13 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    func setLastBook(audioBook: AudioBooks_Data){
-        getCoverBook(id: audioBook.id!){img in
-            if let img = img{
-                self.imgBook.loadImage(from: img)
-            }
-        }
-        
-        titleBook.text = audioBook.title ?? ""
-        durationBook.text = "Duration: \(audioBook.totalTime ?? "")"
-        authorBook.text = "Author(s): \(audioBook.authors ?? "")"
-        print("oupa \(audioBook.id) \(Int(audioBook.sectionStopped))")
-        
-        let progressDB = getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped))
-        progress.setProgress(progressDB, animated: true)
-    }
-    
-    
     @IBAction func playButton(_ sender: Any) {
         goToPlayer(book: lastAudioBook, parentVC: self)
     }
     
     @IBAction func allTrending(_ sender: Any) {
-        //performSegue(withIdentifier: "allTrending", sender: nil)
-        addTrendingtoBookSave(idBook: localBooks[1]._id!) { yes in
-            if yes {
-                print("sucessefully updated trending")
-            }
-        }
+        performSegue(withIdentifier: "allTrending", sender: nil)
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "homepageToPlayer") {
@@ -109,13 +98,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if localBooks.count == 0{
-            setImageNLabelAlert(view: trendingBooks, img: UIImage(named: "no-wifi")!, text: "Unable to connect to the internet. Please check your network connection and try again later.")
-
-        }
         return localBooks.count
     }
     
@@ -204,6 +187,33 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func setInvisibilityLastBook(value : Bool){
+        titleBook.isHidden = value
+        durationBook.isHidden = value
+        authorBook.isHidden = value
+        progress.isHidden = value
+        play.isHidden = value
+        imgBook.isHidden = value
+        goToGenre.isHidden = !value
+        msg.text = value ? "Let's start reading a book?" : "What about continue reading:"
+        noLastBookImg.isHidden = !value
+        noLastBookLabel.isHidden = !value
+    }
+    
+    func setLastBook(audioBook: AudioBooks_Data){
+        getCoverBook(id: audioBook.id!){img in
+            if let img = img{
+                self.imgBook.loadImage(from: img)
+            }
+        }
+        
+        titleBook.text = audioBook.title ?? ""
+        durationBook.text = "Duration: \(audioBook.totalTime ?? "")"
+        authorBook.text = "Author(s): \(audioBook.authors ?? "")"
+        
+        let progressDB = getPercentageOfBook(id: audioBook.id!, sectionNumber: Int(audioBook.sectionStopped))
+        progress.setProgress(progressDB, animated: true)
+    }
    /* func checkWifi() {
         networkCheck = NetworkCheck.sharedInstance()
         print("enter check wifi")

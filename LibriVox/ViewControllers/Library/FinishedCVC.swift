@@ -25,7 +25,7 @@ class FinishedCVC: UITableViewController {
     }
     
     @objc func contextDidChange(_ notification: Notification) {
-        finalList = fetchBooksByParameterCD(parameter: "isReading", value: true)
+        finalList = fetchBooksByParameterCD(parameter: "isFinished", value: true)
     }
     
     let spinner = UIActivityIndicatorView(style: .medium)
