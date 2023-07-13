@@ -149,6 +149,7 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 
                 case .readyToPlay:
                     //buttonPlayPausePressed.isEnabled = true
+                    //TODO: Insert seek to here
                     setupRemoteTransportControls()
                     setupNowPlaying()
                     
