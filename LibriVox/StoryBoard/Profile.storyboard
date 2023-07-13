@@ -8,6 +8,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,6 +18,9 @@
             <string>Nunito-Medium</string>
             <string>Nunito-Regular</string>
             <string>Nunito-SemiBold</string>
+        </array>
+        <array key="Prata-Regular.ttf">
+            <string>Prata-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -32,10 +36,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4g6-j3-sNK">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="678"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="659"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THR-Iu-897" customClass="CircularImageView" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="121.66666666666669" y="63" width="150" height="150"/>
+                                                <rect key="frame" x="121.66666666666669" y="58" width="150" height="150"/>
                                                 <color key="backgroundColor" name="Gren Tone"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="QUN-s4-QBa"/>
@@ -43,7 +47,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First / Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08E-nr-Jf1" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="243" width="345" height="35"/>
+                                                <rect key="frame" x="24" y="238" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="mck-8v-eEA"/>
                                                 </constraints>
@@ -51,7 +55,7 @@
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-LN-DiS" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="345" width="345" height="35"/>
+                                                <rect key="frame" x="24" y="340" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="axm-sI-4Ol"/>
                                                 </constraints>
@@ -59,7 +63,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-xy-Cm0" customClass="BlueShadowUITextField" customModule="Narrativia" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="294" width="345" height="35"/>
+                                                <rect key="frame" x="24" y="289" width="345" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="sOC-nQ-Di5"/>
                                                 </constraints>
@@ -67,7 +71,7 @@
                                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJu-X0-V67">
-                                                <rect key="frame" x="24" y="410" width="345" height="32.666666666666686"/>
+                                                <rect key="frame" x="24" y="405" width="345" height="32.666666666666686"/>
                                                 <color key="tintColor" name="Green Tone"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed">
@@ -89,20 +93,20 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grm-Ho-Al3">
-                                                <rect key="frame" x="24" y="482.66666666666669" width="345" height="33.000000000000057"/>
+                                                <rect key="frame" x="24" y="477.66666666666669" width="345" height="28"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcb-AI-qfw">
-                                                <rect key="frame" x="24" y="523.66666666666663" width="345" height="61.666666666666629"/>
+                                                <rect key="frame" x="24" y="513.66666666666663" width="345" height="52.666666666666629"/>
                                                 <string key="text">You will receive an email with a link to update your password.                                                                                                             Don't forget to check the Spam Box!</string>
                                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76W-La-VA7">
-                                                <rect key="frame" x="24" y="615.33333333333337" width="345" height="32.666666666666629"/>
+                                                <rect key="frame" x="24" y="596.33333333333337" width="345" height="32.666666666666629"/>
                                                 <color key="tintColor" name="Green Tone"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed">
@@ -150,7 +154,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d98-fY-iTw">
-                                        <rect key="frame" x="24" y="0.0" width="162" height="33"/>
+                                        <rect key="frame" x="24" y="0.0" width="153.66666666666666" height="28"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -225,7 +229,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2a-rv-3Qw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2a-rv-3Qw">
                                                 <rect key="frame" x="16" y="189" width="227" height="286"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <string key="text">This app was decided to be created because of two things. First of all we wanted to know more on how to create mobile applications for the IOS ecossystem, secondly we wanted to create a more up to date app for all people that wanted to listen to librivox audiobooks </string>
@@ -246,7 +250,7 @@
                                                 <rect key="frame" x="251" y="189" width="126" height="323"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdy-UT-CVB">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdy-UT-CVB">
                                                 <rect key="frame" x="150" y="520" width="222" height="249"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <string key="text">This project was done by two people, Leandro Silva and Glória Martins, both are Mobile Applications majors doing this for an intership at Mindprober. To know more about Mindprober go to this website https://www.mindproberlabs.com</string>
@@ -393,8 +397,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEL-gI-XtU">
-                                                <rect key="frame" x="69" y="296.33333333333331" width="134" height="20.666666666666686"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Usage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEL-gI-XtU">
+                                                <rect key="frame" x="69" y="296.33333333333331" width="79.666666666666686" height="20.666666666666686"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -422,8 +426,8 @@
                                                     <action selector="switchTheme:" destination="2Jp-DH-0ZD" eventType="valueChanged" id="ywh-z6-mSi"/>
                                                 </connections>
                                             </switch>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gearshape.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a8x-tf-wcg">
-                                                <rect key="frame" x="24" y="292" width="30" height="29.333333333333371"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a8x-tf-wcg">
+                                                <rect key="frame" x="24" y="293.33333333333337" width="30" height="27"/>
                                                 <color key="tintColor" name="Lighter Blue Tone"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="M6j-0p-TXS"/>
@@ -454,6 +458,15 @@
                                                     <constraint firstAttribute="height" constant="30" id="SWJ-DH-Ltf"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zad-V2-NVd">
+                                                <rect key="frame" x="181" y="568" width="94" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="MAOOEE"/>
+                                                <connections>
+                                                    <segue destination="J7X-Nk-CLW" kind="show" id="oaW-Mx-3ry"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -537,20 +550,187 @@
             </objects>
             <point key="canvasLocation" x="2116.7938931297708" y="577.46478873239437"/>
         </scene>
+        <!--Data UsageVC-->
+        <scene sceneID="YRr-TD-21Q">
+            <objects>
+                <viewController id="J7X-Nk-CLW" customClass="DataUsageVC" customModule="Narrativia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XfP-7B-EEd">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Usage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eet-Ns-8xl">
+                                <rect key="frame" x="16" y="0.0" width="361" height="33"/>
+                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NvB-OH-Xvv" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
+                                <rect key="frame" x="16" y="53" width="169" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fed-Un-qzW">
+                                        <rect key="frame" x="75.666666666666671" y="10" width="18" height="41"/>
+                                        <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Books Downloaded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqc-x4-QD6">
+                                        <rect key="frame" x="9.6666666666666714" y="56" width="150" height="24"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="E5X-Zb-nR2"/>
+                                    <constraint firstItem="fed-Un-qzW" firstAttribute="centerX" secondItem="NvB-OH-Xvv" secondAttribute="centerX" id="K9T-do-PH2"/>
+                                    <constraint firstItem="Dqc-x4-QD6" firstAttribute="top" secondItem="fed-Un-qzW" secondAttribute="bottom" constant="5" id="MTO-4F-Hb5"/>
+                                    <constraint firstItem="Dqc-x4-QD6" firstAttribute="centerX" secondItem="NvB-OH-Xvv" secondAttribute="centerX" id="PkM-bW-f4O"/>
+                                    <constraint firstAttribute="width" constant="169" id="ZBc-pd-FcI"/>
+                                    <constraint firstItem="fed-Un-qzW" firstAttribute="top" secondItem="NvB-OH-Xvv" secondAttribute="top" constant="10" id="aeJ-1R-Fkt"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dqc-x4-QD6" secondAttribute="bottom" constant="10" id="wad-ci-eTT"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xip-d2-GYA" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
+                                <rect key="frame" x="208" y="53" width="169" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unv-cp-gBb">
+                                        <rect key="frame" x="75.666666666666686" y="10" width="18" height="41"/>
+                                        <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data consumed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cu-lO-lkA">
+                                        <rect key="frame" x="25" y="56" width="119" height="24"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="Lighter Blue Tone"/>
+                                <constraints>
+                                    <constraint firstItem="Unv-cp-gBb" firstAttribute="top" secondItem="xip-d2-GYA" secondAttribute="top" constant="10" id="8Ts-2M-fJp"/>
+                                    <constraint firstAttribute="bottom" secondItem="9cu-lO-lkA" secondAttribute="bottom" constant="10" id="Afb-5h-RRr"/>
+                                    <constraint firstItem="9cu-lO-lkA" firstAttribute="top" secondItem="Unv-cp-gBb" secondAttribute="bottom" constant="5" id="Ncp-gB-Ic2"/>
+                                    <constraint firstAttribute="height" constant="90" id="SIr-7A-WPD"/>
+                                    <constraint firstItem="Unv-cp-gBb" firstAttribute="centerX" secondItem="xip-d2-GYA" secondAttribute="centerX" id="UXk-IR-L3i"/>
+                                    <constraint firstItem="9cu-lO-lkA" firstAttribute="centerX" secondItem="xip-d2-GYA" secondAttribute="centerX" id="dDR-Ez-ob1"/>
+                                    <constraint firstAttribute="width" constant="169" id="t6M-Ln-1bv"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbq-Zh-M9c">
+                                <rect key="frame" x="16" y="163" width="99" height="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-Pd-Kxc">
+                                <rect key="frame" x="302" y="218" width="75" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Delete All">
+                                            <attributes>
+                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZjZ-uF-2DQ">
+                                <rect key="frame" x="16" y="207" width="361" height="635"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="df9-th-AVu">
+                                    <size key="itemSize" width="140" height="170"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sTO-cc-UWY">
+                                        <rect key="frame" x="10" y="10" width="140" height="170"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VLg-La-l4x">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="170"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lrC-Ro-Shx">
+                                                    <rect key="frame" x="35" y="10" width="70" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="R6i-bC-Z9L"/>
+                                                        <constraint firstAttribute="height" constant="100" id="qdP-gC-0dS"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOz-jM-jCQ">
+                                                    <rect key="frame" x="0.0" y="115" width="140" height="23.333333333333343"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-S8-qoq">
+                                                    <rect key="frame" x="0.0" y="140.66666666666666" width="140" height="19.333333333333343"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="kt8-S8-qoq" secondAttribute="trailing" id="4F9-EO-Ial"/>
+                                                <constraint firstItem="kt8-S8-qoq" firstAttribute="leading" secondItem="VLg-La-l4x" secondAttribute="leading" id="5Jo-9o-GDh"/>
+                                                <constraint firstItem="dOz-jM-jCQ" firstAttribute="top" secondItem="lrC-Ro-Shx" secondAttribute="bottom" constant="5" id="9Dy-hV-k3U"/>
+                                                <constraint firstItem="lrC-Ro-Shx" firstAttribute="top" secondItem="VLg-La-l4x" secondAttribute="top" constant="10" id="Azk-FZ-lyD"/>
+                                                <constraint firstAttribute="trailing" secondItem="dOz-jM-jCQ" secondAttribute="trailing" id="Cjp-CW-q4p"/>
+                                                <constraint firstItem="dOz-jM-jCQ" firstAttribute="leading" secondItem="VLg-La-l4x" secondAttribute="leading" id="DYy-3B-wqP"/>
+                                                <constraint firstAttribute="bottom" secondItem="kt8-S8-qoq" secondAttribute="bottom" constant="10" id="Zbz-yA-mdK"/>
+                                                <constraint firstItem="lrC-Ro-Shx" firstAttribute="centerX" secondItem="VLg-La-l4x" secondAttribute="centerX" id="uK0-K5-W9q"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="140" height="170"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KGk-1g-RqF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Eet-Ns-8xl" firstAttribute="leading" secondItem="KGk-1g-RqF" secondAttribute="leading" constant="16" id="Eue-oF-tDs"/>
+                            <constraint firstItem="Vbq-Zh-M9c" firstAttribute="top" secondItem="NvB-OH-Xvv" secondAttribute="bottom" constant="20" id="GyS-H6-8Ns"/>
+                            <constraint firstItem="xip-d2-GYA" firstAttribute="leading" secondItem="NvB-OH-Xvv" secondAttribute="trailing" constant="23" id="Kmd-Ow-DDp"/>
+                            <constraint firstItem="NvB-OH-Xvv" firstAttribute="top" secondItem="Eet-Ns-8xl" secondAttribute="bottom" constant="20" id="OTN-iI-3Pf"/>
+                            <constraint firstItem="KGk-1g-RqF" firstAttribute="trailing" secondItem="xip-d2-GYA" secondAttribute="trailing" constant="16" id="Q7e-lC-IaF"/>
+                            <constraint firstItem="NvB-OH-Xvv" firstAttribute="leading" secondItem="KGk-1g-RqF" secondAttribute="leading" constant="16" id="W2q-vt-9ZY"/>
+                            <constraint firstItem="Eet-Ns-8xl" firstAttribute="top" secondItem="KGk-1g-RqF" secondAttribute="top" id="dJi-0c-XAM"/>
+                            <constraint firstItem="KGk-1g-RqF" firstAttribute="trailing" secondItem="Eet-Ns-8xl" secondAttribute="trailing" constant="16" id="faH-Hl-4Lz"/>
+                            <constraint firstItem="ZjZ-uF-2DQ" firstAttribute="leading" secondItem="KGk-1g-RqF" secondAttribute="leading" constant="16" id="kax-Te-hL9"/>
+                            <constraint firstItem="xip-d2-GYA" firstAttribute="top" secondItem="NvB-OH-Xvv" secondAttribute="top" id="oUJ-dm-DOK"/>
+                            <constraint firstItem="KGk-1g-RqF" firstAttribute="trailing" secondItem="ZjZ-uF-2DQ" secondAttribute="trailing" constant="16" id="qJ0-Di-gP9"/>
+                            <constraint firstItem="KGk-1g-RqF" firstAttribute="bottom" secondItem="ZjZ-uF-2DQ" secondAttribute="bottom" id="rOF-ao-by9"/>
+                            <constraint firstItem="Vbq-Zh-M9c" firstAttribute="leading" secondItem="KGk-1g-RqF" secondAttribute="leading" constant="16" id="tem-zf-j34"/>
+                            <constraint firstItem="ZjZ-uF-2DQ" firstAttribute="top" secondItem="Vbq-Zh-M9c" secondAttribute="bottom" constant="20" id="x14-MW-1qR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ciy-AH-aKh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tlN-GV-8vp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2116.7938931297708" y="1302.8169014084508"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="08E-nr-Jf1">
-            <size key="intrinsicContentSize" width="132" height="34"/>
+            <size key="intrinsicContentSize" width="133.33333333333334" height="34"/>
         </designable>
         <designable name="5MA-xy-Cm0">
             <size key="intrinsicContentSize" width="92.333333333333329" height="34"/>
         </designable>
         <designable name="Nn5-LN-DiS">
-            <size key="intrinsicContentSize" width="63" height="34"/>
+            <size key="intrinsicContentSize" width="62.333333333333336" height="34"/>
         </designable>
     </designables>
     <resources>
-        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="arrow.down.square.fill" catalog="system" width="128" height="114"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
         <image name="lock.shield.fill" catalog="system" width="128" height="119"/>
         <image name="moon.fill" catalog="system" width="128" height="123"/>
@@ -570,6 +750,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

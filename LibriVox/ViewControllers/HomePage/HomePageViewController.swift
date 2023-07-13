@@ -64,7 +64,7 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
                 self.setInvisibilityLastBook(value: false)
                 self.setLastBook(audioBook: audioBook)
                 self.lastAudioBook = audioBook
-            }else if user?.lastBook == nil{
+            }else {
                 self.setInvisibilityLastBook(value: true)
             }
         }

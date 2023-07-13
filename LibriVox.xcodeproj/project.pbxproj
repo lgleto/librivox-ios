@@ -85,6 +85,7 @@
 		6F793CD029E86B0E004763DE /* Prata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F152E2429CCA56A0008846B /* Prata-Regular.ttf */; };
 		6F7E80892A114F2800B76D9F /* ToggleBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7E80882A114F2800B76D9F /* ToggleBtn.swift */; };
 		6F7E8C8A2A3250AB0042CB57 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F7E8C882A3250AB0042CB57 /* Model.xcdatamodeld */; };
+		6F7FB0B72A60715E00A97449 /* DataUsageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FB0B62A60715E00A97449 /* DataUsageVC.swift */; };
 		6F83BD592A1E603900D39ADF /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F83BD582A1E603900D39ADF /* LaunchScreenVC.swift */; };
 		6F90D4CD2A55939A006E309A /* Sections+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90D4CB2A55939A006E309A /* Sections+CoreDataClass.swift */; };
 		6F90D4CE2A55939A006E309A /* Sections+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F90D4CC2A55939A006E309A /* Sections+CoreDataProperties.swift */; };
@@ -166,6 +167,7 @@
 		6F711C2A29C3B6340029D7B1 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
 		6F7E80882A114F2800B76D9F /* ToggleBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleBtn.swift; sourceTree = "<group>"; };
 		6F7E8C892A3250AB0042CB57 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		6F7FB0B62A60715E00A97449 /* DataUsageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUsageVC.swift; sourceTree = "<group>"; };
 		6F83BD582A1E603900D39ADF /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		6F90D4CB2A55939A006E309A /* Sections+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sections+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		6F90D4CC2A55939A006E309A /* Sections+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sections+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -320,6 +322,7 @@
 			children = (
 				31C883C929C8ABA600A53C78 /* ProfileVC.swift */,
 				6F5D644F2A02714500A5B64D /* EditProfileVC.swift */,
+				6F7FB0B62A60715E00A97449 /* DataUsageVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				6F04C47E29E6C3F3008AA945 /* GenreVC.swift in Sources */,
 				6F425A0F29D59B8000D21047 /* ListBooksCell.swift in Sources */,
 				6F99532129DC78340016B1AC /* AuthorsCell.swift in Sources */,
+				6F7FB0B72A60715E00A97449 /* DataUsageVC.swift in Sources */,
 				6F34F9FF29FAC6A6009A7EDB /* FavoritesVC.swift in Sources */,
 				6F34FA0129FAD682009A7EDB /* Book.swift in Sources */,
 				317B4BFE29CC6FD30058F4B9 /* RegisterVC.swift in Sources */,
