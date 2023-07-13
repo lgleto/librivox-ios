@@ -202,7 +202,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.and.background.dotted" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-kL-lKR" customClass="CircularImageView" customModule="Narrativia" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.and.background.dotted" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-kL-lKR" customClass="CircularImage" customModule="Narrativia" customModuleProvider="target">
                                 <rect key="frame" x="121.66666666666669" y="196.66666666666669" width="150" height="147.33333333333331"/>
                                 <color key="backgroundColor" name="Lighter Blue Tone"/>
                                 <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>

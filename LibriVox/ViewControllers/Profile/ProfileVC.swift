@@ -20,6 +20,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var switchMode: UISwitch!
     @IBOutlet weak var logoutBtn: UILabel!
     
+    @IBOutlet weak var dataUsage: UILabel!
     var currentTheme = UITraitCollection.current.userInterfaceStyle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +58,9 @@ class ProfileVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         logoutBtn.addGestureRecognizer(tap)
         
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(tapFunctionDataUsage))
+        dataUsage.addGestureRecognizer(tap2)
+        
         switchMode.isOn =  currentTheme == .dark ? true: false
     }
     
@@ -72,15 +76,21 @@ class ProfileVC: UIViewController {
         logoutUser()
     }
     
+    @IBAction func tapFunctionDataUsage(sender: UITapGestureRecognizer) {
+        if let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "DataUsageVC") as? DataUsageVC {
+            navigationController?.pushViewController(dataUsageVC, animated: true)
+        }
+    }
+    
+    
     @IBAction func tapFunctionAbout(sender: UITapGestureRecognizer) {
         aboutPage()
     }
+    
     func aboutPage() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "aboutPage") as! UIViewController
-        
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func switchTheme(_ sender: UISwitch) {

@@ -25,7 +25,7 @@ class RegisterVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var localImage = UIImage()
-    @IBOutlet weak var userPhoto: CircularImageView!
+    @IBOutlet weak var userPhoto: CircularImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()

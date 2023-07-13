@@ -16,3 +16,11 @@ class CircularImageView: LoadingImage {
         self.clipsToBounds = true
     }
 }
+
+class CircularImage: UIImageView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = self.frame.size.height / 2
+        self.clipsToBounds = true
+    }
+}
