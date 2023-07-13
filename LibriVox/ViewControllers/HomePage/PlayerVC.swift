@@ -17,6 +17,13 @@ protocol DataDelegate: AnyObject {
 
 class PlayerVC: UIViewController, DataDelegate {
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if let bookId = book?._id {
+            storeSectionTime(currentBookId: bookId)
+        }
+        super.viewWillDisappear(true)
+    }
+    
     @IBOutlet weak var favBtn: ToggleBtn!
     func didDismissWithData(currentSection: Int, book:PlayableItemProtocol) {
         // Handle the passed data here
@@ -55,9 +62,6 @@ class PlayerVC: UIViewController, DataDelegate {
     var currentSection : Int? {
         didSet{
             currentSection = currentSection! - 1
-            if let bookId = book?._id {
-                storeSectionTime(currentBookId: bookId)
-            }
             playMP3(newSection: true)
         }
     }
@@ -85,12 +89,14 @@ class PlayerVC: UIViewController, DataDelegate {
        
         getSectionTime(documentID: (book?._id)!) { bookstatus in
             if (bookstatus?.sectionStopped != "" || bookstatus?.timeStopped != "") {
-                self.currentSection = Int(bookstatus!.sectionStopped)
                 self.bookstatus = bookstatus!
+                self.currentSection = Int(bookstatus!.sectionStopped)
+            } else {
+                self.playMP3(newSection: false)
             }
         }
         
-        playMP3(newSection: false)
+        
         
         
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissVC))
@@ -128,6 +134,7 @@ class PlayerVC: UIViewController, DataDelegate {
         
         if (bookstatus.timeStopped != "") {
             playerHandler.seekTo(position: Int(bookstatus.timeStopped)!)
+            labelRemainingTime.text = millisToTime(Int(bookstatus.timeStopped)!)
         }
             
         
@@ -193,6 +200,9 @@ class PlayerVC: UIViewController, DataDelegate {
     
     
     @IBAction func sectionsBTN(_ sender: Any) {
+        if let bookId = book?._id {
+            storeSectionTime(currentBookId: bookId)
+        }
         SectionsTVC.showSections(parentVC: self,title: "titulo", book: book!) { yes , book, currentSection in
             if (yes) {
                 self.book = book
