@@ -49,32 +49,32 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-i5-3P4" customClass="RoundView" customModule="Narrativia" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="43" width="343" height="228"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Hello IceQueen," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoj-7l-jfp">
-                                                    <rect key="frame" x="15" y="20" width="123" height="23.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoj-7l-jfp">
+                                                    <rect key="frame" x="15" y="20" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What about continue reading:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL0-cR-Uld">
-                                                    <rect key="frame" x="15" y="45.333333333333329" width="223" height="32.666666666666671"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL0-cR-Uld">
+                                                    <rect key="frame" x="15" y="22" width="0.0" height="56"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percy Jackson: The Lightning Thief" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6p-35-u7d">
-                                                    <rect key="frame" x="102" y="93" width="226" height="20.666666666666671"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6p-35-u7d">
+                                                    <rect key="frame" x="102" y="93" width="226" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Rick Riordan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-Q2-Q9t">
-                                                    <rect key="frame" x="102" y="132.33333333333334" width="187" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-Q2-Q9t">
+                                                    <rect key="frame" x="102" y="111.66666666666666" width="187" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration: 08:40:31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbv-UM-8Zy">
-                                                    <rect key="frame" x="102" y="152.33333333333334" width="107" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbv-UM-8Zy">
+                                                    <rect key="frame" x="102" y="113.66666666666666" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="13"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -88,7 +88,6 @@
                                                 </progressView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="geb-Va-GlX" customClass="RoundedBookImageView" customModule="Narrativia" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="93" width="77" height="120"/>
-                                                    <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="77" id="Nwk-sA-tmv"/>
                                                         <constraint firstAttribute="height" constant="120" id="ruZ-Tp-GVB"/>
@@ -109,12 +108,67 @@
                                                         <action selector="playButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="b1m-2Q-hbl"/>
                                                     </connections>
                                                 </button>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audiobook" translatesAutoresizingMaskIntoConstraints="NO" id="wDg-uc-Y3b">
+                                                    <rect key="frame" x="20" y="98" width="100" height="90"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="0UZ-re-tSj"/>
+                                                        <constraint firstAttribute="height" constant="90" id="kw6-Bd-dm4"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download a book and start listening everywhere!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2C-vg-No8">
+                                                    <rect key="frame" x="120" y="121.33333333333336" width="191" height="43.666666666666671"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Vs-re-RIS">
+                                                    <rect key="frame" x="103" y="189" width="235" height="34"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="oi" image="arrow.up.bin" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
+                                                    </state>
+                                                    <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" subtitle="" imagePadding="10">
+                                                        <imageReference key="image" image="arrow.right" catalog="system" renderingMode="hierarchical">
+                                                            <hierarchicalColors>
+                                                                <color systemColor="labelColor"/>
+                                                                <color systemColor="secondaryLabelColor"/>
+                                                                <color systemColor="tertiaryLabelColor"/>
+                                                            </hierarchicalColors>
+                                                        </imageReference>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="13"/>
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="Discover new books by gen">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <font key="NSFont" size="14" name="Nunito-Light"/>
+                                                                    <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="re">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <font key="NSFont" size="14" name="Nunito-Light"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="goToBooksByGenre:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fvj-b2-ge2"/>
+                                                        <segue destination="5PS-8r-HSL" kind="show" id="nba-n0-Xnu"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Main Blue Tone"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="j2C-vg-No8" secondAttribute="trailing" constant="32" id="0Ct-CC-ntZ"/>
                                                 <constraint firstItem="aoj-7l-jfp" firstAttribute="top" secondItem="cPd-i5-3P4" secondAttribute="top" constant="20" id="2Es-OQ-Jjz"/>
                                                 <constraint firstItem="geb-Va-GlX" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="2kD-Ic-foH"/>
+                                                <constraint firstItem="wDg-uc-Y3b" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="20" id="3Nb-yf-eCa"/>
                                                 <constraint firstItem="aoj-7l-jfp" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="64h-y8-e5f"/>
+                                                <constraint firstItem="j2C-vg-No8" firstAttribute="leading" secondItem="wDg-uc-Y3b" secondAttribute="trailing" id="6Rp-Br-2zH"/>
                                                 <constraint firstItem="Pht-Q2-Q9t" firstAttribute="top" secondItem="U6p-35-u7d" secondAttribute="bottom" constant="18.666666666666657" id="96a-8w-5Cp"/>
                                                 <constraint firstAttribute="height" constant="228" id="A1Z-vg-EDa"/>
                                                 <constraint firstItem="U6p-35-u7d" firstAttribute="top" secondItem="geb-Va-GlX" secondAttribute="top" id="EAu-dB-yPm"/>
@@ -128,11 +182,15 @@
                                                 <constraint firstAttribute="trailing" secondItem="qYC-tJ-TSa" secondAttribute="trailing" constant="19" id="ZbA-UA-bnt"/>
                                                 <constraint firstItem="CL0-cR-Uld" firstAttribute="leading" secondItem="cPd-i5-3P4" secondAttribute="leading" constant="15" id="aeR-XY-RYz"/>
                                                 <constraint firstItem="geb-Va-GlX" firstAttribute="top" secondItem="CL0-cR-Uld" secondAttribute="bottom" constant="15" id="bsh-fd-Txa"/>
+                                                <constraint firstItem="j2C-vg-No8" firstAttribute="centerY" secondItem="wDg-uc-Y3b" secondAttribute="centerY" id="eHe-3z-Uxr"/>
                                                 <constraint firstItem="Jbv-UM-8Zy" firstAttribute="top" secondItem="Pht-Q2-Q9t" secondAttribute="bottom" constant="2" id="hgH-yW-oYL"/>
                                                 <constraint firstItem="XY5-te-GTR" firstAttribute="top" secondItem="qYC-tJ-TSa" secondAttribute="bottom" constant="10" id="hrP-BB-jRI"/>
                                                 <constraint firstItem="XY5-te-GTR" firstAttribute="bottom" secondItem="geb-Va-GlX" secondAttribute="bottom" id="pd7-dB-azc"/>
                                                 <constraint firstItem="Jbv-UM-8Zy" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="rbN-RX-gjc"/>
+                                                <constraint firstItem="wDg-uc-Y3b" firstAttribute="top" secondItem="CL0-cR-Uld" secondAttribute="bottom" constant="20" id="vd6-eM-S6c"/>
+                                                <constraint firstAttribute="trailing" secondItem="0Vs-re-RIS" secondAttribute="trailing" constant="5" id="vhp-oT-bOg"/>
                                                 <constraint firstItem="Pht-Q2-Q9t" firstAttribute="leading" secondItem="geb-Va-GlX" secondAttribute="trailing" constant="10" id="vtb-q8-c47"/>
+                                                <constraint firstAttribute="bottom" secondItem="0Vs-re-RIS" secondAttribute="bottom" constant="5" id="wgu-g1-znh"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xps-1z-4ew">
@@ -142,7 +200,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keB-bU-OFe">
-                                            <rect key="frame" x="317.33333333333331" y="290" width="25.666666666666686" height="25.666666666666686"/>
+                                            <rect key="frame" x="323" y="292.66666666666669" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="l9Z-hY-Cu8"/>
                                                 <constraint firstAttribute="height" constant="20" id="tCJ-pM-KC4"/>
@@ -296,8 +354,13 @@
                         <outlet property="authorBook" destination="Pht-Q2-Q9t" id="V3i-y9-nZu"/>
                         <outlet property="backgroundContinueReading" destination="cPd-i5-3P4" id="ibQ-3m-Mxa"/>
                         <outlet property="durationBook" destination="Jbv-UM-8Zy" id="dcT-20-BZn"/>
+                        <outlet property="goToGenre" destination="0Vs-re-RIS" id="RWS-eU-UsQ"/>
                         <outlet property="imgBook" destination="geb-Va-GlX" id="bm2-Gh-CzO"/>
+                        <outlet property="msg" destination="CL0-cR-Uld" id="qTB-wM-mgT"/>
                         <outlet property="nameText" destination="aoj-7l-jfp" id="HiY-gl-li3"/>
+                        <outlet property="noLastBookImg" destination="wDg-uc-Y3b" id="xAl-g6-Q4Y"/>
+                        <outlet property="noLastBookLabel" destination="j2C-vg-No8" id="5kR-Ts-yf1"/>
+                        <outlet property="play" destination="qYC-tJ-TSa" id="ZKw-uJ-dd5"/>
                         <outlet property="progress" destination="XY5-te-GTR" id="hjF-WZ-u9D"/>
                         <outlet property="titleBook" destination="U6p-35-u7d" id="LFL-9q-fui"/>
                         <outlet property="trendingBooks" destination="lcC-6f-bEm" id="itx-Gc-lIR"/>
@@ -308,6 +371,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3157.5999999999999" y="0.0"/>
+        </scene>
+        <!--genreVC-->
+        <scene sceneID="eJZ-sf-QeK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="genreVC" id="5PS-8r-HSL" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jhj-Xx-v1f"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGn-Aq-pNd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3863" y="109"/>
         </scene>
         <!--discoverBookDetails-->
         <scene sceneID="MAH-mP-enJ">
@@ -995,9 +1068,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g3y-Fd-V1A"/>
+        <segue reference="Sw7-E8-QYW"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="arrow.up.bin" catalog="system" width="128" height="92"/>
+        <image name="audiobook" width="512" height="512"/>
         <image name="backward.end.alt.fill" catalog="system" width="128" height="64"/>
         <image name="download" width="476" height="512"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
@@ -1027,8 +1103,14 @@
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
