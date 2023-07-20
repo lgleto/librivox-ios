@@ -24,7 +24,7 @@ The main content presented on the app are provided by LibriVox API, a REST API, 
 However due the quantity of data in each object, as represented below, and aiming for easy access and management of data, we opted to document the API using Swagger in conjuction with Open API specifications.
 
 Example: Request GET audiobooks 
-`https://librivox.org/api/feed/audiobooks?format=json&extended=1'`
+``` https://librivox.org/api/feed/audiobooks?format=json&extended=1'``` 
 
 Response:
 ```
@@ -96,12 +96,12 @@ The "Narrativia" is populated by the API, but to enhance the user experience and
 Exclusively used to stored support content related to genres obtained from API and personal data.
 The genre information stored allows the search for audiobooks according to a genres, and the personal data guarantee the access multi-devices.
 
-![Firestore schema](docs/databaseSchema-firestore "Firestore Schema")
+![Firestore schema](docs/databaseSchema-firestore.png "Firestore Schema")
 
 #### CoreData
 Utilized for local data persistance, enabling offline mode to function effetivaly. The CoreData data is updated everytime the app is started - with a stable connection - and when occurs some alteration on the remote database, ensuring a synchronism between both schemas.
 
-![CoreData schema](docs/databaseSchema-coreData "CoreData Schema")
+![CoreData schema](docs/databaseSchema-coreData.png "CoreData Schema")
 
 **In case of offline updates, the sync algorithm stays effectivly as a result of the usage of Firebase Persistance**
 
@@ -132,7 +132,7 @@ The Player itself is managed by the class "PlayerHandler" which follows the sing
 To access the player functionalities, two steps are required:
 
 1. Instantiete the player Singleton
-`var playerHandler = PlayerHandler.sharedInstance`
+``` var playerHandler = PlayerHandler.sharedInstance``` 
 
 2. Initialize the book to be played
 ```      
