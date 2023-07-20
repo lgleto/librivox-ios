@@ -92,6 +92,7 @@
 		6F99531F29DC781C0016B1AC /* DiscoverOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */; };
 		6F99532129DC78340016B1AC /* AuthorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F99532029DC78340016B1AC /* AuthorsCell.swift */; };
 		6FB33FEA29CC9726008CC60C /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB33FE929CC9726008CC60C /* Library.storyboard */; };
+		6FBA46762A695C1B002548BE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6FBA46752A695C1B002548BE /* README.md */; };
 		6FCCC9FE2A00683500658231 /* BlueShadowUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */; };
 		6FCCCA002A008C3300658231 /* GenreWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCC9FF2A008C3300658231 /* GenreWithColor.swift */; };
 		6FCF9F9F29E7143F00A5DD62 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCF9F9E29E7143F00A5DD62 /* CategoriesVC.swift */; };
@@ -174,6 +175,7 @@
 		6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverOptionsVC.swift; sourceTree = "<group>"; };
 		6F99532029DC78340016B1AC /* AuthorsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsCell.swift; sourceTree = "<group>"; };
 		6FB33FE929CC9726008CC60C /* Library.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
+		6FBA46752A695C1B002548BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueShadowUITextField.swift; sourceTree = "<group>"; };
 		6FCCC9FF2A008C3300658231 /* GenreWithColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreWithColor.swift; sourceTree = "<group>"; };
 		6FCF9F9E29E7143F00A5DD62 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		319FA01529C36445006895CB /* LibriVox */ = {
 			isa = PBXGroup;
 			children = (
+				6FBA46752A695C1B002548BE /* README.md */,
 				6F1BC0362A3B6BE10085215D /* DB */,
 				315F0D852A1CEB8900B4B0CB /* Alerts */,
 				319FA02F29C381E8006895CB /* LibriVox.entitlements */,
@@ -528,6 +531,7 @@
 				31C883D529C8CA3B00A53C78 /* GoogleService-Info.plist in Resources */,
 				319FA02D29C37677006895CB /* Nunito-VariableFont_wght.ttf in Resources */,
 				6F711C2B29C3B6340029D7B1 /* HomePage.storyboard in Resources */,
+				6FBA46762A695C1B002548BE /* README.md in Resources */,
 				31C883D329C8C7C200A53C78 /* Discover.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
