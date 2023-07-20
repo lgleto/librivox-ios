@@ -57,9 +57,10 @@ class HomePageViewController: UIViewController, UITableViewDelegate, UITableView
         getAllBooks()
         //checkWifi()
         loadCurrentUser { user in
-            //guard let name = Auth.auth().currentUser?.displayName else { return }
-            self.nameText.text = "Hello \(user?.username ?? user?.name )"
-            
+            let userUD = retrieveUserInfoFromUserDefaults()
+            if let user = userUD.displayName{
+                self.nameText.text = "Hello \(user)"
+            }
             if let bookId = user?.lastBook,let audioBook = getBookByIdCD(id: bookId){
                 self.setInvisibilityLastBook(value: false)
                 self.setLastBook(audioBook: audioBook)

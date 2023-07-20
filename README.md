@@ -11,9 +11,11 @@ The "Narrativia" app is **free to use** and includes the main functions for cons
 * Reproduce the tracks while navigating and in the offline mode, if the audiobook was previous downloaded.
 
 This app was designed to adress all the needs present in the market, with the plus of an user-friendly interface.
+![App example](docs/mobile-app.png "App example")
 
 
-As mentioned before, the content presented on the app are provided by LibriVox API, a REST API, which contains tree endpoints available for developers to integrate the audiobooks into their apps.
+## API LibriVox and Swagger
+The main content presented on the app are provided by LibriVox API, a REST API, which contains three endpoints available for developers to integrate the audiobooks into their apps.
 1. Returns the audiobooks 
 2. Returns the track of an specific audiobook
 3. Returns the books of an specific author 
@@ -86,8 +88,22 @@ DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { [
 }
 ```
 
-App Structure
-The "Narrativia" is populated by the API, but to enhance the user experience and enable offline acess, some data should be stored. Therefore, the apps utilizes two different data base schemas:
+## Database schemas
+The "Narrativia" is populated by the API, but to enhance the user experience and enable offline acess, some data must be stored. Therefore, the apps utilizes two different database schemas:
 
 Firestore
+Exclusively used to stored some support content related to the genres came from API and personal data.
+
+
+
+CoreData
+Utilized to persist the data locally, so the offline mode could works. The CoreData data is updated everytime that the app is started, with a stablish connection, and when occurs some alteration on de remote database, ensuring a synchronism between both schemas.
+
+*In case of offline updates, the sync algorithm stays effectivly as a result of the usage of Firebase Persistance
+
+##Player
+
+
+
+
 
