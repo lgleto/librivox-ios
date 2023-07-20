@@ -175,7 +175,7 @@
 		6F99531E29DC781C0016B1AC /* DiscoverOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverOptionsVC.swift; sourceTree = "<group>"; };
 		6F99532029DC78340016B1AC /* AuthorsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsCell.swift; sourceTree = "<group>"; };
 		6FB33FE929CC9726008CC60C /* Library.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
-		6FBA46752A695C1B002548BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		6FBA46752A695C1B002548BE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		6FCCC9FD2A00683500658231 /* BlueShadowUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueShadowUITextField.swift; sourceTree = "<group>"; };
 		6FCCC9FF2A008C3300658231 /* GenreWithColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreWithColor.swift; sourceTree = "<group>"; };
 		6FCF9F9E29E7143F00A5DD62 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };

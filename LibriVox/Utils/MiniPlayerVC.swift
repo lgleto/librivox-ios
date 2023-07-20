@@ -22,7 +22,7 @@ class MiniPlayerManager {
     private init() {}
 }
 
-var playerHandler : PlayerHandler = PlayerHandler.sharedInstance
+var playerHandler = PlayerHandler.sharedInstance
 
 class MiniPlayerVC: UIViewController {
     

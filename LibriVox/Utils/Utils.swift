@@ -730,6 +730,10 @@ func checkIfFileExists(book_id: String) -> Bool {
 }
 
 // FIX: It's opening a new instance of playerVc each time.
+/// Opens player or starts download
+/// - Parameters:
+///   - book: book to be played
+///   - parentVC: current viewController
 func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
     guard let id = book._id else{return}
     if !checkIfFileExists(book_id: id) {
