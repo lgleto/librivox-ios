@@ -132,7 +132,7 @@ The Player itself is managed by the class "PlayerHandler" which follows the sing
 
 To access the player functionalities, two steps are required:
 
-1. Instantiete the player Singleton
+1. Instantiate the player Singleton
 ``` var playerHandler = PlayerHandler.sharedInstance``` 
 
 2. Initialize the book to be played
