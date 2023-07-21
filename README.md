@@ -2,12 +2,12 @@
 ---    
 
 ## Summary
-This project was built during an intership, as a course completion, by two developers: Gloria Martins and Leandro Silva, both technicians in Mobile Applications. The purpose of the developing this application was to provide the students, by practicing, how to develop in the iOS platform.
+This project was built during an internship, as a course completion, by two developers: Gloria Martins and Leandro Silva, both technicians in Mobile Applications. The purpose of the developing this application was to provide the students, by practicing, how to develop in the iOS platform.
 
 ## Introduction
 The "Narrativia" app is **free to use** and includes the main functions for consuming audiobooks, such as:
 * Offers a vast collection of audiobooks in a hundred (100) languages.
-* Allows the user to have acess to their account thorught different devices and use the app without connection.
+* Allows the user to have access to their account throughout different devices and use the app without connection.
 * Reproduce tracks while navigating and in offline mode, if the audiobook was previous downloaded.
 
 This app was designed to address all the needs present in the market, with "the plus of" an user-friendly interface.
@@ -21,7 +21,7 @@ The main content presented on the app are provided by LibriVox API, a REST API, 
 2. Returns the track of a specific audiobook
 3. Returns the books of a specific author 
 
-However due the quantity of data in each object, as represented below, and aiming for easy access and management of data, we opted to document the API using Swagger in conjuction with Open API specifications.
+However due the quantity of data in each object, as represented below, and aiming for easy access and management of data, we choose to document the API using Swagger following Open API 3.0 specifications.
 
 Example: Request GET audiobooks 
 
@@ -83,8 +83,11 @@ Response:
   ]
 }
 ```
-By creating the models on Swagger, the client code is easily generated and then embbed into the code. Below there's and example of how to call the API from Swift.
+By creating the [models](swagger-ios/swagger_code.yaml) on Swagger, the client code is easily generated and then embbed into the code. Below there's and example of how to call the API from Swift.
 ```
+
+#######Fazer Refrencia of ficheiro  SWAGGER############
+
 DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { [self] data, error in
 [...]
 }
@@ -97,19 +100,19 @@ The "Narrativia" is populated by the API, but to enhance the user experience and
 Exclusively used to stored support content related to genres obtained from API, trending books and personal data.
 The genre information stored allows the search for audiobooks according to a genres, and the personal data guarantee the access multi-devices without losing information. 
 
-Based on the user's interaction with audiobbok, the app automatically assigns a score to each audiobook interacted with, as a result of the score algorithm, the Trending collection is built and the books with higher score are presented on Trending page.
+Based on the user's interaction with audiobook, the app automatically assigns a score to each audiobook interacted with, as a result of the score algorithm, the Trending collection is built and the books with higher score are presented on Trending page.
 
 ![Firestore schema](docs/databaseSchema-firestore.png "Firestore Schema")
 
 #### CoreData
-Utilized for local data persistance, enabling offline mode to function effectivly. The CoreData data is updated everytime the app is started - with a stable connection - and when occurs some alteration on the remote database, ensuring a synchronism between both schemas.
+CoreDate is used for local data persistence, enabling offline mode to function effectively. The data is updated every time the app is started - with a stable connection - and when occurs some alteration on the remote database, ensuring a synchronism between both schemas.
 
 ![CoreData schema](docs/databaseSchema-coreData.png "CoreData Schema")
 
-**In case of offline updates, the sync algorithm stays effectivly as a result of the usage of Firebase Persistance**
+**In case of offline updates, the sync algorithm stays effectively as a result of the usage of Firebase Persistance**
 
 ## Player
-The Player, core of application, can be access through the function "goToPlayer", which verifies if the audiobook's file is downloaded, if it isn't, the user is automatically directed foward to the download screen. If the audiobooks is already on the File Manager, the app presents the PlayerVC and the audiobook starts playing.
+The Player, core of application, can be access through the function "goToPlayer", which verifies if the audiobook's file is downloaded, if it isn't, the user is automatically directed forward to the download screen. If the audiobooks is already on the File Manager, the app presents the PlayerVC and the audiobook starts playing.
 
 `goToPlayer(book: book!, parentVC: self)`
 
@@ -121,7 +124,7 @@ The Player, core of application, can be access through the function "goToPlayer"
 func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
     guard let id = book._id else{return}
     if !checkIfFileExists(book_id: id) {
-    //If the book doens't exists it's started the downloading process
+    //If the book doesn't exists it's started the downloading process
         PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
             PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
         }
@@ -137,7 +140,7 @@ To access the player functionalities, three steps are required:
 1. Instantiate the player Singleton
 ``` var playerHandler = PlayerHandler.sharedInstance``` 
 
-2. Initialize the book to be played
+2. Initialise the book to be played
 ```     
 /// Prepare the audiobooks to be played
 /// - Parameters:
