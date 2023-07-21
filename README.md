@@ -96,7 +96,8 @@ The "Narrativia" is populated by the API, but to enhance the user experience and
 #### Firestore
 Exclusively used to stored support content related to genres obtained from API, trending books and personal data.
 The genre information stored allows the search for audiobooks according to a genres, and the personal data guarantee the access multi-devices without losing information. 
-Based on the user's interaction with audiobbok, the app automatically assigns a score to each audiobook interacted with. As a result of the score algorithm, the Trending collection is built and the books with higher score are presented on Trending page.
+
+Based on the user's interaction with audiobbok, the app automatically assigns a score to each audiobook interacted with, as a result of the score algorithm, the Trending collection is built and the books with higher score are presented on Trending page.
 
 ![Firestore schema](docs/databaseSchema-firestore.png "Firestore Schema")
 
