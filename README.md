@@ -152,10 +152,10 @@ playerHandler.prepareSongAndSession(
 
 3. Manipulate its functionalities. For example:
 ```
-        playerHandler.playPause() //Play and Pause
-        playerHandler.seekTo(position: Int) //Go to a 'x' time
-        playerHandler.rewind() // Rewind 10 seconds
-        playerHandler.forward() // Forward 10 seconds
+playerHandler.playPause() //Play and Pause
+playerHandler.seekTo(position: Int) //Go to a 'x' time
+playerHandler.rewind() // Rewind 10 seconds
+playerHandler.forward() // Forward 10 seconds
 ```
 
 ## Book Cover
