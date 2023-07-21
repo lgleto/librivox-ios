@@ -6,11 +6,11 @@ This project was built during an intership, as a course completion, by two devel
 
 ## Introduction
 The "Narrativia" app is **free to use** and includes the main functions for consuming audiobooks, such as:
-* Offers a vast collection of audiobooks in more than a hundred (100) languages.
+* Offers a vast collection of audiobooks in a hundred (100) languages.
 * Allows the user to have acess to their account thorught different devices and use the app without connection.
 * Reproduce tracks while navigating and in offline mode, if the audiobook was previous downloaded.
 
-This app was designed to adress all the needs present in the market, with "the plus of" an user-friendly interface.
+This app was designed to address all the needs present in the market, with "the plus of" an user-friendly interface.
 
 ![App example](docs/mobile-app.png "App example")
 
@@ -18,8 +18,8 @@ This app was designed to adress all the needs present in the market, with "the p
 ## API LibriVox and Swagger
 The main content presented on the app are provided by LibriVox API, a REST API, which contains three endpoints available for developers to integrate the audiobooks into their apps.
 1. Returns the audiobooks 
-2. Returns the track of an specific audiobook
-3. Returns the books of an specific author 
+2. Returns the track of a specific audiobook
+3. Returns the books of a specific author 
 
 However due the quantity of data in each object, as represented below, and aiming for easy access and management of data, we opted to document the API using Swagger in conjuction with Open API specifications.
 
@@ -132,7 +132,7 @@ func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
 ```
 The Player itself is managed by the class "PlayerHandler" which follows the singleton pattern, enabling to manipulate the player instance from everywhere on the app using its reference.
 
-To access the player functionalities, two steps are required:
+To access the player functionalities, three steps are required:
 
 1. Instantiate the player Singleton
 ``` var playerHandler = PlayerHandler.sharedInstance``` 
