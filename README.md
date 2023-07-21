@@ -204,3 +204,7 @@ func getCoverBook(id: String, url: String? = nil, _ callback: @escaping (UIImage
 
 And that's it. Feel free to work on our app by forking the project.
 
+## License & copyright
+Copyright 2023 Leandro Silva and Glória Martins
+
+Licensed under MIT License
