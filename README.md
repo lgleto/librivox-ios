@@ -102,7 +102,7 @@ Based on the user's interaction with audiobbok, the app automatically assigns a 
 ![Firestore schema](docs/databaseSchema-firestore.png "Firestore Schema")
 
 #### CoreData
-Utilized for local data persistance, enabling offline mode to function effetivaly. The CoreData data is updated everytime the app is started - with a stable connection - and when occurs some alteration on the remote database, ensuring a synchronism between both schemas.
+Utilized for local data persistance, enabling offline mode to function effectivly. The CoreData data is updated everytime the app is started - with a stable connection - and when occurs some alteration on the remote database, ensuring a synchronism between both schemas.
 
 ![CoreData schema](docs/databaseSchema-coreData.png "CoreData Schema")
 
