@@ -163,7 +163,6 @@ func getBookByIdCD(id: String) -> AudioBooks_Data? {
 }
 
 
-/
 func fetchBooksByParameterCD(parameter: String, value: Bool) -> [AudioBooks_Data] {
     var matchingBooks: [AudioBooks_Data] = []
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

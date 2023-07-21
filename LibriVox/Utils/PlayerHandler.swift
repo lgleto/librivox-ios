@@ -89,17 +89,11 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     
     func prepareSongAndSession(
         urlString  : String,
-        image      : UIImage,
         title      : String,
-        artist     : String,
-        albumTitle : String,
         duration   : Int) {
         
         self.urlString  = urlString
-        self.image      = image
         self.title      = title
-        self.artist     = artist
-        self.albumTitle = albumTitle
         self.duration   = duration
         
         
@@ -307,19 +301,14 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     
     func setupNowPlaying() {
         // Define Now Playing Info
-        
-
-        
-       
-        
         let totalDuration = Float (duration)
-        nowPlayingInfo[MPMediaItemPropertyArtwork] =
+        /*nowPlayingInfo[MPMediaItemPropertyArtwork] =
         MPMediaItemArtwork(boundsSize: image!.size) { size in
             return self.image!
-        }
+        }*/
         nowPlayingInfo[MPMediaItemPropertyTitle] = title
-        nowPlayingInfo[MPMediaItemPropertyArtist] = artist
-        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = albumTitle
+        //nowPlayingInfo[MPMediaItemPropertyArtist] = artist
+        //nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = albumTitle
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = totalDuration
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = 0
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1

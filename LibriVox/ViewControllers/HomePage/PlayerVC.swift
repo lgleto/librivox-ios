@@ -116,10 +116,7 @@ class PlayerVC: UIViewController, DataDelegate {
                 let urlString = URL(fileURLWithPath:  url )
                     self.playerHandler.prepareSongAndSession(
                         urlString: urlString.absoluteString,
-                        image:  UIImage(systemName: "person.crop.square")!,
                         title: book.title ?? "Title Not found",
-                        artist: "",
-                        albumTitle: book.title!,
                         duration: Int(book.sections![currentSection ?? 1  - 1].playtime!)!)
            
                 playerHandler.book = book
@@ -161,11 +158,15 @@ class PlayerVC: UIViewController, DataDelegate {
         }
     }
     
+    @IBAction func forwardBtn(_ sender: Any) {
+        playerHandler.forward()
+    }
     @IBAction func playBTN(_ sender: Any) {
         playerHandler.playPause()
         if let bookId = book?._id {
             storeSectionTime(currentBookId: bookId)
         }
+        
     }
     
     @IBAction func sliderPositionEndChanged(_ sender: UISlider) {

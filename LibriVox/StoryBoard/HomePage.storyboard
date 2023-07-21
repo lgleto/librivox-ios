@@ -123,7 +123,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Vs-re-RIS">
-                                                    <rect key="frame" x="103" y="189" width="235" height="34"/>
+                                                    <rect key="frame" x="103.33333333333333" y="189.66666666666666" width="234.66666666666669" height="33.333333333333343"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="oi" image="arrow.up.bin" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
@@ -953,6 +953,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="forward.end.alt.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="forwardBtn:" destination="eKj-cy-cEV" eventType="touchUpInside" id="G3K-iJ-mUh"/>
+                                </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ui4-VC-J8Z">
                                 <rect key="frame" x="53.666666666666657" y="680" width="271.66666666666674" height="31"/>

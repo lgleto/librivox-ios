@@ -24,6 +24,7 @@ The main content presented on the app are provided by LibriVox API, a REST API, 
 However due the quantity of data in each object, as represented below, and aiming for easy access and management of data, we opted to document the API using Swagger in conjuction with Open API specifications.
 
 Example: Request GET audiobooks 
+
 ``` https://librivox.org/api/feed/audiobooks?format=json&extended=1'``` 
 
 Response:
@@ -135,23 +136,69 @@ To access the player functionalities, two steps are required:
 ``` var playerHandler = PlayerHandler.sharedInstance``` 
 
 2. Initialize the book to be played
-```      
+```     
+/// Prepare the audiobooks to be played
+/// - Parameters:
+///   - urlString: Path to the file to be played
+///   - title: Title of the audiobook
+///   - duration: Total time of file in milliseconds
 playerHandler.prepareSongAndSession(
-urlString: urlString.absoluteString,
-image: image,
-title: book.title ?? "Title Not found",
-artist: "",
-albumTitle: book.title!,
-duration: book.duration)
+        urlString  : String,
+        title      : String,
+        duration   : Int)
 ```
 
-3. Manipulate its functionalities
+3. Manipulate its functionalities. For example:
 ```
-//Manipulate Play and Pause
-playerHandler.playPause()
-
-
-
+        playerHandler.playPause() //Play and Pause
+        playerHandler.seekTo(position: Int) //Go to a 'x' time
+        playerHandler.rewind() // Rewind 10 seconds
+        playerHandler.forward() // Forward 10 seconds
 ```
 
+## Book Cover
+To solve the lack of book images provided by the API, it was implemented a temporary function which reads the source code of the book's page on LibriVox website, extracts the URLimage, downloads it and present it to the user.
+
+Example of usage:
+```
+//If the cover must be downloaded, but not stored on File Manager
+getCoverBook(id: book._id ?? "", url: url) { [weak self] image in
+}
+
+//If the book cover was previous stored on File Manager
+getCoverBook(id: book._id ?? "") { [weak self] image in
+}
+```
+
+An important point to highlight is that the book covers are stored on File Manager only when the download is initiated or when the Details Page is accessed.
+
+```
+/// Get the book cover
+/// - Parameters:
+///   - id: Path to the file to be played
+///   - url: The page book's url on LibriVox website
+///   - callback: Returns the UIImage
+func getCoverBook(id: String, url: String? = nil, _ callback: @escaping (UIImage?) -> Void) {
+    if let cachedImage = loadImageFromDocumentDirectory(id: id) {
+        callback(cachedImage)
+    } else if let cachedImage = ImageCache.shared.image(for: (id as NSString) as String){
+        callback(cachedImage)
+    }else{
+        guard let imageURL = URL(string: url ?? "") else {
+            callback(nil)
+            return
+        }
+        getBookCoverFromURL(url: url) { fetchedImageURL in
+            guard let fetchedImageURL = fetchedImageURL else {
+                callback(nil)
+                return
+            }
+            ImageCache.shared.insertImage(fetchedImageURL, for: (id as NSString) as String)
+            callback(fetchedImageURL)
+        }
+    }
+}
+```
+
+And that's it. Feel free to work on our app by forking the project.
 
