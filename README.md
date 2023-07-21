@@ -86,8 +86,6 @@ Response:
 By creating the [models](swagger-ios/swagger_code.yaml) on Swagger, the client code is easily generated and then embbed into the code. Below there's and example of how to call the API from Swift.
 ```
 
-#######Fazer Refrencia of ficheiro  SWAGGER############
-
 DefaultAPI.audiobooksTitletitleGet(title: text, format: "json", extended: 1) { [self] data, error in
 [...]
 }
