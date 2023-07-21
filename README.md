@@ -207,4 +207,4 @@ And that's it. Feel free to work on our app by forking the project.
 ## License & copyright
 Copyright 2023 Leandro Silva and Glória Martins
 
-Licensed under MIT License
+Licensed under [MIT LICENSE](LICENSE.txt)
