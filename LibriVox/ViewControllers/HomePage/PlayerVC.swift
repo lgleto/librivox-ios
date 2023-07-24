@@ -89,7 +89,6 @@ class PlayerVC: UIViewController, DataDelegate {
        
         getSectionTime(documentID: (book?._id)!) { bookstatus in
             if (bookstatus?.sectionStopped != "" || bookstatus?.timeStopped != "") {
-                self.bookstatus = bookstatus!
                 self.currentSection = Int(bookstatus!.sectionStopped)
             } else {
                 self.playMP3(newSection: false)
@@ -129,10 +128,7 @@ class PlayerVC: UIViewController, DataDelegate {
         slider.maximumValue = secondsToMillis(Int((playerHandler.book?.sections![playerHandler.currentSection ?? 1-1].playtime)!)!)
         titleLabel.text = titlePlayer(bookTitle: (playerHandler.book?.title)!, sectionTitle: (playerHandler.book?.sections![playerHandler.currentSection ?? 1  - 1].title)!)
         
-        if (bookstatus.timeStopped != "") {
-            playerHandler.seekTo(position: Int(bookstatus.timeStopped)!)
-            labelRemainingTime.text = millisToTime(Int(bookstatus.timeStopped)!)
-        }
+
             
         
         

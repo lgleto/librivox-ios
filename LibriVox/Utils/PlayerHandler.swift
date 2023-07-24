@@ -75,6 +75,8 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
         _progressChanged = progressChanged
     }
     
+    
+    
     var playerDuration : CMTime {
         get {
             if let thePlayerItem = player?.currentItem {
@@ -124,7 +126,21 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 NotificationCenter.default.addObserver(self, selector: #selector(self.playerItemDidReachEnd), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
                 NotificationCenter.default.addObserver(self, selector: #selector(self.playerItemWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
                 playerItem=p.currentItem
+                p.play()
+                isPlaying = true
+                MPNowPlayingInfoCenter.default().playbackState = MPNowPlayingPlaybackState.playing
+                getSectionTime(documentID: (book?._id)!) { bookstatus in
+                    if let bookstatus = bookstatus {
+                        if (bookstatus.sectionStopped != "" || bookstatus.timeStopped != "") {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.seekTo(position: Int(bookstatus.timeStopped)!)
+                            }
+                        }
+                    }
+                    
+                }
             }
+            
         } catch let sessionError {
             print(sessionError)
         }

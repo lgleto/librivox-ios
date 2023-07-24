@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -422,7 +422,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Usage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEL-gI-XtU">
-                                                <rect key="frame" x="69" y="296.33333333333331" width="79.666666666666686" height="20.666666666666686"/>
+                                                <rect key="frame" x="69" y="296.33333333333331" width="78.666666666666686" height="20.666666666666686"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -567,7 +567,7 @@
                                 <rect key="frame" x="16" y="43" width="169" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fed-Un-qzW">
-                                        <rect key="frame" x="77.333333333333329" y="16" width="14.666666666666671" height="34"/>
+                                        <rect key="frame" x="77.666666666666671" y="16" width="14" height="34"/>
                                         <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -594,24 +594,24 @@
                                 <rect key="frame" x="208" y="43" width="169" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unv-cp-gBb">
-                                        <rect key="frame" x="77.666666666666686" y="16" width="13.666666666666671" height="34"/>
+                                        <rect key="frame" x="77.666666666666686" y="16" width="14" height="34"/>
                                         <fontDescription key="fontDescription" name="Prata-Regular" family="Prata" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cu-lO-lkA">
-                                        <rect key="frame" x="17" y="50" width="135.33333333333334" height="24"/>
+                                        <rect key="frame" x="14.333333333333343" y="50" width="140.33333333333334" height="24"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Data consumed">
                                                 <attributes>
                                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="15" name="Nunito-Regular"/>
+                                                    <font key="NSFont" metaFont="system" size="15"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" (mb)">
                                                 <attributes>
                                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="13" name="Nunito-Regular"/>
+                                                    <font key="NSFont" metaFont="system"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
@@ -630,13 +630,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbq-Zh-M9c">
-                                <rect key="frame" x="16" y="153" width="106" height="24"/>
+                                <rect key="frame" x="16" y="153" width="106" height="24.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZjZ-uF-2DQ">
-                                <rect key="frame" x="16" y="187" width="361" height="655"/>
+                                <rect key="frame" x="16" y="187.66666666666669" width="361" height="654.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="23" id="df9-th-AVu">
                                     <size key="itemSize" width="140" height="170"/>
@@ -746,6 +746,9 @@
         </designable>
         <designable name="Nn5-LN-DiS">
             <size key="intrinsicContentSize" width="63" height="34"/>
+        </designable>
+        <designable name="Yu8-cj-5HF">
+            <size key="intrinsicContentSize" width="900" height="900"/>
         </designable>
     </designables>
     <resources>
