@@ -88,16 +88,19 @@ class ReadingVC: UITableViewController {
     
     @objc func click(_ sender: UIButton) {
         allButtons.forEach { $0.isSelected = false}
-        
-        playerHandler.playPause()
-        sender.isSelected = playerHandler.isPlaying
-        
+                
         if lastBook != sender.tag{
-            if let tabBarController = tabBarController as? HomepageTBC {
-                tabBarController.addChildView(book: finalList[sender.tag])
-            }}
-         
+            goToMiniPlayer(book: finalList[sender.tag], parentVC: self)
+            playerHandler.playPause()
+
+        }else{
+            playerHandler.playPause()
+        }
+        
+        print("resultado \(playerHandler.isPlaying)")
+        sender.isSelected = playerHandler.isPlaying
         self.lastBook = sender.tag
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

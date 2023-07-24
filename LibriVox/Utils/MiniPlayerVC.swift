@@ -38,7 +38,7 @@ class MiniPlayerVC: UIViewController {
         let btn = ToggleBtn()
         btn.imgSelected = UIImage(named: "pause-button")
         btn.imgNotSelected = UIImage(named: "play-button")
-        btn.isSelected = true
+        btn.isSelected = playerHandler.isPlaying
         btn.isUserInteractionEnabled = true
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTarget(self, action: #selector(playBtnClicked), for: .touchUpInside)

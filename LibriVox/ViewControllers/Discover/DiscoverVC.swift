@@ -77,6 +77,8 @@ class DiscoverVC: UIViewController {
         print("enter check wifi")
         if networkCheck.currentStatus == .satisfied {
             print("Connected to the internet")
+            
+            //removeImageNLabelAlert(view: self)
             connection = true
             
             addChild(emptyStateVC!)

@@ -740,18 +740,36 @@ func goToPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
         PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
             if let tabBarController = parentVC.tabBarController as? HomepageTBC {
                 tabBarController.addChildView(book: book as! PlayableItemProtocol)
-                                 }
+            }
             PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
             
         }
     } else {
         if let tabBarController = parentVC.tabBarController as? HomepageTBC {
             tabBarController.addChildView(book: book as! PlayableItemProtocol)
-                                 }
+        }
         PlayerVC.show(parentVC: parentVC, book: book as! PlayableItemProtocol)
-   
+        
     }
 }
+
+func goToMiniPlayer(book: PlayableItemProtocol, parentVC: UIViewController) {
+    guard let id = book._id else{return}
+    if !checkIfFileExists(book_id: id) {
+        PreparePlayerAlert.show(parentVC: parentVC, title: "teste", book: book) { _, book in
+            if let tabBarController = parentVC.tabBarController as? HomepageTBC {
+                tabBarController.addChildView(book: book as! PlayableItemProtocol)
+            }
+            
+        }
+    } else {
+        if let tabBarController = parentVC.tabBarController as? HomepageTBC {
+            tabBarController.addChildView(book: book as! PlayableItemProtocol)
+        }
+    }
+}
+
+
 
 func titlePlayer(bookTitle: String, sectionTitle: String) -> String {
     let finalTitle = ("\(bookTitle) - \(sectionTitle)")

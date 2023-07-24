@@ -124,6 +124,9 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 NotificationCenter.default.addObserver(self, selector: #selector(self.playerItemWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
                 playerItem=p.currentItem
             }
+            
+            updateUserParameter("lastBook", value: (book?._id)!)
+
         } catch let sessionError {
             print(sessionError)
         }
@@ -205,9 +208,12 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 MPNowPlayingInfoCenter.default().playbackState = MPNowPlayingPlaybackState.playing
                 isPlaying = true
             }
+            
         }else{
             isPlaying = false
         }
+        
+
         createTimers(true)
     }
     
