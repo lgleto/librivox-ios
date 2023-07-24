@@ -556,4 +556,3 @@ func getSectionTime(documentID: String, completion: @escaping (BookStatus?) -> V
         completion(bookstatus)
     }
 }
-
