@@ -292,6 +292,10 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
         isPlaying = false
         progress = 0
         updateNowPlayingInfoProgress(0.0)
+        let lastsectionbook = book!.sections!.count - 1
+        if (currentSection! == lastsectionbook) {
+            updateBookParameter("isFinished", value: true, documentID: (book?._id)!)
+        }
     }
     
     @objc func playerItemWasInterrupted(_ notification: Notification) {
