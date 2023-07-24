@@ -163,9 +163,6 @@ class PlayerVC: UIViewController, DataDelegate {
     }
     @IBAction func playBTN(_ sender: Any) {
         playerHandler.playPause()
-        if let bookId = book?._id {
-            storeSectionTime(currentBookId: bookId)
-        }
         
     }
     

@@ -39,6 +39,7 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     private var progressUpdateTimer: Timer?
     
     var book: PlayableItemProtocol?
+    var firstPlaying: Bool = false
     var currentSection: Int?
     var urlString   : String?
     var image    : UIImage?
@@ -143,7 +144,6 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 
                 case .readyToPlay:
                     //buttonPlayPausePressed.isEnabled = true
-                    //TODO: Insert seek to here
                     setupRemoteTransportControls()
                     setupNowPlaying()
                     
@@ -204,6 +204,19 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
                 p.play()
                 MPNowPlayingInfoCenter.default().playbackState = MPNowPlayingPlaybackState.playing
                 isPlaying = true
+                if (!firstPlaying) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        getSectionTime(documentID: (self.book?._id)!) { status in
+                            if let status = status {
+                                if (status.sectionStopped != "0") {
+                                    self.seekTo(position: Int(status.timeStopped)!)
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+                firstPlaying = true
             }
         }else{
             isPlaying = false
@@ -341,6 +354,9 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
     }
     
     func closePlayer() {
+          if let bookId = book?._id {
+             storeSectionTime(currentBookId: bookId)
+          }
           player?.pause()
           player = nil
           playerItem = nil
@@ -356,6 +372,8 @@ class PlayerHandler : NSObject, AVAudioPlayerDelegate {
           }
           NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
           NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+        firstPlaying = false
+        
       }
       
 }
